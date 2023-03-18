@@ -1,0 +1,28 @@
+@import url('https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+*{
+    font-family: 'Rubik', sans-serif;
+}
+
+@font-face {
+    font-family: 'signature';
+    src: url('../../public/assets/fonts/signature.ttf');
+}
+
+.neonText {
+    @apply text-white;
+    font-family: 'signature';
+    text-shadow:
+        0 0 7px #ff5400,
+        0 0 7px #ff5400,
+        0 0 20px #ff5400,
+        0 0 20px #ff5400,
+        0 0 20px #ff5400,
+        0 0 20px #ff5400,
+        0 0 20px #ff5400,
+        0 0 20px #ff5400;
+  }
