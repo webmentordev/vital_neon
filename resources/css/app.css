@@ -1,11 +1,12 @@
-@import url('https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700&family=Rubik:wght@300;400;500;600;700&display=swap');
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 *{
-    font-family: 'Rubik', sans-serif;
+    font-family: 'Open Sans', sans-serif;
+    /* font-family: 'Rubik', sans-serif; */
 }
 
 @font-face {
@@ -17,12 +18,12 @@
     @apply text-white;
     font-family: 'signature';
     text-shadow:
-        0 0 7px #ff5400,
-        0 0 7px #ff5400,
-        0 0 20px #ff5400,
-        0 0 20px #ff5400,
-        0 0 20px #ff5400,
-        0 0 20px #ff5400,
-        0 0 20px #ff5400,
-        0 0 20px #ff5400;
+        0 0 7px #ff5500aa,
+        0 0 7px #ff5500aa,
+        0 0 22px #ff5500aa,
+        0 0 22px #ff5500aa,
+        0 0 22px #ff5500aa,
+        0 0 22px #ff5500aa,
+        0 0 22px #ff5500aa,
+        0 0 22px #ff5500aa;
   }
