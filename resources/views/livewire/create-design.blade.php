@@ -20,6 +20,29 @@
                     <span class="text-gray-500 text-sm">Your sign will be white when turned off.</span>
                 </div>
             </div>
+
+            <div class="py-2">
+                <h2 class="font-bold mb-2 text-lg">Choose Font</h2>
+                <div class="grid grid-cols-2 gap-4">
+                    @foreach ($fonts as $font)
+                    <div wire:click="changeFont('{{ $font }}')" class="flex items-center justify-center p-3 cursor-pointer rounded-md flex-col border @if ($font_select == '{{ $font }}') border-main @else border-gray-300 @endif">
+                        <p class="text-center text-2xl {{ $font }}">{{ $custom_text }}</p>
+                    </div>
+                    @endforeach
+                </div>
+            </div>
+
+            <div class="py-2">
+                <h2 class="font-bold mb-2 text-lg">Choose a colour</h2>
+                <div class="flex flex-wrap">
+                    @foreach ($colors as $color)
+                        <div wire:click="changeColor('{{ $color }}')" class="rounded-full m-2" style="@if($color == $color_select) border: 2px {{ $color_select }} solid; @endif">
+                            <span class="flex p-4 cursor-pointer rounded-full flex-col border border-white shadow-md" style="background-color: {{ $color }};"></span>
+                        </div>
+                    @endforeach
+                </div>
+            </div>
+
             <div class="py-2">
                 <h2 class="font-bold mb-2 text-lg">Choose a size *{{ $size }}</h2>
                 <p class="text-gray-500 text-sm mb-3">*Each sign is handcrafted, and sizes shown will be accurate within 1 or 2 inches. Neon sign larger than 47 inches will be made on two or more backboards that can be easily arranged together.</p>
@@ -63,7 +86,7 @@
                         <span class="text-gray-500 text-sm">The backboard will closely follow the pattern of the preferred font size and style. It provides a minimalistic appearance, making it perfect for interior decoration.</span>
                     </div>
 
-                    <div wire:click="changeBG('cut_to_letter')" class="flex mb-4 p-3 cursor-pointer rounded-md flex-col border @if ($background == 'cut_to_letter') border-main @else border-gray-300 @endif">
+                    <div wire:click="changeBG('cut_to_rectangle')" class="flex mb-4 p-3 cursor-pointer rounded-md flex-col border @if ($background == 'cut_to_rectangle') border-main @else border-gray-300 @endif">
                         <p class="font-semibold mb-2">Cut to rectangle (+$20.00)</p>
                         <span class="text-gray-500 text-sm">The backboard will be cut rectangularly like a frame. It offers the greatest stability for LED neon signs due to its larger backing surface, making it ideal for outdoor use and sturdier framing needs.</span>
                     </div>
@@ -94,10 +117,10 @@
                 <h2 class="font-bold text-lg mb-3">Location *{{ $location }}</h2>
                 <div class="py-3 grid grid-cols-2 gap-4">
                     <div wire:click="changeLocation('out_door')" class="flex mb-4 items-center justify-center p-3 cursor-pointer rounded-md flex-col border @if ($location == 'out_door') border-main @else border-gray-300 @endif">
-                        <p class="font-semibold mb-2 text-center">Outdoor (+20%) With Waterproof Technology</p>
+                        <p class="font-semibold text-center">Outdoor (+20%) With Waterproof Technology</p>
                     </div>
                     <div wire:click="changeLocation('in_door')" class="flex mb-4 items-center justify-center p-3 cursor-pointer rounded-md flex-col border @if ($location == 'in_door') border-main @else border-gray-300 @endif">
-                        <p class="font-semibold mb-2 text-center">InDoor</p>
+                        <p class="font-semibold text-center">InDoor</p>
                     </div>
                 </div>
             </div>
