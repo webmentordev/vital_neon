@@ -1,7 +1,7 @@
 <section class="w-full py-[80px]">
     <div class="grid grid-cols-2 gap-6 max-w-6xl m-auto min-h-[800px]">
         <div class="bg-cover bg-center rounded-lg flex items-center justify-center" style="background-image: url({{ asset('assets/images/dark_wall.jpg') }})">
-            <span class="neonText text-7xl font-semibold">{{ $custom_text }}</span>
+            <span class="neonText {{ $font_select }} text-7xl font-semibold">{{ $custom_text }}</span>
         </div>
         <form wire:submit.prevent="createOrder" method="POST" class="text-sm max-h-[900px] overflow-scroll px-6">
             <h1 class="text-main font-bold text-3xl mb-3">Design Your Neon</h1>
@@ -21,11 +21,12 @@
                 </div>
             </div>
 
-            <div class="py-2">
+            <div class="py-2" x-data="{ open: false }">
                 <h2 class="font-bold mb-2 text-lg">Choose Font</h2>
-                <div class="grid grid-cols-2 gap-4">
+                <p class="p-3 border-gray-300 flex items-center justify-between bg-gray-100 rounded-md mb-3 capitalize" x-on:click="open = !open">{{ $font_select }} <img src="https://api.iconify.design/fe:drop-down.svg?color=%231e1f1e" width="30" alt="Carret Down Icon"></p>
+                <div class="grid grid-cols-2 gap-4" x-show="open" x-cloak>
                     @foreach ($fonts as $font)
-                    <div wire:click="changeFont('{{ $font }}')" class="flex items-center justify-center p-3 cursor-pointer rounded-md flex-col border @if ($font_select == '{{ $font }}') border-main @else border-gray-300 @endif">
+                    <div wire:click="changeFont('{{ $font }}')" class="flex items-center justify-center p-3 cursor-pointer rounded-md flex-col border  @if ($font_select == $font) border-main @else border-gray-300 @endif">
                         <p class="text-center text-2xl {{ $font }}">{{ $custom_text }}</p>
                     </div>
                     @endforeach
@@ -46,10 +47,10 @@
             <div class="py-2">
                 <h2 class="font-bold mb-2 text-lg">Choose a size *{{ $size }}</h2>
                 <p class="text-gray-500 text-sm mb-3">*Each sign is handcrafted, and sizes shown will be accurate within 1 or 2 inches. Neon sign larger than 47 inches will be made on two or more backboards that can be easily arranged together.</p>
-                <div class="grid grid-cols-2 gap-4">
+                <div class="grid grid-cols-2 gap-4 whitespace-pre-wrap">
                     <div wire:click="changeSize('small')" class="flex p-3 cursor-pointer rounded-md flex-col border @if ($size == 'small') border-main @else border-gray-300 @endif">
                         <p class="font-semibold mb-2">Small</p>
-                        <span class="text-gray-500 text-sm">66.84cmx20.87cm/26.32inx8.22in</span>
+                        <span class="text-gray-500 text-sm">66.84cmx20.87cm/26.32inx 8.22in</span>
                     </div>
 
                     <div wire:click="changeSize('medium')" class="flex p-3 cursor-pointer rounded-md flex-col border @if ($size == 'medium') border-main @else border-gray-300 @endif">
@@ -69,7 +70,7 @@
 
                     <div wire:click="changeSize('supersized')" class="flex p-3 cursor-pointer rounded-md flex-col border @if ($size == 'supersized') border-main @else border-gray-300 @endif">
                         <p class="font-semibold mb-2">Supersized</p>
-                        <span class="text-gray-500 text-sm">233.94cmx73.05cm/92.10inx28.76in</span>
+                        <span class="text-gray-500 text-sm">233.94cmx73.05cm/92.10inx 28.76in</span>
                     </div>
                 </div>
             </div>

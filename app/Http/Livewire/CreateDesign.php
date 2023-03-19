@@ -48,7 +48,8 @@ class CreateDesign extends Component
         "playlist",
         "roboto",
         "simple",
-        "slender"
+        "slender",
+        "signature"
     ], $font_select = "logo";
 
     

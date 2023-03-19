@@ -10,6 +10,10 @@
     /* font-family: 'Rubik', sans-serif; */
 }
 
+[x-cloak]{
+    display: none !important;
+}
+
 @font-face {
     font-family: 'signature';
     src: url('../fonts/signature.ttf');
@@ -101,10 +105,8 @@
 }
 
 
-
 .neonText {
     @apply text-white;
-    font-family: 'signature';
     text-shadow:
         0 0 7px #ff5500aa,
         0 0 7px #ff5500aa,
@@ -177,4 +179,6 @@
 .slender {
     font-family: 'slender';
 }
-
+.signature {
+    font-family: 'signature';
+}
