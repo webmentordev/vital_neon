@@ -9,6 +9,10 @@ class CreateDesign extends Component
     public $custom_text = "Your Text";
     public $jacked = "colored";
     public $size = "small";
+    public $background = "cut_to_shape";
+    public $location = "out_door";
+    public $bgColor = "none";
+    public $remote = "no";
     
     public function render()
     {
@@ -21,5 +25,17 @@ class CreateDesign extends Component
 
     public function changeSize($size){
         $this->size = $size;
+    }
+
+    public function changeLocation($location){
+        $this->location = $location;
+    }
+
+    public function changeBGColor($color){
+        $this->bgColor = $color;
+    }
+
+    public function changeRemote($status){
+        $this->remote = $status;
     }
 }
