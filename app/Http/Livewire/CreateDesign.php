@@ -52,7 +52,13 @@ class CreateDesign extends Component
         "signature"
     ], $font_select = "logo";
 
-    
+    public $images = [
+        "dark_wall.jpg",
+        "background1.png",
+        "background3.jpg",
+        "bed_room.jpg",
+        "wall.jpg"
+    ], $image_select = "dark_wall.jpg";
 
     public function render()
     {
@@ -90,6 +96,10 @@ class CreateDesign extends Component
 
     public function changeFont($font){
         $this->font_select = $font;
+    }
+
+    public function changeImage($image){
+        $this->image_select = $image;
     }
 
 

@@ -1,7 +1,7 @@
 <section class="w-full py-[80px]">
     <div class="grid grid-cols-2 gap-6 max-w-[1360px] m-auto min-h-[800px]">
-        <div class="bg-cover bg-center rounded-lg flex items-center justify-center" style="background-image: url({{ asset('assets/images/dark_wall.jpg') }})">
-            <span class="text-white {{ $font_select }} m-auto text-center text-6xl font-semibold" style="text-shadow:
+        <div class="bg-cover bg-center relative rounded-lg flex justify-center" style="background-image: url({{ asset('assets/images/background/'.$image_select) }})">
+            <span class="text-white {{ $font_select }} m-auto mt-[250px] text-center text-6xl font-semibold" style="text-shadow:
             0 0 7px {{ $color_select }},
             0 0 7px {{ $color_select }},
             0 0 22px {{ $color_select }},
@@ -10,6 +10,11 @@
             0 0 22px {{ $color_select }},
             0 0 22px {{ $color_select }},
             0 0 22px {{ $color_select }};">{{ $custom_text }}</span>
+            <div class="absolute bottom-0 w-full p-3 grid grid-cols-5 gap-4">
+                @foreach ($images as $image)
+                    <span wire:click="changeImage('{{ $image }}')" style='background-image: url({{ asset("assets/images/background/".$image ) }})' class="rounded-md h-[150px] bg-cover bg-center border @if($image_select == $image) border-main opacity-100 @else opacity-50 @endif"></span>
+                @endforeach
+            </div>
         </div>
         <form wire:submit.prevent="createOrder" method="POST" class="text-sm max-h-[900px] overflow-scroll px-6 py-6">
             <h1 class="text-main font-bold text-3xl mb-3">Design Your Neon</h1>
