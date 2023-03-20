@@ -1,9 +1,17 @@
 <section class="w-full py-[80px]">
-    <div class="grid grid-cols-2 gap-6 max-w-6xl m-auto min-h-[800px]">
+    <div class="grid grid-cols-2 gap-6 max-w-[1360px] m-auto min-h-[800px]">
         <div class="bg-cover bg-center rounded-lg flex items-center justify-center" style="background-image: url({{ asset('assets/images/dark_wall.jpg') }})">
-            <span class="neonText {{ $font_select }} text-7xl font-semibold">{{ $custom_text }}</span>
+            <span class="text-white {{ $font_select }} m-auto text-center text-6xl font-semibold" style="text-shadow:
+            0 0 7px {{ $color_select }},
+            0 0 7px {{ $color_select }},
+            0 0 22px {{ $color_select }},
+            0 0 22px {{ $color_select }},
+            0 0 22px {{ $color_select }},
+            0 0 22px {{ $color_select }},
+            0 0 22px {{ $color_select }},
+            0 0 22px {{ $color_select }};">{{ $custom_text }}</span>
         </div>
-        <form wire:submit.prevent="createOrder" method="POST" class="text-sm max-h-[900px] overflow-scroll px-6">
+        <form wire:submit.prevent="createOrder" method="POST" class="text-sm max-h-[900px] overflow-scroll px-6 py-6">
             <h1 class="text-main font-bold text-3xl mb-3">Design Your Neon</h1>
             <h2 class="font-bold text-lg">Write your text</h2>
             <input type="text" wire:model.debounce.500ms="custom_text" placeholder="Custom Text" class="w-full mt-2 bg-white rounded border focus:border-main focus:ring-4 focus:ring-main-light text-base outline-none text-gray-700 py-2 px-3 leading-8 transition-colors duration-200 ease-in-out mb-3">
@@ -75,7 +83,7 @@
                 </div>
             </div>
             <div class="py-2">
-                <h2 class="font-boldtext-lg mb-3">Backboard Style *{{ $background }}</h2>
+                <h2 class="font-bold text-lg mb-3">Backboard Style *{{ $background }}</h2>
                 <div class="py-3">
                     <div wire:click="changeBG('cut_to_shape')" class="flex mb-4 p-3 cursor-pointer rounded-md flex-col border @if ($background == 'cut_to_shape') border-main @else border-gray-300 @endif">
                         <p class="font-semibold mb-2">Cut to shape</p>
@@ -142,10 +150,10 @@
                 <p class="text-gray-500 text-sm mb-3">A remote and dimmer is included free with every sign! (Except for Multicolor Neon Signs, which are controlled by the APP)</p>
                 <div class="py-3 grid grid-cols-2 gap-4">
                     <div wire:click="changeRemote('yes')" class="flex items-center justify-center p-3 cursor-pointer rounded-md flex-col border @if ($remote == 'yes') border-main @else border-gray-300 @endif">
-                        <p class="font-semibold mb-2 text-center">YES</p>
+                        <p class="font-semibold text-center">YES</p>
                     </div>
                     <div wire:click="changeRemote('no')" class="flex items-center justify-center p-3 cursor-pointer rounded-md flex-col border @if ($remote == 'no') border-main @else border-gray-300 @endif">
-                        <p class="font-semibold mb-2 text-center">No</p>
+                        <p class="font-semibold text-center">No</p>
                     </div>
                 </div>
             </div>

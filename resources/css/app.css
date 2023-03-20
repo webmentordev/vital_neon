@@ -105,18 +105,6 @@
 }
 
 
-.neonText {
-    @apply text-white;
-    text-shadow:
-        0 0 7px #ff5500aa,
-        0 0 7px #ff5500aa,
-        0 0 22px #ff5500aa,
-        0 0 22px #ff5500aa,
-        0 0 22px #ff5500aa,
-        0 0 22px #ff5500aa,
-        0 0 22px #ff5500aa,
-        0 0 22px #ff5500aa;
-}
 
 .logo{
     font-family: 'neon_tube';
