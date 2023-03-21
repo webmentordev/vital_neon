@@ -61,54 +61,24 @@
                 <h2 class="font-bold mb-2 text-lg">Choose a size *{{ $size }}</h2>
                 <p class="text-gray-500 text-sm mb-3">*Each sign is handcrafted, and sizes shown will be accurate within 1 or 2 inches. Neon sign larger than 47 inches will be made on two or more backboards that can be easily arranged together.</p>
                 <div class="grid grid-cols-2 gap-4 whitespace-pre-wrap">
-                    <div wire:click="changeSize('small')" class="flex p-3 cursor-pointer rounded-md flex-col border @if ($size == 'small') border-main @else border-gray-300 @endif">
-                        <p class="font-semibold mb-2">Small</p>
-                        <span class="text-gray-500 text-sm">66.84cmx20.87cm/26.32inx 8.22in</span>
-                    </div>
-
-                    <div wire:click="changeSize('medium')" class="flex p-3 cursor-pointer rounded-md flex-col border @if ($size == 'medium') border-main @else border-gray-300 @endif">
-                        <p class="font-semibold mb-2">Medium</p>
-                        <span class="text-gray-500 text-sm">92.24cmx28.80cm/36.32inx 11.34in</span>
-                    </div>
-
-                    <div wire:click="changeSize('large')" class="flex p-3 cursor-pointer rounded-md flex-col border @if ($size == 'large') border-main @else border-gray-300 @endif">
-                        <p class="font-semibold mb-2">Large</p>
-                        <span class="text-gray-500 text-sm">116.97cmx 36.53cm/46.05inx 14.38in</span>
-                    </div>
-
-                    <div wire:click="changeSize('x-large')" class="flex p-3 cursor-pointer rounded-md flex-col border @if ($size == 'x-large') border-main @else border-gray-300 @endif">
-                        <p class="font-semibold mb-2">X Large</p>
-                        <span class="text-gray-500 text-sm">143.71cmx44.88cm/56.58inx 17.67in</span>
-                    </div>
-
-                    <div wire:click="changeSize('supersized')" class="flex p-3 cursor-pointer rounded-md flex-col border @if ($size == 'supersized') border-main @else border-gray-300 @endif">
-                        <p class="font-semibold mb-2">Supersized</p>
-                        <span class="text-gray-500 text-sm">233.94cmx73.05cm/92.10inx 28.76in</span>
-                    </div>
+                    @foreach ($sizes as $item)
+                        <div wire:click="changeSize('{{ $item->size }}')" class="flex p-3 cursor-pointer rounded-md flex-col border @if ($size == $item->size) border-main @else border-gray-300 @endif">
+                            <p class="font-semibold mb-2">{{ $item->size }}</p>
+                            <span class="text-gray-500 text-sm">{{ $item->width }} inc / {{ $item->height }} Inc <span class="text-[10px]">(width / height)</span></span>
+                        </div>
+                    @endforeach
                 </div>
             </div>
             <div class="py-2">
                 <h2 class="font-bold text-lg mb-3">Backboard Style *{{ $background }}</h2>
                 <div class="py-3">
-                    <div wire:click="changeBG('cut_to_shape')" class="flex mb-4 p-3 cursor-pointer rounded-md flex-col border @if ($background == 'cut_to_shape') border-main @else border-gray-300 @endif">
-                        <p class="font-semibold mb-2">Cut to shape</p>
-                        <span class="text-gray-500 text-sm">The backboard will be shaped in line with the letters. Compared to the cut-to-letter backing, it provides greater support to the neon sign while also lending a stylish and modern appearance.</span>
-                    </div>
-
-                    <div wire:click="changeBG('cut_to_letter')" class="flex mb-4 p-3 cursor-pointer rounded-md flex-col border @if ($background == 'cut_to_letter') border-main @else border-gray-300 @endif">
-                        <p class="font-semibold mb-2">Cut to letter</p>
-                        <span class="text-gray-500 text-sm">The backboard will closely follow the pattern of the preferred font size and style. It provides a minimalistic appearance, making it perfect for interior decoration.</span>
-                    </div>
-
-                    <div wire:click="changeBG('cut_to_rectangle')" class="flex mb-4 p-3 cursor-pointer rounded-md flex-col border @if ($background == 'cut_to_rectangle') border-main @else border-gray-300 @endif">
-                        <p class="font-semibold mb-2">Cut to rectangle (+$20.00)</p>
-                        <span class="text-gray-500 text-sm">The backboard will be cut rectangularly like a frame. It offers the greatest stability for LED neon signs due to its larger backing surface, making it ideal for outdoor use and sturdier framing needs.</span>
-                    </div>
-
-                    <div wire:click="changeBG('stand')" class="flex p-3 cursor-pointer rounded-md flex-col border @if ($background == 'stand') border-main @else border-gray-300 @endif">
-                        <p class="font-semibold mb-2">Stand (+$30.00)</p>
-                        <span class="text-gray-500 text-sm">Make your sign upright on the floor or desk. Lightweight and portable, you can easily place them anywhere you need them.</span>
-                    </div>
+                    
+                    @foreach ($shapes as $shape)
+                        <div wire:click="changeBG('{{ $shape->shape }}')" class="flex mb-4 p-3 cursor-pointer rounded-md flex-col border @if ($background ==  $shape->shape) border-main @else border-gray-300 @endif">
+                            <p class="font-semibold mb-2">{{ $shape->shape }} (${{ $shape->price }})</p>
+                            <span class="text-gray-500 text-sm">{{ $shape->description }}</span>
+                        </div>
+                    @endforeach
                 </div>
             </div>
             <div class="py-2">

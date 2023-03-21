@@ -2,6 +2,8 @@
 
 namespace App\Http\Livewire;
 
+use App\Models\Shape;
+use App\Models\Size;
 use Livewire\Component;
 
 class CreateDesign extends Component
@@ -9,10 +11,10 @@ class CreateDesign extends Component
     public $custom_text = "Your Text";
     public $adaptor = "USA/Canada/120V";
     public $jacked = "colored";
-    public $size = "small";
+    public $size = "Small";
     public $location = "in_door";
     public $email = "";
-    public $background = "cut_to_shape";
+    public $background = "Cut to shape";
     public $remote = "no";
     public $colors = [
         "rgb(252, 96, 2)",
@@ -63,7 +65,10 @@ class CreateDesign extends Component
 
     public function render()
     {
-        return view('livewire.create-design')->layout('layouts.base');
+        return view('livewire.create-design', [
+            'sizes' => Size::all(),
+            'shapes' => Shape::all(),
+        ])->layout('layouts.base');
     }
 
     public function changeJacket($type){

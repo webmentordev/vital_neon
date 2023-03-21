@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\ShapeController;
 use App\Http\Controllers\SizeController;
 use App\Http\Livewire\CreateDesign;
 use Illuminate\Support\Facades\Route;
@@ -22,6 +23,9 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/size', [SizeController::class, 'index'])->name('size');
     Route::post('/size', [SizeController::class, 'create']);
+
+    Route::get('/shape', [ShapeController::class, 'index'])->name('shape');
+    Route::post('/shape', [ShapeController::class, 'create']);
 });
 
 require __DIR__.'/auth.php';
