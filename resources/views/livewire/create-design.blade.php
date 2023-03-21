@@ -107,12 +107,11 @@
                 <h2 class="font-bold text-lg">Free Remote and Dimmer</h2>
                 <p class="text-gray-500 text-sm mb-3">A remote and dimmer is included free with every sign! (Except for Multicolor Neon Signs, which are controlled by the APP)</p>
                 <div class="py-3 grid grid-cols-2 gap-4">
-                    <div wire:click="$set('remove', 'no')" class="flex items-center justify-center p-3 cursor-pointer rounded-md flex-col border @if ($remote == 'no') border-main @else border-gray-300 @endif">
-                        <p class="font-semibold text-center">No</p>
-                    </div>
-                    <div wire:click="$set('remove', 'yes')" class="flex items-center justify-center p-3 cursor-pointer rounded-md flex-col border @if ($remote == 'yes') border-main @else border-gray-300 @endif">
-                        <p class="font-semibold text-center">YES</p>
-                    </div>
+                    @foreach ($remotes as $rItem)
+                        <div wire:click="$set('remove', '{{ $rItem->type }}')" class="flex items-center justify-center p-3 cursor-pointer rounded-md flex-col border @if ($remote == $rItem->type) border-main @else border-gray-300 @endif">
+                            <p class="font-semibold text-center">{{ $rItem->type }} - ${{ $rItem->price }}</p>
+                        </div>
+                    @endforeach 
                 </div>
             </div>
 

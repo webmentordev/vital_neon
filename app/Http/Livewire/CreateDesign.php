@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire;
 
+use App\Models\Remote;
 use App\Models\Shape;
 use App\Models\Size;
 use Livewire\Component;
@@ -15,7 +16,8 @@ class CreateDesign extends Component
     public $location = "in_door";
     public $email = "";
     public $background = "Cut to shape";
-    public $remote = "no";
+    public $remote = "Line Dimmer";
+    
     public $colors = [
         "rgb(252, 96, 2)",
         "rgb(255, 255, 255)",
@@ -68,6 +70,7 @@ class CreateDesign extends Component
         return view('livewire.create-design', [
             'sizes' => Size::all(),
             'shapes' => Shape::all(),
+            'remotes' => Remote::all()
         ]);
     }
 }

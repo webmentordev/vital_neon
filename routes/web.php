@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\RemoteController;
 use App\Http\Controllers\ShapeController;
 use App\Http\Controllers\SizeController;
 use App\Http\Livewire\CreateDesign;
@@ -26,6 +27,9 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/shape', [ShapeController::class, 'index'])->name('shape');
     Route::post('/shape', [ShapeController::class, 'create']);
+
+    Route::get('/remote', [RemoteController::class, 'index'])->name('remote');
+    Route::post('/remote', [RemoteController::class, 'create']);
 });
 
 require __DIR__.'/auth.php';
