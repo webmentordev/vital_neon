@@ -7,11 +7,11 @@ use Livewire\Component;
 class CreateDesign extends Component
 {
     public $custom_text = "Your Text";
+    public $adaptor = "USA/Canada/120V";
     public $jacked = "colored";
     public $size = "small";
-    public $location = "out_door";
+    public $location = "in_door";
     public $background = "cut_to_shape";
-    public $bgColor = "none";
     public $remote = "no";
     public $colors = [
         "rgb(252, 96, 2)",
@@ -80,11 +80,7 @@ class CreateDesign extends Component
     public function changeBG($bgshape){
         $this->background = $bgshape;
     }
-
-    public function changeBGColor($color){
-        $this->bgColor = $color;
-    }
-
+    
     public function changeRemote($status){
         $this->remote = $status;
     }
@@ -101,7 +97,6 @@ class CreateDesign extends Component
     public function changeImage($image){
         $this->image_select = $image;
     }
-
 
     public function create(){
         $this->validate([

@@ -6,8 +6,8 @@
             <h2 class="text-4xl text-center uppercase mb-3 text-main">Light of Neon, Power of Will</h2>
             <p class="max-w-2xl m-auto text-center">NeonWill is an LED neon sign maker that designs and manufactures awesome LED neon signs for business, weddings, parties, events, home decor and so much more.</p>
             <div class="grid grid-cols-2 gap-6 py-[50px]" x-data="{ placeholder: 'Type here...', text: 'Your Text' }">
-                <div class="w-full bg-cover rounded-lg overflow-hidden bg-center flex items-center justify-center" style="background-image: url({{ asset('assets/images/wall.jpg') }})">
-                    <span class="neonText text-7xl font-semibold" x-text="text"></span>
+                <div class="w-full bg-cover rounded-lg overflow-hidden bg-center flex items-center justify-center" style="background-image: url({{ asset('assets/images/background/dark_wall.jpg') }})">
+                    <span class="neonText text-7xl font-semibold text-white" x-text="text"></span>
                 </div>
                 <div class="p-6 flex flex-col my-6">
                     <i class="mb-3">Design your text</i>

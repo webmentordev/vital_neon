@@ -104,6 +104,18 @@
     src: url('../fonts/neon/slender.ttf');
 }
 
+.neonText{
+    font-family: 'signature';
+    text-shadow:
+    0 0 7px #ff5500,
+    0 0 7px #ff5500,
+    0 0 22px #ff540066,
+    0 0 22px #ff540066,
+    0 0 22px #ff540066,
+    0 0 22px #ff540066,
+    0 0 22px #ff540066,
+    0 0 22px #ff540066;
+}
 
 
 .logo{

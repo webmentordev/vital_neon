@@ -112,34 +112,18 @@
                 </div>
             </div>
             <div class="py-2">
-                <h2 class="font-bold text-lg mb-3">Choose a background Color</h2>
-                <p class="capitalize">{{ $bgColor }}</p>
-                <div class="py-3 grid grid-cols-4 gap-4">
-                    <div wire:click="changeBGColor('none')" class="flex mb-4 items-center w-full h-[50px] bg-cover bg-center justify-center p-3 cursor-pointer rounded-md flex-col border @if ($bgColor == 'none') border-main @else border-gray-300 @endif" style="background-image: url('https://d1no4rdxmwcuog.cloudfront.net/files/NU9kHUypVKu7GgDjpRPg_.png')">
-                    </div>
-                    <div wire:click="changeBGColor('white')" class="flex mb-4 items-center w-full h-[50px] bg-cover bg-center justify-center p-3 cursor-pointer rounded-md flex-col border @if ($bgColor == 'white') border-main @else border-gray-300 @endif" style="background-image: url('https://d1no4rdxmwcuog.cloudfront.net/files/rqGyW704bxMZm410Pcqtp.png')">
-                    </div>
-                    <div wire:click="changeBGColor('black')" class="flex mb-4 items-center w-full h-[50px] bg-cover bg-center justify-center p-3 cursor-pointer rounded-md flex-col border @if ($bgColor == 'black') border-main @else border-gray-300 @endif" style="background-image: url('https://d1no4rdxmwcuog.cloudfront.net/files/f7GuJ7845qruhQRXU7yZY.png')">
-                    </div>
-                    <div wire:click="changeBGColor('silver')" class="flex mb-4 items-center w-full h-[50px] bg-cover bg-center justify-center p-3 cursor-pointer rounded-md flex-col border @if ($bgColor == 'silver') border-main @else border-gray-300 @endif" style="background-image: url('https://d1no4rdxmwcuog.cloudfront.net/files/vkdGCK-IclQBnW8eATwm3.png')">
-                    </div>
-                    <div wire:click="changeBGColor('gold')" class="flex mb-4 items-center w-full h-[50px] bg-cover bg-center justify-center p-3 cursor-pointer rounded-md flex-col border @if ($bgColor == 'gold') border-main @else border-gray-300 @endif" style="background-image: url('https://d1no4rdxmwcuog.cloudfront.net/files/qiQZkeRsQdd2PWwzZvPl6.png')">
-                    </div>
-                </div>
-            </div>
-            <div class="py-2">
                 <h2 class="font-bold text-lg mb-3">Location *{{ $location }}</h2>
                 <div class="py-3 grid grid-cols-2 gap-4">
-                    <div wire:click="changeLocation('out_door')" class="flex mb-4 items-center justify-center p-3 cursor-pointer rounded-md flex-col border @if ($location == 'out_door') border-main @else border-gray-300 @endif">
-                        <p class="font-semibold text-center">Outdoor (+20%) With Waterproof Technology</p>
-                    </div>
                     <div wire:click="changeLocation('in_door')" class="flex mb-4 items-center justify-center p-3 cursor-pointer rounded-md flex-col border @if ($location == 'in_door') border-main @else border-gray-300 @endif">
                         <p class="font-semibold text-center">InDoor</p>
                     </div>
+                    <div wire:click="changeLocation('out_door')" class="flex mb-4 items-center justify-center p-3 cursor-pointer rounded-md flex-col border @if ($location == 'out_door') border-main @else border-gray-300 @endif">
+                        <p class="font-semibold text-center">Outdoor (+20%) With Waterproof Technology</p>
+                    </div>
                 </div>
             </div>
             <div class="py-2">
-                <h2 class="font-bold text-lg">Power Adaptor</h2>
+                <h2 class="font-bold text-lg">Power Adaptor *{{ $adaptor }}</h2>
                 <div class="mt-1">
                     <select wire:model="adaptor" class="w-full mt-2 bg-white rounded border focus:border-main focus:ring-4 focus:ring-main-light text-base outline-none text-gray-700 py-2 px-3 leading-8 transition-colors duration-200 ease-in-out mb-3">
                         <option value="USA/Canada/120V" selected>USA/Canada/120V</option>
@@ -154,14 +138,16 @@
                 <h2 class="font-bold text-lg">Free Remote and Dimmer</h2>
                 <p class="text-gray-500 text-sm mb-3">A remote and dimmer is included free with every sign! (Except for Multicolor Neon Signs, which are controlled by the APP)</p>
                 <div class="py-3 grid grid-cols-2 gap-4">
-                    <div wire:click="changeRemote('yes')" class="flex items-center justify-center p-3 cursor-pointer rounded-md flex-col border @if ($remote == 'yes') border-main @else border-gray-300 @endif">
-                        <p class="font-semibold text-center">YES</p>
-                    </div>
                     <div wire:click="changeRemote('no')" class="flex items-center justify-center p-3 cursor-pointer rounded-md flex-col border @if ($remote == 'no') border-main @else border-gray-300 @endif">
                         <p class="font-semibold text-center">No</p>
                     </div>
+                    <div wire:click="changeRemote('yes')" class="flex items-center justify-center p-3 cursor-pointer rounded-md flex-col border @if ($remote == 'yes') border-main @else border-gray-300 @endif">
+                        <p class="font-semibold text-center">YES</p>
+                    </div>
                 </div>
             </div>
+
+            <input type="text" wire:model.debounce.500ms="email" placeholder="Email Address" class="w-full mt-2 bg-white rounded border focus:border-main focus:ring-4 focus:ring-main-light text-base outline-none text-gray-700 py-2 px-3 leading-8 transition-colors duration-200 ease-in-out mb-3">
             <button class="py-3 text-center bg-main w-full text-white font-semibold rounded-md" type="submit">Checkout</button>
         </form>
     </div>
