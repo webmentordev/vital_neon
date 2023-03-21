@@ -11,6 +11,7 @@ class CreateDesign extends Component
     public $jacked = "colored";
     public $size = "small";
     public $location = "in_door";
+    public $email = "";
     public $background = "cut_to_shape";
     public $remote = "no";
     public $colors = [
@@ -80,7 +81,7 @@ class CreateDesign extends Component
     public function changeBG($bgshape){
         $this->background = $bgshape;
     }
-    
+
     public function changeRemote($status){
         $this->remote = $status;
     }
