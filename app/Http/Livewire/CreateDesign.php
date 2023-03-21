@@ -10,7 +10,7 @@ class CreateDesign extends Component
 {
     public $custom_text = "Your Text";
     public $adaptor = "USA/Canada/120V";
-    public $jacked = "colored";
+    public $jacket = "colored";
     public $size = "Small";
     public $location = "in_door";
     public $email = "";
@@ -68,45 +68,6 @@ class CreateDesign extends Component
         return view('livewire.create-design', [
             'sizes' => Size::all(),
             'shapes' => Shape::all(),
-        ])->layout('layouts.base');
-    }
-
-    public function changeJacket($type){
-        $this->jacked = $type;
-    }
-
-    public function changeSize($size){
-        $this->size = $size;
-    }
-
-    public function changeLocation($location){
-        $this->location = $location;
-    }
-
-    public function changeBG($bgshape){
-        $this->background = $bgshape;
-    }
-
-    public function changeRemote($status){
-        $this->remote = $status;
-    }
-
-    public function changeColor($coloring){
-        $this->color_select = $coloring;
-    }
-
-
-    public function changeFont($font){
-        $this->font_select = $font;
-    }
-
-    public function changeImage($image){
-        $this->image_select = $image;
-    }
-
-    public function create(){
-        $this->validate([
-
         ]);
     }
 }

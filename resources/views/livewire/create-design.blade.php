@@ -12,7 +12,7 @@
             0 0 22px {{ $color_select }};">{{ $custom_text }}</span>
             <div class="absolute bottom-0 w-full p-3 grid grid-cols-5 gap-4">
                 @foreach ($images as $image)
-                    <span wire:click="changeImage('{{ $image }}')" style='background-image: url({{ asset("assets/images/background/".$image ) }})' class="rounded-md h-[150px] bg-cover bg-center border @if($image_select == $image) border-main opacity-100 @else opacity-50 @endif"></span>
+                    <span wire:click="$set('image_select', '{{ $image }}')" style='background-image: url({{ asset("assets/images/background/".$image ) }})' class="rounded-md h-[150px] bg-cover bg-center border @if($image_select == $image) border-main opacity-100 @else opacity-50 @endif"></span>
                 @endforeach
             </div>
         </div>
@@ -23,12 +23,12 @@
             <div class="py-2">
                 <h2 class="font-bold mb-2 text-lg">Choose a Jacket</h2>
                 
-                <div wire:click="changeJacket('colored')" class="flex p-3 cursor-pointer rounded-md flex-col mb-3 border @if ($jacked == 'colored') border-main @else border-gray-300 @endif">
+                <div wire:click="$set('jacket', 'colored')" class="flex p-3 cursor-pointer rounded-md flex-col mb-3 border @if ($jacket == 'colored') border-main @else border-gray-300 @endif">
                     <p class="font-semibold mb-2">Color-matching</p>
                     <span class="text-gray-500 text-sm">The tube will be colored when turned off.</span>
                 </div>
                 
-                <div wire:click="changeJacket('white')" class="flex p-3 cursor-pointer rounded-md flex-col mb-3 border @if ($jacked == 'white') border-main @else border-gray-300 @endif">
+                <div wire:click="$set('jacket', 'white')" class="flex p-3 cursor-pointer rounded-md flex-col mb-3 border @if ($jacket == 'white') border-main @else border-gray-300 @endif">
                     <p class="font-semibold mb-2">White</p>
                     <span class="text-gray-500 text-sm">Your sign will be white when turned off.</span>
                 </div>
@@ -39,7 +39,7 @@
                 <p class="p-3 border-gray-300 flex items-center justify-between bg-gray-100 rounded-md mb-3 capitalize" x-on:click="open = !open">{{ $font_select }} <img src="https://api.iconify.design/fe:drop-down.svg?color=%231e1f1e" width="30" alt="Carret Down Icon"></p>
                 <div class="grid grid-cols-2 gap-4" x-show="open" x-cloak>
                     @foreach ($fonts as $font)
-                    <div wire:click="changeFont('{{ $font }}')" class="flex items-center justify-center p-3 cursor-pointer rounded-md flex-col border  @if ($font_select == $font) border-main @else border-gray-300 @endif">
+                    <div wire:click="$set('font_select', '{{ $font }}')" class="flex items-center justify-center p-3 cursor-pointer rounded-md flex-col border  @if ($font_select == $font) border-main @else border-gray-300 @endif">
                         <p class="text-center text-2xl {{ $font }}">{{ $custom_text }}</p>
                     </div>
                     @endforeach
@@ -50,7 +50,7 @@
                 <h2 class="font-bold mb-2 text-lg">Choose a colour</h2>
                 <div class="flex flex-wrap">
                     @foreach ($colors as $color)
-                        <div wire:click="changeColor('{{ $color }}')" class="rounded-full m-2" style="@if($color == $color_select) border: 2px {{ $color_select }} solid; @endif">
+                        <div wire:click="$set('color_select', '{{ $color }}')" class="rounded-full m-2" style="@if($color == $color_select) border: 2px {{ $color_select }} solid; @endif">
                             <span class="flex p-4 cursor-pointer rounded-full flex-col border border-white shadow-md" style="background-color: {{ $color }};"></span>
                         </div>
                     @endforeach
@@ -62,7 +62,7 @@
                 <p class="text-gray-500 text-sm mb-3">*Each sign is handcrafted, and sizes shown will be accurate within 1 or 2 inches. Neon sign larger than 47 inches will be made on two or more backboards that can be easily arranged together.</p>
                 <div class="grid grid-cols-2 gap-4 whitespace-pre-wrap">
                     @foreach ($sizes as $item)
-                        <div wire:click="changeSize('{{ $item->size }}')" class="flex p-3 cursor-pointer rounded-md flex-col border @if ($size == $item->size) border-main @else border-gray-300 @endif">
+                        <div wire:click="$set('size', '{{ $item->size }}')" class="flex p-3 cursor-pointer rounded-md flex-col border @if ($size == $item->size) border-main @else border-gray-300 @endif">
                             <p class="font-semibold mb-2">{{ $item->size }}</p>
                             <span class="text-gray-500 text-sm">{{ $item->width }} inc / {{ $item->height }} Inc <span class="text-[10px]">(width / height)</span></span>
                         </div>
@@ -72,9 +72,8 @@
             <div class="py-2">
                 <h2 class="font-bold text-lg mb-3">Backboard Style *{{ $background }}</h2>
                 <div class="py-3">
-                    
                     @foreach ($shapes as $shape)
-                        <div wire:click="changeBG('{{ $shape->shape }}')" class="flex mb-4 p-3 cursor-pointer rounded-md flex-col border @if ($background ==  $shape->shape) border-main @else border-gray-300 @endif">
+                        <div wire:click="$set('background', '{{ $shape->shape }}')" class="flex mb-4 p-3 cursor-pointer rounded-md flex-col border @if ($background ==  $shape->shape) border-main @else border-gray-300 @endif">
                             <p class="font-semibold mb-2">{{ $shape->shape }} (${{ $shape->price }})</p>
                             <span class="text-gray-500 text-sm">{{ $shape->description }}</span>
                         </div>
@@ -84,10 +83,10 @@
             <div class="py-2">
                 <h2 class="font-bold text-lg mb-3">Location *{{ $location }}</h2>
                 <div class="py-3 grid grid-cols-2 gap-4">
-                    <div wire:click="changeLocation('in_door')" class="flex mb-4 items-center justify-center p-3 cursor-pointer rounded-md flex-col border @if ($location == 'in_door') border-main @else border-gray-300 @endif">
+                    <div wire:click="$set('location', 'in_door')" class="flex mb-4 items-center justify-center p-3 cursor-pointer rounded-md flex-col border @if ($location == 'in_door') border-main @else border-gray-300 @endif">
                         <p class="font-semibold text-center">InDoor</p>
                     </div>
-                    <div wire:click="changeLocation('out_door')" class="flex mb-4 items-center justify-center p-3 cursor-pointer rounded-md flex-col border @if ($location == 'out_door') border-main @else border-gray-300 @endif">
+                    <div wire:click="$set('location', 'out_door')" class="flex mb-4 items-center justify-center p-3 cursor-pointer rounded-md flex-col border @if ($location == 'out_door') border-main @else border-gray-300 @endif">
                         <p class="font-semibold text-center">Outdoor (+20%) With Waterproof Technology</p>
                     </div>
                 </div>
@@ -108,10 +107,10 @@
                 <h2 class="font-bold text-lg">Free Remote and Dimmer</h2>
                 <p class="text-gray-500 text-sm mb-3">A remote and dimmer is included free with every sign! (Except for Multicolor Neon Signs, which are controlled by the APP)</p>
                 <div class="py-3 grid grid-cols-2 gap-4">
-                    <div wire:click="changeRemote('no')" class="flex items-center justify-center p-3 cursor-pointer rounded-md flex-col border @if ($remote == 'no') border-main @else border-gray-300 @endif">
+                    <div wire:click="$set('remove', 'no')" class="flex items-center justify-center p-3 cursor-pointer rounded-md flex-col border @if ($remote == 'no') border-main @else border-gray-300 @endif">
                         <p class="font-semibold text-center">No</p>
                     </div>
-                    <div wire:click="changeRemote('yes')" class="flex items-center justify-center p-3 cursor-pointer rounded-md flex-col border @if ($remote == 'yes') border-main @else border-gray-300 @endif">
+                    <div wire:click="$set('remove', 'yes')" class="flex items-center justify-center p-3 cursor-pointer rounded-md flex-col border @if ($remote == 'yes') border-main @else border-gray-300 @endif">
                         <p class="font-semibold text-center">YES</p>
                     </div>
                 </div>
