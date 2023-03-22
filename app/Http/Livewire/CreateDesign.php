@@ -17,6 +17,8 @@ class CreateDesign extends Component
     public $email = "";
     public $background = "Cut to shape";
     public $remote = "Line Dimmer";
+    public $word_price = 60;
+    public $total_price;
     
     public $colors = [
         "rgb(252, 96, 2)",
@@ -65,6 +67,10 @@ class CreateDesign extends Component
         "wall.jpg"
     ], $image_select = "dark_wall.jpg";
 
+    public function mount(){
+        $this->calculate();
+    }
+
     public function render()
     {
         return view('livewire.create-design', [
@@ -72,5 +78,37 @@ class CreateDesign extends Component
             'shapes' => Shape::all(),
             'remotes' => Remote::all()
         ]);
+    }
+
+    public function updated(){
+        $this->calculate();
+    }
+
+    public function calculate(){
+        if(strlen($this->custom_text) > 0){
+            $shape = Shape::where('shape', $this->background)->first();
+            $size = Size::where('size', $this->size)->first();
+            $remote = Remote::where('type', $this->remote)->first();
+
+            if($this->jacket == "colored"){
+                $jacket_price = 20;
+            }elseif($this->jacket == "white"){
+                $jacket_price = 15;
+            }else{
+                $jacket_price = 0;
+                session()->flash('failed', 'Something is wrong with the system!');
+            }
+
+            $total_price = $shape->price + $jacket_price + $size->price + $remote->price + ($this->word_price * strlen($this->custom_text));
+            
+            if($this->location == "out_door"){
+                $this->total_price = $total_price + ($total_price * (15/100));
+            }else{
+                $this->total_price = $total_price;
+            }
+        }else{
+            $this->total_price = 0;
+            session()->flash('failed', 'You must enter one letter!');
+        }
     }
 }

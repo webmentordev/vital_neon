@@ -1,6 +1,7 @@
 <section class="w-full py-[80px]">
     <div class="grid grid-cols-2 gap-6 max-w-[1360px] m-auto min-h-[800px]">
         <div class="bg-cover bg-center relative rounded-lg flex justify-center" style="background-image: url({{ asset('assets/images/background/'.$image_select) }})">
+            <span class="absolute top-3 right-3 text-white text-4xl">$ {{ $total_price }}</span>
             <span class="text-white {{ $font_select }} m-auto mt-[250px] text-center text-6xl font-semibold" style="text-shadow:
             0 0 7px {{ $color_select }},
             0 0 7px {{ $color_select }},
@@ -18,6 +19,9 @@
         </div>
         <form wire:submit.prevent="createOrder" method="POST" class="text-sm max-h-[900px] overflow-scroll px-6 py-6">
             <h1 class="text-main font-bold text-3xl mb-3">Design Your Neon</h1>
+            @if (session('failed'))
+                <p class="text-red-700 bottom-3 left-3 p-6 rounded-lg bg-red-500 mb-3 border-red-600 border bg-opacity-40">{{ session('failed') }}</p>
+            @endif
             <h2 class="font-bold text-lg">Write your text</h2>
             <input type="text" wire:model.debounce.500ms="custom_text" placeholder="Custom Text" class="w-full mt-2 bg-white rounded border focus:border-main focus:ring-4 focus:ring-main-light text-base outline-none text-gray-700 py-2 px-3 leading-8 transition-colors duration-200 ease-in-out mb-3">
             <div class="py-2">
@@ -108,13 +112,12 @@
                 <p class="text-gray-500 text-sm mb-3">A remote and dimmer is included free with every sign! (Except for Multicolor Neon Signs, which are controlled by the APP)</p>
                 <div class="py-3 grid grid-cols-2 gap-4">
                     @foreach ($remotes as $rItem)
-                        <div wire:click="$set('remove', '{{ $rItem->type }}')" class="flex items-center justify-center p-3 cursor-pointer rounded-md flex-col border @if ($remote == $rItem->type) border-main @else border-gray-300 @endif">
+                        <div wire:click="$set('remote', '{{ $rItem->type }}')" class="flex items-center justify-center p-3 cursor-pointer rounded-md flex-col border @if ($remote == $rItem->type) border-main @else border-gray-300 @endif">
                             <p class="font-semibold text-center">{{ $rItem->type }} - ${{ $rItem->price }}</p>
                         </div>
                     @endforeach 
                 </div>
             </div>
-
             <input type="text" wire:model.debounce.500ms="email" placeholder="Email Address" class="w-full mt-2 bg-white rounded border focus:border-main focus:ring-4 focus:ring-main-light text-base outline-none text-gray-700 py-2 px-3 leading-8 transition-colors duration-200 ease-in-out mb-3">
             <button class="py-3 text-center bg-main w-full text-white font-semibold rounded-md" type="submit">Checkout</button>
         </form>
