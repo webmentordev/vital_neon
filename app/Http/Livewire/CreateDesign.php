@@ -9,14 +9,27 @@ use Livewire\Component;
 
 class CreateDesign extends Component
 {
+    public $sizes, $shapes, $remotes;
+    public $remote = "Line Dimmer";
     public $custom_text = "Your Text";
-    public $adaptor = "USA/Canada/120V";
+    public $adaptors = [
+        "USA/Canada/120V",
+        "UK/IRELAND 230V",
+        "EUROPE 230V",
+        "AUSTRALIA/NA 230V",
+        "JAPAN 100V"
+    ], $adaptor = "USA/Canada/120V";
+    
     public $jacket = "colored";
     public $size = "Small";
-    public $location = "in_door";
+    
+    public $locations = [
+        "In Door",
+        "Out Door"
+    ], $location = "In Door";
+
     public $email = "";
     public $background = "Cut to shape";
-    public $remote = "Line Dimmer";
     public $word_price = 60;
     public $total_price;
     
@@ -69,15 +82,14 @@ class CreateDesign extends Component
 
     public function mount(){
         $this->calculate();
+        $this->sizes = Size::all();
+        $this->shapes = Shape::all();
+        $this->remotes = Remote::all();
     }
 
     public function render()
     {
-        return view('livewire.create-design', [
-            'sizes' => Size::all(),
-            'shapes' => Shape::all(),
-            'remotes' => Remote::all()
-        ]);
+        return view('livewire.create-design');
     }
 
     public function updated(){
@@ -90,25 +102,37 @@ class CreateDesign extends Component
             $size = Size::where('size', $this->size)->first();
             $remote = Remote::where('type', $this->remote)->first();
 
-            if($this->jacket == "colored"){
-                $jacket_price = 20;
-            }elseif($this->jacket == "white"){
-                $jacket_price = 15;
+            if($shape != null && $size != null && $remote != null){
+                if($this->jacket == "colored"){
+                    $jacket_price = 20;
+                }elseif($this->jacket == "white"){
+                    $jacket_price = 15;
+                }else{
+                    $jacket_price = 0;
+                    session()->flash('failed', 'Something is wrong with the system!');
+                }
+    
+                $total_price = $shape->price + $jacket_price + $size->price + $remote->price + ($this->word_price * strlen($this->custom_text));
+                
+                if($this->location == "out_door"){
+                    $this->total_price = $total_price + ($total_price * (15/100));
+                }else{
+                    $this->total_price = $total_price;
+                }
             }else{
-                $jacket_price = 0;
                 session()->flash('failed', 'Something is wrong with the system!');
-            }
-
-            $total_price = $shape->price + $jacket_price + $size->price + $remote->price + ($this->word_price * strlen($this->custom_text));
-            
-            if($this->location == "out_door"){
-                $this->total_price = $total_price + ($total_price * (15/100));
-            }else{
-                $this->total_price = $total_price;
             }
         }else{
             $this->total_price = 0;
             session()->flash('failed', 'You must enter one letter!');
+        }
+    }
+
+    public function checkout(){
+        if(in_array($this->adaptor, $this->adaptors) && in_array($this->location, $this->locations) && in_array($this->font_select, $this->fonts) && in_array($this->color_select, $this->colors) && in_array($this->image_select, $this->images)){
+            dd(true);
+        }else{
+            session()->flash('failed', 'There is something wrong with the system!');
         }
     }
 }

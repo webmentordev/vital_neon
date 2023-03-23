@@ -17,11 +17,15 @@
                 @endforeach
             </div>
         </div>
-        <form wire:submit.prevent="createOrder" method="POST" class="text-sm max-h-[900px] overflow-scroll px-6 py-6">
+        <form wire:submit.prevent="checkout" method="POST" class="text-sm max-h-[900px] overflow-scroll px-6 py-6">
             <h1 class="text-main font-bold text-3xl mb-3">Design Your Neon</h1>
             @if (session('failed'))
-                <p class="text-red-700 bottom-3 left-3 p-6 rounded-lg bg-red-500 mb-3 border-red-600 border bg-opacity-40">{{ session('failed') }}</p>
+                <p class="text-white p-6 fixed bottom-2 left-2 z-20 rounded-lg bg-red-700 mb-3 border-red-600 border">{{ session('failed') }}</p>
             @endif
+            
+            <p wire:loading wire:target="calculate" class="text-orange-700 p-6 fixed bottom-2 left-2 z-20 rounded-lg bg-orange-700 mb-3 border-orange-600 border bg-opacity-40">Calculating</p>
+            
+            
             <h2 class="font-bold text-lg">Write your text</h2>
             <input type="text" wire:model.debounce.500ms="custom_text" placeholder="Custom Text" class="w-full mt-2 bg-white rounded border focus:border-main focus:ring-4 focus:ring-main-light text-base outline-none text-gray-700 py-2 px-3 leading-8 transition-colors duration-200 ease-in-out mb-3">
             <div class="py-2">
@@ -87,23 +91,24 @@
             <div class="py-2">
                 <h2 class="font-bold text-lg mb-3">Location *{{ $location }}</h2>
                 <div class="py-3 grid grid-cols-2 gap-4">
-                    <div wire:click="$set('location', 'in_door')" class="flex mb-4 items-center justify-center p-3 cursor-pointer rounded-md flex-col border @if ($location == 'in_door') border-main @else border-gray-300 @endif">
-                        <p class="font-semibold text-center">InDoor</p>
-                    </div>
-                    <div wire:click="$set('location', 'out_door')" class="flex mb-4 items-center justify-center p-3 cursor-pointer rounded-md flex-col border @if ($location == 'out_door') border-main @else border-gray-300 @endif">
-                        <p class="font-semibold text-center">Outdoor (+20%) With Waterproof Technology</p>
-                    </div>
+                    @foreach ($locations as $loc)
+                        <div wire:click="$set('location', '{{ $loc }}')" class="flex mb-4 items-center justify-center p-3 cursor-pointer rounded-md flex-col border @if ($location == $loc) border-main @else border-gray-300 @endif">
+                            <p class="font-semibold text-center">{{ $loc }}</p>
+                        </div>
+                    @endforeach
                 </div>
             </div>
             <div class="py-2">
                 <h2 class="font-bold text-lg">Power Adaptor *{{ $adaptor }}</h2>
                 <div class="mt-1">
                     <select wire:model="adaptor" class="w-full mt-2 bg-white rounded border focus:border-main focus:ring-4 focus:ring-main-light text-base outline-none text-gray-700 py-2 px-3 leading-8 transition-colors duration-200 ease-in-out mb-3">
-                        <option value="USA/Canada/120V" selected>USA/Canada/120V</option>
-                        <option value="UK/IRELAND 230V">UK/IRELAND 230V</option>
-                        <option value="EUROPE 230V">EUROPE 230V</option>
-                        <option value="AUSTRALIA/NA">AUSTRALIA/NA 230V</option>
-                        <option value="JAPAN 100V">JAPAN 100V</option>
+                        @foreach ($adaptors as $itemAdapt)
+                            @if ($loop->first)
+                                <option value="{{ $itemAdapt }}" selected>{{ $itemAdapt }}</option>
+                            @else
+                                <option value="{{ $itemAdapt }}">{{ $itemAdapt }}</option>
+                            @endif
+                        @endforeach
                     </select>
                 </div>
             </div>

@@ -13,6 +13,20 @@ return new class extends Migration
     {
         Schema::create('carts', function (Blueprint $table) {
             $table->id();
+            $table->string('text');
+            $table->string('jacket');
+            $table->string('font');
+            $table->string('color');
+            $table->string('size');
+            $table->string('backboard');
+            $table->string('location');
+            $table->string('adaptor');
+            $table->string('remote');
+            $table->string('email');
+            $table->text('order_id');
+            $table->string('status')->default('pending');
+            $table->boolean('paid')->default(false);
+            $table->text('checkout_id');
             $table->timestamps();
         });
     }
