@@ -23,6 +23,8 @@ class Cart extends Model
         'status',
         'paid',
         'order_id',
+        'price',
+        'price_id',
         'checkout_id'
     ];
 }

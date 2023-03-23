@@ -2,10 +2,13 @@
 
 namespace App\Http\Livewire;
 
-use App\Models\Remote;
-use App\Models\Shape;
+use Carbon\Carbon;
+use App\Models\Cart;
 use App\Models\Size;
+use App\Models\Shape;
+use App\Models\Remote;
 use Livewire\Component;
+use Stripe\StripeClient;
 
 class CreateDesign extends Component
 {
@@ -128,9 +131,60 @@ class CreateDesign extends Component
         }
     }
 
+    function randomPassword() {
+        $alphabet = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890';
+        $pass = array();
+        $alphaLength = strlen($alphabet) - 1;
+        for ($i = 0; $i < 30; $i++) {
+            $n = rand(0, $alphaLength);
+            $pass[] = $alphabet[$n];
+        }
+        return implode($pass);
+    }
+
     public function checkout(){
         if(in_array($this->adaptor, $this->adaptors) && in_array($this->location, $this->locations) && in_array($this->font_select, $this->fonts) && in_array($this->color_select, $this->colors) && in_array($this->image_select, $this->images)){
-            dd(true);
+            
+            $checkout_id = $this->randomPassword();
+            $order_id = $this->randomPassword();
+
+            $stripe = new StripeClient(config('app.stripe'));
+            $result = $stripe->prices->create([
+                'unit_amount' => $this->total_price * 100,
+                'currency' => 'USD',
+                'product' => 'prod_NZuQ5Ir75DenC2',
+            ]);
+            $checkout = $stripe->checkout->sessions->create([
+                'success_url' => config('app.url')."/success/".$checkout_id,
+                'cancel_url' => config('app.url')."/cancel/".$checkout_id,
+                'currency' => "USD",
+                'billing_address_collection' => 'required',
+                'expires_at' => Carbon::now()->addMinutes(60)->timestamp,
+                'line_items' => [
+                  [
+                    'price' => $result['id'],
+                    'quantity' => 1,
+                  ],
+                ],
+                'mode' => 'payment',
+            ]);
+            Cart::create([
+                'text' => $this->custom_text,
+                'jacket' => $this->jacket,
+                'font' => $this->font_select,
+                'color' => $this->color_select,
+                'size' => $this->size,
+                'backboard' => $this->background,
+                'location' => $this->location,
+                'adaptor' => $this->adaptor,
+                'remote' => $this->remote,
+                'email' => $this->email,
+                'order_id' => $order_id,
+                'price' => $this->total_price,
+                'price_id' => $result['id'],
+                'checkout_id' => $checkout_id
+            ]);
+            return redirect($checkout['url']);
         }else{
             session()->flash('failed', 'There is something wrong with the system!');
         }

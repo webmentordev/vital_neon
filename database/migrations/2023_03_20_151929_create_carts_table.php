@@ -22,6 +22,8 @@ return new class extends Migration
             $table->string('location');
             $table->string('adaptor');
             $table->string('remote');
+            $table->string('price');
+            $table->string('price_id');
             $table->string('email');
             $table->text('order_id');
             $table->string('status')->default('pending');
