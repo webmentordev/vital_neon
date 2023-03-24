@@ -1,8 +1,8 @@
 <section class="w-full py-[80px]">
-    <div class="grid grid-cols-2 gap-6 max-w-[1360px] m-auto min-h-[800px]">
-        <div class="bg-cover bg-center relative rounded-lg flex justify-center" style="background-image: url({{ asset('assets/images/background/'.$image_select) }})">
+    <div class="grid grid-cols-2 gap-6 max-w-[1360px] m-auto min-h-[800px] px-4 890px:grid-cols-1">
+        <div class="bg-cover bg-center relative rounded-lg flex justify-center 890px:min-h-[800px]" style="background-image: url({{ asset('assets/images/background/'.$image_select) }})">
             <span class="absolute top-3 right-3 text-white text-4xl">$ {{ $total_price }}</span>
-            <span class="text-white {{ $font_select }} m-auto mt-[250px] text-center text-6xl font-semibold" style="text-shadow:
+            <span class="text-white {{ $font_select }} m-auto mt-[300px] text-center text-5xl font-semibold" style="text-shadow:
             0 0 7px {{ $color_select }},
             0 0 7px {{ $color_select }},
             0 0 22px {{ $color_select }},

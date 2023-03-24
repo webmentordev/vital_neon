@@ -1,5 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700&family=Rubik:wght@300;400;500;600;700&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Allura&family=Dancing+Script:wght@500&family=MonteCarlo&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Abel&family=Allura&family=Dancing+Script:wght@500&family=MonteCarlo&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -7,9 +7,13 @@
 
 *{
     font-family: 'Open Sans', sans-serif;
-    /* font-family: 'Rubik', sans-serif; */
+    /* font-family: 'Rubik', sans-serif;*/
 }
 
+a{
+    font-family: 'Abel', sans-serif;
+    @apply text-lg font-medium;
+}
 [x-cloak]{
     display: none !important;
 }

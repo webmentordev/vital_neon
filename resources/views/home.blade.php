@@ -20,4 +20,34 @@
             </div>
         </div>
     </section>
+    <section>
+        <div class="max-w-7xl m-auto py-[80px]">
+            <h2 class="text-4xl text-center uppercase mb-3 text-main">Why Choose VitalNeon</h2>
+            <div class="grid grid-cols-4 gap-6">
+                <div class="p-6 text-center">
+                    <img src="https://api.iconify.design/emojione:airplane.svg?color=%234bcc14" class="m-auto mb-3" width="60" alt="Delivery Icon">
+                    <h2 class="mb-3 font-semibold">Fast & Free Delivery</h2>
+                    <p class="text-sm">We offer worldwide free shipping for all orders. Shipments are handled by DHL, FedEx or UPS.</p>
+                </div>
+
+                <div class="p-6 text-center">
+                    <img src="https://api.iconify.design/fxemoji:fourleafclover.svg?color=%234bcc14" class="m-auto mb-3" width="60" alt="Delivery Icon">
+                    <h2 class="mb-3 font-semibold">High Efficiency</h2>
+                    <p class="text-sm">Our LED neon signs can sustain 100,000+ hours of usage while consuming 80% less power than traditional pieces.</p>
+                </div>
+
+                <div class="p-6 text-center">
+                    <img src="https://api.iconify.design/noto-v1:shield.svg?color=%234bcc14" class="m-auto mb-3" width="60" alt="Delivery Icon">
+                    <h2 class="mb-3 font-semibold">2-Year Guarantee</h2>
+                    <p class="text-sm">Every product comes with a 2-year warranty on electrical components when used properly.</p>
+                </div>
+
+                <div class="p-6 text-center">
+                    <img src="https://api.iconify.design/flat-color-icons:shipped.svg?color=%234bcc14" class="m-auto mb-3" width="60" alt="Delivery Icon">
+                    <h2 class="mb-3 font-semibold">Easy Installation</h2>
+                    <p class="text-sm">Every neon sign comes with screws and hanging kit for free.</p>
+                </div>
+            </div>
+        </div>
+    </section>
 @endsection

@@ -33,7 +33,7 @@ class CreateDesign extends Component
 
     public $email = "";
     public $background = "Cut to shape";
-    public $word_price = 60;
+    public $word_price = 50;
     public $total_price;
     
     public $colors = [
@@ -143,50 +143,54 @@ class CreateDesign extends Component
     }
 
     public function checkout(){
-        if(in_array($this->adaptor, $this->adaptors) && in_array($this->location, $this->locations) && in_array($this->font_select, $this->fonts) && in_array($this->color_select, $this->colors) && in_array($this->image_select, $this->images)){
+        if($this->email != ""){
+            if(in_array($this->adaptor, $this->adaptors) && in_array($this->location, $this->locations) && in_array($this->font_select, $this->fonts) && in_array($this->color_select, $this->colors) && in_array($this->image_select, $this->images)){
             
-            $checkout_id = $this->randomPassword();
-            $order_id = $this->randomPassword();
-
-            $stripe = new StripeClient(config('app.stripe'));
-            $result = $stripe->prices->create([
-                'unit_amount' => $this->total_price * 100,
-                'currency' => 'USD',
-                'product' => 'prod_NZuQ5Ir75DenC2',
-            ]);
-            $checkout = $stripe->checkout->sessions->create([
-                'success_url' => config('app.url')."/success/".$checkout_id,
-                'cancel_url' => config('app.url')."/cancel/".$checkout_id,
-                'currency' => "USD",
-                'billing_address_collection' => 'required',
-                'expires_at' => Carbon::now()->addMinutes(60)->timestamp,
-                'line_items' => [
-                  [
-                    'price' => $result['id'],
-                    'quantity' => 1,
-                  ],
-                ],
-                'mode' => 'payment',
-            ]);
-            Cart::create([
-                'text' => $this->custom_text,
-                'jacket' => $this->jacket,
-                'font' => $this->font_select,
-                'color' => $this->color_select,
-                'size' => $this->size,
-                'backboard' => $this->background,
-                'location' => $this->location,
-                'adaptor' => $this->adaptor,
-                'remote' => $this->remote,
-                'email' => $this->email,
-                'order_id' => $order_id,
-                'price' => $this->total_price,
-                'price_id' => $result['id'],
-                'checkout_id' => $checkout_id
-            ]);
-            return redirect($checkout['url']);
+                $checkout_id = $this->randomPassword();
+                $order_id = $this->randomPassword();
+    
+                $stripe = new StripeClient(config('app.stripe'));
+                $result = $stripe->prices->create([
+                    'unit_amount' => $this->total_price * 100,
+                    'currency' => 'USD',
+                    'product' => 'prod_NZuQ5Ir75DenC2',
+                ]);
+                $checkout = $stripe->checkout->sessions->create([
+                    'success_url' => config('app.url')."/success/".$checkout_id,
+                    'cancel_url' => config('app.url')."/cancel/".$checkout_id,
+                    'currency' => "USD",
+                    'billing_address_collection' => 'required',
+                    'expires_at' => Carbon::now()->addMinutes(60)->timestamp,
+                    'line_items' => [
+                      [
+                        'price' => $result['id'],
+                        'quantity' => 1,
+                      ],
+                    ],
+                    'mode' => 'payment',
+                ]);
+                Cart::create([
+                    'text' => $this->custom_text,
+                    'jacket' => $this->jacket,
+                    'font' => $this->font_select,
+                    'color' => $this->color_select,
+                    'size' => $this->size,
+                    'backboard' => $this->background,
+                    'location' => $this->location,
+                    'adaptor' => $this->adaptor,
+                    'remote' => $this->remote,
+                    'email' => $this->email,
+                    'order_id' => $order_id,
+                    'price' => $this->total_price,
+                    'price_id' => $result['id'],
+                    'checkout_id' => $checkout_id
+                ]);
+                return redirect($checkout['url']);
+            }else{
+                session()->flash('failed', 'There is something wrong with the system!');
+            }
         }else{
-            session()->flash('failed', 'There is something wrong with the system!');
+            session()->flash('failed', 'Email address is required!');
         }
     }
 }
