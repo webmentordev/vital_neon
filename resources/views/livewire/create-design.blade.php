@@ -2,7 +2,18 @@
     <div class="grid grid-cols-2 gap-6 max-w-[1360px] m-auto min-h-[800px] px-4 890px:grid-cols-1">
         <div class="bg-cover bg-center relative rounded-lg flex justify-center 890px:min-h-[800px]" style="background-image: url({{ asset('assets/images/background/'.$image_select) }})">
             <span class="absolute top-3 right-3 text-white text-4xl">$ {{ $total_price }}</span>
-            <span class="text-white {{ $font_select }} m-auto mt-[300px] text-center text-5xl font-semibold" style="text-shadow:
+            
+            <div wire:click="$set('dark_mode', {{ !$dark_mode }})" class=" @if (!$dark_mode) bg-white @else bg-gray-800 @endif p-3 rounded-lg absolute top-2 left-2">
+                @if (!$dark_mode)
+                    <img src="https://api.iconify.design/line-md:moon-filled-alt-to-sunny-filled-loop-transition.svg?color=%23febc06" width="35" alt="Sun Image">
+                @else
+                    <img src="https://api.iconify.design/pepicons-pop:moon-filled.svg?color=%23febc06" width="35" alt="Moon Image">
+                @endif
+            </div>
+            
+
+            <span class="text-white {{ $font_select }} m-auto mt-[300px] text-center text-5xl font-semibold" @if (!$dark_mode) 
+            style="text-shadow:
             0 0 7px {{ $color_select }},
             0 0 7px {{ $color_select }},
             0 0 22px {{ $color_select }},
@@ -10,7 +21,7 @@
             0 0 22px {{ $color_select }},
             0 0 22px {{ $color_select }},
             0 0 22px {{ $color_select }},
-            0 0 22px {{ $color_select }};">{{ $custom_text }}</span>
+            0 0 22px {{ $color_select }};" @endif>{{ $custom_text }}</span>
             <div class="absolute bottom-0 w-full p-3 grid grid-cols-5 gap-4">
                 @foreach ($images as $image)
                     <span wire:click="$set('image_select', '{{ $image }}')" style='background-image: url({{ asset("assets/images/background/".$image ) }})' class="rounded-md h-[150px] bg-cover bg-center border @if($image_select == $image) border-main opacity-100 @else opacity-50 @endif"></span>

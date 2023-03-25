@@ -14,6 +14,7 @@ class CreateDesign extends Component
 {
     public $sizes, $shapes, $remotes;
     public $remote = "Line Dimmer";
+    public $dark_mode = false;
     public $custom_text = "Your Text";
     public $adaptors = [
         "USA/Canada/120V",
