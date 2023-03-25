@@ -4,6 +4,7 @@ namespace App\Http\Livewire;
 
 use Carbon\Carbon;
 use App\Models\Cart;
+use App\Models\Line;
 use App\Models\Size;
 use App\Models\Shape;
 use App\Models\Remote;
@@ -12,10 +13,16 @@ use Stripe\StripeClient;
 
 class CreateDesign extends Component
 {
-    public $sizes, $shapes, $remotes;
+    public $shapes, $remotes;
     public $remote = "Line Dimmer";
     public $dark_mode = false;
-    public $custom_text = "Your Text";
+
+
+
+    public $lines, $line_txt1, $line_txt2, $line_txt3, $SelectLine, $line_count = 1;
+    public $line_price, $line_chars;
+    
+    
     public $adaptors = [
         "USA/Canada/120V",
         "UK/IRELAND 230V",
@@ -23,20 +30,16 @@ class CreateDesign extends Component
         "AUSTRALIA/NA 230V",
         "JAPAN 100V"
     ], $adaptor = "USA/Canada/120V";
-    
     public $jacket = "colored";
     public $size = "Small";
-    
     public $locations = [
         "In Door",
         "Out Door"
     ], $location = "In Door";
-
     public $email = "";
     public $background = "Cut to shape";
     public $word_price = 50;
     public $total_price;
-    
     public $colors = [
         "rgb(252, 96, 2)",
         "rgb(255, 255, 255)",
@@ -51,7 +54,6 @@ class CreateDesign extends Component
         "rgb(1, 221, 255)",
         "rgb(30, 255, 0)"
     ], $color_select = "rgb(252, 96, 2)";
-
     public $fonts = [
         "logo",
         "allura",
@@ -75,7 +77,6 @@ class CreateDesign extends Component
         "slender",
         "signature"
     ], $font_select = "logo";
-
     public $images = [
         "dark_wall.jpg",
         "background1.png",
@@ -83,12 +84,17 @@ class CreateDesign extends Component
         "bed_room.jpg",
         "wall.jpg"
     ], $image_select = "dark_wall.jpg";
-
     public function mount(){
         $this->calculate();
-        $this->sizes = Size::all();
+        $this->lines = Line::all();
         $this->shapes = Shape::all();
         $this->remotes = Remote::all();
+        $line = Line::first();
+        $this->line_count = $line->lines;
+        $this->line_price = $line->price;
+        $this->line_chars = $line->chars;
+        $this->SelectLine = $line->name;
+        $this->calculate();
     }
 
     public function render()
@@ -97,16 +103,19 @@ class CreateDesign extends Component
     }
 
     public function updated(){
+        $line = Line::where('name', $this->SelectLine)->first();
+        $this->line_count = $line->lines;
+        $this->line_price = $line->price;
+        $this->line_chars = $line->chars;
         $this->calculate();
     }
 
     public function calculate(){
-        if(strlen($this->custom_text) > 0){
+        if(strlen($this->line_txt1) <= $this->line_chars && strlen($this->line_txt2) <= $this->line_chars && strlen($this->line_txt3) <= $this->line_chars){
             $shape = Shape::where('shape', $this->background)->first();
-            $size = Size::where('size', $this->size)->first();
             $remote = Remote::where('type', $this->remote)->first();
 
-            if($shape != null && $size != null && $remote != null){
+            if($shape != null && $remote != null){
                 if($this->jacket == "colored"){
                     $jacket_price = 20;
                 }elseif($this->jacket == "white"){
@@ -116,7 +125,7 @@ class CreateDesign extends Component
                     session()->flash('failed', 'Something is wrong with the system!');
                 }
     
-                $total_price = $shape->price + $jacket_price + $size->price + $remote->price + ($this->word_price * strlen($this->custom_text));
+                $total_price = $shape->price + $jacket_price + $remote->price + $this->line_price;
                 
                 if($this->location == "out_door"){
                     $this->total_price = $total_price + ($total_price * (15/100));
@@ -171,7 +180,7 @@ class CreateDesign extends Component
                     'mode' => 'payment',
                 ]);
                 Cart::create([
-                    'text' => $this->custom_text,
+                    'text' => $this->line_txt1.'|'.$this->line_txt2.'|'.$this->line_txt3,
                     'jacket' => $this->jacket,
                     'font' => $this->font_select,
                     'color' => $this->color_select,

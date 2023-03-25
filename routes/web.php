@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\LineController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RemoteController;
 use App\Http\Controllers\ShapeController;
@@ -30,6 +31,9 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/remote', [RemoteController::class, 'index'])->name('remote');
     Route::post('/remote', [RemoteController::class, 'create']);
+
+    Route::get('/lines', [LineController::class, 'index'])->name('line');
+    Route::post('/lines', [LineController::class, 'create']);
 });
 
 require __DIR__.'/auth.php';

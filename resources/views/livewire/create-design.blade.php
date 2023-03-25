@@ -21,7 +21,7 @@
             0 0 22px {{ $color_select }},
             0 0 22px {{ $color_select }},
             0 0 22px {{ $color_select }},
-            0 0 22px {{ $color_select }};" @endif>{{ $custom_text }}</span>
+            0 0 22px {{ $color_select }};" @endif>{{ $line_txt1 }}<br>{{ $line_txt2 }}<br>{{ $line_txt3 }}</span>
             <div class="absolute bottom-0 w-full p-3 grid grid-cols-5 gap-4">
                 @foreach ($images as $image)
                     <span wire:click="$set('image_select', '{{ $image }}')" style='background-image: url({{ asset("assets/images/background/".$image ) }})' class="rounded-md h-[150px] bg-cover bg-center border @if($image_select == $image) border-main opacity-100 @else opacity-50 @endif"></span>
@@ -35,22 +35,36 @@
             @endif
             
             
+            <div class="py-2">
+                <h2 class="font-bold text-lg">Text Line & Size Options <span class="text-sm text-gray-400">{{ $SelectLine }} (${{ $line_price }})</span></h2>
+                <div class="mt-1">
+                    <select wire:model="SelectLine" class="w-full mt-2 bg-white rounded border focus:border-main focus:ring-4 focus:ring-main-light text-base outline-none text-gray-700 py-2 px-3 leading-8 transition-colors duration-200 ease-in-out mb-3">
+                        @foreach ($lines as $line)
+                            @if ($loop->first)
+                                <option value="{{ $line->name }}" selected>{{ $line->name }}</option>
+                            @else
+                                <option value="{{ $line->name }}">{{ $line->name }}</option>
+                            @endif
+                        @endforeach
+                    </select>
+                </div>
+            </div>
+
+            @if ($line_count >= 1)
+                <h2 class="font-bold text-lg">Line One Text</h2>
+                <input type="text" wire:model.debounce.500ms="line_txt1" placeholder="Text Line One" class="w-full mt-2 bg-white rounded border focus:border-main focus:ring-4 focus:ring-main-light text-base outline-none text-gray-700 py-2 px-3 leading-8 transition-colors duration-200 ease-in-out mb-3">
+            @endif
             
-            <h2 class="font-bold text-lg">Write your text</h2>
-            <input type="text" wire:model.debounce.500ms="custom_text" placeholder="Custom Text" class="w-full mt-2 bg-white rounded border focus:border-main focus:ring-4 focus:ring-main-light text-base outline-none text-gray-700 py-2 px-3 leading-8 transition-colors duration-200 ease-in-out mb-3">
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
+            @if ($line_count >= 2)
+                <h2 class="font-bold text-lg">Line Two Text</h2>
+                <input type="text" wire:model.debounce.500ms="line_txt2" placeholder="Text Line Two" class="w-full mt-2 bg-white rounded border focus:border-main focus:ring-4 focus:ring-main-light text-base outline-none text-gray-700 py-2 px-3 leading-8 transition-colors duration-200 ease-in-out mb-3">
+            @endif
+
+            @if ($line_count == 3)
+                <h2 class="font-bold text-lg">Line Three Text</h2>
+                <input type="text" wire:model.debounce.500ms="line_txt3" placeholder="Text Line Three" class="w-full mt-2 bg-white rounded border focus:border-main focus:ring-4 focus:ring-main-light text-base outline-none text-gray-700 py-2 px-3 leading-8 transition-colors duration-200 ease-in-out mb-3">
+            @endif
+
             <div class="py-2">
                 <h2 class="font-bold mb-2 text-lg">Choose a Jacket</h2>
                 
@@ -71,7 +85,7 @@
                 <div class="grid grid-cols-2 gap-4" x-show="open" x-cloak>
                     @foreach ($fonts as $font)
                     <div wire:click="$set('font_select', '{{ $font }}')" class="flex items-center justify-center p-3 cursor-pointer rounded-md flex-col border  @if ($font_select == $font) border-main @else border-gray-300 @endif">
-                        <p class="text-center text-2xl {{ $font }}">{{ $custom_text }}</p>
+                        <p class="text-center text-2xl {{ $font }}">{{ $line_txt1 }}</p>
                     </div>
                     @endforeach
                 </div>
@@ -88,7 +102,7 @@
                 </div>
             </div>
 
-            <div class="py-2">
+            {{-- <div class="py-2">
                 <h2 class="font-bold mb-2 text-lg">Choose a size *{{ $size }}</h2>
                 <p class="text-gray-500 text-sm mb-3">*Each sign is handcrafted, and sizes shown will be accurate within 1 or 2 inches. Neon sign larger than 47 inches will be made on two or more backboards that can be easily arranged together.</p>
                 <div class="grid grid-cols-2 gap-4 whitespace-pre-wrap">
@@ -99,7 +113,8 @@
                         </div>
                     @endforeach
                 </div>
-            </div>
+            </div> --}}
+
             <div class="py-2">
                 <h2 class="font-bold text-lg mb-3">Backboard Style *{{ $background }}</h2>
                 <div class="py-3">
