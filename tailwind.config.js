@@ -9,12 +9,12 @@ module.exports = {
     ],
 
     theme: {
-        screens: {
-            "890px": {
-                "max": "890px"
-            }
-        },
         extend: {
+            screens: {
+                "890px": {
+                    "max": "890px"
+                }
+            },
             fontFamily: {
                 sans: ['Figtree', ...defaultTheme.fontFamily.sans],
             },

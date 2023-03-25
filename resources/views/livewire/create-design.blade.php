@@ -34,11 +34,23 @@
                 <p class="text-white p-6 fixed bottom-2 left-2 z-20 rounded-lg bg-red-700 mb-3 border-red-600 border">{{ session('failed') }}</p>
             @endif
             
-            <p wire:loading wire:target="calculate" class="text-orange-700 p-6 fixed bottom-2 left-2 z-20 rounded-lg bg-orange-700 mb-3 border-orange-600 border bg-opacity-40">Calculating</p>
             
             
             <h2 class="font-bold text-lg">Write your text</h2>
             <input type="text" wire:model.debounce.500ms="custom_text" placeholder="Custom Text" class="w-full mt-2 bg-white rounded border focus:border-main focus:ring-4 focus:ring-main-light text-base outline-none text-gray-700 py-2 px-3 leading-8 transition-colors duration-200 ease-in-out mb-3">
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
             <div class="py-2">
                 <h2 class="font-bold mb-2 text-lg">Choose a Jacket</h2>
                 
