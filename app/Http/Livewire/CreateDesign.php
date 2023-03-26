@@ -9,14 +9,17 @@ use App\Models\Shape;
 use App\Models\Remote;
 use Livewire\Component;
 use Stripe\StripeClient;
+use Livewire\WithFileUploads;
 
 class CreateDesign extends Component
 {
+    use WithFileUploads;
+    
     public $shapes, $remotes;
     public $remote = "Line Dimmer";
     public $dark_mode = false;
 
-
+    public $BGColor = "#000000", $photo;
 
     public $lines, $line_txt1, $line_txt2, $line_txt3, $SelectLine, $line_count = 1;
     public $line_price, $line_chars;
@@ -76,14 +79,6 @@ class CreateDesign extends Component
         "signature"
     ], $font_select = "logo";
     
-    public $images = [
-        "dark_wall.jpg",
-        "background1.png",
-        "background3.jpg",
-        "bed_room.jpg",
-        "wall.jpg"
-    ], $image_select = "dark_wall.jpg";
-    
     public function mount(){
         $this->lines = Line::orderBy('id', 'asc')->get();
         $this->shapes = Shape::all();
@@ -106,6 +101,17 @@ class CreateDesign extends Component
         $this->line_price = $line->price;
         $this->line_chars = $line->chars;
         $this->calculate();
+    }
+
+    public function updatedPhoto()
+    {
+        $this->validate([
+            'photo' => 'image|max:1024',
+        ]);
+    }
+
+    public function updatedBGColor(){
+        $this->photo = null;
     }
 
     public function calculate(){

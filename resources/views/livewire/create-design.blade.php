@@ -1,17 +1,16 @@
 <section class="w-full py-[80px]">
     <div class="grid grid-cols-2 gap-6 max-w-[1360px] m-auto min-h-[800px] px-4 890px:grid-cols-1">
-        <div class="bg-cover bg-center relative rounded-lg flex justify-center 890px:min-h-[800px]" style="background-image: url({{ asset('assets/images/background/'.$image_select) }})">
-            <span class="absolute top-3 right-3 text-white text-4xl">$ {{ $total_price }}</span>
+        <div class="bg-cover bg-center relative rounded-lg flex justify-center 890px:min-h-[800px]" style="@if ($photo) background-image: url({{ $photo->temporaryUrl() }}); @else background-color: {{ $BGColor }} @endif">
+            <span class="absolute top-3 right-3 text-white text-4xl">${{ $total_price }}</span>
             
             <div wire:click="$set('dark_mode', {{ !$dark_mode }})" class=" @if (!$dark_mode) bg-white @else bg-gray-800 @endif p-3 rounded-lg absolute top-2 left-2">
                 @if (!$dark_mode)
-                    <img src="https://api.iconify.design/line-md:moon-filled-alt-to-sunny-filled-loop-transition.svg?color=%23febc06" width="35" alt="Sun Image">
+                    <img src="https://api.iconify.design/mdi:lightbulb-on.svg?color=%23e4aa0c" width="35" alt="Sun Image">
                 @else
-                    <img src="https://api.iconify.design/pepicons-pop:moon-filled.svg?color=%23febc06" width="35" alt="Moon Image">
+                    <img src="https://api.iconify.design/mdi:lightbulb-on.svg?color=%23ffffff" width="35" alt="Moon Image">
                 @endif
             </div>
             
-
             <span class="text-white {{ $font_select }} m-auto mt-[300px] text-center text-5xl font-semibold" @if (!$dark_mode) 
             style="text-shadow:
             0 0 7px {{ $color_select }},
@@ -22,10 +21,13 @@
             0 0 22px {{ $color_select }},
             0 0 22px {{ $color_select }},
             0 0 22px {{ $color_select }};" @endif>{{ $line_txt1 }}<br>{{ $line_txt2 }}<br>{{ $line_txt3 }}</span>
-            <div class="absolute bottom-0 w-full p-3 grid grid-cols-5 gap-4">
-                @foreach ($images as $image)
-                    <span wire:click="$set('image_select', '{{ $image }}')" style='background-image: url({{ asset("assets/images/background/".$image ) }})' class="rounded-md h-[150px] bg-cover bg-center border @if($image_select == $image) border-main opacity-100 @else opacity-50 @endif"></span>
-                @endforeach
+
+            <div class="flex items-center justify-between absolute w-full bottom-0 p-3">
+                <input type="color" wire:model="BGColor">
+                <div class="px-2">
+                    <label for="photo" class="flex items-center"><span class="mr-2 text-white font-semibold">Upload Image</span><img src="https://api.iconify.design/line-md:uploading-loop.svg?color=%23ffffff" width="40" alt="Upload"></label>
+                    <input type="file" id="photo" class="hidden" wire:model="photo">
+                </div>
             </div>
         </div>
         <form wire:submit.prevent="checkout" method="POST" class="text-sm max-h-[900px] overflow-scroll px-6 py-6">
@@ -33,8 +35,6 @@
             @if (session('failed'))
                 <p class="text-white p-6 fixed bottom-2 left-2 z-20 rounded-lg bg-red-700 mb-3 border-red-600 border">{{ session('failed') }}</p>
             @endif
-            
-            
             <div class="py-2">
                 <h2 class="font-bold text-lg">Text Line & Size Options <span class="text-sm text-gray-400">{{ $SelectLine }} (${{ $line_price }})</span></h2>
                 <div class="mt-1">
