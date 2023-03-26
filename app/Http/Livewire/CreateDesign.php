@@ -18,10 +18,11 @@ class CreateDesign extends Component
     public $shapes, $remotes;
     public $remote = "Line Dimmer";
     public $dark_mode = false;
+    public $alignment = 'text-center';
 
     public $BGColor = "#000000", $photo;
 
-    public $lines, $line_txt1, $line_txt2, $line_txt3, $SelectLine, $line_count = 1;
+    public $lines, $line_txt1 = "Text Goes Here", $line_txt2, $line_txt3, $SelectLine, $line_count = 1;
     public $line_price, $line_chars;
     
     
@@ -33,14 +34,18 @@ class CreateDesign extends Component
         "JAPAN 100V"
     ], $adaptor = "USA/Canada/120V";
     public $jacket = "colored";
+    
     public $locations = [
         "In Door",
         "Out Door"
     ], $location = "In Door";
+    
     public $email = "";
+    
     public $background = "Cut to shape";
-    public $word_price = 50;
+    
     public $total_price;
+    
     public $colors = [
         "rgb(252, 96, 2)",
         "rgb(255, 255, 255)",
@@ -103,13 +108,6 @@ class CreateDesign extends Component
         $this->calculate();
     }
 
-    public function updatedPhoto()
-    {
-        $this->validate([
-            'photo' => 'image|max:1024',
-        ]);
-    }
-
     public function updatedBGColor(){
         $this->photo = null;
     }
@@ -131,7 +129,7 @@ class CreateDesign extends Component
     
                 $total_price = $shape->price + $jacket_price + $remote->price + $this->line_price;
                 
-                if($this->location == "out_door"){
+                if($this->location == "Out Door"){
                     $this->total_price = $total_price + ($total_price * (15/100));
                 }else{
                     $this->total_price = $total_price;
@@ -141,7 +139,7 @@ class CreateDesign extends Component
             }
         }else{
             $this->total_price = 0;
-            session()->flash('failed', 'You must enter one letter!');
+            session()->flash('failed', 'Characters must not exceed '. $this->line_chars);
         }
     }
 
@@ -158,7 +156,7 @@ class CreateDesign extends Component
 
     public function checkout(){
         if($this->email != ""){
-            if(in_array($this->adaptor, $this->adaptors) && in_array($this->location, $this->locations) && in_array($this->font_select, $this->fonts) && in_array($this->color_select, $this->colors) && in_array($this->image_select, $this->images)){
+            if(in_array($this->adaptor, $this->adaptors) && in_array($this->location, $this->locations) && in_array($this->font_select, $this->fonts) && in_array($this->color_select, $this->colors)){
             
                 $checkout_id = $this->randomPassword();
                 $order_id = $this->randomPassword();
@@ -192,6 +190,7 @@ class CreateDesign extends Component
                     'location' => $this->location,
                     'adaptor' => $this->adaptor,
                     'remote' => $this->remote,
+                    'align' => $this->alignment,
                     'email' => $this->email,
                     'order_id' => $order_id,
                     'price' => $this->total_price,

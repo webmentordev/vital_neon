@@ -19,6 +19,7 @@ class Cart extends Model
         'adaptor',
         'remote',
         'email',
+        'align',
         'status',
         'paid',
         'order_id',

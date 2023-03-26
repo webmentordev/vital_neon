@@ -11,7 +11,7 @@
                 @endif
             </div>
             
-            <span class="text-white {{ $font_select }} m-auto mt-[300px] text-center text-5xl font-semibold" @if (!$dark_mode) 
+            <span class="text-white {{ $font_select }} m-auto mt-[300px] {{ $alignment }} text-5xl font-semibold" @if (!$dark_mode) 
             style="text-shadow:
             0 0 7px {{ $color_select }},
             0 0 7px {{ $color_select }},
@@ -26,12 +26,22 @@
                 <input type="color" wire:model="BGColor">
                 <div class="px-2">
                     <label for="photo" class="flex items-center"><span class="mr-2 text-white font-semibold">Upload Image</span><img src="https://api.iconify.design/line-md:uploading-loop.svg?color=%23ffffff" width="40" alt="Upload"></label>
-                    <input type="file" id="photo" class="hidden" wire:model="photo">
+                    <input type="file" id="photo" class="hidden" wire:model="photo" accept="image/*">
+                    @error ('photo')
+                        <p class="text-white p-6 fixed bottom-2 left-2 z-20 rounded-lg bg-red-700 mb-3 border-red-600 border">{{ $message }}</p>
+                    @endif
                 </div>
             </div>
         </div>
         <form wire:submit.prevent="checkout" method="POST" class="text-sm max-h-[900px] overflow-scroll px-6 py-6">
-            <h1 class="text-main font-bold text-3xl mb-3">Design Your Neon</h1>
+            <div class="flex items-center justify-between">
+                <h1 class="text-main font-bold text-3xl mb-3">Design Your Neon</h1>
+                <div class="flex items-center">
+                    <img wire:click="$set('alignment', 'text-center')" src="https://api.iconify.design/material-symbols:format-align-center.svg?color=%23008080" class="p-2 rounded-lg bg-white" alt="Alignment Icon" width="50">
+                    <img wire:click="$set('alignment', 'text-start')" src="https://api.iconify.design/ic:baseline-format-align-left.svg?color=%23008080" class="p-2 rounded-lg bg-white" alt="Alignment Icon" width="50">
+                    <img wire:click="$set('alignment', 'text-end')" src="https://api.iconify.design/ic:baseline-format-align-right.svg?color=%23008080" class="p-2 rounded-lg bg-white" alt="Alignment Icon" width="50">
+                </div>
+            </div>
             @if (session('failed'))
                 <p class="text-white p-6 fixed bottom-2 left-2 z-20 rounded-lg bg-red-700 mb-3 border-red-600 border">{{ session('failed') }}</p>
             @endif
@@ -101,19 +111,6 @@
                     @endforeach
                 </div>
             </div>
-
-            {{-- <div class="py-2">
-                <h2 class="font-bold mb-2 text-lg">Choose a size *{{ $size }}</h2>
-                <p class="text-gray-500 text-sm mb-3">*Each sign is handcrafted, and sizes shown will be accurate within 1 or 2 inches. Neon sign larger than 47 inches will be made on two or more backboards that can be easily arranged together.</p>
-                <div class="grid grid-cols-2 gap-4 whitespace-pre-wrap">
-                    @foreach ($sizes as $item)
-                        <div wire:click="$set('size', '{{ $item->size }}')" class="flex p-3 cursor-pointer rounded-md flex-col border @if ($size == $item->size) border-main @else border-gray-300 @endif">
-                            <p class="font-semibold mb-2">{{ $item->size }}</p>
-                            <span class="text-gray-500 text-sm">{{ $item->width }} inc / {{ $item->height }} Inc <span class="text-[10px]">(width / height)</span></span>
-                        </div>
-                    @endforeach
-                </div>
-            </div> --}}
 
             <div class="py-2">
                 <h2 class="font-bold text-lg mb-3">Backboard Style *{{ $background }}</h2>

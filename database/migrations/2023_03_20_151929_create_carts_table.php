@@ -17,9 +17,9 @@ return new class extends Migration
             $table->string('jacket');
             $table->string('font');
             $table->string('color');
-            $table->string('size');
             $table->string('backboard');
             $table->string('location');
+            $table->string('align');
             $table->string('adaptor');
             $table->string('remote');
             $table->string('price');
