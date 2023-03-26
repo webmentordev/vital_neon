@@ -14,7 +14,6 @@ class Cart extends Model
         'jacket',
         'font',
         'color',
-        'size',
         'backboard',
         'location',
         'adaptor',

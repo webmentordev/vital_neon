@@ -17,11 +17,6 @@
                     </x-nav-link>
                 </div>
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-nav-link :href="route('size')" :active="request()->routeIs('size')">
-                        {{ __('SizeController') }}
-                    </x-nav-link>
-                </div>
-                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-nav-link :href="route('shape')" :active="request()->routeIs('shape')">
                         {{ __('Shapes') }}
                     </x-nav-link>

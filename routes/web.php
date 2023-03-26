@@ -23,9 +23,6 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
-    Route::get('/size', [SizeController::class, 'index'])->name('size');
-    Route::post('/size', [SizeController::class, 'create']);
-
     Route::get('/shape', [ShapeController::class, 'index'])->name('shape');
     Route::post('/shape', [ShapeController::class, 'create']);
 

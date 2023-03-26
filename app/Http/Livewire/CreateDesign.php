@@ -5,7 +5,6 @@ namespace App\Http\Livewire;
 use Carbon\Carbon;
 use App\Models\Cart;
 use App\Models\Line;
-use App\Models\Size;
 use App\Models\Shape;
 use App\Models\Remote;
 use Livewire\Component;
@@ -31,7 +30,6 @@ class CreateDesign extends Component
         "JAPAN 100V"
     ], $adaptor = "USA/Canada/120V";
     public $jacket = "colored";
-    public $size = "Small";
     public $locations = [
         "In Door",
         "Out Door"
@@ -77,6 +75,7 @@ class CreateDesign extends Component
         "slender",
         "signature"
     ], $font_select = "logo";
+    
     public $images = [
         "dark_wall.jpg",
         "background1.png",
@@ -84,9 +83,9 @@ class CreateDesign extends Component
         "bed_room.jpg",
         "wall.jpg"
     ], $image_select = "dark_wall.jpg";
+    
     public function mount(){
-        $this->calculate();
-        $this->lines = Line::all();
+        $this->lines = Line::orderBy('id', 'asc')->get();
         $this->shapes = Shape::all();
         $this->remotes = Remote::all();
         $line = Line::first();
@@ -97,8 +96,7 @@ class CreateDesign extends Component
         $this->calculate();
     }
 
-    public function render()
-    {
+    public function render(){
         return view('livewire.create-design');
     }
 
@@ -184,7 +182,6 @@ class CreateDesign extends Component
                     'jacket' => $this->jacket,
                     'font' => $this->font_select,
                     'color' => $this->color_select,
-                    'size' => $this->size,
                     'backboard' => $this->background,
                     'location' => $this->location,
                     'adaptor' => $this->adaptor,
