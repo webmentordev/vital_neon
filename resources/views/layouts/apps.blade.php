@@ -10,8 +10,10 @@
     @vite('resources/css/app.css')
 </head>
 <body class="antialiased">
-    <x-top />
-    <x-navbar />
+    @if (!Request::is('success/*') && !Request::is('cancel/*'))
+        <x-top />
+        <x-navbar />
+    @endif
     @yield('content')
     <x-footer />
 </body>

@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\LineController;
+use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RemoteController;
 use App\Http\Controllers\ShapeController;
@@ -17,6 +18,9 @@ Route::get('/dashboard', function () {
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::get('/create-design', CreateDesign::class)->name('create-design');
+
+Route::get('/cancel/{id}', [OrderController::class, 'cancel']);
+Route::get('/success/{id}', [OrderController::class, 'success']);
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
