@@ -1,7 +1,7 @@
 <section class="w-full py-[80px]">
     <div class="grid grid-cols-2 gap-6 max-w-[1360px] m-auto min-h-[800px] px-4 890px:grid-cols-1">
-        <div class="bg-cover bg-center relative rounded-lg flex justify-center 890px:min-h-[800px]" style="@if ($photo) background-image: url({{ $photo->temporaryUrl() }}); @else background-color: {{ $BGColor }} @endif">
-            <span class="absolute top-3 right-3 text-white text-4xl">${{ $total_price }}</span>
+        <div class="bg-cover bg-center relative rounded-lg flex justify-center 890px:min-h-[800px]" id="backDiv" style="background-color: {{ $BGColor }}">
+            <span class="fixed bg-gray-800 rounded-lg p-3 bottom-3 z-10 right-3 text-white text-4xl font-semibold"><span class="text-2xl">$</span>{{ $total_price }}</span>
             
             <div wire:click="$set('dark_mode', {{ !$dark_mode }})" class=" @if (!$dark_mode) bg-white @else bg-gray-800 @endif p-3 rounded-lg absolute top-2 left-2">
                 @if (!$dark_mode)
@@ -23,13 +23,11 @@
             0 0 22px {{ $color_select }};" @endif>{{ $line_txt1 }}<br>{{ $line_txt2 }}<br>{{ $line_txt3 }}</span>
 
             <div class="flex items-center justify-between absolute w-full bottom-0 p-3">
-                <input type="color" wire:model="BGColor">
+                <input type="color" class="hidden" id="color" wire:model="BGColor">
+                <label for="color" class="bg-white p-3 rounded-full"><img width="30" src="https://api.iconify.design/nimbus:color-palette.svg?color=%230d92f8" alt="Palet Icon"></label>
                 <div class="px-2">
-                    <label for="photo" class="flex items-center"><span class="mr-2 text-white font-semibold">Upload Image</span><img src="https://api.iconify.design/line-md:uploading-loop.svg?color=%23ffffff" width="40" alt="Upload"></label>
-                    <input type="file" id="photo" class="hidden" wire:model="photo" accept="image/*">
-                    @error ('photo')
-                        <p class="text-white p-6 fixed bottom-2 left-2 z-20 rounded-lg bg-red-700 mb-3 border-red-600 border">{{ $message }}</p>
-                    @endif
+                    <label for="photo" class="flex items-center"><span class="mr-2 text-white font-semibold">Upload Your Background</span><img src="https://api.iconify.design/line-md:uploading-loop.svg?color=%23ffffff" width="40" alt="Upload"></label>
+                    <input type="file" id="photo" accept="image/*" onchange="loadFile(event)" class="hidden">
                 </div>
             </div>
         </div>
@@ -162,4 +160,16 @@
             <button class="py-3 text-center bg-main w-full text-white font-semibold rounded-md flex items-center justify-center" type="submit"><span class="mr-2 text-xl">Checkout</span> <img src="{{ asset('assets/images/stripe_small.png') }}" width="50" alt="Stripe Logo"></button>
         </form>
     </div>
+    <img id="output"/>
+    <script>
+        var loadFile = function(event) {
+          var output = document.getElementById('backDiv');
+          output.style.backgroundColor = "transparent";
+          output.style.backgroundImage = `url(${URL.createObjectURL(event.target.files[0]).toString()})`;
+          output.onload = function() {
+            var myURL = URL.revokeObjectURL(output.src) // free memory
+            console.log(myURL)
+          }
+        };
+      </script>
 </section>

@@ -20,7 +20,7 @@ class CreateDesign extends Component
     public $dark_mode = false;
     public $alignment = 'text-center';
 
-    public $BGColor = "#000000", $photo;
+    public $BGColor = "#000000";
 
     public $lines, $line_txt1 = "Text Goes Here", $line_txt2, $line_txt3, $SelectLine, $line_count = 1;
     public $line_price, $line_chars;

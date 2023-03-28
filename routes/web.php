@@ -5,7 +5,6 @@ use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RemoteController;
 use App\Http\Controllers\ShapeController;
-use App\Http\Controllers\SizeController;
 use App\Http\Livewire\CreateDesign;
 use Illuminate\Support\Facades\Route;
 
