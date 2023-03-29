@@ -108,10 +108,6 @@ class CreateDesign extends Component
         $this->calculate();
     }
 
-    public function updatedBGColor(){
-        $this->photo = null;
-    }
-
     public function calculate(){
         if(strlen($this->line_txt1) <= $this->line_chars && strlen($this->line_txt2) <= $this->line_chars && strlen($this->line_txt3) <= $this->line_chars){
             $shape = Shape::where('shape', $this->background)->first();

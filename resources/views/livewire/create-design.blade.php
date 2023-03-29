@@ -1,6 +1,6 @@
 <section class="w-full py-[80px]">
     <div class="grid grid-cols-2 gap-6 max-w-[1360px] m-auto min-h-[800px] px-4 890px:grid-cols-1">
-        <div class="bg-cover bg-center relative rounded-lg flex justify-center 890px:min-h-[800px]" id="backDiv" style="background-color: {{ $BGColor }}">
+        <div class="bg-cover bg-center relative rounded-lg flex justify-center items-center 890px:min-h-[800px]" id="backDiv" style="background-color: {{ $BGColor }}">
             <span class="fixed bg-gray-800 rounded-lg p-3 bottom-3 z-10 right-3 text-white text-4xl font-semibold"><span class="text-2xl">$</span>{{ $total_price }}</span>
             
             <div wire:click="$set('dark_mode', {{ !$dark_mode }})" class=" @if (!$dark_mode) bg-white @else bg-gray-800 @endif p-3 rounded-lg absolute top-2 left-2">
@@ -11,7 +11,7 @@
                 @endif
             </div>
             
-            <span class="text-white {{ $font_select }} m-auto mt-[300px] {{ $alignment }} text-5xl font-semibold" @if (!$dark_mode) 
+            <span class="text-white {{ $font_select }} {{ $alignment }} text-5xl font-semibold" @if (!$dark_mode) 
             style="text-shadow:
             0 0 7px {{ $color_select }},
             0 0 7px {{ $color_select }},
@@ -26,7 +26,7 @@
                 <input type="color" class="hidden" id="color" wire:model="BGColor">
                 <label for="color" class="bg-white p-3 rounded-full"><img width="30" src="https://api.iconify.design/nimbus:color-palette.svg?color=%230d92f8" alt="Palet Icon"></label>
                 <div class="px-2">
-                    <label for="photo" class="flex items-center"><span class="mr-2 text-white font-semibold">Upload Your Background</span><img src="https://api.iconify.design/line-md:uploading-loop.svg?color=%23ffffff" width="40" alt="Upload"></label>
+                    <label for="photo" class="flex items-center"><span class="mr-2 text-white font-semibold">Upload Your Own Image</span><img src="https://api.iconify.design/line-md:uploading-loop.svg?color=%23ffffff" width="40" alt="Upload"></label>
                     <input type="file" id="photo" accept="image/*" onchange="loadFile(event)" class="hidden">
                 </div>
             </div>
