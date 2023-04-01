@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\DesignController;
 use App\Http\Controllers\LineController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProfileController;
@@ -17,6 +18,9 @@ Route::get('/dashboard', function () {
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::get('/create-design', CreateDesign::class)->name('create-design');
+
+Route::get('/upload-design', [DesignController::class, 'index'])->name('upload-design');
+Route::post('/upload-design', [DesignController::class, 'store']);
 
 Route::get('/cancel/{id}', [OrderController::class, 'cancel']);
 Route::get('/success/{id}', [OrderController::class, 'success']);

@@ -157,7 +157,7 @@
                 </div>
             </div>
             <input type="text" wire:model.debounce.500ms="email" placeholder="Email Address" class="w-full mt-2 bg-white rounded border focus:border-main focus:ring-4 focus:ring-main-light text-base outline-none text-gray-700 py-2 px-3 leading-8 transition-colors duration-200 ease-in-out mb-3">
-            <button class="py-3 text-center bg-main w-full text-white font-semibold rounded-md flex items-center justify-center" type="submit"><span class="mr-2 text-xl">Checkout</span> <img src="{{ asset('assets/images/stripe_small.png') }}" width="50" alt="Stripe Logo"></button>
+            <button class="submit-btn" type="submit"><span class="mr-2 text-xl">Checkout</span> <img src="{{ asset('assets/images/stripe_small.png') }}" width="50" alt="Stripe Logo"></button>
         </form>
     </div>
     <img id="output"/>

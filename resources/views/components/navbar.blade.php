@@ -3,7 +3,7 @@
         <a href="{{ route('home') }}" class="text-3xl font-semibold py-1"><img src="{{ asset('assets/images/v_logo.jpg') }}" width="180" alt="Vital Neon"></a>
         <ul class="flex items-center uppercase">
             <a class="mx-4" href="{{ route('create-design') }}">Design Your Own</a>
-            <a class="mx-4" href="#">Shop</a>
+            <a class="mx-4" href="{{ route('upload-design') }}">Upload Design</a>
             <a class="mx-4" href="#">NEON Backdrop</a>
             <a class="ml-4" href="#">Support</a>
         </ul>

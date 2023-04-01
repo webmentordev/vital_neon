@@ -125,6 +125,25 @@ a{
     0 0 22px #ff540066;
 }
 
+.input{
+    @apply w-full mt-2 bg-white rounded border border-gray-200 focus:border-main focus:ring-4 focus:ring-main-light text-base outline-none text-gray-700 py-2 px-3 leading-8 transition-colors duration-200 ease-in-out mb-3;
+}
+
+.submit-btn{
+    @apply py-3 text-center bg-main w-full text-white font-semibold rounded-md flex items-center justify-center;
+}
+
+.success{
+    @apply bg-green-600 bg-opacity-20 p-3 rounded-lg border text-green-800 border-green-700 mb-2;
+}
+
+.failed{
+    @apply text-red-600 border border-red-700 bg-red-600 bg-opacity-20 p-3 rounded-lg;
+}
+
+.error{
+    @apply text-red-600 my-1;
+}
 
 .logo{
     font-family: 'neon_tube';
