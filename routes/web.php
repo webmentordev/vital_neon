@@ -1,8 +1,10 @@
 <?php
 
+use App\Http\Controllers\CategoryPriceController;
 use App\Http\Controllers\DesignController;
 use App\Http\Controllers\LineController;
 use App\Http\Controllers\OrderController;
+use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RemoteController;
 use App\Http\Controllers\ShapeController;
@@ -38,6 +40,12 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/lines', [LineController::class, 'index'])->name('line');
     Route::post('/lines', [LineController::class, 'create']);
+
+    Route::get('/category', [CategoryPriceController::class, 'index'])->name('category');
+    Route::post('/category', [CategoryPriceController::class, 'create']);
+
+    Route::get('/product', [ProductController::class, 'index'])->name('product');
+    Route::post('/product', [ProductController::class, 'create']);
 });
 
 require __DIR__.'/auth.php';
