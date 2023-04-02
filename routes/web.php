@@ -45,6 +45,7 @@ Route::middleware('auth')->group(function () {
     Route::post('/category', [CategoryPriceController::class, 'create']);
 
     Route::get('/product', [ProductController::class, 'index'])->name('product');
+    Route::post('/upload', [ProductController::class, 'upload'])->name('upload');
     Route::post('/product', [ProductController::class, 'create']);
 });
 
