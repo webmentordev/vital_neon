@@ -1,19 +1,10 @@
 @extends('layouts.apps')
 @section('content')
-    <section id="image-carousel" class="splide w-full" aria-label="Beautiful Images">
+    <section id="image-carousel max-h-[675px] overflow-hidden" class="splide w-full" aria-label="Beautiful Images">
         <div class="splide__track w-full">
             <ul class="splide__list w-full">
                 <li class="splide__slide w-full">
-                        <img src="{{ asset('assets/slides/slide_1.png') }}" class="w-full" alt="">
-                </li>
-                <li class="splide__slide w-full">
-                    <img src="{{ asset('assets/slides/slide_2.png') }}" class="w-full" alt="">
-                </li>
-                <li class="splide__slide w-full">
-                    <img src="{{ asset('assets/slides/slide_3.png') }}" class="w-full" alt="">
-                </li>
-                <li class="splide__slide w-full">
-                    <img src="{{ asset('assets/slides/slide_4.png') }}" class="w-full" alt="">
+                    <img src="{{ asset('assets/slides/slider_01.png') }}" class="w-full" alt="Slider 01">
                 </li>
             </ul>
         </div>
@@ -49,12 +40,15 @@
             </div>
         </div>
     </section>
-    <section>
-        <div class="max-w-6xl m-auto py-[80px]">
-            <h2 class="text-4xl text-center uppercase mb-3 text-main font-semibold">Light of Neon, Power of Will</h2>
-            <p class="max-w-2xl m-auto text-center">VitalNeon is an LED neon sign maker that designs and manufactures awesome LED neon signs for business, weddings, parties, events, home decor and so much more.</p>
-            <div class="grid grid-cols-2 gap-6 py-[50px]" x-data="{ placeholder: 'Type here...', text: 'Your Text' }">
-                <div class="w-full bg-cover rounded-lg overflow-hidden bg-center flex items-center justify-center" style="background-image: url({{ asset('assets/images/black-wall.png') }})">
+    <section class="bg-center bg-cover relative" style="background-image: url({{ asset('assets/images/background-create.png') }})">
+        <div class="absolute top-0 left-0 w-full h-full bg-opacity-60 bg-black backdrop-blur-md"></div>
+        <div class="max-w-6xl m-auto py-[120px] relative z-10">
+            <div class="text-white mb-[100px]">
+                <h2 class="text-4xl text-center uppercase mb-3 text-main font-semibold">Light of Neon, Power of Will</h2>
+                <p class="max-w-2xl m-auto text-center">VitalNeon is an LED neon sign maker that designs and manufactures awesome LED neon signs for business, weddings, parties, events, home decor and so much more.</p>
+            </div>
+            <div class="grid grid-cols-2 gap-6 bg-white p-12 rounded-lg" x-data="{ placeholder: 'Type here...', text: 'Your Text' }">
+                <div class="w-full bg-cover rounded-lg overflow-hidden bg-center flex items-center justify-center" style="background-image: url({{ asset('assets/images/background-card.png') }})">
                     <span class="neonText text-7xl font-semibold text-white" x-text="text"></span>
                 </div>
                 <div class="p-6 flex flex-col my-6">
