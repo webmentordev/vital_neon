@@ -6,6 +6,7 @@
             <a class="mx-4" href="{{ route('upload-design') }}">Upload Design</a>
             <a class="mx-4" href="#">NEON Backdrop</a>
             <a class="ml-4" href="#">Support</a>
+            <a href="923036405299" class="pl-4 border-l border-gray-100"><img src="https://api.iconify.design/logos:whatsapp-icon.svg?color=%23ffd402" width="36" alt=""></a>
         </ul>
     </div>
 </nav>

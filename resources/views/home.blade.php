@@ -6,6 +6,12 @@
                 <li class="splide__slide w-full">
                     <img src="{{ asset('assets/slides/slider_01.png') }}" class="w-full" alt="Slider 01">
                 </li>
+                <li class="splide__slide w-full">
+                    <img src="{{ asset('assets/slides/slider_02.png') }}" class="w-full" alt="Slider 02">
+                </li>
+                <li class="splide__slide w-full">
+                    <img src="{{ asset('assets/slides/slider_03.png') }}" class="w-full" alt="Slider 03">
+                </li>
             </ul>
         </div>
     </section>
