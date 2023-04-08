@@ -1,0 +1,41 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use App\Models\Support;
+use Illuminate\Http\Request;
+
+class SupportController extends Controller
+{
+    public function index(){
+        return  view('support');
+    }
+
+    function randomPassword() {
+        $alphabet = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890';
+        $pass = array();
+        $alphaLength = strlen($alphabet) - 1;
+        for ($i = 0; $i < 30; $i++) {
+            $n = rand(0, $alphaLength);
+            $pass[] = $alphabet[$n];
+        }
+        return implode($pass);
+    }
+
+    public function store(Request $request){
+        $this->validate($request, [
+            'name' => 'required|max:255',
+            'email' => 'required|max:255|email',
+            'subject' => 'required|max:255',
+            'message' => 'required',
+        ]);
+        Support::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'subject' => $request->subject,
+            'message' => $request->message,
+            'ticket' => $this->randomPassword()
+        ]);
+        return back()->with('success', 'Support message sent! We will contact you shortly');
+    }
+}

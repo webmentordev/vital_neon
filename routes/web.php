@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\CategoryPriceController;
+use App\Http\Controllers\ContactController;
 use App\Http\Controllers\DesignController;
 use App\Http\Controllers\LineController;
 use App\Http\Controllers\OrderController;
@@ -8,6 +9,7 @@ use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RemoteController;
 use App\Http\Controllers\ShapeController;
+use App\Http\Controllers\SupportController;
 use App\Http\Livewire\CreateDesign;
 use Illuminate\Support\Facades\Route;
 
@@ -24,6 +26,9 @@ Route::get('/create-design', CreateDesign::class)->name('create-design');
 Route::get('/upload-design', [DesignController::class, 'index'])->name('upload-design');
 Route::post('/upload-design', [DesignController::class, 'store']);
 
+Route::get('/support', [SupportController::class, 'index'])->name('support');
+Route::post('/support', [SupportController::class, 'store']);
+
 Route::get('/cancel/{id}', [OrderController::class, 'cancel']);
 Route::get('/success/{id}', [OrderController::class, 'success']);
 
@@ -37,6 +42,8 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/remote', [RemoteController::class, 'index'])->name('remote');
     Route::post('/remote', [RemoteController::class, 'create']);
+    
+    Route::get('/contact', [ContactController::class, 'index'])->name('contact');
 
     Route::get('/lines', [LineController::class, 'index'])->name('line');
     Route::post('/lines', [LineController::class, 'create']);
