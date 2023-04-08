@@ -39,7 +39,7 @@ class SupportController extends Controller
             'ticket' => $this->randomPassword()
         ]);
 
-        Mail::to($request->email)->send(new SupportEmail($request));
+        Mail::to($request->email)->send(new SupportEmail($support));
 
         return back()->with('success', 'Support message sent! we will contact you shortly');
     }

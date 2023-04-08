@@ -29,7 +29,7 @@ Route::get('/upload-design', [DesignController::class, 'index'])->name('upload-d
 Route::post('/upload-design', [DesignController::class, 'store']);
 
 Route::get('/support', [SupportController::class, 'index'])->name('support');
-Route::post('/support', [SupportController::class, 'store']);
+Route::post('/support', [SupportController::class, 'store'])->middleware(['throttle:2,5']);
 
 Route::get('/cancel/{id}', [OrderController::class, 'cancel']);
 Route::get('/success/{id}', [OrderController::class, 'success']);
