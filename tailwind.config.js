@@ -20,6 +20,7 @@ module.exports = {
             },
             colors: {
                 "main": "#12CAFF",
+                "parrot": "#10FF10",
                 "dark": "#121212",
                 "light": "#161616",
                 "main-light": "rgba(0,128,128, 0.4)"

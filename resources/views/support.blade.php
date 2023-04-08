@@ -4,7 +4,7 @@
         <div class="max-w-2xl m-auto py-[80px]">
             <form action="{{ route('support') }}" enctype="multipart/form-data" method="POST" class="p-12 rounded-lg border-gray-700 border shadow-md bg-light">
                 @csrf
-                <h2 class="font-semibold text-2xl text-white">Create a Support ticket</h2>
+                <h2 class="font-semibold text-4xl text-white">Create a Support ticket</h2>
                 <p class="py-2 text-gray-200 mb-2 text-sm">A <strong>ticket #ID</strong> will be sent to your email. Make sure to keep it safe.</p>
                 @if (session('success'))
                     <p class="success">{{ session('success') }}</p>

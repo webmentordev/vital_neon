@@ -16,6 +16,23 @@
         </div>
     </section>
     
+    <section class="w-full">
+        <div class="max-w-4xl m-auto pt-[100px] grid grid-cols-3 gap-6">
+            <div class="flex items-center bg-light rounded-lg p-6">
+                <img src="https://api.iconify.design/bi:chat-right-heart-fill.svg?color=%2310ff10" width="40" alt="Package Icon">
+                <span class="text-gray-300 font-semibold ml-3">PREMIUM QUALITY</span>
+            </div>
+            <div class="flex items-center bg-light rounded-lg p-6">
+                <img src="https://api.iconify.design/majesticons:globe-earth.svg?color=%2310ff10" width="40" alt="Package Icon">
+                <span class="text-gray-300 font-semibold ml-3">GLOBAL SHIPPING</span>
+            </div>
+
+            <div class="flex items-center bg-light rounded-lg p-6">
+                <img src="https://api.iconify.design/ic:round-contact-phone.svg?color=%2310ff10" width="40" alt="Package Icon">
+                <span class="text-gray-300 font-semibold ml-3">24/7 SUPPORT</span>
+            </div>
+        </div>
+    </section>
     <section class="bg-dark">
         <div class="max-w-3xl m-auto py-[120px]">
             <div class="text-center mb-6 border-b border-light py-3">
@@ -43,15 +60,11 @@
                     <p class="text-sm leading-6 text-gray-200 group-hover:text-gray-500">Every neon sign comes with screws and hanging kit for free.</p>
                 </div>
             </div>
-            <p class="leading-7 text-center text-white">VitalNeon is an online store that specializes in selling high-quality neon signs. Our extensive range of products includes custom text line and size options to suit your specific needs. We offer a variety of backboard styles to complement your neon sign and ensure it stands out in any space. We also provide a power adapter that ensures your neon sign runs smoothly and efficiently. With our remote and dimmer, you can adjust the brightness of your sign to create the perfect ambiance. At VitalNeon, we strive to offer the best quality neon signs that are both functional and aesthetically pleasing</p>
         </div>
     </section>
     <section class="bg-light">
         <div class="max-w-6xl m-auto py-[120px] relative z-10">
-            <div class="mb-[100px] text-gray-200">
-                <h4 class="text-4xl text-center uppercase mb-3 font-semibold text-indigo-600 rubik">Light of Neon, Power of Will</h4>
-                <p class="max-w-2xl m-auto text-center">VitalNeon is an LED neon sign maker that designs and manufactures awesome LED neon signs for business, weddings, parties, events, home decor and so much more.</p>
-            </div>
+            <h4 class="text-4xl text-center uppercase font-bold text-main mb-12 choose">Light of Neon - Power of Will</h4>
             <div class="absolute w-full top-1/2 left-1/3 max-w-lg">
                 <div class="absolute top-0 -left-4 w-72 h-72 bg-green-400 rounded-full mix-blend-multiply filter blur-3xl opacity-80"></div>
                 <div class="absolute top-0 -right-4 w-72 h-72 bg-indigo-400 rounded-full mix-blend-multiply filter blur-3xl opacity-80"></div>
@@ -61,22 +74,29 @@
                     <span class="neonText text-7xl font-semibold text-white" x-text="text"></span>
                 </div>
                 <div class="p-6 flex flex-col my-6">
-                    <i class="mb-3">Design your text</i>
-                    <h3 class="text-7xl font-semibold uppercase mb-3 leading-[80px] text-indigo-600 rubik">CREATE YOUR OWN <br> NEON SIGN</h3>
-                    <p class="mb-3 leading-7">Design your unique neon sign with our online custom tool in less than 5 minutes and enjoy 20% OFF + Free Shipping worldwide! 
-                    <p class="mb-3 leading-7">Our online tool simplifies the process of designing a custom neon sign and provides a visual preview so you can see how it will appear before placing an order.</p>
-                    <p class="mb-3 leading-7">Whether you're looking for a text neon sign for your home, business, party, wedding, or event, our custom sign will make your special occasion stand out.<br>Now it's time to bring your ideas to life!</p>
+                    <h3 class="text-7xl font-semibold uppercase mb-3 leading-[80px] text-parrot rubik">CREATE YOUR OWN <br> NEON SIGN</h3>
+                    <i><p class="mb-3 leading-7">Design your unique neon sign with our online custom tool in less than 5 minutes and enjoy 20% OFF + Free Shipping worldwide! 
+                        <p class="mb-3 leading-7">Our online tool simplifies the process of designing a custom neon sign and provides a visual preview so you can see how it will appear before placing an order.</p>
+                        <p class="mb-3 leading-7">Whether you're looking for a text neon sign for your home, business, party, wedding, or event, our custom sign will make your special occasion stand out.<br>Now it's time to bring your ideas to life!</p></i>
                     <input type="text" class="bg-light py-3 rounded-lg text-gray-200" x-model="text" :placeholder="placeholder">
                 </div>
             </div>
         </div>
     </section>
+    <section class="bg-dark">
+        <div class="max-w-3xl m-auto py-[120px]">
+            <div class="text-center mb-6 border-b border-light py-3">
+                <h4 class="text-[34.5px] uppercase mb-3 text-white font-bold text-5xl m-auto">About Us<span class="text-5xl ml-2">❗</span></h4>
+            </div>
+            <p class="leading-9 text-white text-center p1"><i><span class="text-3xl">"</span>VitalNeon is an online store that specializes in selling high-quality neon signs. Our extensive range of products includes custom text line and size options to suit your specific needs. We offer a variety of backboard styles to complement your neon sign and ensure it stands out in any space. We also provide a power adapter that ensures your neon sign runs smoothly and efficiently. With our remote and dimmer, you can adjust the brightness of your sign to create the perfect ambiance. At VitalNeon, we strive to offer the best quality neon signs that are both functional and aesthetically pleasing<span class="text-3xl inline-block">"</span></i></p>
+        </div>
+    </section>
     <script>
         var splide = new Splide('.splide', {
-            autoStart: true,
-            autoScroll: {
-                speed: 2,
-            },
+            type   : 'loop',
+            autoplay: true,
+            interval: 5000,
+            pauseOnHover: true
         } );
         splide.mount();
     </script>
