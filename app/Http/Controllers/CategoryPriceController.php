@@ -18,10 +18,12 @@ class CategoryPriceController extends Controller
     public function create(Request $request){
         $this->validate($request, [
             'name' => "required|max:255",
+            'product' => "required|numeric",
             'price' => "required|numeric|min:1",
         ]);
         CategoryPrice::create([
             'name' => $request->name,
+            'product_id' => $request->product,
             'price' => $request->price
         ]);
         return back()->with('success', 'Category has been added!');

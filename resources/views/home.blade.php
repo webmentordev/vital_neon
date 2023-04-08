@@ -33,6 +33,7 @@
             </div>
         </div>
     </section>
+    <x-listing />
     <section class="bg-dark">
         <div class="max-w-3xl m-auto py-[120px]">
             <div class="text-center mb-6 border-b border-light py-3">

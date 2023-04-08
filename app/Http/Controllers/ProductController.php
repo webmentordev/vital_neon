@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Product;
+use Stripe\StripeClient;
 use Illuminate\Http\Request;
 
 class ProductController extends Controller
@@ -27,17 +28,24 @@ class ProductController extends Controller
     }
 
     public function create(Request $request){
+        $stripe = new StripeClient(config('app.stripe'));
         $this->validate($request, [
             'name' => "required|max:255|unique:products,name",
-            'price' => "required|numeric|min:1",
             'image' => "required|image|mimes:png,jpg,jpeg,webp",
+            'slug' => "required|max:255",
             'body' => "required",
         ]);
-        Product::create([
+
+        $result = $stripe->products->create([
             'name' => $request->name,
-            'price' => $request->price,
+        ]);
+
+        Product::create([
+            'name' => $result->name,
+            'stripe_id' => $result['id'],
+            'slug' => strtolower(str_replace(' ', '-', $request->slug)),
             'image' => $request->image->store('products', 'public_disk'),
-            'body' => $request->body,
+            'body' => $request->body
         ]);
         return back()->with('success', 'Product has been added!');
     }

@@ -11,8 +11,7 @@ use App\Http\Controllers\RemoteController;
 use App\Http\Controllers\ShapeController;
 use App\Http\Controllers\SupportController;
 use App\Http\Livewire\CreateDesign;
-use App\Mail\Support;
-use App\Mail\SupportEmail;
+use App\Http\Livewire\Product;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -33,6 +32,8 @@ Route::post('/support', [SupportController::class, 'store'])->middleware(['throt
 
 Route::get('/cancel/{id}', [OrderController::class, 'cancel']);
 Route::get('/success/{id}', [OrderController::class, 'success']);
+
+Route::get('/product/{slug}', Product::class)->name('listing');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

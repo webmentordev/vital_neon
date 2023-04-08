@@ -15,7 +15,7 @@
                     <form action="{{ route('category') }}" method="post" class="flex">
                         @csrf
                         <div class="w-full mr-2">
-                            <input type="text" name="name" class="border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 rounded-md shadow-sm w-full" placeholder="Name">
+                            <input type="text" name="name" class="border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 rounded-md shadow-sm w-full" placeholder="Name" autocomplete="off">
                             @error('name')
                                 <p class="mt-1 text-red-600">{{ $message }}</p>
                             @enderror
