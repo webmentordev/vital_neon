@@ -151,7 +151,7 @@ a{
 }
 
 .success{
-    @apply bg-green-600 bg-opacity-20 p-3 rounded-lg border text-green-800 border-green-700 mb-2;
+    @apply bg-green-600 bg-opacity-20 p-3 rounded-lg border text-green-400 text-center border-green-700 mb-2;
 }
 
 .failed{

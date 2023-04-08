@@ -11,6 +11,8 @@ use App\Http\Controllers\RemoteController;
 use App\Http\Controllers\ShapeController;
 use App\Http\Controllers\SupportController;
 use App\Http\Livewire\CreateDesign;
+use App\Mail\Support;
+use App\Mail\SupportEmail;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {

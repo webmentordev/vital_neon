@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Support;
+use App\Mail\SupportEmail;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 
 class SupportController extends Controller
 {
@@ -29,13 +31,16 @@ class SupportController extends Controller
             'subject' => 'required|max:255',
             'message' => 'required',
         ]);
-        Support::create([
+        $support = Support::create([
             'name' => $request->name,
             'email' => $request->email,
             'subject' => $request->subject,
             'message' => $request->message,
             'ticket' => $this->randomPassword()
         ]);
-        return back()->with('success', 'Support message sent! We will contact you shortly');
+
+        Mail::to($request->email)->send(new SupportEmail($request));
+
+        return back()->with('success', 'Support message sent! we will contact you shortly');
     }
 }
