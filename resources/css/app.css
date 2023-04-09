@@ -35,6 +35,11 @@ a{
     font-family: 'Abel', sans-serif;
     @apply text-lg font-medium;
 }
+.featured{
+    font-family: 'Abel', sans-serif;
+}
+
+
 [x-cloak]{
     display: none !important;
 }

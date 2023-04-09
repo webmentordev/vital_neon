@@ -19,21 +19,23 @@
     <section class="w-full">
         <div class="max-w-4xl m-auto pt-[100px] grid grid-cols-3 gap-6">
             <div class="flex items-center bg-light rounded-lg p-6">
-                <img src="https://api.iconify.design/bi:chat-right-heart-fill.svg?color=%2310ff10" width="40" alt="Package Icon">
+                <img src="https://api.iconify.design/bi:chat-right-heart-fill.svg?color=%2300FFFF" width="40" alt="Package Icon">
                 <span class="text-gray-300 font-semibold ml-3">PREMIUM QUALITY</span>
             </div>
             <div class="flex items-center bg-light rounded-lg p-6">
-                <img src="https://api.iconify.design/majesticons:globe-earth.svg?color=%2310ff10" width="40" alt="Package Icon">
+                <img src="https://api.iconify.design/majesticons:globe-earth.svg?color=%2300FFFF" width="40" alt="Package Icon">
                 <span class="text-gray-300 font-semibold ml-3">GLOBAL SHIPPING</span>
             </div>
 
             <div class="flex items-center bg-light rounded-lg p-6">
-                <img src="https://api.iconify.design/ic:round-contact-phone.svg?color=%2310ff10" width="40" alt="Package Icon">
+                <img src="https://api.iconify.design/ic:round-contact-phone.svg?color=%2300FFFF" width="40" alt="Package Icon">
                 <span class="text-gray-300 font-semibold ml-3">24/7 SUPPORT</span>
             </div>
         </div>
     </section>
+
     <x-listing />
+    
     <section class="bg-dark">
         <div class="max-w-3xl m-auto py-[120px]">
             <div class="text-center mb-6 border-b border-light py-3">
@@ -92,13 +94,15 @@
             <p class="leading-9 text-white text-center p1"><i><span class="text-3xl">"</span>VitalNeon is an online store that specializes in selling high-quality neon signs. Our extensive range of products includes custom text line and size options to suit your specific needs. We offer a variety of backboard styles to complement your neon sign and ensure it stands out in any space. We also provide a power adapter that ensures your neon sign runs smoothly and efficiently. With our remote and dimmer, you can adjust the brightness of your sign to create the perfect ambiance. At VitalNeon, we strive to offer the best quality neon signs that are both functional and aesthetically pleasing<span class="text-3xl inline-block">"</span></i></p>
         </div>
     </section>
+
+    <x-f-a-q />
     <script>
         var splide = new Splide('.splide', {
             type   : 'loop',
             autoplay: true,
             interval: 5000,
             pauseOnHover: true
-        } );
+        });
         splide.mount();
     </script>
 @endsection
