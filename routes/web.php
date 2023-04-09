@@ -14,6 +14,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SupportController;
 use App\Http\Controllers\ProductsController;
 use App\Http\Controllers\CategoryPriceController;
+use App\Http\Controllers\SearchController;
 
 Route::get('/', function () {
     return view('home');
@@ -60,6 +61,8 @@ Route::middleware('auth')->group(function () {
     Route::get('/product', [ProductController::class, 'index'])->name('product');
     Route::post('/upload', [ProductController::class, 'upload'])->name('upload');
     Route::post('/product', [ProductController::class, 'create']);
+
+    Route::get('/searches', [SearchController::class, 'index'])->name('searches');
 });
 
 require __DIR__.'/auth.php';
