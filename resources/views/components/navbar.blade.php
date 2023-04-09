@@ -4,9 +4,9 @@
         <ul class="flex items-center uppercase">
             <a class="mx-4" href="{{ route('create-design') }}">Design Your Own</a>
             <a class="mx-4" href="{{ route('upload-design') }}">Upload Design</a>
-            <a class="mx-4" href="#">NEON Backdrop</a>
+            <a class="mx-4" href="{{ route('products') }}">Products</a>
             <a class="px-5 border-r border-gray-600" href="{{ route('support') }}">Support</a>
-            <a href="923036405299" class="ml-5"><img src="https://api.iconify.design/logos:whatsapp-icon.svg?color=%23ffd402" width="36" alt=""></a>
+            <a href="923036405299" class="ml-5"><img src="https://api.iconify.design/logos:whatsapp-icon.svg?color=%23ffd402" width="36" alt="Whatsapp Icon"></a>
         </ul>
     </div>
 </nav>

@@ -1,18 +1,19 @@
 <?php
 
-use App\Http\Controllers\CategoryPriceController;
-use App\Http\Controllers\ContactController;
-use App\Http\Controllers\DesignController;
+use App\Http\Livewire\Product;
+use App\Http\Livewire\CreateDesign;
+use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LineController;
 use App\Http\Controllers\OrderController;
+use App\Http\Controllers\ShapeController;
+use App\Http\Controllers\DesignController;
+use App\Http\Controllers\RemoteController;
+use App\Http\Controllers\ContactController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\RemoteController;
-use App\Http\Controllers\ShapeController;
 use App\Http\Controllers\SupportController;
-use App\Http\Livewire\CreateDesign;
-use App\Http\Livewire\Product;
-use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ProductsController;
+use App\Http\Controllers\CategoryPriceController;
 
 Route::get('/', function () {
     return view('home');
@@ -34,6 +35,7 @@ Route::get('/cancel/{id}', [OrderController::class, 'cancel']);
 Route::get('/success/{id}', [OrderController::class, 'success']);
 
 Route::get('/product/{slug}', Product::class)->name('listing');
+Route::get('/products', [ProductsController::class, 'index'])->name('products');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
