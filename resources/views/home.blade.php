@@ -16,7 +16,7 @@
         </div>
     </section>
     
-    <section class="w-full">
+    <section class="w-full px-4">
         <div class="max-w-4xl m-auto pt-[100px] grid grid-cols-3 gap-6">
             <div class="flex items-center bg-light rounded-lg p-6">
                 <img src="https://api.iconify.design/bi:chat-right-heart-fill.svg?color=%2300FFFF" width="40" alt="Package Icon">
@@ -37,7 +37,7 @@
     <x-listing />
     
     <section class="bg-dark">
-        <div class="max-w-3xl m-auto py-[120px]">
+        <div class="max-w-3xl m-auto py-[120px] px-4">
             <div class="text-center mb-6 border-b border-light py-3">
                 <h4 class="text-[34.5px] uppercase mb-3 text-white font-bold flex text-5xl justify-center items-center m-auto choose">WHY CHOOSE US<span class="text-7xl -translate-y-5">❓</span></h4>
             </div>

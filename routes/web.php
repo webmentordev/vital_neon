@@ -36,6 +36,7 @@ Route::get('/success/{id}', [OrderController::class, 'success']);
 
 Route::get('/product/{slug}', Product::class)->name('listing');
 Route::get('/products', [ProductsController::class, 'index'])->name('products');
+Route::get('/products/search', [ProductsController::class, 'search'])->name('product.search');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

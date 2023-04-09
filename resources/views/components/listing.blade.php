@@ -1,4 +1,4 @@
-<section class="w-full">
+<section class="w-full px-4">
     <div class="max-w-4xl m-auto py-[100px]">
         <div class="text-center mb-6 border-b border-light py-3">
             <h4 class="text-[34.5px] uppercase mb-3 text-gray-300 font-bold flex text-9xl justify-center items-center m-auto featured">Featured Products</h4>
