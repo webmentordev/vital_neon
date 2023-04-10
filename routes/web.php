@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CategoryController;
 use App\Http\Livewire\Product;
 use App\Http\Livewire\CreateDesign;
 use Illuminate\Support\Facades\Route;
@@ -57,6 +58,9 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/category', [CategoryPriceController::class, 'index'])->name('category');
     Route::post('/category', [CategoryPriceController::class, 'create']);
+
+    Route::get('/product-category', [CategoryController::class, 'index'])->name('product.category');
+    Route::post('/product-category', [CategoryController::class, 'store']);
 
     Route::get('/product', [ProductController::class, 'index'])->name('product');
     Route::post('/upload', [ProductController::class, 'upload'])->name('upload');

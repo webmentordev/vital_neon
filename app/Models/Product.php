@@ -15,9 +15,9 @@ class Product extends Model
         'image',
         'slug',
         'stripe_id',
+        'category_id',
         'featured'
     ];
-
 
     public function categories(){
         return $this->hasMany(CategoryPrice::class);

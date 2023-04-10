@@ -232,3 +232,27 @@ a{
 .signature {
     font-family: 'signature';
 }
+
+.main-body{
+    @apply text-white;
+}
+
+.main-body p {
+    @apply leading-7 mb-2;
+}
+
+.main-body h2, .main-body h3{
+    @apply text-gray-200 font-bold mb-2;
+}
+
+.main-body h2{
+    @apply text-3xl;
+}
+
+.main-body h3{
+    @apply text-2xl;
+}
+
+.main-body p span{
+    @apply bg-gray-600 p-3 rounded-lg;
+}

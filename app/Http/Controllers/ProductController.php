@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use App\Models\Product;
 use Stripe\StripeClient;
 use Illuminate\Http\Request;
@@ -11,6 +12,7 @@ class ProductController extends Controller
     public function index(){
         return view('product', [
             'products' => Product::latest()->with('categories')->get(),
+            'categories' => Category::latest()->get()
         ]);
     }
 
@@ -34,6 +36,7 @@ class ProductController extends Controller
             'image' => "required|image|mimes:png,jpg,jpeg,webp",
             'slug' => "required|max:255",
             'body' => "required",
+            'category' => "required|numeric",
         ]);
 
         $result = $stripe->products->create([
@@ -41,11 +44,12 @@ class ProductController extends Controller
         ]);
 
         Product::create([
-            'name' => $result->name,
+            'name' => $request->name,
             'stripe_id' => $result['id'],
             'slug' => strtolower(str_replace(' ', '-', $request->slug)),
             'image' => $request->image->store('products', 'public_disk'),
-            'body' => $request->body
+            'body' => $request->body,
+            'category_id' => $request->category
         ]);
         return back()->with('success', 'Product has been added!');
     }

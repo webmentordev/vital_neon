@@ -2,10 +2,10 @@
 @section('content')
     <section class="w-full px-4">
         <div class="max-w-2xl m-auto py-[80px]">
-            <form action="{{ route('upload-design') }}" enctype="multipart/form-data" method="POST" class="p-12 rounded-lg border-gray-200 border shadow-md bg-gray-100">
+            <form action="{{ route('upload-design') }}" enctype="multipart/form-data" method="POST" class="p-12 rounded-lg border-gray-700 border shadow-md bg-light">
                 @csrf
-                <h2 class="font-semibold text-2xl">Upload Your Own Design</h2>
-                <p class="py-2 text-gray-600 mb-2 text-sm">Take full control of your neon design by uploading the image.</p>
+                <h2 class="font-semibold text-2xl text-white">Upload Your Own Design</h2>
+                <p class="py-2 text-gray-300 mb-2 text-sm">Take full control of your neon design by uploading the image.</p>
                 @if (session('success'))
                     <p class="success">{{ session('success') }}</p>
                 @endif

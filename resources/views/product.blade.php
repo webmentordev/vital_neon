@@ -28,12 +28,22 @@
                                 @enderror
                             </div>
                             <div class="w-full mr-2">
+                                <select name="category" id="category" class="border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 p-[6px] px-2 focus:ring-indigo-500 dark:focus:ring-indigo-600 rounded-md shadow-sm w-full" required>
+                                    <option value="" selected>__Select Category__</option>
+                                    @foreach ($categories as $category)
+                                        <option value="{{ $category->id }}">{{ $category->name }}</option>
+                                    @endforeach
+                                </select>
+                                @error('category')
+                                    <p class="mt-1 text-red-600">{{ $message }}</p>
+                                @enderror
+                            </div>
+                            <div class="w-full mr-2">
                                 <input type="file" name="image" class="border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 p-[6px] px-2 focus:ring-indigo-500 dark:focus:ring-indigo-600 rounded-md shadow-sm w-full" autocomplete="off">
                                 @error('image')
                                     <p class="mt-1 text-red-600">{{ $message }}</p>
                                 @enderror
                             </div>
-
                             <button type="submit" class="px-4 py-2 bg-main rounded-md text-white">Submit</button>
                         </div>
                         <textarea class="form-control" id="summary-ckeditor" name="body">{{ old('body') }}</textarea>

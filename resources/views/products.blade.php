@@ -8,7 +8,7 @@
             <form action="{{ route('product.search') }}" class="mb-6" method="get">
                 <div class="bg-light p-3 pl-5 rounded-lg flex">
                     <img src="https://api.iconify.design/streamline:interface-search-glass-search-magnifying.svg?color=%23ffffff" width="30" alt="Search Icon">
-                    <input type="text" class="bg-transparent border-none py-2 ml-3 w-full outline-none text-gray-300" autocomplete="off" placeholder="Search..." name="search">
+                    <input type="text" class="bg-transparent focus:outline-none border-none py-2 ml-3 w-full outline-none text-gray-300" autocomplete="off" placeholder="Search..." name="search">
                     <button type="submit" class="bg-white text-dark font-semibold px-6 rounded-lg">Search</button>
                 </div>
             </form>
