@@ -1,21 +1,22 @@
 <?php
 
-use App\Http\Controllers\CategoryController;
 use App\Http\Livewire\Product;
 use App\Http\Livewire\CreateDesign;
+use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LineController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ShapeController;
 use App\Http\Controllers\DesignController;
 use App\Http\Controllers\RemoteController;
+use App\Http\Controllers\SearchController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SupportController;
+use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ProductsController;
 use App\Http\Controllers\CategoryPriceController;
-use App\Http\Controllers\SearchController;
 
 Route::get('/', function () {
     return view('home');
@@ -68,5 +69,4 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/searches', [SearchController::class, 'index'])->name('searches');
 });
-
 require __DIR__.'/auth.php';

@@ -5,7 +5,9 @@
             <a class="mx-4" href="{{ route('home') }}">Home</a>
             <a class="mx-4" href="{{ route('create-design') }}">Design Your Own</a>
             <a class="mx-4" href="{{ route('upload-design') }}">Upload Design</a>
-            <a class="mx-4" href="{{ route('products') }}">Products</a>
+            <div class="mx-4">
+                <span>Products </span>
+            </div>
             <a class="px-5 border-r border-gray-600" href="{{ route('support') }}">Support</a>
             <a href="923036405299" class="ml-5"><img src="https://api.iconify.design/logos:whatsapp-icon.svg?color=%23ffd402" width="36" alt="Whatsapp Icon"></a>
         </ul>

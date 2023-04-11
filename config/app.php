@@ -19,6 +19,11 @@ return [
 
     'stripe' => env('STRIPE', ''),
 
+    'custom' => env('CUSTOM_NEON', ''),
+    'order-complete' => env('ORDER_COMPLETE', ''),
+    'order-cancel' => env('ORDER_CANCEL', ''),
+    'support' => env('SUPPORT', ''),
+
     /*
     |--------------------------------------------------------------------------
     | Application Environment
