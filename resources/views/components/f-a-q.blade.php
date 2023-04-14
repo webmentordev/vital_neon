@@ -1,7 +1,7 @@
 <section class="bg-light px-4">
     <div class="max-w-6xl m-auto py-[120px] relative z-10">
         <div class="text-center mb-6 border-b border-light py-3">
-            <h4 class="text-[34.5px] uppercase mb-3 text-white font-bold flex text-5xl justify-center items-center m-auto choose">F-A-Qs</h4>
+            <h4 class="text-[34.5px] uppercase mb-3 text-white font-bold flex text-5xl justify-center items-center m-auto choose">Frequently Asked Questions</h4>
         </div>
         <div class="w-full cursor-pointer mb-3" x-data="{ open: false }">
             <div class="p-3 bg-white rounded-lg text-gray-600">

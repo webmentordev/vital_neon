@@ -18,8 +18,9 @@ return [
     'name' => env('APP_NAME', 'Laravel'),
 
     'stripe' => env('STRIPE', ''),
+    'stripe-test' => env('STRIPE_TEST', ''),
 
-    'custom' => env('CUSTOM_NEON', ''),
+    'order-pending' => env('ORDER_PENDING', ''),
     'order-complete' => env('ORDER_COMPLETE', ''),
     'order-cancel' => env('ORDER_CANCEL', ''),
     'support' => env('SUPPORT', ''),

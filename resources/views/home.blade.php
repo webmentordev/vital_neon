@@ -18,18 +18,24 @@
     
     <section class="w-full px-4">
         <div class="max-w-4xl m-auto pt-[100px] grid grid-cols-3 gap-6">
-            <div class="flex items-center bg-light rounded-lg p-6">
-                <img src="https://api.iconify.design/bi:chat-right-heart-fill.svg?color=%2300FFFF" width="40" alt="Package Icon">
-                <span class="text-gray-300 font-semibold ml-3">PREMIUM QUALITY</span>
+            <div class="flex justify-center items-center bg-light border border-white/10 rounded-lg p-6">
+                <div class="flex items-center">
+                    <img src="https://api.iconify.design/bi:chat-right-heart-fill.svg?color=%2300FFFF" width="40" alt="Package Icon">
+                    <span class="text-gray-300 font-semibold ml-3">PREMIUM QUALITY</span>
+                </div>
             </div>
-            <div class="flex items-center bg-light rounded-lg p-6">
-                <img src="https://api.iconify.design/majesticons:globe-earth.svg?color=%2300FFFF" width="40" alt="Package Icon">
-                <span class="text-gray-300 font-semibold ml-3">GLOBAL SHIPPING</span>
+            <div class="flex justify-center items-center bg-light border border-white/10 rounded-lg p-6">
+                <div class="flex items-center">
+                    <img src="https://api.iconify.design/majesticons:globe-earth.svg?color=%2300FFFF" width="40" alt="Package Icon">
+                    <span class="text-gray-300 font-semibold ml-3">GLOBAL SHIPPING</span>
+                </div>
             </div>
 
-            <div class="flex items-center bg-light rounded-lg p-6">
-                <img src="https://api.iconify.design/ic:round-contact-phone.svg?color=%2300FFFF" width="40" alt="Package Icon">
-                <span class="text-gray-300 font-semibold ml-3">24/7 SUPPORT</span>
+            <div class="flex justify-center items-center bg-light border border-white/10 rounded-lg p-6">
+                <div class="flex items-center">
+                    <img src="https://api.iconify.design/ic:round-contact-phone.svg?color=%2300FFFF" width="40" alt="Package Icon">
+                    <span class="text-gray-300 font-semibold ml-3">24/7 SUPPORT</span>
+                </div>
             </div>
         </div>
     </section>

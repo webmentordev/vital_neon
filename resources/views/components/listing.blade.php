@@ -14,5 +14,8 @@
                 </div>
             @endforeach
         </div>
+        <div class="w-full flex justify-center">
+            <a href="{{ route('products') }}" class="bg-white text-gray-800 py-2 px-6 mt-2 font-bold inline-block">View All Products</a>
+        </div>
     </div>
 </section>
