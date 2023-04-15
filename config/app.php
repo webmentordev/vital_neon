@@ -24,6 +24,7 @@ return [
     'order-complete' => env('ORDER_COMPLETE', ''),
     'order-cancel' => env('ORDER_CANCEL', ''),
     'support' => env('SUPPORT', ''),
+    'design' => env('DESIGN', ''),
 
     /*
     |--------------------------------------------------------------------------
