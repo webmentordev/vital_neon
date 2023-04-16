@@ -1,10 +1,10 @@
 <section class="w-full py-[80px]">
-    <div class="grid grid-cols-2 text-white gap-6 max-w-[1360px] m-auto min-h-[800px] 890px:grid-cols-1 bg-light p-6 mb-6">
-        <div wire:loading wire:target="checkout" class="fixed left-[45%] bottom-3">
+    <div class="grid grid-cols-2 text-white gap-6 max-w-[1360px] m-auto min-h-[800px] 575px:min-h-fit 890px:grid-cols-1 bg-light p-6 mb-6">
+        <div wire:loading wire:target="checkout" class="fixed left-[45%] 575px:left-0 bottom-3">
             <div class="flex items-center bg-black text-white p-6 rounded-lg"><img src="https://api.iconify.design/svg-spinners:ring-resize.svg?color=%23ffffff" alt="Loading Icon"> <span class="ml-2">Processing...</span></div>
         </div>
         <div class="bg-cover bg-center relative rounded-lg flex justify-center items-center 890px:min-h-[800px]" id="backDiv">
-            <span class="fixed bg-main rounded-lg p-3 bottom-3 z-10 right-3 text-gray-800 text-4xl font-semibold"><span class="text-2xl">$</span>{{ $total_price }}</span>
+            <span class="fixed bg-main rounded-lg p-3 bottom-3 z-10 right-3 text-gray-800 text-4xl font-semibold z-50"><span class="text-2xl">$</span>{{ $total_price }}</span>
             
             <div wire:click="$set('dark_mode', {{ !$dark_mode }})" class=" @if (!$dark_mode) bg-white @else bg-gray-800 @endif p-3 rounded-lg absolute top-2 left-2">
                 @if (!$dark_mode)
@@ -165,6 +165,9 @@
     </div>
     <section class="bg-light">
         <x-listing />
+    </section>
+    <section class="bg-dark">
+        <x-f-a-q />
     </section>
     <img id="output"/>
     <script>

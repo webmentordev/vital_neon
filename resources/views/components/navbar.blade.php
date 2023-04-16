@@ -21,7 +21,7 @@
                 </div>
             </div>
             <a class="px-5 border-r border-gray-600" href="{{ route('support') }}">Support</a>
-            <a href="923036405299" class="ml-5"><img src="https://api.iconify.design/logos:whatsapp-icon.svg?color=%23ffd402" width="36" alt="Whatsapp Icon"></a>
+            <a href="https://wa.me/923032225299" class="ml-5"><img src="https://api.iconify.design/logos:whatsapp-icon.svg?color=%23ffd402" width="36" alt="Whatsapp Icon"></a>
         </ul>
         <div class="hidden 1090px:block" x-data="{open: false}">
             <ul x-on:click="open = true">
@@ -29,13 +29,23 @@
                 <li class="bg-white my-2 h-[2px] w-[80px]"></li>
                 <li class="bg-white my-2 h-[2px] w-[80px]"></li>
             </ul>
-            <div class="fixed top-0 left-0 w-full h-screen bg-dark bg-opacity-40 backdrop-blur-lg flex justify-center items-center" x-show="open">
+            <div class="fixed top-0 left-0 w-full h-screen bg-dark backdrop-blur-lg flex justify-center items-center z-50" x-show="open" x-on:click.self="open = !open">
                 <ul class="text-center flex flex-col">
-                    <a class="text-2xl" href="{{ route('home') }}">Home</a>
-                    <a class="text-2xl" href="{{ route('create-design') }}">Design Your Own</a>
-                    <a class="text-2xl" href="{{ route('upload-design') }}">Upload Design</a>
-                    <a class="text-2xl" href="{{ route('products') }}">Products</a>
+                    <a class="text-2xl mb-3" href="{{ route('home') }}">Home</a>
+                    <a class="text-2xl mb-3" href="{{ route('create-design') }}">Design Your Own</a>
+                    <a class="text-2xl mb-3" href="{{ route('upload-design') }}">Upload Design</a>
+                    <a class="text-2xl mb-3" href="{{ route('products') }}">Products</a>
+                    <a class="text-2xl mb-3" href="{{ route('support') }}">Support</a>
+                    <div class="mx-4 relative" x-data="{toggle: false}">
+                        <span class="flex items-center category text-3xl p-3 bg-light rounded-lg" x-on:click="toggle = !toggle">Categories <img src="https://api.iconify.design/ic:outline-arrow-drop-down.svg?color=%23ffffff" width="28" alt="Carret Down Logo"></span>
+                        <div class="flex flex-col" x-show="toggle">
+                            @foreach ($categories as $item)
+                                <a class="text-2xl" href="{{ route('category.search', $item->slug) }}">{{ $item->name }}</a>
+                            @endforeach
+                        </div>
+                    </div>
                 </ul>
+
             </div>
         </div>
     </div>
