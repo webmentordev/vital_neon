@@ -212,7 +212,7 @@ class CreateDesign extends Component
         if($this->arraycheck()){
             $checkout_id = $this->randomPassword();
             $order_id = $this->randomPassword();
-            $stripe = new StripeClient(config('app.stripe-test'));
+            $stripe = new StripeClient(config('app.stripe'));
             $result = $stripe->prices->create([
                 'unit_amount' => $this->total_price * 100,
                 'currency' => 'USD',

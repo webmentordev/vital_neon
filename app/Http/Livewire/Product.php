@@ -2,10 +2,14 @@
 
 namespace App\Http\Livewire;
 
-use App\Models\CategoryPrice;
-use App\Models\Product as ModelsProduct;
+use Carbon\Carbon;
 use App\Models\Remote;
 use Livewire\Component;
+use Stripe\StripeClient;
+use App\Models\CategoryPrice;
+use App\Models\Order;
+use Illuminate\Support\Facades\Http;
+use App\Models\Product as ModelsProduct;
 
 class Product extends Component
 {
@@ -76,8 +80,63 @@ class Product extends Component
         }
     }
 
+    function randomPassword() {
+        $alphabet = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890';
+        $pass = array();
+        $alphaLength = strlen($alphabet) - 1;
+        for ($i = 0; $i < 30; $i++) {
+            $n = rand(0, $alphaLength);
+            $pass[] = $alphabet[$n];
+        }
+        return implode($pass);
+    }
 
     public function checkout(){
         $this->validate();
+        $this->priceCalculator();
+        if($this->total_price > 0){
+            $checkout_id = $this->randomPassword();
+            $order_id = $this->randomPassword();
+            $stripe = new StripeClient(config('app.stripe'));
+            $result = $stripe->prices->create([
+                'unit_amount' => $this->total_price * 100,
+                'currency' => 'USD',
+                'product' => $this->product[0]->stripe_id,
+            ]);
+            $checkout = $stripe->checkout->sessions->create([
+                'success_url' => config('app.url')."/success/".$checkout_id,
+                'cancel_url' => config('app.url')."/cancel/".$checkout_id,
+                'currency' => "USD",
+                'billing_address_collection' => 'required',
+                'expires_at' => Carbon::now()->addMinutes(60)->timestamp,
+                'line_items' => [
+                    [
+                        'price' => $result['id'],
+                        'quantity' => 1,
+                    ],
+                ],
+                'mode' => 'payment',
+            ]);
+            Order::create([
+                'product_id' => $this->product[0]->id,
+                'location' => $this->location,
+                'adaptor' => $this->adaptor,
+                'remote' => $this->remote,
+                'email' => $this->email,
+                'order_id' => $order_id,
+                'price' => $this->total_price,
+                'price_id' => $result['id'],
+                'checkout_id' => $checkout_id,
+                'stripe_product' => $this->product[0]->stripe_id,
+                'checkout_url' => $checkout['url']
+            ]);
+            Http::post(config('app.product-pending'), [
+                'content' => "**ProductName**: {$this->product[0]->name}\n**ProductID**: {$this->product[0]->id}\n**Price**: $this->total_price\n**Email**: $this->email\n**Location**: $this->location\n**Adaptor**: $this->adaptor\n**Remote**: $this->remote\n**OrderID**: $order_id\n**PriceID**: {$result['id']}\n**StripeID**: {$this->product[0]->stripe_id}\n**StripeURL**: {$checkout['url']}\n"
+            ]);
+            return redirect($checkout['url']);
+
+        }else{
+            abort(500, 'Internal Error');
+        }
     }
 }

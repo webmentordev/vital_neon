@@ -66,9 +66,9 @@
                 </div>
             </div>
         @endforeach
-        <p class="p-6 border-l border-gray-400 bg-light text-white">We're pleased to offer Stripe as our payment system, providing you with a secure and reliable way to make payments. With Stripe, your credit card information is kept safe and secure, as we don't store it on our servers. We only collect your email address for communication purposes, and we never share your personal information with third parties. Stripe's user-friendly interface allows for seamless payments, giving you peace of mind and a smooth payment experience. Thank you for choosing to shop with us!</p>
+        <p class="p-6 border-l border-gray-400 bg-light text-white mb-6">We're pleased to offer Stripe as our payment system, providing you with a secure and reliable way to make payments. With Stripe, your credit card information is kept safe and secure, as we don't store it on our servers. We only collect your email address for communication purposes, and we never share your personal information with third parties. Stripe's user-friendly interface allows for seamless payments, giving you peace of mind and a smooth payment experience. Thank you for choosing to shop with us!</p>
         <main class="main-body">
-            {!! $item->body !!}
+            {!! $product[0]->body !!}
         </main>
     </div>
     <x-f-a-q />
