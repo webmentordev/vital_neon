@@ -20,9 +20,12 @@ return [
     'order-pending' => env('ORDER_PENDING', ''),
     'order-complete' => env('ORDER_COMPLETE', ''),
     'order-cancel' => env('ORDER_CANCEL', ''),
+    
     'support' => env('SUPPORT', ''),
     'design' => env('DESIGN', ''),
     'product-pending' => env('PRODUCT_PENDING', ''),
+    'product-complete' => env('PRODUCT_COMPLETE', ''),
+    'product-cancel' => env('PRODUCT_CANCEL', ''),
 
     /*
     |--------------------------------------------------------------------------

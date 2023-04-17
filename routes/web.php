@@ -28,13 +28,16 @@ Route::get('/dashboard', function () {
 Route::get('/create-design', CreateDesign::class)->name('create-design');
 
 Route::get('/upload-design', [DesignController::class, 'index'])->name('upload-design');
-Route::post('/upload-design', [DesignController::class, 'store']);
+Route::post('/upload-design', [DesignController::class, 'store'])->middleware(['throttle:1,1']);
 
 Route::get('/support', [SupportController::class, 'index'])->name('support');
 Route::post('/support', [SupportController::class, 'store'])->middleware(['throttle:2,5']);
 
 Route::get('/cancel/{id}', [OrderController::class, 'cancel']);
 Route::get('/success/{id}', [OrderController::class, 'success']);
+
+Route::get('/cancel-order/{id}', [OrderController::class, 'cancelOrder']);
+Route::get('/success-order/{id}', [OrderController::class, 'successOrder']);
 
 Route::get('/product/{slug}', Product::class)->name('listing');
 Route::get('/products', [ProductsController::class, 'index'])->name('products');

@@ -145,8 +145,8 @@ class Product extends Component
                 'product' => $this->product[0]->stripe_id,
             ]);
             $checkout = $stripe->checkout->sessions->create([
-                'success_url' => config('app.url')."/success/".$checkout_id,
-                'cancel_url' => config('app.url')."/cancel/".$checkout_id,
+                'success_url' => config('app.url')."/success-order/".$checkout_id,
+                'cancel_url' => config('app.url')."/cancel-order/".$checkout_id,
                 'currency' => "USD",
                 'billing_address_collection' => 'required',
                 'expires_at' => Carbon::now()->addMinutes(60)->timestamp,
