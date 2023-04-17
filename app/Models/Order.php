@@ -20,7 +20,9 @@ class Order extends Model
         'price_id',
         'checkout_id',
         'stripe_product',
-        'checkout_url'
+        'checkout_url',
+        'phone',
+        'shape'
     ];
 
     public function product(){

@@ -10,10 +10,11 @@ use App\Models\CategoryPrice;
 use App\Models\Order;
 use Illuminate\Support\Facades\Http;
 use App\Models\Product as ModelsProduct;
+use App\Models\Shape;
 
 class Product extends Component
 {
-    public $product, $remote, $categories, $location, $adaptor, $category, $email;
+    public $product, $remote, $shapes, $phone, $shape, $shape_price, $categories, $location, $adaptor, $category, $email;
     public $adaptors = [
         "USA/Canada/120V",
         "UK/IRELAND 230V",
@@ -30,11 +31,14 @@ class Product extends Component
         'adaptor' => 'required',
         'location' => 'required',
         'email' => 'required|email',
+        'shape' => 'required',
+        'phone' => 'required|numeric',
     ];
 
     public function mount($slug){
         $result = ModelsProduct::where('slug', $slug)->with('categories')->get();
         if(count($result)){
+            $this->shapes = Shape::all();
             $this->remotes = Remote::all();
             $this->remote = $this->remotes[0]->type;
             $this->categories = $result[0]->categories;
@@ -42,6 +46,8 @@ class Product extends Component
             $this->adaptor = $this->adaptors[0];
             $this->category_price = $result[0]->categories[0]->price;
             $this->product = $result;
+            $this->shape = $this->shapes[0]->shape;
+            $this->shape_price = $this->shapes[0]->price;
             $this->priceCalculator();
         }else{
             abort(404, 'Not Found');
@@ -52,6 +58,11 @@ class Product extends Component
         foreach($this->categories as $category){
             if($this->category == $category->name){
                 $this->category_price = $category->price;
+            }
+        }
+        foreach($this->shapes as $shape){
+            if($this->shape == $shape->shape){
+                $this->shape_price = $shape->price;
             }
         }
         $this->priceCalculator();
@@ -65,7 +76,7 @@ class Product extends Component
     public function priceCalculator(){
         $result = Remote::where('type', $this->remote)->first();
         if($result != null){
-            $total_price = $this->category_price + $result->price;
+            $total_price = $this->category_price + $result->price + $this->shape_price;
             if(in_array($this->location, $this->locations)){
                 if($this->location == "Out Door"){
                     $this->total_price = $total_price + ($total_price * (15/100));
@@ -128,10 +139,12 @@ class Product extends Component
                 'price_id' => $result['id'],
                 'checkout_id' => $checkout_id,
                 'stripe_product' => $this->product[0]->stripe_id,
-                'checkout_url' => $checkout['url']
+                'checkout_url' => $checkout['url'],
+                'shape' => $this->shape,
+                'phone' => $this->phone
             ]);
             Http::post(config('app.product-pending'), [
-                'content' => "**ProductName**: {$this->product[0]->name}\n**ProductID**: {$this->product[0]->id}\n**Price**: $this->total_price\n**Email**: $this->email\n**Location**: $this->location\n**Adaptor**: $this->adaptor\n**Remote**: $this->remote\n**OrderID**: $order_id\n**PriceID**: {$result['id']}\n**StripeID**: {$this->product[0]->stripe_id}\n**StripeURL**: {$checkout['url']}\n"
+                'content' => "**ProductName**: {$this->product[0]->name}\n**ProductID**: {$this->product[0]->id}\n**Phone**: $this->phone\n**Shape**: $this->shape\n**Price**: $this->total_price\n**Email**: $this->email\n**Location**: $this->location\n**Adaptor**: $this->adaptor\n**Remote**: $this->remote\n**OrderID**: $order_id\n**PriceID**: {$result['id']}\n**StripeID**: {$this->product[0]->stripe_id}\n**StripeURL**: {$checkout['url']}\n"
             ]);
             return redirect($checkout['url']);
 

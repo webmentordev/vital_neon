@@ -24,6 +24,8 @@ return new class extends Migration
             $table->string('checkout_id');
             $table->string('stripe_product');
             $table->text('checkout_url');
+            $table->string('phone');
+            $table->string('shape');
             $table->timestamps();
         });
     }

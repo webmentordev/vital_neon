@@ -6,7 +6,7 @@
         <div class="grid grid-cols-3 gap-6 800px:grid-cols-2 m-auto 530px:grid-cols-1 530px:max-w-[280px]">
             @foreach ($products as $item)
                 <div class="overflow-hidden rounded-lg group transition-all">
-                    <img src="{{ asset('storage/'.$item->image) }}" class="group-hover:scale-110" alt="{{ $item->name }}">
+                    <img data-src="{{ asset('storage/'.$item->image) }}" class="group-hover:scale-110 lazyload" alt="{{ $item->name }}" loading="lazy">
                     <div class="bg-light p-3 w-full bottom-0 left-0">
                         <h3 class="text-white text-center mb-3">{{ $item->name }}</h3>
                         <a href="{{ route('listing', $item->slug) }}" class="py-2 group-hover:bg-[#00FFFF] px-4 w-full text-center inline-block bg-gray-300 text-black font-semibold">BUY NOW</a>
