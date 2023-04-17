@@ -46,6 +46,12 @@
                             </div>
                             <button type="submit" class="px-4 py-2 bg-main rounded-md text-white">Submit</button>
                         </div>
+                        <div class="w-full mb-3">
+                            <input type="text" name="description" class="border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 rounded-md shadow-sm w-full" placeholder="SEO Description" value="{{ old('description') }}" autocomplete="off">
+                            @error('description')
+                                <p class="mt-1 text-red-600">{{ $message }}</p>
+                            @enderror
+                        </div>
                         <textarea class="form-control" id="summary-ckeditor" name="body">{{ old('body') }}</textarea>
                     </form>
 

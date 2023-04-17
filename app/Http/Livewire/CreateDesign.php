@@ -11,6 +11,10 @@ use Livewire\Component;
 use Stripe\StripeClient;
 use Livewire\WithFileUploads;
 use Illuminate\Support\Facades\Http;
+use Artesaos\SEOTools\Facades\JsonLd;
+use Artesaos\SEOTools\Facades\SEOMeta;
+use Artesaos\SEOTools\Facades\OpenGraph;
+use Artesaos\SEOTools\Facades\TwitterCard;
 
 class CreateDesign extends Component
 {
@@ -122,6 +126,32 @@ class CreateDesign extends Component
     }
 
     public function render(){
+        SEOMeta::setTitle("Create Custom Neon Signs | VitalNeon");
+        SEOMeta::setDescription("Create a one-of-a-kind neon sign with VitalNeon's easy-to-use custom design tool. Our intuitive platform allows you to choose from a variety of fonts, colors, and sizes to create a personalized neon sign that reflects your unique style and personality. Whether you're looking to create a custom sign for your business, event, or home, our team of experienced designers and artisans will bring your vision to life with the highest quality materials and advanced techniques. With VitalNeon's custom neon sign creator, you have the power to create a truly unique and unforgettable piece. Start designing now and elevate any space with VitalNeon.");
+        SEOMeta::setCanonical("https://vitalneon.com/create-design");
+        SEOMeta::setRobots("index, follow");
+        SEOMeta::addMeta("apple-mobile-web-app-title", "VitalNeon");
+        SEOMeta::addMeta("application-name", "VitalNeon");
+
+        OpenGraph::setTitle("Create Custom Neon Signs | VitalNeon");
+        OpenGraph::setDescription("Create a one-of-a-kind neon sign with VitalNeon's easy-to-use custom design tool. Our intuitive platform allows you to choose from a variety of fonts, colors, and sizes to create a personalized neon sign that reflects your unique style and personality. Whether you're looking to create a custom sign for your business, event, or home, our team of experienced designers and artisans will bring your vision to life with the highest quality materials and advanced techniques. With VitalNeon's custom neon sign creator, you have the power to create a truly unique and unforgettable piece. Start designing now and elevate any space with VitalNeon."); 
+        OpenGraph::setUrl("https://vitalneon.com/create-design");
+        OpenGraph::addProperty("type", "website");
+        OpenGraph::addProperty("locale", "eu");
+        OpenGraph::addImage("https://vitalneon.com/assets/seo/create-2.png");
+        OpenGraph::addImage("https://vitalneon.com/assets/seo/create-1.png", ["height" => 400, "width" => 760]);
+
+        TwitterCard::setTitle("Create Custom Neon Signs | VitalNeon");
+        TwitterCard::setSite("@vitalneon");
+        TwitterCard::setImage("https://vitalneon.com/assets/seo/create-2.png");
+        TwitterCard::setDescription("Create a one-of-a-kind neon sign with VitalNeon's easy-to-use custom design tool. Our intuitive platform allows you to choose from a variety of fonts, colors, and sizes to create a personalized neon sign that reflects your unique style and personality. Whether you're looking to create a custom sign for your business, event, or home, our team of experienced designers and artisans will bring your vision to life with the highest quality materials and advanced techniques. With VitalNeon's custom neon sign creator, you have the power to create a truly unique and unforgettable piece. Start designing now and elevate any space with VitalNeon.");
+
+        JsonLd::setTitle("Create Custom Neon Signs | VitalNeon");
+        JsonLd::setDescription("Create a one-of-a-kind neon sign with VitalNeon's easy-to-use custom design tool. Our intuitive platform allows you to choose from a variety of fonts, colors, and sizes to create a personalized neon sign that reflects your unique style and personality. Whether you're looking to create a custom sign for your business, event, or home, our team of experienced designers and artisans will bring your vision to life with the highest quality materials and advanced techniques. With VitalNeon's custom neon sign creator, you have the power to create a truly unique and unforgettable piece. Start designing now and elevate any space with VitalNeon.");
+        JsonLd::addImage("https://vitalneon.com/assets/seo/create-2.png");
+        JsonLd::setType("WebSite");
+        JsonLd::addImage("https://vitalneon.com/assets/seo/create-1.png", ["height" => 400, "width" => 760]);
+
         return view('livewire.create-design');
     }
 

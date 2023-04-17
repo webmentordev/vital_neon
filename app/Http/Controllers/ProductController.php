@@ -36,6 +36,7 @@ class ProductController extends Controller
             'image' => "required|image|mimes:png,jpg,jpeg,webp",
             'slug' => "required|max:255",
             'body' => "required",
+            'description' => "required",
             'category' => "required|numeric",
         ]);
 
@@ -49,6 +50,7 @@ class ProductController extends Controller
             'slug' => strtolower(str_replace(' ', '-', $request->slug)),
             'image' => $request->image->store('products', 'public_disk'),
             'body' => $request->body,
+            'description' => $request->description,
             'category_id' => $request->category
         ]);
         return back()->with('success', 'Product has been added!');

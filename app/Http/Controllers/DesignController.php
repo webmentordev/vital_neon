@@ -5,10 +5,40 @@ namespace App\Http\Controllers;
 use App\Models\Design;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
+use Artesaos\SEOTools\Facades\JsonLd;
+use Artesaos\SEOTools\Facades\SEOMeta;
+use Artesaos\SEOTools\Facades\OpenGraph;
+use Artesaos\SEOTools\Facades\TwitterCard;
 
 class DesignController extends Controller
 {
     public function index(){
+        SEOMeta::setTitle("Create Your Own Neon Sign: Upload Your Design | VitalNeon");
+        SEOMeta::setDescription("");
+        SEOMeta::setCanonical("https://vitalneon.com/upload-design");
+        SEOMeta::setRobots("index, follow");
+        SEOMeta::addMeta("apple-mobile-web-app-title", "VitalNeon");
+        SEOMeta::addMeta("application-name", "VitalNeon");
+
+        OpenGraph::setTitle("Create Your Own Neon Sign: Upload Your Design | VitalNeon");
+        OpenGraph::setDescription(""); 
+        OpenGraph::setUrl("https://vitalneon.com/upload-design");
+        OpenGraph::addProperty("type", "website");
+        OpenGraph::addProperty("locale", "eu");
+        OpenGraph::addImage("https://vitalneon.com/assets/seo/upload-2.png");
+        OpenGraph::addImage("https://vitalneon.com/assets/seo/upload-1.png", ["height" => 400, "width" => 760]);
+
+        TwitterCard::setTitle("Create Your Own Neon Sign: Upload Your Design | VitalNeon");
+        TwitterCard::setSite("@vitalneon");
+        TwitterCard::setImage("https://vitalneon.com/assets/seo/upload-2.png");
+        TwitterCard::setDescription("");
+
+        JsonLd::setTitle("Create Your Own Neon Sign: Upload Your Design | VitalNeon");
+        JsonLd::setDescription("");
+        JsonLd::addImage("https://vitalneon.com/assets/seo/upload-2.png");
+        JsonLd::setType("WebSite");
+        JsonLd::addImage("https://vitalneon.com/assets/seo/upload-1.png", ["height" => 400, "width" => 760]);
+
         return view('design');
     }
     public function store(Request $request){

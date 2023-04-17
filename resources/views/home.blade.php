@@ -30,7 +30,6 @@
                     <span class="text-gray-300 font-semibold ml-3">GLOBAL SHIPPING</span>
                 </div>
             </div>
-
             <div class="flex justify-center items-center bg-light border border-white/10 rounded-lg p-6">
                 <div class="flex items-center">
                     <img src="https://api.iconify.design/ic:round-contact-phone.svg?color=%2300FFFF" width="40" alt="Package Icon">

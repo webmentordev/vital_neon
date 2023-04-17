@@ -11,6 +11,10 @@ use App\Models\Order;
 use Illuminate\Support\Facades\Http;
 use App\Models\Product as ModelsProduct;
 use App\Models\Shape;
+use Artesaos\SEOTools\Facades\JsonLd;
+use Artesaos\SEOTools\Facades\SEOMeta;
+use Artesaos\SEOTools\Facades\OpenGraph;
+use Artesaos\SEOTools\Facades\TwitterCard;
 
 class Product extends Component
 {
@@ -49,6 +53,32 @@ class Product extends Component
             $this->shape = $this->shapes[0]->shape;
             $this->shape_price = $this->shapes[0]->price;
             $this->priceCalculator();
+
+            SEOMeta::setTitle($result[0]->name);
+            SEOMeta::setDescription($result[0]->description);
+            SEOMeta::setCanonical("https://vitalneon.com/".$result[0]->slug);
+            SEOMeta::setRobots("index, follow");
+            SEOMeta::addMeta("apple-mobile-web-app-title", "VitalNeon");
+            SEOMeta::addMeta("application-name", "VitalNeon");
+
+            OpenGraph::setTitle($result[0]->name);
+            OpenGraph::setDescription($result[0]->description); 
+            OpenGraph::setUrl("https://vitalneon.com/".$result[0]->slug);
+            OpenGraph::addProperty("type", "website");
+            OpenGraph::addProperty("locale", "eu");
+            OpenGraph::addImage("https://vitalneon.com/storage/".$result[0]->image);
+            OpenGraph::addImage("https://vitalneon.com/storage/".$result[0]->image, ["height" => 400, "width" => 760]);
+
+            TwitterCard::setTitle($result[0]->name);
+            TwitterCard::setSite("@vitalneon");
+            TwitterCard::setImage("https://vitalneon.com/storage/".$result[0]->image);
+            TwitterCard::setDescription($result[0]->description);
+
+            JsonLd::setTitle($result[0]->name);
+            JsonLd::setDescription($result[0]->description);
+            JsonLd::addImage("https://vitalneon.com/storage/".$result[0]->image);
+            JsonLd::setType("WebSite");
+            JsonLd::addImage("https://vitalneon.com/storage/".$result[0]->image, ["height" => 400, "width" => 760]);
         }else{
             abort(404, 'Not Found');
         }

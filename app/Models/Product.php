@@ -16,7 +16,8 @@ class Product extends Model
         'slug',
         'stripe_id',
         'category_id',
-        'featured'
+        'featured',
+        'description'
     ];
 
     public function categories(){
