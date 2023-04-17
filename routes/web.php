@@ -9,6 +9,7 @@ use App\Http\Controllers\ShapeController;
 use App\Http\Controllers\DesignController;
 use App\Http\Controllers\RemoteController;
 use App\Http\Controllers\SearchController;
+use App\Http\Controllers\SiteMapGenerator;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
@@ -16,10 +17,9 @@ use App\Http\Controllers\SupportController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ProductsController;
 use App\Http\Controllers\CategoryPriceController;
+use App\Http\Controllers\HomeController;
 
-Route::get('/', function () {
-    return view('home');
-})->name('home');
+Route::get('/', [HomeController::class, 'index'])->name('home');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
@@ -69,4 +69,7 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/searches', [SearchController::class, 'index'])->name('searches');
 });
+
+Route::get('/sitemap.xml', [SiteMapGenerator::class, 'index']);
+
 require __DIR__.'/auth.php';
