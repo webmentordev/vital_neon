@@ -22,14 +22,14 @@
                         </div>
 
                         <div class="w-full mr-2">
-                            <input type="number" value="150" min="1" step="0.01" name="price" class="border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 rounded-md shadow-sm w-full" placeholder="Price">
+                            <input type="number" min="1" step="0.01" name="price" class="border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 rounded-md shadow-sm w-full" placeholder="Price">
                             @error('price')
                                 <p class="mt-1 text-red-600">{{ $message }}</p>
                             @enderror
                         </div>
 
                         <div class="w-full mr-2">
-                            <input type="number" min="1" max="3" name="lines" class="border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 rounded-md shadow-sm w-full" placeholder="Lines">
+                            <input type="number" value="3" min="1" max="3" name="lines" class="border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 rounded-md shadow-sm w-full" placeholder="Lines">
                             @error('lines')
                                 <p class="mt-1 text-red-600">{{ $message }}</p>
                             @enderror

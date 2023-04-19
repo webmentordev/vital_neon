@@ -11,6 +11,14 @@
         <link rel="preconnect" href="https://fonts.bunny.net">
         <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
         <!-- Scripts -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-71G4KSCD1D"></script>
+        <script>
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+
+            gtag('config', 'G-71G4KSCD1D');
+        </script>
         @vite(['resources/css/app.css', 'resources/js/app.js'])
         {!! SEOMeta::generate() !!}
         {!! OpenGraph::generate() !!}

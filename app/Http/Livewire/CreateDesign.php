@@ -27,9 +27,9 @@ class CreateDesign extends Component
         "AUSTRALIA/NA 230V",
         "JAPAN 100V"
     ],$alignments = [
-        "text-center",
-        "text-start",
-        "text-end"
+        "items-center",
+        "items-start",
+        "items-end"
     ],$jackets = [
         "colored",
         "white"
@@ -87,7 +87,7 @@ class CreateDesign extends Component
     $line_price,
     $Select, $chars,
     $line1, $line2, $line3,
-    $jacket;
+    $jacket, $leading = 50, $size = 32;
 
     public $line_count = 1,
     $dark_mode = false,
@@ -123,6 +123,15 @@ class CreateDesign extends Component
         $this->line_price = $this->lines[0]->price;
         $this->line1 = "Text Here";
         $this->priceCalculator();
+    }
+
+
+    public function upSize(){
+        $this->size = $this->size + 10;
+    }
+
+    public function downSize(){
+        $this->size = $this->size - 10;
     }
 
     public function render(){
@@ -171,6 +180,9 @@ class CreateDesign extends Component
             }else if($this->line_count == 2){
                 $this->line3 = "";
             }
+            $this->updatedline1();
+            $this->updatedline2();
+            $this->updatedline3();
             $this->priceCalculator();
         }else{
             abort(500, "Internal Server Error");
@@ -178,18 +190,18 @@ class CreateDesign extends Component
     }
 
     public function updatedline1(){
-        if(strlen($this->line1) > $this->chars && strlen($this->line1) == 0){
-            session()->flash('lineCount', 'Line must have only '. $this->chars. " characters");
+        if(strlen($this->line1) > $this->chars || strlen($this->line1) == 0){
+            session()->flash('lineCount1', 'Line must have only '. $this->chars. " characters");
         }
     }
     public function updatedline2(){
-        if(strlen($this->line2) > $this->chars && strlen($this->line2) == 0){
-            session()->flash('lineCount', 'Line must have only '. $this->chars. " characters");
+        if(strlen($this->line2) > $this->chars || strlen($this->line2) == 0){
+            session()->flash('lineCount2', 'Line must have only '. $this->chars. " characters");
         }
     }
     public function updatedline3(){
-        if(strlen($this->line3) > $this->chars && strlen($this->line3) == 0){
-            session()->flash('lineCount', 'Line must have only '. $this->chars. " characters");
+        if(strlen($this->line3) > $this->chars || strlen($this->line3) == 0){
+            session()->flash('lineCount3', 'Line must have only '. $this->chars. " characters");
         }
     }
 

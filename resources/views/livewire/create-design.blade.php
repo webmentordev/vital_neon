@@ -13,17 +13,64 @@
                     <img src="https://api.iconify.design/mdi:lightbulb-on.svg?color=%23ffffff" width="35" alt="Moon Image">
                 @endif
             </div>
+
+            <div class="absolute top-2 right-2">
+                <div class="flex items-center">
+                    <div class="flex mr-1">
+                        <div class="bg-gray-800 p-1 rounded-lg mb-1 cursor-pointer h-fit -rotate-90 mr-1" wire:click="upSize">
+                            <img src="https://api.iconify.design/ic:outline-keyboard-arrow-up.svg?color=%23ffffff" width="30" alt="">
+                        </div>
+                        <div class="bg-gray-800 p-1 rounded-lg cursor-pointer h-fit -rotate-90" wire:click="downSize">
+                            <img src="https://api.iconify.design/ic:outline-keyboard-arrow-down.svg?color=%23ffffff" width="30" alt="">
+                        </div>
+                    </div>
+                    <div class="flex flex-col">
+                        <div class="bg-gray-800 p-1 rounded-lg mb-1 cursor-pointer" wire:click="$set('leading', '{{ $leading = $leading + 10 }}')">
+                            <img src="https://api.iconify.design/ic:outline-keyboard-arrow-up.svg?color=%23ffffff" width="30" alt="">
+                        </div>
+                        <div class="bg-gray-800 p-1 rounded-lg cursor-pointer" wire:click="$set('leading', '{{ $leading = $leading - 10 }}')">
+                            <img src="https://api.iconify.design/ic:outline-keyboard-arrow-down.svg?color=%23ffffff" width="30" alt="">
+                        </div>
+                    </div>
+                </div>
+            </div>
             
-            <span class="text-white {{ $font }} {{ $alignment }} text-5xl font-semibold" @if (!$dark_mode) 
-            style="text-shadow:
-            0 0 7px {{ $color }},
-            0 0 7px {{ $color }},
-            0 0 22px {{ $color }},
-            0 0 22px {{ $color }},
-            0 0 22px {{ $color }},
-            0 0 22px {{ $color }},
-            0 0 22px {{ $color }},
-            0 0 22px {{ $color }};" @endif>{{ $line1 }}<br>{{ $line2 }}<br>{{ $line3 }}</span>
+            <div class="flex flex-col {{ $alignment }}">
+                <span class="text-white {{ $font }} font-semibold" @if (!$dark_mode) 
+                style="text-shadow:
+                0 0 7px {{ $color }},
+                0 0 7px {{ $color }},
+                0 0 22px {{ $color }},
+                0 0 22px {{ $color }},
+                0 0 22px {{ $color }},
+                0 0 22px {{ $color }},
+                0 0 22px {{ $color }},
+                0 0 22px {{ $color }}; font-size: {{ $size }}px;" @endif>{{ $line1 }}</span>
+                @if ($line2)
+                <span class="text-white {{ $font }} font-semibold" @if (!$dark_mode) 
+                style="text-shadow:
+                0 0 7px {{ $color }},
+                0 0 7px {{ $color }},
+                0 0 22px {{ $color }},
+                0 0 22px {{ $color }},
+                0 0 22px {{ $color }},
+                0 0 22px {{ $color }},
+                0 0 22px {{ $color }},
+                0 0 22px {{ $color }}; font-size: {{ $size }}px; margin-top: {{ $leading }}px" @endif>{{ $line2 }}</span>
+                @endif
+                @if ($line3)
+                    <span class="text-white {{ $font }} font-semibold" @if (!$dark_mode) 
+                    style="text-shadow:
+                    0 0 7px {{ $color }},
+                    0 0 7px {{ $color }},
+                    0 0 22px {{ $color }},
+                    0 0 22px {{ $color }},
+                    0 0 22px {{ $color }},
+                    0 0 22px {{ $color }},
+                    0 0 22px {{ $color }},
+                    0 0 22px {{ $color }}; font-size: {{ $size }}px; margin-top: {{ $leading }}px" @endif>{{ $line3 }}</span>
+                @endif
+            </div>
 
             <div class="flex items-center justify-between absolute w-full bottom-0 p-3">
                 <input type="color" class="hidden" id="color" onchange="change()">
@@ -38,9 +85,9 @@
             <div class="flex items-center justify-between">
                 <h1 class="text-main font-bold text-3xl mb-3">Design Your Neon</h1>
                 <div class="flex items-center">
-                    <img wire:click="$set('alignment', 'text-center')" src="https://api.iconify.design/material-symbols:format-align-center.svg?color=%23FFFFFF" class="p-2 rounded-lg bg-dark mr-2" alt="Alignment Icon" width="50">
-                    <img wire:click="$set('alignment', 'text-start')" src="https://api.iconify.design/ic:baseline-format-align-left.svg?color=%23FFFFFF" class="p-2 rounded-lg bg-dark mr-2" alt="Alignment Icon" width="50">
-                    <img wire:click="$set('alignment', 'text-end')" src="https://api.iconify.design/ic:baseline-format-align-right.svg?color=%23FFFFFF" class="p-2 rounded-lg bg-dark" alt="Alignment Icon" width="50">
+                    <img wire:click="$set('alignment', 'items-center')" src="https://api.iconify.design/material-symbols:format-align-center.svg?color=%23FFFFFF" class="p-2 rounded-lg bg-dark mr-2" alt="Alignment Icon" width="50">
+                    <img wire:click="$set('alignment', 'items-start')" src="https://api.iconify.design/ic:baseline-format-align-left.svg?color=%23FFFFFF" class="p-2 rounded-lg bg-dark mr-2" alt="Alignment Icon" width="50">
+                    <img wire:click="$set('alignment', 'items-end')" src="https://api.iconify.design/ic:baseline-format-align-right.svg?color=%23FFFFFF" class="p-2 rounded-lg bg-dark" alt="Alignment Icon" width="50">
                 </div>
             </div>
             @if (session('failed'))
@@ -63,26 +110,32 @@
             @if ($line_count >= 1)
                 <h2 class="font-bold text-lg">Line One Text</h2>
                 <input type="text" wire:model.debounce.1000ms="line1" placeholder="Text Line One" class="w-full mt-2 bg-dark rounded border focus:border-main focus:ring-4 focus:ring-main-light text-base outline-none text-gray-200 py-2 px-3 leading-8 transition-colors duration-200 ease-in-out mb-3">
-                @if (session('lineCount'))
-                    <p class="text-red-600 mb-2">{{ session('lineCount') }}</p>
+                @if (session('lineCount1'))
+                    <p class="text-red-600 mb-2">{{ session('lineCount1') }}</p>
                 @endif
             @endif
             @if ($line_count >= 2)
                 <h2 class="font-bold text-lg">Line Two Text</h2>
                 <input type="text" wire:model.debounce.1000ms="line2" placeholder="Text Line Two" class="w-full mt-2 bg-dark rounded border focus:border-main focus:ring-4 focus:ring-main-light text-base outline-none text-gray-200 py-2 px-3 leading-8 transition-colors duration-200 ease-in-out mb-3">
+                @if (session('lineCount2'))
+                    <p class="text-red-600 mb-2">{{ session('lineCount2') }}</p>
+                @endif
             @endif
             @if ($line_count == 3)
                 <h2 class="font-bold text-lg">Line Three Text</h2>
                 <input type="text" wire:model.debounce.1000ms="line3" placeholder="Text Line Three" class="w-full mt-2 bg-dark rounded border focus:border-main focus:ring-4 focus:ring-main-light text-base outline-none text-gray-200 py-2 px-3 leading-8 transition-colors duration-200 ease-in-out mb-3">
+                @if (session('lineCount3'))
+                    <p class="text-red-600 mb-2">{{ session('lineCount3') }}</p>
+                @endif
             @endif
             <div class="py-2">
-                <h2 class="font-bold mb-2 text-lg">Choose a Jacket</h2>
+                <h2 class="font-bold mb-2 text-lg">Neon Strip Color When Light Off</h2>
                 <div wire:click="$set('jacket', 'colored')" class="flex p-3 bg-dark cursor-pointer rounded-md flex-col mb-3 border @if ($jacket == 'colored') border-main @else border-gray-800 @endif">
-                    <p class="font-semibold mb-2">Color-matching</p>
+                    <p class="font-semibold mb-2">Similar Color as Light Color</p>
                     <span class="text-gray-500 text-sm">The tube will be colored when turned off.</span>
                 </div>
                 <div wire:click="$set('jacket', 'white')" class="flex p-3 bg-dark cursor-pointer rounded-md flex-col mb-3 border @if ($jacket == 'white') border-main @else border-gray-800 @endif">
-                    <p class="font-semibold mb-2">White</p>
+                    <p class="font-semibold mb-2">Milky White</p>
                     <span class="text-gray-500 text-sm">Your sign will be white when turned off.</span>
                 </div>
             </div>
@@ -93,7 +146,7 @@
                 <div class="grid grid-cols-2 gap-4" x-show="open" x-cloak>
                     @foreach ($fonts as $fonty)
                     <div wire:click="$set('font', '{{ $fonty }}')" class="flex items-center justify-center p-3 cursor-pointer rounded-md flex-col border  @if ($font == $fonty) border-main @else border-gray-300 @endif">
-                        <p class="text-center text-2xl {{ $fonty }}">Ahmer</p>
+                        <p class="text-center text-2xl {{ $fonty }}">Style</p>
                     </div>
                     @endforeach
                 </div>
@@ -104,7 +157,7 @@
                 <div class="flex flex-wrap">
                     @foreach ($colors as $item)
                         <div wire:click="$set('color', '{{ $item }}')" class="rounded-full m-2" style="@if($color == $item) border: 2px {{ $item }} solid; @endif">
-                            <span class="flex p-4 cursor-pointer rounded-full flex-col border border-white shadow-md" style="background-color: {{ $item }};"></span>
+                            <span class="flex p-2 cursor-pointer rounded-full flex-col border border-white shadow-md" style="background-color: {{ $item }};"></span>
                         </div>
                     @endforeach
                 </div>

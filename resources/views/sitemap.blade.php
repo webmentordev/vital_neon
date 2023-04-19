@@ -2,31 +2,31 @@
     xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
     <url>
         <loc>https://vitalneon.com</loc>
-        <lastmod>2023-04-018T2:00:09+00:00</lastmod>
+        <lastmod>2023-04-18T05:05:00+05:00</lastmod>
         <changefreq>weekly</changefreq>
         <priority>1.00</priority>
     </url>
     <url>
         <loc>https://vitalneon.com/support</loc>
-        <lastmod>2023-04-018T2:00:09+00:00</lastmod>
+        <lastmod>2023-04-18T05:05:00+05:00</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.80</priority>
     </url>
     <url>
         <loc>https://vitalneon.com/create-design</loc>
-        <lastmod>2023-04-018T2:00:09+00:00</lastmod>
+        <lastmod>2023-04-18T05:05:00+05:00</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.80</priority>
     </url>
     <url>
         <loc>https://vitalneon.com/upload-design</loc>
-        <lastmod>2023-04-018T2:00:09+00:00</lastmod>
+        <lastmod>2023-04-18T05:05:00+05:00</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.80</priority>
     </url>
     <url>
         <loc>https://vitalneon.com/products</loc>
-        <lastmod>2023-04-018T2:00:09+00:00</lastmod>
+        <lastmod>2023-04-18T05:05:00+05:00</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.90</priority>
     </url>
