@@ -17,48 +17,26 @@
             <div class="absolute top-2 right-2">
                 <div class="flex items-center">
                     <div class="flex mr-1">
-                        <div class="bg-gray-800 p-1 rounded-lg mb-1 cursor-pointer h-fit -rotate-90 mr-1" wire:click="upSize">
-                            <img src="https://api.iconify.design/ic:outline-keyboard-arrow-up.svg?color=%23ffffff" width="30" alt="">
+                        <div class="bg-gray-800 p-1 rounded-lg mb-1 cursor-pointer h-fit mr-1" wire:click="upSize">
+                            <img src="https://api.iconify.design/material-symbols:add-rounded.svg?color=%23ffffff" width="30" alt="">
                         </div>
-                        <div class="bg-gray-800 p-1 rounded-lg cursor-pointer h-fit -rotate-90" wire:click="downSize">
-                            <img src="https://api.iconify.design/ic:outline-keyboard-arrow-down.svg?color=%23ffffff" width="30" alt="">
+                        <div class="bg-gray-800 p-1 rounded-lg cursor-pointer h-fit" wire:click="downSize">
+                            <img src="https://api.iconify.design/ic:outline-remove.svg?color=%23ffffff" width="30" alt="">
                         </div>
                     </div>
                     <div class="flex flex-col">
-                        <div class="bg-gray-800 p-1 rounded-lg mb-1 cursor-pointer" wire:click="$set('leading', '{{ $leading = $leading + 10 }}')">
+                        <div class="bg-gray-800 p-1 rounded-lg mb-1 cursor-pointer" wire:click="upHeight">
                             <img src="https://api.iconify.design/ic:outline-keyboard-arrow-up.svg?color=%23ffffff" width="30" alt="">
                         </div>
-                        <div class="bg-gray-800 p-1 rounded-lg cursor-pointer" wire:click="$set('leading', '{{ $leading = $leading - 10 }}')">
+                        <div class="bg-gray-800 p-1 rounded-lg cursor-pointer" wire:click="downHeight">
                             <img src="https://api.iconify.design/ic:outline-keyboard-arrow-down.svg?color=%23ffffff" width="30" alt="">
                         </div>
                     </div>
                 </div>
             </div>
             
-            <div class="flex flex-col {{ $alignment }}">
-                <span class="text-white {{ $font }} font-semibold" @if (!$dark_mode) 
-                style="text-shadow:
-                0 0 7px {{ $color }},
-                0 0 7px {{ $color }},
-                0 0 22px {{ $color }},
-                0 0 22px {{ $color }},
-                0 0 22px {{ $color }},
-                0 0 22px {{ $color }},
-                0 0 22px {{ $color }},
-                0 0 22px {{ $color }}; font-size: {{ $size }}px;" @endif>{{ $line1 }}</span>
-                @if ($line2)
-                <span class="text-white {{ $font }} font-semibold" @if (!$dark_mode) 
-                style="text-shadow:
-                0 0 7px {{ $color }},
-                0 0 7px {{ $color }},
-                0 0 22px {{ $color }},
-                0 0 22px {{ $color }},
-                0 0 22px {{ $color }},
-                0 0 22px {{ $color }},
-                0 0 22px {{ $color }},
-                0 0 22px {{ $color }}; font-size: {{ $size }}px; margin-top: {{ $leading }}px" @endif>{{ $line2 }}</span>
-                @endif
-                @if ($line3)
+            <div id="mydiv">
+                <div class="flex flex-col {{ $alignment }}" id="mydivheader">
                     <span class="text-white {{ $font }} font-semibold" @if (!$dark_mode) 
                     style="text-shadow:
                     0 0 7px {{ $color }},
@@ -68,8 +46,32 @@
                     0 0 22px {{ $color }},
                     0 0 22px {{ $color }},
                     0 0 22px {{ $color }},
-                    0 0 22px {{ $color }}; font-size: {{ $size }}px; margin-top: {{ $leading }}px" @endif>{{ $line3 }}</span>
-                @endif
+                    0 0 22px {{ $color }}; font-size: {{ $size }}px;" @endif>{{ $line1 }}</span>
+                    @if ($line2)
+                    <span class="text-white {{ $font }} font-semibold" @if (!$dark_mode) 
+                    style="text-shadow:
+                    0 0 7px {{ $color }},
+                    0 0 7px {{ $color }},
+                    0 0 22px {{ $color }},
+                    0 0 22px {{ $color }},
+                    0 0 22px {{ $color }},
+                    0 0 22px {{ $color }},
+                    0 0 22px {{ $color }},
+                    0 0 22px {{ $color }}; font-size: {{ $size }}px; margin-top: {{ $leading }}px" @endif>{{ $line2 }}</span>
+                    @endif
+                    @if ($line3)
+                        <span class="text-white {{ $font }} font-semibold" @if (!$dark_mode) 
+                        style="text-shadow:
+                        0 0 7px {{ $color }},
+                        0 0 7px {{ $color }},
+                        0 0 22px {{ $color }},
+                        0 0 22px {{ $color }},
+                        0 0 22px {{ $color }},
+                        0 0 22px {{ $color }},
+                        0 0 22px {{ $color }},
+                        0 0 22px {{ $color }}; font-size: {{ $size }}px; margin-top: {{ $leading }}px" @endif>{{ $line3 }}</span>
+                    @endif
+                </div>
             </div>
 
             <div class="flex items-center justify-between absolute w-full bottom-0 p-3">
@@ -209,6 +211,17 @@
                     </select>
                 </div>
             </div>
+            <div class="py-2">
+                <h2 class="font-bold text-lg">Installation Kit *{{ $kit }}</h2>
+                <div class="py-3 w-full">
+                    <select name="kit" id="kit" wire:model="kit" class="bg-dark flex items-center w-full justify-center p-3 cursor-pointer rounded-md flex-col border">
+                        @foreach ($kits as $item)
+                            <option value="{{ $item->name }}">{{ $item->name }} - ${{ $item->price }}</option>  
+                         @endforeach 
+                    </select>
+                </div>
+            </div>
+            
             <input type="text" wire:model.debounce.500ms="email" placeholder="Email Address" class="w-full border-none bg-dark mt-2 rounded focus:border-main focus:ring-4 focus:ring-main text-base outline-none text-gray-300 py-2 px-3 leading-8 transition-colors duration-200 ease-in-out mb-3">
             @error('email')
                 <p class="text-red-600 mb-2">{{ $message }}</p>
@@ -238,6 +251,50 @@
         };
         function change(){
             output.style.backgroundColor = color.value;
+        }
+      </script>
+
+      <script>
+        dragElement(document.getElementById("mydiv"));
+        function dragElement(elmnt) {
+        var pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
+        if (document.getElementById(elmnt.id + "header")) {
+            // if present, the header is where you move the DIV from:
+            document.getElementById(elmnt.id + "header").onmousedown = dragMouseDown;
+        } else {
+            // otherwise, move the DIV from anywhere inside the DIV:
+            elmnt.onmousedown = dragMouseDown;
+        }
+
+        function dragMouseDown(e) {
+            e = e || window.event;
+            e.preventDefault();
+            // get the mouse cursor position at startup:
+            pos3 = e.clientX;
+            pos4 = e.clientY;
+            document.onmouseup = closeDragElement;
+            // call a function whenever the cursor moves:
+            document.onmousemove = elementDrag;
+        }
+
+        function elementDrag(e) {
+            e = e || window.event;
+            e.preventDefault();
+            // calculate the new cursor position:
+            pos1 = pos3 - e.clientX;
+            pos2 = pos4 - e.clientY;
+            pos3 = e.clientX;
+            pos4 = e.clientY;
+            // set the element's new position:
+            elmnt.style.top = (elmnt.offsetTop - pos2) + "px";
+            elmnt.style.left = (elmnt.offsetLeft - pos1) + "px";
+        }
+
+        function closeDragElement() {
+            // stop moving when mouse button is released:
+            document.onmouseup = null;
+            document.onmousemove = null;
+        }
         }
       </script>
 </section>

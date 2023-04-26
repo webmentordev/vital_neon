@@ -279,3 +279,15 @@ nav a, nav .category{
 .main-body p span{
     @apply bg-gray-600 p-3 rounded-lg;
 }
+
+#mydiv {
+    position: absolute;
+    z-index: 9;
+    text-align: center;
+  }
+  
+  #mydivheader {
+    padding: 10px;
+    cursor: move;
+    z-index: 10;
+  }

@@ -4,6 +4,7 @@ namespace App\Http\Livewire;
 
 use Carbon\Carbon;
 use App\Models\Cart;
+use App\Models\Kit;
 use App\Models\Line;
 use App\Models\Shape;
 use App\Models\Remote;
@@ -71,10 +72,11 @@ class CreateDesign extends Component
         "simple",
         "slender",
         "signature"
-    ], $adaptor, 
+    ], $kits, $adaptor, 
     $color, 
     $font, 
-    $location;
+    $location,
+    $kit;
 
     public $shapes, 
     $shape, 
@@ -86,7 +88,7 @@ class CreateDesign extends Component
     $alignment,
     $line_price,
     $Select, $chars,
-    $line1, $line2, $line3,
+    $line1, $line2, $line3, $kit_price,
     $jacket, $leading = 50, $size = 32;
 
     public $line_count = 1,
@@ -104,6 +106,7 @@ class CreateDesign extends Component
         'font' => "required",
         'adaptor' => 'required',
         'location' => 'required',
+        'kit' => 'required',
         'email' => 'required|email',
     ];
 
@@ -111,6 +114,7 @@ class CreateDesign extends Component
         $this->shapes = Shape::all();
         $this->remotes = Remote::all();
         $this->lines = Line::all();
+        $this->kits = Kit::all();
         $this->chars = $this->lines[0]->chars;
         $this->font = $this->fonts[0];
         $this->color = $this->colors[0];
@@ -122,6 +126,8 @@ class CreateDesign extends Component
         $this->shape = $this->shapes[0]->shape;
         $this->line_price = $this->lines[0]->price;
         $this->line1 = "Text Here";
+        $this->kit = $this->kits[0]->name;
+        $this->kit_price = $this->kits[0]->price;
         $this->priceCalculator();
     }
 
@@ -132,6 +138,14 @@ class CreateDesign extends Component
 
     public function downSize(){
         $this->size = $this->size - 10;
+    }
+
+    public function upHeight(){
+        $this->leading = $this->leading + 10;
+    }
+
+    public function downHeight(){
+        $this->leading = $this->leading - 10;
     }
 
     public function render(){
@@ -166,6 +180,9 @@ class CreateDesign extends Component
 
     public function updated(){
         $this->priceCalculator();
+        $this->updatedline1();
+        $this->updatedline2();
+        $this->updatedline3();
     }
 
     public function updatedSelect(){
@@ -189,19 +206,31 @@ class CreateDesign extends Component
         }
     }
 
+
+    public function updatedkit(){
+
+    }
+
+
     public function updatedline1(){
-        if(strlen($this->line1) > $this->chars || strlen($this->line1) == 0){
+        if(strlen($this->line1) > $this->chars){
             session()->flash('lineCount1', 'Line must have only '. $this->chars. " characters");
+        }elseif(strlen($this->line1) == 0){
+            session()->flash('lineCount1', 'Line must have atleast 1 character');
         }
     }
     public function updatedline2(){
-        if(strlen($this->line2) > $this->chars || strlen($this->line2) == 0){
-            session()->flash('lineCount2', 'Line must have only '. $this->chars. " characters");
+        if(strlen($this->line2) > $this->chars){
+            session()->flash('lineCount2', 'Line must have only '. $this->chars. " character");
+        }elseif(strlen($this->line2) == 0){
+            session()->flash('lineCount2', 'Line must have atleast 1 character');
         }
     }
     public function updatedline3(){
-        if(strlen($this->line3) > $this->chars || strlen($this->line3) == 0){
+        if(strlen($this->line3) > $this->chars){
             session()->flash('lineCount3', 'Line must have only '. $this->chars. " characters");
+        }elseif(strlen($this->line3) == 0){
+            session()->flash('lineCount3', 'Line must have atleast 1 character');
         }
     }
 
@@ -228,6 +257,12 @@ class CreateDesign extends Component
     public function priceCalculator(){
         $shape_price = Shape::where("shape", $this->shape)->first();
         $remote_price = Remote::where("type", $this->remote)->first();
+        $kit_price = Kit::where("name", $this->kit)->first();
+
+        if($kit_price == null){
+            abort(500, "Internal Server Error");
+        }
+        
         $jacket_price = 0;
         if($this->jacket == "colored"){
             $jacket_price = 20;
@@ -236,7 +271,7 @@ class CreateDesign extends Component
         }else{
             abort(500, "Internal Server Error");
         }
-        $total_price = $shape_price->price + $remote_price->price + $jacket_price + $this->line_price;
+        $total_price = $shape_price->price + $remote_price->price + $jacket_price + $this->line_price + $kit_price->price;
         if($this->location == "Out Door"){
             $this->total_price = $total_price + ($total_price * (15/100));
         }else{
@@ -248,9 +283,16 @@ class CreateDesign extends Component
         $this->validate();
         if(Remote::where('type', $this->remote)->first() == null){
             abort(500, 'Internal Server Error');
-        }else if(Shape::where('shape', $this->shape)->first() == null){
+        }
+        
+        if(Shape::where('shape', $this->shape)->first() == null){
             abort(500, 'Internal Server Error');
         }
+
+        if(Kit::where('name', $this->kit)->first() == null){
+            abort(500, 'Internal Server Error');
+        }
+
         if($this->arraycheck()){
             $checkout_id = $this->randomPassword();
             $order_id = $this->randomPassword();
