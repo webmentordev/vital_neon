@@ -211,6 +211,9 @@
                     </select>
                 </div>
             </div>
+            @error('remote')
+                <p class="text-red-600 mb-2">{{ $message }}</p>
+            @enderror
             <div class="py-2">
                 <h2 class="font-bold text-lg">Installation Kit *{{ $kit }}</h2>
                 <div class="py-3 w-full">
@@ -221,13 +224,22 @@
                     </select>
                 </div>
             </div>
-            
+            @error('kit')
+                <p class="text-red-600 mb-2">{{ $message }}</p>
+            @enderror
+
+            <input type="number" min="5" wire:model.debounce.500ms="phone" placeholder="Phone Number (shipping purpose)" class="w-full border-none bg-dark mt-2 rounded focus:border-main focus:ring-4 focus:ring-main text-base outline-none text-gray-300 py-2 px-3 leading-8 transition-colors duration-200 ease-in-out mb-3">
+            @error('phone')
+                <p class="text-red-600 mb-2">{{ $message }}</p>
+            @enderror
+
             <input type="text" wire:model.debounce.500ms="email" placeholder="Email Address" class="w-full border-none bg-dark mt-2 rounded focus:border-main focus:ring-4 focus:ring-main text-base outline-none text-gray-300 py-2 px-3 leading-8 transition-colors duration-200 ease-in-out mb-3">
             @error('email')
                 <p class="text-red-600 mb-2">{{ $message }}</p>
             @enderror
             <button class="submit-btn" type="submit"><span class="mr-2 text-xl">Checkout</span> <img src="{{ asset('assets/images/stripe_small.png') }}" width="50" alt="Stripe Logo"></button>
         </form>
+        <p class="p-6 col-span-2 border-l border-gray-400 bg-light text-white mb-6 leading-6">We're pleased to offer Stripe as our payment system, providing you with a secure and reliable way to make payments. With Stripe, your credit card information is kept safe and secure, as we don't store it on our servers. We only collect your email address for communication purposes, and we never share your personal information with third parties. Stripe's user-friendly interface allows for seamless payments, giving you peace of mind and a smooth payment experience. Thank you for choosing to shop with us!</p>
     </div>
     <section class="bg-light">
         <x-listing />

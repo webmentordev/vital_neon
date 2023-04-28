@@ -18,6 +18,8 @@ class Cart extends Model
         'location',
         'adaptor',
         'remote',
+        'kit',
+        'phone',
         'email',
         'align',
         'status',

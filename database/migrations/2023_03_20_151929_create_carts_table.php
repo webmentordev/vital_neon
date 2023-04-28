@@ -22,6 +22,8 @@ return new class extends Migration
             $table->string('align');
             $table->string('adaptor');
             $table->string('remote');
+            $table->string('kit');
+            $table->bigInteger('phone');
             $table->string('price');
             $table->string('price_id');
             $table->string('email');

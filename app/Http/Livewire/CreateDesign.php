@@ -88,7 +88,7 @@ class CreateDesign extends Component
     $alignment,
     $line_price,
     $Select, $chars,
-    $line1, $line2, $line3, $kit_price,
+    $line1, $line2, $line3, $kit_price, $phone,
     $jacket, $leading = 50, $size = 32;
 
     public $line_count = 1,
@@ -101,6 +101,7 @@ class CreateDesign extends Component
         'shape' => 'required',
         'remote' => 'required',
         'total_price' => 'required|numeric',
+        'phone' => 'required|numeric',
         'alignment' => 'required',
         'color' => 'required',
         'font' => "required",
@@ -327,13 +328,15 @@ class CreateDesign extends Component
                 'remote' => $this->remote,
                 'align' => $this->alignment,
                 'email' => $this->email,
+                'phone' => $this->phone,
+                'kit' => $this->kit,
                 'order_id' => $order_id,
                 'price' => $this->total_price,
                 'price_id' => $result['id'],
                 'checkout_id' => $checkout_id
             ]);
             Http::post(config('app.order-pending'), [
-                'content' => "**Email:** $this->email\n**CheckoutID:** $checkout_id\n**TotalPrice: $**$this->total_price\n**Jacket:** $this->jacket\n**Text:** $this->line1|$this->line2|$this->line2\n**Font:** $this->font\n**Color:** $this->color\n**Backboard:** $this->shape\n**Location:** $this->location\n**Adaptor:** $this->adaptor\n**Remote:** $this->remote\n**Alignment:** $this->alignment\n**PriceID:** {$result['id']}\n**CheckoutURL:**{$checkout['url']}"
+                'content' => "**Email:** $this->email\n**PhoneNumber:** $this->phone\n**CheckoutID:** $checkout_id\n**TotalPrice: $**$this->total_price\n**Jacket:** $this->jacket\n**Text:** $this->line1|$this->line2|$this->line2\n**Font:** $this->font\n**Color:** $this->color\n**Backboard:** $this->shape\n**Kit:** $this->kit\n**Location:** $this->location\n**Adaptor:** $this->adaptor\n**Remote:** $this->remote\n**Alignment:** $this->alignment\n**PriceID:** {$result['id']}\n**CheckoutURL:**{$checkout['url']}"
             ]);
             return redirect($checkout['url']);
         }else{
