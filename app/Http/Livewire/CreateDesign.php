@@ -73,8 +73,8 @@ class CreateDesign extends Component
         "slender",
         "signature"
     ], $kits, $adaptor, 
-    $color, 
-    $font, 
+    $color,$color2, $color3, 
+    $font, $font2, $font3,
     $location,
     $kit;
 
@@ -119,6 +119,18 @@ class CreateDesign extends Component
         $this->chars = $this->lines[0]->chars;
         $this->font = $this->fonts[0];
         $this->color = $this->colors[0];
+
+
+        $this->font2 = $this->fonts[0];
+        $this->color2 = $this->colors[0];
+
+        $this->font3 = $this->fonts[0];
+        $this->color3 = $this->colors[0];
+
+
+
+
+
         $this->location = $this->locations[0];
         $this->adaptor = $this->adaptors[0];
         $this->alignment = $this->alignments[0];
@@ -131,7 +143,6 @@ class CreateDesign extends Component
         $this->kit_price = $this->kits[0]->price;
         $this->priceCalculator();
     }
-
 
     public function upSize(){
         $this->size = $this->size + 10;
@@ -206,12 +217,6 @@ class CreateDesign extends Component
             abort(500, "Internal Server Error");
         }
     }
-
-
-    public function updatedkit(){
-
-    }
-
 
     public function updatedline1(){
         if(strlen($this->line1) > $this->chars){
@@ -336,7 +341,7 @@ class CreateDesign extends Component
                 'checkout_id' => $checkout_id
             ]);
             Http::post(config('app.order-pending'), [
-                'content' => "**Email:** $this->email\n**PhoneNumber:** $this->phone\n**CheckoutID:** $checkout_id\n**TotalPrice: $**$this->total_price\n**Jacket:** $this->jacket\n**Text:** $this->line1|$this->line2|$this->line2\n**Font:** $this->font\n**Color:** $this->color\n**Backboard:** $this->shape\n**Kit:** $this->kit\n**Location:** $this->location\n**Adaptor:** $this->adaptor\n**Remote:** $this->remote\n**Alignment:** $this->alignment\n**PriceID:** {$result['id']}\n**CheckoutURL:**{$checkout['url']}"
+                'content' => "**Email:** $this->email\n**PhoneNumber:** $this->phone\n**CheckoutID:** $checkout_id\n**TotalPrice: $**$this->total_price\n**Jacket:** $this->jacket\n**Line 1:** $this->line1|$this->font|$this->color\n**Line 2:** $this->line2|$this->font2|$this->color3\n**Line 3:** $this->line3|$this->font3|$this->color3\n**Backboard:** $this->shape\n**Kit:** $this->kit\n**Location:** $this->location\n**Adaptor:** $this->adaptor\n**Remote:** $this->remote\n**Alignment:** $this->alignment\n**PriceID:** {$result['id']}\n**CheckoutURL:**{$checkout['url']}"
             ]);
             return redirect($checkout['url']);
         }else{

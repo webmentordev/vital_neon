@@ -48,28 +48,28 @@
                     0 0 22px {{ $color }},
                     0 0 22px {{ $color }}; font-size: {{ $size }}px;" @endif>{{ $line1 }}</span>
                     @if ($line2)
-                    <span class="text-white {{ $font }} font-semibold" @if (!$dark_mode) 
+                    <span class="text-white {{ $font2 }} font-semibold" @if (!$dark_mode) 
                     style="text-shadow:
-                    0 0 7px {{ $color }},
-                    0 0 7px {{ $color }},
-                    0 0 22px {{ $color }},
-                    0 0 22px {{ $color }},
-                    0 0 22px {{ $color }},
-                    0 0 22px {{ $color }},
-                    0 0 22px {{ $color }},
-                    0 0 22px {{ $color }}; font-size: {{ $size }}px; margin-top: {{ $leading }}px" @endif>{{ $line2 }}</span>
+                    0 0 7px {{ $color2 }},
+                    0 0 7px {{ $color2 }},
+                    0 0 22px {{ $color2 }},
+                    0 0 22px {{ $color2 }},
+                    0 0 22px {{ $color2 }},
+                    0 0 22px {{ $color2 }},
+                    0 0 22px {{ $color2 }},
+                    0 0 22px {{ $color2 }}; font-size: {{ $size }}px; margin-top: {{ $leading }}px" @endif>{{ $line2 }}</span>
                     @endif
                     @if ($line3)
-                        <span class="text-white {{ $font }} font-semibold" @if (!$dark_mode) 
+                        <span class="text-white {{ $font3 }} font-semibold" @if (!$dark_mode) 
                         style="text-shadow:
-                        0 0 7px {{ $color }},
-                        0 0 7px {{ $color }},
-                        0 0 22px {{ $color }},
-                        0 0 22px {{ $color }},
-                        0 0 22px {{ $color }},
-                        0 0 22px {{ $color }},
-                        0 0 22px {{ $color }},
-                        0 0 22px {{ $color }}; font-size: {{ $size }}px; margin-top: {{ $leading }}px" @endif>{{ $line3 }}</span>
+                        0 0 7px {{ $color3 }},
+                        0 0 7px {{ $color3 }},
+                        0 0 22px {{ $color3 }},
+                        0 0 22px {{ $color3 }},
+                        0 0 22px {{ $color3 }},
+                        0 0 22px {{ $color3 }},
+                        0 0 22px {{ $color3 }},
+                        0 0 22px {{ $color3 }}; font-size: {{ $size }}px; margin-top: {{ $leading }}px" @endif>{{ $line3 }}</span>
                     @endif
                 </div>
             </div>
@@ -109,27 +109,91 @@
                     </select>
                 </div>
             </div>
+            
             @if ($line_count >= 1)
+            <div class="p-6 bg-[#1E1E1E] rounded-lg mb-5">
                 <h2 class="font-bold text-lg">Line One Text</h2>
                 <input type="text" wire:model.debounce.1000ms="line1" placeholder="Text Line One" class="w-full mt-2 bg-dark rounded border focus:border-main focus:ring-4 focus:ring-main-light text-base outline-none text-gray-200 py-2 px-3 leading-8 transition-colors duration-200 ease-in-out mb-3">
                 @if (session('lineCount1'))
                     <p class="text-red-600 mb-2">{{ session('lineCount1') }}</p>
                 @endif
+                <div class="py-2">
+                    <h2 class="font-bold mb-2 text-lg">Choose Line-1 Font</h2>
+                    <select name="font" id="font" wire:model="font" class="p-3 border-gray-300 flex items-center justify-between bg-dark rounded-md mb-3 capitalize w-full">
+                        @foreach ($fonts as $fonty)
+                            <option value="{{ $fonty }}" class="text-gray-100 text-lg {{ $fonty }}">Style</option>
+                        @endforeach
+                    </select>
+                </div>
+                <div class="py-2">
+                    <h2 class="font-bold mb-2 text-lg">Choose a colour</h2>
+                    <div class="flex flex-wrap">
+                        @foreach ($colors as $item)
+                            <div wire:click="$set('color', '{{ $item }}')" class="rounded-full m-2" style="@if($color == $item) border: 2px {{ $item }} solid; @endif">
+                                <span class="flex p-2 cursor-pointer rounded-full flex-col border border-white shadow-md" style="background-color: {{ $item }};"></span>
+                            </div>
+                        @endforeach
+                    </div>
+                </div>
+            </div>
             @endif
+
             @if ($line_count >= 2)
-                <h2 class="font-bold text-lg">Line Two Text</h2>
-                <input type="text" wire:model.debounce.1000ms="line2" placeholder="Text Line Two" class="w-full mt-2 bg-dark rounded border focus:border-main focus:ring-4 focus:ring-main-light text-base outline-none text-gray-200 py-2 px-3 leading-8 transition-colors duration-200 ease-in-out mb-3">
-                @if (session('lineCount2'))
-                    <p class="text-red-600 mb-2">{{ session('lineCount2') }}</p>
-                @endif
+                <div class="p-6 bg-[#1E1E1E] rounded-lg mb-5">
+                    <h2 class="font-bold text-lg">Line Two Text</h2>
+                    <input type="text" wire:model.debounce.1000ms="line2" placeholder="Text Line Two" class="w-full mt-2 bg-dark rounded border focus:border-main focus:ring-4 focus:ring-main-light text-base outline-none text-gray-200 py-2 px-3 leading-8 transition-colors duration-200 ease-in-out mb-3">
+                    @if (session('lineCount2'))
+                        <p class="text-red-600 mb-2">{{ session('lineCount2') }}</p>
+                    @endif
+                    <div class="py-2">
+                        <h2 class="font-bold mb-2 text-lg">Choose Line-2 Font</h2>
+                        <select name="font2" id="font2" wire:model="font2" class="p-3 border-gray-300 flex items-center justify-between bg-dark rounded-md mb-3 capitalize w-full">
+                            @foreach ($fonts as $fonty)
+                                <option value="{{ $fonty }}" class="text-gray-100 text-lg {{ $fonty }}">Style</option>
+                            @endforeach
+                        </select>
+                    </div>
+                    <div class="py-2">
+                        <h2 class="font-bold mb-2 text-lg">Choose a colour</h2>
+                        <div class="flex flex-wrap">
+                            @foreach ($colors as $item)
+                                <div wire:click="$set('color2', '{{ $item }}')" class="rounded-full m-2" style="@if($color2 == $item) border: 2px {{ $item }} solid; @endif">
+                                    <span class="flex p-2 cursor-pointer rounded-full flex-col border border-white shadow-md" style="background-color: {{ $item }};"></span>
+                                </div>
+                            @endforeach
+                        </div>
+                    </div>
+                </div>
             @endif
+
             @if ($line_count == 3)
-                <h2 class="font-bold text-lg">Line Three Text</h2>
-                <input type="text" wire:model.debounce.1000ms="line3" placeholder="Text Line Three" class="w-full mt-2 bg-dark rounded border focus:border-main focus:ring-4 focus:ring-main-light text-base outline-none text-gray-200 py-2 px-3 leading-8 transition-colors duration-200 ease-in-out mb-3">
-                @if (session('lineCount3'))
-                    <p class="text-red-600 mb-2">{{ session('lineCount3') }}</p>
-                @endif
+               <div class="p-6 bg-[#1E1E1E] rounded-lg mb-5">
+                    <h2 class="font-bold text-lg">Line Three Text</h2>
+                    <input type="text" wire:model.debounce.1000ms="line3" placeholder="Text Line Three" class="w-full mt-2 bg-dark rounded border focus:border-main focus:ring-4 focus:ring-main-light text-base outline-none text-gray-200 py-2 px-3 leading-8 transition-colors duration-200 ease-in-out mb-3">
+                    @if (session('lineCount3'))
+                        <p class="text-red-600 mb-2">{{ session('lineCount3') }}</p>
+                    @endif
+                    <div class="py-2">
+                        <h2 class="font-bold mb-2 text-lg">Choose Line-3 Font</h2>
+                        <select name="font3" id="font3" wire:model="font3" class="p-3 border-gray-300 flex items-center justify-between bg-dark rounded-md mb-3 capitalize w-full">
+                            @foreach ($fonts as $fonty)
+                                <option value="{{ $fonty }}" class="text-gray-100 text-lg {{ $fonty }}">Style</option>
+                            @endforeach
+                        </select>
+                    </div>
+                    <div class="py-2">
+                        <h2 class="font-bold mb-2 text-lg">Choose a colour</h2>
+                        <div class="flex flex-wrap">
+                            @foreach ($colors as $item)
+                                <div wire:click="$set('color3', '{{ $item }}')" class="rounded-full m-2" style="@if($color3 == $item) border: 2px {{ $item }} solid; @endif">
+                                    <span class="flex p-2 cursor-pointer rounded-full flex-col border border-white shadow-md" style="background-color: {{ $item }};"></span>
+                                </div>
+                            @endforeach
+                        </div>
+                    </div>
+               </div>
             @endif
+
             <div class="py-2">
                 <h2 class="font-bold mb-2 text-lg">Neon Strip Color When Light Off</h2>
                 <div wire:click="$set('jacket', 'colored')" class="flex p-3 bg-dark cursor-pointer rounded-md flex-col mb-3 border @if ($jacket == 'colored') border-main @else border-gray-800 @endif">
@@ -139,29 +203,6 @@
                 <div wire:click="$set('jacket', 'white')" class="flex p-3 bg-dark cursor-pointer rounded-md flex-col mb-3 border @if ($jacket == 'white') border-main @else border-gray-800 @endif">
                     <p class="font-semibold mb-2">Milky White</p>
                     <span class="text-gray-500 text-sm">Your sign will be white when turned off.</span>
-                </div>
-            </div>
-
-            <div class="py-2" x-data="{ open: false }">
-                <h2 class="font-bold mb-2 text-lg">Choose Font</h2>
-                <p class="p-3 border-gray-300 flex items-center justify-between bg-dark rounded-md mb-3 capitalize" x-on:click="open = !open">{{ $font }} <img src="https://api.iconify.design/fe:drop-down.svg?color=%231e1f1e" width="30" alt="Carret Down Icon"></p>
-                <div class="grid grid-cols-2 gap-4" x-show="open" x-cloak>
-                    @foreach ($fonts as $fonty)
-                    <div wire:click="$set('font', '{{ $fonty }}')" class="flex items-center justify-center p-3 cursor-pointer rounded-md flex-col border  @if ($font == $fonty) border-main @else border-gray-300 @endif">
-                        <p class="text-center text-2xl {{ $fonty }}">Style</p>
-                    </div>
-                    @endforeach
-                </div>
-            </div>
-
-            <div class="py-2">
-                <h2 class="font-bold mb-2 text-lg">Choose a colour</h2>
-                <div class="flex flex-wrap">
-                    @foreach ($colors as $item)
-                        <div wire:click="$set('color', '{{ $item }}')" class="rounded-full m-2" style="@if($color == $item) border: 2px {{ $item }} solid; @endif">
-                            <span class="flex p-2 cursor-pointer rounded-full flex-col border border-white shadow-md" style="background-color: {{ $item }};"></span>
-                        </div>
-                    @endforeach
                 </div>
             </div>
 
