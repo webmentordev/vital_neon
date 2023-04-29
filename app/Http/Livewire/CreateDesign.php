@@ -325,8 +325,8 @@ class CreateDesign extends Component
             Cart::create([
                 'text' => $this->line1.'|'.$this->line2.'|'.$this->line3,
                 'jacket' => $this->jacket,
-                'font' => $this->font,
-                'color' => $this->color,
+                'font' => "$this->font|$this->font2|$this->font3",
+                'color' => "$this->color|$this->color2|$this->color3",
                 'backboard' => $this->shape,
                 'location' => $this->location,
                 'adaptor' => $this->adaptor,
