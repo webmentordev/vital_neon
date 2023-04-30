@@ -7,6 +7,7 @@ use App\Models\Remote;
 use Livewire\Component;
 use Stripe\StripeClient;
 use App\Models\CategoryPrice;
+use App\Models\Kit;
 use App\Models\Order;
 use Illuminate\Support\Facades\Http;
 use App\Models\Product as ModelsProduct;
@@ -18,7 +19,7 @@ use Artesaos\SEOTools\Facades\TwitterCard;
 
 class Product extends Component
 {
-    public $product, $remote, $shapes, $phone, $shape, $shape_price, $categories, $location, $adaptor, $category, $email;
+    public $product, $remote, $kits, $kit, $kit_price, $shapes, $phone, $shape, $shape_price, $categories, $location, $adaptor, $category, $email;
     public $adaptors = [
         "USA/Canada/120V",
         "UK/IRELAND 230V",
@@ -37,6 +38,7 @@ class Product extends Component
         'email' => 'required|email',
         'shape' => 'required',
         'phone' => 'required|numeric',
+        'kit' => 'required',
     ];
 
     public function mount($slug){
@@ -44,10 +46,12 @@ class Product extends Component
         if(count($result)){
             $this->shapes = Shape::all();
             $this->remotes = Remote::all();
+            $this->kits = Kit::all();
             $this->remote = $this->remotes[0]->type;
             $this->categories = $result[0]->categories;
             $this->location = $this->locations[0];
             $this->adaptor = $this->adaptors[0];
+            $this->kit = $this->kits[0]->name;
             $this->category_price = $result[0]->categories[0]->price;
             $this->product = $result;
             $this->shape = $this->shapes[0]->shape;
@@ -105,8 +109,12 @@ class Product extends Component
 
     public function priceCalculator(){
         $result = Remote::where('type', $this->remote)->first();
+        $kit_price = Kit::where("name", $this->kit)->first();
+        if($kit_price == null){
+            abort(500, "Internal Server Error");
+        }
         if($result != null){
-            $total_price = $this->category_price + $result->price + $this->shape_price;
+            $total_price = $this->category_price + $result->price + $this->shape_price + $kit_price->price;
             if(in_array($this->location, $this->locations)){
                 if($this->location == "Out Door"){
                     $this->total_price = $total_price + ($total_price * (15/100));
@@ -165,6 +173,7 @@ class Product extends Component
                 'remote' => $this->remote,
                 'email' => $this->email,
                 'order_id' => $order_id,
+                'kit' => $this->kit,
                 'price' => $this->total_price,
                 'price_id' => $result['id'],
                 'checkout_id' => $checkout_id,
@@ -174,7 +183,7 @@ class Product extends Component
                 'phone' => $this->phone
             ]);
             Http::post(config('app.product-pending'), [
-                'content' => "**ProductName**: {$this->product[0]->name}\n**ProductID**: {$this->product[0]->id}\n**Phone**: $this->phone\n**Shape**: $this->shape\n**Price**: $this->total_price\n**Email**: $this->email\n**Location**: $this->location\n**Adaptor**: $this->adaptor\n**Remote**: $this->remote\n**OrderID**: $order_id\n**PriceID**: {$result['id']}\n**StripeID**: {$this->product[0]->stripe_id}\n**StripeURL**: {$checkout['url']}\n"
+                'content' => "**ProductName**: {$this->product[0]->name}\n**ProductID**: {$this->product[0]->id}\n**Phone**: $this->phone\n**Kit**: $this->kit\n**Shape**: $this->shape\n**Price**: $$this->total_price\n**Email**: $this->email\n**Location**: $this->location\n**Adaptor**: $this->adaptor\n**Remote**: $this->remote\n**OrderID**: $order_id\n**PriceID**: {$result['id']}\n**StripeID**: {$this->product[0]->stripe_id}\n**StripeURL**: {$checkout['url']}\n"
             ]);
             return redirect($checkout['url']);
 

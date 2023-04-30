@@ -70,6 +70,19 @@
                     @error('remote')
                         <p class="text-red-600 mb-2">{{ $message }}</p>
                     @enderror
+                    <div class="py-2 text-white">
+                        <h2 class="font-bold text-lg">Installation Kit *{{ $kit }}</h2>
+                        <div class="py-3 w-full">
+                            <select name="kit" id="kit" wire:model="kit" class="bg-dark flex items-center w-full justify-center p-3 cursor-pointer rounded-md flex-col border">
+                                @foreach ($kits as $item)
+                                    <option value="{{ $item->name }}">{{ $item->name }} - ${{ $item->price }}</option>  
+                                 @endforeach 
+                            </select>
+                        </div>
+                    </div>
+                    @error('kit')
+                        <p class="text-red-600 mb-2">{{ $message }}</p>
+                    @enderror
                     <input type="number" wire:model.debounce.500ms="phone" placeholder="Phone (for shipping purpose)" class="w-full border-none bg-dark mt-2 rounded focus:border-main focus:ring-4 focus:ring-main text-base outline-none text-gray-300 py-2 px-3 leading-8 transition-colors duration-200 ease-in-out mb-3">
                     @error('phone')
                         <p class="text-red-600 mb-2">{{ $message }}</p>

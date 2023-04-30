@@ -120,16 +120,11 @@ class CreateDesign extends Component
         $this->font = $this->fonts[0];
         $this->color = $this->colors[0];
 
-
         $this->font2 = $this->fonts[0];
         $this->color2 = $this->colors[0];
 
         $this->font3 = $this->fonts[0];
         $this->color3 = $this->colors[0];
-
-
-
-
 
         $this->location = $this->locations[0];
         $this->adaptor = $this->adaptors[0];

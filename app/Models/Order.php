@@ -16,6 +16,7 @@ class Order extends Model
         'remote',
         'email',
         'order_id',
+        'kit',
         'price',
         'price_id',
         'checkout_id',

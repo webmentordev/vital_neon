@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('remote');
             $table->string('email');
             $table->string('order_id');
+            $table->string('kit');
             $table->string('price');
             $table->string('price_id');
             $table->string('checkout_id');
