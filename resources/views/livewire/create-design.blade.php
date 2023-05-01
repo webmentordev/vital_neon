@@ -35,43 +35,38 @@
                 </div>
             </div>
             
-            <div id="mydiv">
-                <div class="flex flex-col {{ $alignment }}" id="mydivheader">
-                    <span class="text-white {{ $font }} font-semibold" @if (!$dark_mode) 
-                    style="text-shadow:
-                    0 0 7px {{ $color }},
-                    0 0 7px {{ $color }},
-                    0 0 22px {{ $color }},
-                    0 0 22px {{ $color }},
-                    0 0 22px {{ $color }},
-                    0 0 22px {{ $color }},
-                    0 0 22px {{ $color }},
-                    0 0 22px {{ $color }}; font-size: {{ $size }}px;" @endif>{{ $line1 }}</span>
-                    @if ($line2)
-                    <span class="text-white {{ $font2 }} font-semibold" @if (!$dark_mode) 
-                    style="text-shadow:
-                    0 0 7px {{ $color2 }},
-                    0 0 7px {{ $color2 }},
-                    0 0 22px {{ $color2 }},
-                    0 0 22px {{ $color2 }},
-                    0 0 22px {{ $color2 }},
-                    0 0 22px {{ $color2 }},
-                    0 0 22px {{ $color2 }},
-                    0 0 22px {{ $color2 }}; font-size: {{ $size }}px; margin-top: {{ $leading }}px" @endif>{{ $line2 }}</span>
-                    @endif
-                    @if ($line3)
-                        <span class="text-white {{ $font3 }} font-semibold" @if (!$dark_mode) 
-                        style="text-shadow:
-                        0 0 7px {{ $color3 }},
-                        0 0 7px {{ $color3 }},
-                        0 0 22px {{ $color3 }},
-                        0 0 22px {{ $color3 }},
-                        0 0 22px {{ $color3 }},
-                        0 0 22px {{ $color3 }},
-                        0 0 22px {{ $color3 }},
-                        0 0 22px {{ $color3 }}; font-size: {{ $size }}px; margin-top: {{ $leading }}px" @endif>{{ $line3 }}</span>
-                    @endif
-                </div>
+            <div class="flex flex-col {{ $alignment }}">
+                <span class="text-white {{ $font }} font-semibold" 
+                style="@if (!$dark_mode) text-shadow:
+                {{ $color }} 0px 0px 5px,
+                {{ $color }} 0px 0px 10px,
+                {{ $color }} 0px 0px 20px,
+                {{ $color }} 0px 0px 30px,
+                {{ $color }} 0px 0px 40px,
+                {{ $color }} 0px 0px 55px,
+                {{ $color }} 0px 0px 75px; @endif font-size: {{ $size }}px;">{{ $line1 }}</span>
+                @if ($line2)
+                <span class="text-white {{ $font2 }} font-semibold" 
+                style="@if (!$dark_mode) text-shadow:
+                    {{ $color2 }} 0px 0px 5px,
+                    {{ $color2 }} 0px 0px 10px,
+                    {{ $color2 }} 0px 0px 20px,
+                    {{ $color2 }} 0px 0px 30px,
+                    {{ $color2 }} 0px 0px 40px,
+                    {{ $color2 }} 0px 0px 55px,
+                    {{ $color2 }} 0px 0px 75px; @endif font-size: {{ $size }}px; margin-top: {{ $leading }}px" >{{ $line2 }}</span>
+                @endif
+                @if ($line3)
+                    <span class="text-white {{ $font3 }} font-semibold" 
+                    style="@if (!$dark_mode) text-shadow:
+                    {{ $color3 }} 0px 0px 5px,
+                    {{ $color3 }} 0px 0px 10px,
+                    {{ $color3 }} 0px 0px 20px,
+                    {{ $color3 }} 0px 0px 30px,
+                    {{ $color3 }} 0px 0px 40px,
+                    {{ $color3 }} 0px 0px 55px,
+                    {{ $color3 }} 0px 0px 75px; @endif font-size: {{ $size }}px; margin-top: {{ $leading }}px">{{ $line3 }}</span>
+                @endif
             </div>
 
             <div class="flex items-center justify-between absolute w-full bottom-0 p-3">
@@ -304,50 +299,6 @@
         };
         function change(){
             output.style.backgroundColor = color.value;
-        }
-      </script>
-
-      <script>
-        dragElement(document.getElementById("mydiv"));
-        function dragElement(elmnt) {
-        var pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
-        if (document.getElementById(elmnt.id + "header")) {
-            // if present, the header is where you move the DIV from:
-            document.getElementById(elmnt.id + "header").onmousedown = dragMouseDown;
-        } else {
-            // otherwise, move the DIV from anywhere inside the DIV:
-            elmnt.onmousedown = dragMouseDown;
-        }
-
-        function dragMouseDown(e) {
-            e = e || window.event;
-            e.preventDefault();
-            // get the mouse cursor position at startup:
-            pos3 = e.clientX;
-            pos4 = e.clientY;
-            document.onmouseup = closeDragElement;
-            // call a function whenever the cursor moves:
-            document.onmousemove = elementDrag;
-        }
-
-        function elementDrag(e) {
-            e = e || window.event;
-            e.preventDefault();
-            // calculate the new cursor position:
-            pos1 = pos3 - e.clientX;
-            pos2 = pos4 - e.clientY;
-            pos3 = e.clientX;
-            pos4 = e.clientY;
-            // set the element's new position:
-            elmnt.style.top = (elmnt.offsetTop - pos2) + "px";
-            elmnt.style.left = (elmnt.offsetLeft - pos1) + "px";
-        }
-
-        function closeDragElement() {
-            // stop moving when mouse button is released:
-            document.onmouseup = null;
-            document.onmousemove = null;
-        }
         }
       </script>
 </section>

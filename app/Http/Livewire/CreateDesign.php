@@ -89,7 +89,7 @@ class CreateDesign extends Component
     $line_price,
     $Select, $chars,
     $line1, $line2, $line3, $kit_price, $phone,
-    $jacket, $leading = 50, $size = 32;
+    $jacket, $leading = 50, $size = 52;
 
     public $line_count = 1,
     $dark_mode = false,
@@ -117,7 +117,7 @@ class CreateDesign extends Component
         $this->lines = Line::all();
         $this->kits = Kit::all();
         $this->chars = $this->lines[0]->chars;
-        $this->font = $this->fonts[0];
+        $this->font = $this->fonts[16];
         $this->color = $this->colors[0];
 
         $this->font2 = $this->fonts[0];
