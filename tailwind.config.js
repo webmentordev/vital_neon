@@ -47,6 +47,9 @@ module.exports = {
                 "475px": {
                     "max": "475px"
                 },
+                "400px": {
+                    "max": "400px"
+                }
             },
             fontFamily: {
                 sans: ['Figtree', ...defaultTheme.fontFamily.sans],

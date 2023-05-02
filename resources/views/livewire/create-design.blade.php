@@ -1,9 +1,9 @@
 <section class="w-full py-[80px]">
-    <div class="grid grid-cols-2 text-white gap-6 max-w-[1360px] m-auto min-h-[800px] 575px:min-h-fit 890px:grid-cols-1 bg-light p-6 mb-6">
+    <div class="grid grid-cols-2 text-white gap-6 max-w-[1360px] m-auto min-h-[800px] 575px:min-h-fit 890px:flex 890px:flex-col bg-light p-6 mb-6">
         <div wire:loading wire:target="checkout" class="fixed left-[45%] 575px:left-0 bottom-3">
             <div class="flex items-center bg-black text-white p-6 rounded-lg"><img src="https://api.iconify.design/svg-spinners:ring-resize.svg?color=%23ffffff" alt="Loading Icon"> <span class="ml-2">Processing...</span></div>
         </div>
-        <div class="bg-cover bg-center relative rounded-lg flex justify-center items-center 890px:min-h-[800px]" id="backDiv">
+        <div class="bg-cover bg-center relative rounded-lg flex justify-center items-center 890px:min-h-[800px] h-full" id="backDiv">
             <span class="fixed bg-main rounded-lg p-3 bottom-3 z-10 right-3 text-gray-800 text-4xl font-semibold z-50"><span class="text-2xl">$</span>{{ $total_price }}</span>
             
             <div wire:click="$set('dark_mode', {{ !$dark_mode }})" class=" @if (!$dark_mode) bg-white @else bg-gray-800 @endif p-3 rounded-lg absolute top-2 left-2">
@@ -34,8 +34,10 @@
                     </div>
                 </div>
             </div>
+
+            <input type="range" id="move" name="move" min="-400" value="0" max="400" class="absolute rotate-90" style="right:-280px; width: 600px; height: 5px">
             
-            <div class="flex flex-col {{ $alignment }}">
+            <div class="flex flex-col {{ $alignment }}" id="main-text">
                 <span class="text-white {{ $font }} font-semibold" 
                 style="@if (!$dark_mode) text-shadow:
                 {{ $color }} 0px 0px 5px,
@@ -54,7 +56,7 @@
                     {{ $color2 }} 0px 0px 30px,
                     {{ $color2 }} 0px 0px 40px,
                     {{ $color2 }} 0px 0px 55px,
-                    {{ $color2 }} 0px 0px 75px; @endif font-size: {{ $size }}px; margin-top: {{ $leading }}px" >{{ $line2 }}</span>
+                    {{ $color2 }} 0px 0px 75px; @endif font-size: {{ $size }}px; margin-top: {{ $leading }}px">{{ $line2 }}</span>
                 @endif
                 @if ($line3)
                     <span class="text-white {{ $font3 }} font-semibold" 
@@ -73,13 +75,13 @@
                 <input type="color" class="hidden" id="color" onchange="change()">
                 <label for="color" class="bg-white p-3 rounded-full"><img width="30" src="https://api.iconify.design/nimbus:color-palette.svg?color=%230d92f8" alt="Palet Icon"></label>
                 <div class="px-2">
-                    <label for="photo" class="flex items-center"><span class="mr-2 text-white font-semibold">Upload Your Own Image</span><img src="https://api.iconify.design/line-md:uploading-loop.svg?color=%23ffffff" width="40" alt="Upload"></label>
+                    <label for="photo" class="flex items-center"><span class="mr-2 text-white font-semibold 400px:hidden">Upload Your Own Image</span><img src="https://api.iconify.design/line-md:uploading-loop.svg?color=%23ffffff" width="40" alt="Upload"></label>
                     <input type="file" id="photo" accept="image/*" onchange="loadFile(event)" class="hidden">
                 </div>
             </div>
         </div>
-        <form wire:submit.prevent="checkout" method="POST" class="text-sm max-h-[900px] overflow-scroll px-6 py-6">
-            <div class="flex items-center justify-between">
+        <form wire:submit.prevent="checkout" method="POST" class="text-sm max-h-[900px] overflow-y-scroll 850px:max-h-full px-6 py-6 850px:px-0 850px:overflow-y-hidden">
+            <div class="flex items-center justify-between 490px:flex-col">
                 <h1 class="text-main font-bold text-3xl mb-3">Design Your Neon</h1>
                 <div class="flex items-center">
                     <img wire:click="$set('alignment', 'items-center')" src="https://api.iconify.design/material-symbols:format-align-center.svg?color=%23FFFFFF" class="p-2 rounded-lg bg-dark mr-2" alt="Alignment Icon" width="50">
@@ -284,9 +286,17 @@
         <x-f-a-q />
     </section>
     <img id="output"/>
+    
     <script>
         const color = document.getElementById('color');
         var output = document.getElementById('backDiv');
+
+        const text = document.getElementById('main-text');
+        const move = document.getElementById('move');
+
+        const text1 = document.getElementById('text1');
+        const text2 = document.getElementById('text2');
+
         output.style.backgroundColor = "#000000";
 
         var loadFile = function(event) {
@@ -300,5 +310,11 @@
         function change(){
             output.style.backgroundColor = color.value;
         }
+
+        move.oninput = function() {
+            text.style.transform = `translateY(${move.value}px)`;
+        }
+
+
       </script>
 </section>
