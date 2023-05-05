@@ -279,3 +279,7 @@ nav a, nav .category{
 .main-body p span{
     @apply bg-gray-600 p-3 rounded-lg;
 }
+
+.links a:hover{
+    @apply text-main;
+}

@@ -107,6 +107,12 @@ class Product extends Component
         return view('livewire.product');
     }
 
+    public function updatedcategory(){
+        if($this->category == "custom"){
+            return redirect("https://wa.me/16476165799");
+        }
+    }
+    
     public function priceCalculator(){
         $result = Remote::where('type', $this->remote)->first();
         $kit_price = Kit::where("name", $this->kit)->first();

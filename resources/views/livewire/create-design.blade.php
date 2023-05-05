@@ -116,11 +116,13 @@
                 @endif
                 <div class="py-2">
                     <h2 class="font-bold mb-2 text-lg">Choose Line-1 Font</h2>
-                    <select name="font" id="font" wire:model="font" class="p-3 border-gray-300 flex items-center justify-between bg-dark rounded-md mb-3 capitalize w-full">
+                    <div class="grid grid-cols-2 gap-2 475px:grid-cols-1">
                         @foreach ($fonts as $fonty)
-                            <option value="{{ $fonty }}" class="text-gray-100 text-lg {{ $fonty }}">Style</option>
+                            <div class="p-3 cursor-pointer rounded-lg text-center border text-lg capitalize {{ $fonty }} @if ($font == $fonty) border-main @else border-white/10 @endif" wire:click="$set('font', '{{ $fonty }}')">
+                                {{ $fonty }}
+                            </div>
                         @endforeach
-                    </select>
+                    </div>
                 </div>
                 <div class="py-2">
                     <h2 class="font-bold mb-2 text-lg">Choose a colour</h2>
@@ -144,11 +146,13 @@
                     @endif
                     <div class="py-2">
                         <h2 class="font-bold mb-2 text-lg">Choose Line-2 Font</h2>
-                        <select name="font2" id="font2" wire:model="font2" class="p-3 border-gray-300 flex items-center justify-between bg-dark rounded-md mb-3 capitalize w-full">
+                        <div class="grid grid-cols-2 gap-2 475px:grid-cols-1">
                             @foreach ($fonts as $fonty)
-                                <option value="{{ $fonty }}" class="text-gray-100 text-lg {{ $fonty }}">Style</option>
+                                <div class="p-3 cursor-pointer rounded-lg text-center border text-lg capitalize {{ $fonty }} @if ($font2 == $fonty) border-main @else border-white/10 @endif" wire:click="$set('font2', '{{ $fonty }}')">
+                                    {{ $fonty }}
+                                </div>
                             @endforeach
-                        </select>
+                        </div>
                     </div>
                     <div class="py-2">
                         <h2 class="font-bold mb-2 text-lg">Choose a colour</h2>
@@ -172,11 +176,13 @@
                     @endif
                     <div class="py-2">
                         <h2 class="font-bold mb-2 text-lg">Choose Line-3 Font</h2>
-                        <select name="font3" id="font3" wire:model="font3" class="p-3 border-gray-300 flex items-center justify-between bg-dark rounded-md mb-3 capitalize w-full">
+                        <div class="grid grid-cols-2 gap-2 475px:grid-cols-1">
                             @foreach ($fonts as $fonty)
-                                <option value="{{ $fonty }}" class="text-gray-100 text-lg {{ $fonty }}">Style</option>
+                                <div class="p-3 cursor-pointer rounded-lg text-center border text-lg capitalize {{ $fonty }} @if ($font3 == $fonty) border-main @else border-white/10 @endif" wire:click="$set('font3', '{{ $fonty }}')">
+                                    {{ $fonty }}
+                                </div>
                             @endforeach
-                        </select>
+                        </div>
                     </div>
                     <div class="py-2">
                         <h2 class="font-bold mb-2 text-lg">Choose a colour</h2>
@@ -314,7 +320,5 @@
         move.oninput = function() {
             text.style.transform = `translateY(${move.value}px)`;
         }
-
-
       </script>
 </section>

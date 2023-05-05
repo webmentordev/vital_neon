@@ -73,6 +73,6 @@ Route::middleware('auth')->group(function () {
     Route::get('/searches', [SearchController::class, 'index'])->name('searches');
 });
 
-Route::get('/sitemap.xml', [SiteMapGenerator::class, 'index']);
+Route::get('/sitemap.xml', [SiteMapGenerator::class, 'index'])->name('sitemap');
 
 require __DIR__.'/auth.php';

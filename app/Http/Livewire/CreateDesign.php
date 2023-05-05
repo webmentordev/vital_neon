@@ -89,7 +89,7 @@ class CreateDesign extends Component
     $line_price,
     $Select, $chars,
     $line1, $line2, $line3, $kit_price, $phone,
-    $jacket, $leading = 50, $size = 52;
+    $jacket, $leading = 50, $size = 42;
 
     public $line_count = 1,
     $dark_mode = false,
@@ -293,7 +293,7 @@ class CreateDesign extends Component
         if(Kit::where('name', $this->kit)->first() == null){
             abort(500, 'Internal Server Error');
         }
-
+        
         if($this->arraycheck()){
             $checkout_id = $this->randomPassword();
             $order_id = $this->randomPassword();
@@ -311,8 +311,8 @@ class CreateDesign extends Component
                 'expires_at' => Carbon::now()->addMinutes(60)->timestamp,
                 'line_items' => [
                     [
-                    'price' => $result['id'],
-                    'quantity' => 1,
+                        'price' => $result['id'],
+                        'quantity' => 1,
                     ],
                 ],
                 'mode' => 'payment',

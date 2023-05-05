@@ -24,7 +24,7 @@ class CategoryPriceController extends Controller
         CategoryPrice::create([
             'name' => $request->name,
             'product_id' => $request->product,
-            'price' => $request->price + 45
+            'price' => $request->price
         ]);
         return back()->with('success', 'Category has been added!');
     }

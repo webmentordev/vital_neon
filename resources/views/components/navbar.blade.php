@@ -21,7 +21,7 @@
                 </div>
             </div>
             <a class="px-5 border-r border-gray-600" href="{{ route('support') }}">Support</a>
-            <a href="https://wa.me/923032225299" class="ml-5"><img src="https://api.iconify.design/logos:whatsapp-icon.svg?color=%23ffd402" width="36" alt="Whatsapp Icon"></a>
+            <a href="https://wa.me/16476165799" class="ml-5"><img src="https://api.iconify.design/logos:whatsapp-icon.svg?color=%23ffd402" width="36" alt="Whatsapp Icon"></a>
         </ul>
         <div class="hidden 1090px:block" x-data="{open: false}">
             <ul x-on:click="open = true">
@@ -44,8 +44,8 @@
                             @endforeach
                         </div>
                     </div>
+                    <a href="https://wa.me/16476165799" class="text-2xl mb-3 m-auto"><img src="https://api.iconify.design/logos:whatsapp-icon.svg?color=%23ffd402" width="36" alt="Whatsapp Icon"></a>
                 </ul>
-
             </div>
         </div>
     </div>
