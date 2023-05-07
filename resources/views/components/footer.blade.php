@@ -4,6 +4,7 @@
             <img src="{{ asset('assets/neon_tranp_white.png') }}" width="148" alt="VitalNeon icon">
             <p class="mb-3 py-3 border-b border-white/5 text-sm">Welcome to VitalNeon, your one-stop-shop for buying and creating custom neon signs. We offer a wide variety of pre-made neon signs for purchase, as well as the option to create your own personalized neon sign</p>
             <address class="flex items-center mb-3"><img class="mr-2" src="https://api.iconify.design/material-symbols:add-location-alt-rounded.svg?color=%23dbdbdb" width="25" alt="Address Icon"> 73 Belmont Drive, Brampton, ON, Canada, Ontario</address>
+            <address class="flex items-center mb-3"><img class="mr-2" src="https://api.iconify.design/mdi:gmail.svg?color=%23dbdbdb" width="25" alt="Address Icon"> contact@vitalneon.com</address>
             <ul class="flex items-center">
                 <a class="mr-4" href="https://www.instagram.com/vitalneon/" rel="nofollow" target="_blank"><img src="https://api.iconify.design/skill-icons:instagram.svg?color=%23f91a1a" width="25" alt="Social Media Icon"></a>
                 <a class="mr-2" href="https://www.facebook.com/profile.php?id=100089690514265/" rel="nofollow" target="_blank"><img src="https://api.iconify.design/logos:facebook.svg?color=%23f91a1a" width="25" alt="Social Media Icon"></a>

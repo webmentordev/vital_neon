@@ -3,19 +3,21 @@
 namespace App\Http\Livewire;
 
 use Carbon\Carbon;
-use App\Models\Cart;
 use App\Models\Kit;
+use App\Models\Cart;
 use App\Models\Line;
 use App\Models\Shape;
 use App\Models\Remote;
 use Livewire\Component;
 use Stripe\StripeClient;
+use Illuminate\Http\Request;
 use Livewire\WithFileUploads;
 use Illuminate\Support\Facades\Http;
 use Artesaos\SEOTools\Facades\JsonLd;
 use Artesaos\SEOTools\Facades\SEOMeta;
 use Artesaos\SEOTools\Facades\OpenGraph;
 use Artesaos\SEOTools\Facades\TwitterCard;
+use Illuminate\Support\Facades\Cookie;
 
 class CreateDesign extends Component
 {
@@ -93,7 +95,7 @@ class CreateDesign extends Component
 
     public $line_count = 1,
     $dark_mode = false,
-    $background = "Cut to shape";
+    $backgroundImage;
 
 
     protected $rules = [
@@ -137,6 +139,11 @@ class CreateDesign extends Component
         $this->kit = $this->kits[0]->name;
         $this->kit_price = $this->kits[0]->price;
         $this->priceCalculator();
+        if(isset($_COOKIE['myimageurl'])){
+            if($_COOKIE['myimageurl']){
+                $this->backgroundImage = $_COOKIE['myimageurl'];
+            }
+        }
     }
 
     public function upSize(){
@@ -186,10 +193,34 @@ class CreateDesign extends Component
     }
 
     public function updated(){
+        if(isset($_COOKIE['myimageurl'])){
+            if($_COOKIE['myimageurl']){
+                $this->backgroundImage = $_COOKIE['myimageurl'];
+            }
+        }
+    }
+
+    public function checkUpdate(){
         $this->priceCalculator();
         $this->updatedline1();
         $this->updatedline2();
         $this->updatedline3();
+    }
+
+    public function updatedshape(){
+        $this->checkUpdate();
+    }
+    public function updatedlocation(){
+        $this->checkUpdate();
+    }
+    public function updatedremote(){
+        $this->checkUpdate();
+    }
+    public function updatedkit(){
+        $this->checkUpdate();
+    }
+    public function updatedjacket(){
+        $this->checkUpdate();
     }
 
     public function updatedSelect(){
@@ -282,18 +313,33 @@ class CreateDesign extends Component
 
     public function checkout(){
         $this->validate();
+        if($this->line_count == 1){
+            $this->validate([
+                'line1' => 'required|min:1|max:'.$this->chars,
+            ]);
+        }
+        if($this->line_count == 2){
+            $this->validate([
+                'line1' => 'required|min:1|max:'.$this->chars,
+                'line2' => 'required|min:1|max:'.$this->chars,
+            ]);
+        }
+        if($this->line_count == 3){
+            $this->validate([
+                'line1' => 'required|min:1|max:'.$this->chars,
+                'line2' => 'required|min:1|max:'.$this->chars,
+                'line3' => 'required|min:1|max:'.$this->chars
+            ]);
+        }
         if(Remote::where('type', $this->remote)->first() == null){
             abort(500, 'Internal Server Error');
         }
-        
         if(Shape::where('shape', $this->shape)->first() == null){
             abort(500, 'Internal Server Error');
         }
-
         if(Kit::where('name', $this->kit)->first() == null){
             abort(500, 'Internal Server Error');
         }
-        
         if($this->arraycheck()){
             $checkout_id = $this->randomPassword();
             $order_id = $this->randomPassword();

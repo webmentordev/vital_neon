@@ -17,6 +17,7 @@ use App\Http\Controllers\SupportController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ProductsController;
 use App\Http\Controllers\CategoryPriceController;
+use App\Http\Controllers\CreateDesignController;
 use App\Http\Controllers\HomeController;
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
@@ -26,6 +27,7 @@ Route::get('/dashboard', function () {
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::get('/create-design', CreateDesign::class)->name('create-design');
+// Route::get('/create-design', [CreateDesignController::class, 'index'])->name('create-design');
 
 Route::get('/upload-design', [DesignController::class, 'index'])->name('upload-design');
 Route::post('/upload-design', [DesignController::class, 'store'])->middleware(['throttle:1,1']);

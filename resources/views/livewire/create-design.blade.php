@@ -3,7 +3,7 @@
         <div wire:loading wire:target="checkout" class="fixed left-[45%] 575px:left-0 bottom-3">
             <div class="flex items-center bg-black text-white p-6 rounded-lg"><img src="https://api.iconify.design/svg-spinners:ring-resize.svg?color=%23ffffff" alt="Loading Icon"> <span class="ml-2">Processing...</span></div>
         </div>
-        <div class="bg-cover bg-center relative rounded-lg flex justify-center items-center 890px:min-h-[800px] h-full" id="backDiv">
+        <div class="bg-cover bg-center relative rounded-lg flex justify-center items-center 890px:min-h-[800px] h-full" style="background-image: url({{ $backgroundImage }})" id="backDiv">
             <span class="fixed bg-main rounded-lg p-3 bottom-3 z-10 right-3 text-gray-800 text-4xl font-semibold z-50"><span class="text-2xl">$</span>{{ $total_price }}</span>
             
             <div wire:click="$set('dark_mode', {{ !$dark_mode }})" class=" @if (!$dark_mode) bg-white @else bg-gray-800 @endif p-3 rounded-lg absolute top-2 left-2">
@@ -35,8 +35,6 @@
                 </div>
             </div>
 
-            <input type="range" id="move" name="move" min="-400" value="0" max="400" class="absolute rotate-90" style="right:-280px; width: 600px; height: 5px">
-            
             <div class="flex flex-col {{ $alignment }}" id="main-text">
                 <span class="text-white {{ $font }} font-semibold" 
                 style="@if (!$dark_mode) text-shadow:
@@ -71,11 +69,14 @@
                 @endif
             </div>
 
-            <div class="flex items-center justify-between absolute w-full bottom-0 p-3">
-                <input type="color" class="hidden" id="color" onchange="change()">
-                <label for="color" class="bg-white p-3 rounded-full"><img width="30" src="https://api.iconify.design/nimbus:color-palette.svg?color=%230d92f8" alt="Palet Icon"></label>
+            <div class="flex items-center justify-between absolute w-full bottom-0 p-3 530px:flex-col">
+                {{-- <input type="color" class="hidden" id="color" onchange="change()">
+                <label for="color" class="bg-white p-3 rounded-full"><img width="30" src="https://api.iconify.design/nimbus:color-palette.svg?color=%230d92f8" alt="Palet Icon"></label> --}}
+                
+                <input type="range" id="move" name="move" min="-400" max="400" value="0" class="530px:mb-3 w-[200px] h-[5px] 530px:w-full">
+                
                 <div class="px-2">
-                    <label for="photo" class="flex items-center"><span class="mr-2 text-white font-semibold 400px:hidden">Upload Your Own Image</span><img src="https://api.iconify.design/line-md:uploading-loop.svg?color=%23ffffff" width="40" alt="Upload"></label>
+                    <label for="photo" class="flex items-center"><span class="mr-2 text-white font-semibold">Upload Your Own Image</span><img src="https://api.iconify.design/line-md:uploading-loop.svg?color=%23ffffff" width="40" alt="Upload"></label>
                     <input type="file" id="photo" accept="image/*" onchange="loadFile(event)" class="hidden">
                 </div>
             </div>
@@ -94,6 +95,9 @@
             @endif
             <div class="py-2">
                 <h2 class="font-bold text-lg">Text Line & Size Options</h2>
+                @error('line_check')
+                    <p class="text-red-600 mb-2">{{ $message }}</p>
+                @enderror
                 <div class="mt-1">
                     <select wire:model="Select" class="w-full mt-2 bg-dark rounded border focus:border-main focus:ring-4 focus:ring-main-light text-base outline-none text-gray-300 py-2 px-3 leading-8 transition-colors duration-200 ease-in-out mb-3">
                         @foreach ($lines as $line)
@@ -110,13 +114,17 @@
             @if ($line_count >= 1)
             <div class="p-6 bg-[#1E1E1E] rounded-lg mb-5">
                 <h2 class="font-bold text-lg">Line One Text</h2>
+                @error('line1')
+                    <p class="text-red-600 mb-2">{{ $message }}</p>
+                @enderror
                 <input type="text" wire:model.debounce.1000ms="line1" placeholder="Text Line One" class="w-full mt-2 bg-dark rounded border focus:border-main focus:ring-4 focus:ring-main-light text-base outline-none text-gray-200 py-2 px-3 leading-8 transition-colors duration-200 ease-in-out mb-3">
                 @if (session('lineCount1'))
                     <p class="text-red-600 mb-2">{{ session('lineCount1') }}</p>
                 @endif
-                <div class="py-2">
+                <div class="py-2" x-data="{ open: false }">
                     <h2 class="font-bold mb-2 text-lg">Choose Line-1 Font</h2>
-                    <div class="grid grid-cols-2 gap-2 475px:grid-cols-1">
+                    <span class="p-6 border border-main bg-dark w-full inline-block rounded-lg text-center font-semibold mb-3" x-on:click="open = !open">Open now</span>
+                    <div class="grid grid-cols-2 gap-2 475px:grid-cols-1" x-show="open">
                         @foreach ($fonts as $fonty)
                             <div class="p-3 cursor-pointer rounded-lg text-center border text-lg capitalize {{ $fonty }} @if ($font == $fonty) border-main @else border-white/10 @endif" wire:click="$set('font', '{{ $fonty }}')">
                                 {{ $fonty }}
@@ -140,13 +148,17 @@
             @if ($line_count >= 2)
                 <div class="p-6 bg-[#1E1E1E] rounded-lg mb-5">
                     <h2 class="font-bold text-lg">Line Two Text</h2>
+                    @error('line2')
+                        <p class="text-red-600 mb-2">{{ $message }}</p>
+                    @enderror
                     <input type="text" wire:model.debounce.1000ms="line2" placeholder="Text Line Two" class="w-full mt-2 bg-dark rounded border focus:border-main focus:ring-4 focus:ring-main-light text-base outline-none text-gray-200 py-2 px-3 leading-8 transition-colors duration-200 ease-in-out mb-3">
                     @if (session('lineCount2'))
                         <p class="text-red-600 mb-2">{{ session('lineCount2') }}</p>
                     @endif
-                    <div class="py-2">
+                    <div class="py-2" x-data="{ open: false }">
                         <h2 class="font-bold mb-2 text-lg">Choose Line-2 Font</h2>
-                        <div class="grid grid-cols-2 gap-2 475px:grid-cols-1">
+                        <span class="p-6 border border-main bg-dark w-full inline-block rounded-lg text-center font-semibold mb-3" x-on:click="open = !open">Open now</span>
+                        <div class="grid grid-cols-2 gap-2 475px:grid-cols-1" x-show="open">
                             @foreach ($fonts as $fonty)
                                 <div class="p-3 cursor-pointer rounded-lg text-center border text-lg capitalize {{ $fonty }} @if ($font2 == $fonty) border-main @else border-white/10 @endif" wire:click="$set('font2', '{{ $fonty }}')">
                                     {{ $fonty }}
@@ -170,13 +182,17 @@
             @if ($line_count == 3)
                <div class="p-6 bg-[#1E1E1E] rounded-lg mb-5">
                     <h2 class="font-bold text-lg">Line Three Text</h2>
+                    @error('line3')
+                        <p class="text-red-600 mb-2">{{ $message }}</p>
+                    @enderror
                     <input type="text" wire:model.debounce.1000ms="line3" placeholder="Text Line Three" class="w-full mt-2 bg-dark rounded border focus:border-main focus:ring-4 focus:ring-main-light text-base outline-none text-gray-200 py-2 px-3 leading-8 transition-colors duration-200 ease-in-out mb-3">
                     @if (session('lineCount3'))
                         <p class="text-red-600 mb-2">{{ session('lineCount3') }}</p>
                     @endif
-                    <div class="py-2">
+                    <div class="py-2" x-data="{ open: false }">
                         <h2 class="font-bold mb-2 text-lg">Choose Line-3 Font</h2>
-                        <div class="grid grid-cols-2 gap-2 475px:grid-cols-1">
+                        <span class="p-6 border border-main bg-dark w-full inline-block rounded-lg text-center font-semibold mb-3" x-on:click="open = !open">Open now</span>
+                        <div class="grid grid-cols-2 gap-2 475px:grid-cols-1" x-show="open">
                             @foreach ($fonts as $fonty)
                                 <div class="p-3 cursor-pointer rounded-lg text-center border text-lg capitalize {{ $fonty }} @if ($font3 == $fonty) border-main @else border-white/10 @endif" wire:click="$set('font3', '{{ $fonty }}')">
                                     {{ $fonty }}
@@ -210,7 +226,7 @@
             </div>
 
             <div class="py-2">
-                <h2 class="font-bold text-lg mb-3">Backboard Style *{{ $background }}</h2>
+                <h2 class="font-bold text-lg mb-3">Backboard Style *{{ $shape }}</h2>
                 <div class="py-3">
                     @foreach ($shapes as $item)
                         <div wire:click="$set('shape', '{{ $item->shape }}')" class="flex bg-dark mb-4 p-3 cursor-pointer rounded-md flex-col border @if ($shape ==  $item->shape) border-main @else border-gray-800 @endif">
@@ -291,8 +307,6 @@
     <section class="bg-dark">
         <x-f-a-q />
     </section>
-    <img id="output"/>
-    
     <script>
         const color = document.getElementById('color');
         var output = document.getElementById('backDiv');
@@ -307,12 +321,17 @@
 
         var loadFile = function(event) {
           output.style.backgroundColor = "transparent";
-          output.style.backgroundImage = `url(${URL.createObjectURL(event.target.files[0]).toString()})`;
-          output.onload = function() {
-            var myURL = URL.revokeObjectURL(output.src)
-            console.log(myURL)
-          }
+          var myImageURL = URL.createObjectURL(event.target.files[0]).toString();
+          console.log(event.target.files[0]);
+          output.style.backgroundImage = `url(${myImageURL})`;
+          document.cookie = `myimageurl=${myImageURL}`;
+        
+            //   output.onload = function() {
+            //     var myURL = URL.revokeObjectURL(output.src)
+            //     console.log(myURL)
+            //   }
         };
+
         function change(){
             output.style.backgroundColor = color.value;
         }
