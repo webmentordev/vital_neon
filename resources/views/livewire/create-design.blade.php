@@ -124,7 +124,7 @@
                 <div class="py-2" x-data="{ open: false }">
                     <h2 class="font-bold mb-2 text-lg">Choose Line-1 Font</h2>
                     <span class="p-6 border border-main bg-dark w-full inline-block rounded-lg text-center font-semibold mb-3" x-on:click="open = !open">Open now</span>
-                    <div class="grid grid-cols-2 gap-2 475px:grid-cols-1" x-show="open">
+                    <div class="grid grid-cols-2 gap-2 475px:grid-cols-1" x-show="open" x-cloak>
                         @foreach ($fonts as $fonty)
                             <div class="p-3 cursor-pointer rounded-lg text-center border text-lg capitalize {{ $fonty }} @if ($font == $fonty) border-main @else border-white/10 @endif" wire:click="$set('font', '{{ $fonty }}')">
                                 {{ $fonty }}
@@ -158,7 +158,7 @@
                     <div class="py-2" x-data="{ open: false }">
                         <h2 class="font-bold mb-2 text-lg">Choose Line-2 Font</h2>
                         <span class="p-6 border border-main bg-dark w-full inline-block rounded-lg text-center font-semibold mb-3" x-on:click="open = !open">Open now</span>
-                        <div class="grid grid-cols-2 gap-2 475px:grid-cols-1" x-show="open">
+                        <div class="grid grid-cols-2 gap-2 475px:grid-cols-1" x-show="open" x-cloak>
                             @foreach ($fonts as $fonty)
                                 <div class="p-3 cursor-pointer rounded-lg text-center border text-lg capitalize {{ $fonty }} @if ($font2 == $fonty) border-main @else border-white/10 @endif" wire:click="$set('font2', '{{ $fonty }}')">
                                     {{ $fonty }}
@@ -192,7 +192,7 @@
                     <div class="py-2" x-data="{ open: false }">
                         <h2 class="font-bold mb-2 text-lg">Choose Line-3 Font</h2>
                         <span class="p-6 border border-main bg-dark w-full inline-block rounded-lg text-center font-semibold mb-3" x-on:click="open = !open">Open now</span>
-                        <div class="grid grid-cols-2 gap-2 475px:grid-cols-1" x-show="open">
+                        <div class="grid grid-cols-2 gap-2 475px:grid-cols-1" x-show="open" x-cloak>
                             @foreach ($fonts as $fonty)
                                 <div class="p-3 cursor-pointer rounded-lg text-center border text-lg capitalize {{ $fonty }} @if ($font3 == $fonty) border-main @else border-white/10 @endif" wire:click="$set('font3', '{{ $fonty }}')">
                                     {{ $fonty }}

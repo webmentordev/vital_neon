@@ -23,7 +23,7 @@ class Listing extends Component
     public function render(): View|Closure|string
     {
         return view('components.listing', [
-            'products' => Product::latest()->paginate(10)
+            'products' => Product::latest()->limit(9)->get()
         ]);
     }
 }

@@ -283,3 +283,7 @@ nav a, nav .category{
 .links a:hover{
     @apply text-main;
 }
+
+.pagination p{
+    @apply text-white;
+}
