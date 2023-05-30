@@ -40,7 +40,7 @@
     @endforeach
     @foreach ($products as $product)
         <url>
-            <loc>{{ url('/') }}/products/{{ $product->slug }}</loc>
+            <loc>{{ url('/') }}/product/{{ $product->slug }}</loc>
             <lastmod>{{ $product->created_at->tz('UTC')->toAtomString() }}</lastmod>
             <changefreq>weekly</changefreq>
             <priority>0.90</priority>

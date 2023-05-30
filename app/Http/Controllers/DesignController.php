@@ -55,7 +55,7 @@ class DesignController extends Controller
             'image' => $request->image->store('designs', 'public_disk')
         ]);
         Http::post(config('app.design'), [
-            'content' => "**Email:** $result->email\n**Name:** $result->name\n**Message:** $result->message\n**Image:** https://vitalneon/storage/$result->image"
+            'content' => "**Email:** $result->email\n**Name:** $result->name\n**Message:** $result->message\n**Image:** https://vitalneon.com/storage/$result->image"
         ]);
         return back()->with('success', 'File uploaded. we will send you the quote in few hours');
     }

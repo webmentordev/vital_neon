@@ -69,93 +69,291 @@ nav a, nav .category{
 }
 
 @font-face {
-    font-family: 'signature';
-    src: url('../fonts/signature.ttf');
+    font-family: 'amejo';
+    src: url('../fonts/amejo.ttf');
 }
-
-@font-face {
-    font-family: 'neon_tube';
-    src: url('../fonts/neon_tube.otf');
+.amejo {
+    font-family: 'amejo';
 }
-
 @font-face {
-    font-family: 'aamonoline';
-    src: url('../fonts/neon/aamonoline.ttf');
+    font-family: 'artelyinks';
+    src: url('../fonts/artelyinks.ttf');
 }
-
-@font-face {
-    font-family: 'allison';
-    src: url('../fonts/neon/allison.otf');
+.artelyinks {
+    font-family: 'artelyinks';
 }
-
 @font-face {
-    font-family: 'always';
-    src: url('../fonts/neon/always.otf');
+    font-family: 'bayshore';
+    src: url('../fonts/bayshore.otf');
 }
-
-@font-face {
-    font-family: 'ananda';
-    src: url('../fonts/neon/ananda.ttf');
+.bayshore {
+    font-family: 'bayshore';
 }
-
 @font-face {
-    font-family: 'architex';
-    src: url('../fonts/neon/architex.ttf');
+    font-family: 'bendungan';
+    src: url('../fonts/bendungan.ttf');
 }
-
-@font-face {
-    font-family: 'billionDreams';
-    src: url('../fonts/neon/billionDreams.ttf');
+.bendungan {
+    font-family: 'bendungan';
 }
-
 @font-face {
-    font-family: 'calasans';
-    src: url('../fonts/neon/calasans.otf');
+    font-family: 'beon';
+    src: url('../fonts/beon.ttf');
 }
-
-@font-face {
-    font-family: 'fribash';
-    src: url('../fonts/neon/fribash.otf');
+.beon {
+    font-family: 'beon';
 }
-
 @font-face {
-    font-family: 'library';
-    src: url('../fonts/neon/library.otf');
+    font-family: 'billistone';
+    src: url('../fonts/billistone.otf');
 }
-
-@font-face {
-    font-family: 'magiera';
-    src: url('../fonts/neon/magiera.ttf');
+.billistone {
+    font-family: 'billistone';
 }
-
 @font-face {
-    font-family: 'nickainley';
-    src: url('../fonts/neon/nickainley.otf');
+    font-family: 'carbono';
+    src: url('../fonts/carbono.ttf');
 }
-
-@font-face {
-    font-family: 'playhead';
-    src: url('../fonts/neon/playhead.otf');
+.carbono {
+    font-family: 'carbono';
 }
-
 @font-face {
-    font-family: 'playlist';
-    src: url('../fonts/neon/playlist.otf');
+    font-family: 'cliquelly';
+    src: url('../fonts/cliquelly.ttf');
 }
-
-@font-face {
-    font-family: 'roboto';
-    src: url('../fonts/neon/roboto.ttf');
+.cliquelly {
+    font-family: 'cliquelly';
 }
-
 @font-face {
-    font-family: 'simple';
-    src: url('../fonts/neon/simple.otf');
+    font-family: 'colon-mono';
+    src: url('../fonts/colon-mono.ttf');
 }
-
+.colon-mono {
+    font-family: 'colon-mono';
+}
 @font-face {
-    font-family: 'slender';
-    src: url('../fonts/neon/slender.ttf');
+    font-family: 'daisy-chain';
+    src: url('../fonts/daisy-chain.ttf');
+}
+.daisy-chain {
+    font-family: 'daisy-chain';
+}
+@font-face {
+    font-family: 'garnet-script';
+    src: url('../fonts/garnet-script.ttf');
+}
+.garnet-script {
+    font-family: 'garnet-script';
+}
+@font-face {
+    font-family: 'gotham';
+    src: url('../fonts/gotham.otf');
+}
+.gotham {
+    font-family: 'gotham';
+}
+@font-face {
+    font-family: 'greyton';
+    src: url('../fonts/greyton.otf');
+}
+.greyton {
+    font-family: 'greyton';
+}
+@font-face {
+    font-family: 'gruenewald';
+    src: url('../fonts/gruenewald.ttf');
+}
+.gruenewald {
+    font-family: 'gruenewald';
+}
+@font-face {
+    font-family: 'highway';
+    src: url('../fonts/highway.ttf');
+}
+.highway {
+    font-family: 'highway';
+}
+@font-face {
+    font-family: 'love-malia';
+    src: url('../fonts/love-malia.ttf');
+}
+.love-malia {
+    font-family: 'love-malia';
+}
+@font-face {
+    font-family: 'magnolia';
+    src: url('../fonts/magnolia.ttf');
+}
+.magnolia {
+    font-family: 'magnolia';
+}
+@font-face {
+    font-family: 'market';
+    src: url('../fonts/market.ttf');
+}
+.market {
+    font-family: 'market';
+}
+@font-face {
+    font-family: 'mikagi';
+    src: url('../fonts/mikagi.otf');
+}
+.mikagi {
+    font-family: 'mikagi';
+}
+@font-face {
+    font-family: 'monly';
+    src: url('../fonts/monly.otf');
+}
+.monly {
+    font-family: 'monly';
+}
+@font-face {
+    font-family: 'msmadi';
+    src: url('../fonts/msmadi.ttf');
+}
+.msmadi {
+    font-family: 'msmadi';
+}
+@font-face {
+    font-family: 'nevada';
+    src: url('../fonts/nevada.ttf');
+}
+.nevada {
+    font-family: 'nevada';
+}
+@font-face {
+    font-family: 'palm-canyon';
+    src: url('../fonts/palm-canyon.otf');
+}
+.palm-canyon {
+    font-family: 'palm-canyon';
+}
+@font-face {
+    font-family: 'panatype';
+    src: url('../fonts/panatype.otf');
+}
+.panatype {
+    font-family: 'panatype';
+}
+@font-face {
+    font-family: 'point-soft';
+    src: url('../fonts/point-soft.ttf');
+}
+.point-soft {
+    font-family: 'point-soft';
+}
+@font-face {
+    font-family: 'rename';
+    src: url('../fonts/rename.sh');
+}
+.rename {
+    font-family: 'rename';
+}
+@font-face {
+    font-family: 'retro-signature';
+    src: url('../fonts/retro-signature.otf');
+}
+.retro-signature {
+    font-family: 'retro-signature';
+}
+@font-face {
+    font-family: 'rosemary';
+    src: url('../fonts/rosemary.ttf');
+}
+.rosemary {
+    font-family: 'rosemary';
+}
+@font-face {
+    font-family: 'sahur-bosku';
+    src: url('../fonts/sahur-bosku.ttf');
+}
+.sahur-bosku {
+    font-family: 'sahur-bosku';
+}
+@font-face {
+    font-family: 'saltines';
+    src: url('../fonts/saltines.otf');
+}
+.saltines {
+    font-family: 'saltines';
+}
+@font-face {
+    font-family: 'sandstone';
+    src: url('../fonts/sandstone.otf');
+}
+.sandstone {
+    font-family: 'sandstone';
+}
+@font-face {
+    font-family: 'sci-fied';
+    src: url('../fonts/sci-fied.ttf');
+}
+.sci-fied {
+    font-family: 'sci-fied';
+}
+@font-face {
+    font-family: 'setting-fires';
+    src: url('../fonts/setting-fires.ttf');
+}
+.setting-fires {
+    font-family: 'setting-fires';
+}
+@font-face {
+    font-family: 'starstoles-free';
+    src: url('../fonts/starstoles-free.ttf');
+}
+.starstoles-free {
+    font-family: 'starstoles-free';
+}
+@font-face {
+    font-family: 'suddenlydemo-jrn5a';
+    src: url('../fonts/suddenlydemo-jrn5a.otf');
+}
+.suddenlydemo-jrn5a {
+    font-family: 'suddenlydemo-jrn5a';
+}
+@font-face {
+    font-family: 'suddenly-regular';
+    src: url('../fonts/suddenly-regular.ttf');
+}
+.suddenly-regular {
+    font-family: 'suddenly-regular';
+}
+@font-face {
+    font-family: 'torusbiline-bold';
+    src: url('../fonts/torusbiline-bold.ttf');
+}
+.torusbiline-bold {
+    font-family: 'torusbiline-bold';
+}
+@font-face {
+    font-family: 'torusbold';
+    src: url('../fonts/torusbold.ttf');
+}
+.torusbold {
+    font-family: 'torusbold';
+}
+@font-face {
+    font-family: 'violia-free';
+    src: url('../fonts/violia-free.ttf');
+}
+.violia-free {
+    font-family: 'violia-free';
+}
+@font-face {
+    font-family: 'wiretype';
+    src: url('../fonts/wiretype.ttf');
+}
+.wiretype {
+    font-family: 'wiretype';
+}
+@font-face {
+    font-family: 'yarorg';
+    src: url('../fonts/yarorg.ttf');
+}
+.yarorg {
+    font-family: 'yarorg';
 }
 
 .neonText{
@@ -189,71 +387,6 @@ nav a, nav .category{
 
 .error{
     @apply text-red-600 my-1;
-}
-
-.logo{
-    font-family: 'neon_tube';
-}
-
-.allura {
-    font-family: 'Allura', cursive;
-}
-.dancing {
-    font-family: 'Dancing Script', cursive;
-}
-.montecarlo {
-    font-family: 'MonteCarlo', cursive;
-}
-.aamonoline {
-    font-family: 'aamonoline';
-}
-.allison {
-    font-family: 'allison';
-}
-.always {
-    font-family: 'always';
-}
-.ananda {
-    font-family: 'ananda';
-}
-.architex {
-    font-family: 'architex';
-}
-.billionDreams {
-    font-family: 'billionDreams';
-}
-.calasans {
-    font-family: 'calasans';
-}
-.fribash {
-    font-family: 'fribash';
-}
-.library{
-    font-family: 'library';
-}
-.magiera {
-    font-family: 'magiera';
-}
-.nickainley {
-    font-family: 'nickainley';
-}
-.playhead {
-    font-family: 'playhead';
-}
-.playlist {
-    font-family: 'playlist';
-}
-.roboto {
-    font-family: 'roboto';
-}
-.simple {
-    font-family: 'simple';
-}
-.slender {
-    font-family: 'slender';
-}
-.signature {
-    font-family: 'signature';
 }
 
 .main-body{

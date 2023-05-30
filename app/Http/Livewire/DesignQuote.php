@@ -10,16 +10,14 @@ use App\Models\Shape;
 use App\Models\Remote;
 use Livewire\Component;
 use Stripe\StripeClient;
-use Illuminate\Http\Request;
 use Livewire\WithFileUploads;
 use Illuminate\Support\Facades\Http;
 use Artesaos\SEOTools\Facades\JsonLd;
 use Artesaos\SEOTools\Facades\SEOMeta;
 use Artesaos\SEOTools\Facades\OpenGraph;
 use Artesaos\SEOTools\Facades\TwitterCard;
-use Illuminate\Support\Facades\Cookie;
 
-class CreateDesign extends Component
+class DesignQuote extends Component
 {
     use WithFileUploads;
 
@@ -53,47 +51,27 @@ class CreateDesign extends Component
         "rgb(1, 221, 255)",
         "rgb(30, 255, 0)"
     ],$fonts = [
-        "amejo",
-        "artelyinks",
-        "bayshore",
-        "bendungan",
-        "beon",
-        "billistone",
-        "carbono",
-        "cliquelly",
-        "colon-mono",
-        "daisy-chain",
-        "garnet-script",
-        "gotham",
-        "greyton",
-        "gruenewald",
-        "highway",
-        "love-malia",
-        "magnolia",
-        "market",
-        "mikagi",
-        "monly",
-        "msmadi",
-        "nevada",
-        "palm-canyon",
-        "panatype",
-        "point-soft",
-        "rename",
-        "retro-signature",
-        "rosemary",
-        "sahur-bosku",
-        "saltines",
-        "sandstone",
-        "sci-fied",
-        "setting-fires",
-        "starstoles-free",
-        "suddenlydemo-jrn5a",
-        "suddenly-regular",
-        "torusbiline-bold",
-        "torusbold",
-        "violia-free",
-        "wiretype",
-        "yarorg"
+        "logo",
+        "allura",
+        "dancing",
+        "montecarlo",
+        "aamonoline",
+        "allison",
+        "always",
+        "ananda",
+        "architex",
+        "billionDreams",
+        "calasans",
+        "fribash",
+        "library",
+        "magiera",
+        "nickainley",
+        "playhead",
+        "playlist",
+        "roboto",
+        "simple",
+        "slender",
+        "signature"
     ], $kits, $adaptor, 
     $color,$color2, $color3, 
     $font, $font2, $font3,
@@ -209,7 +187,7 @@ class CreateDesign extends Component
         JsonLd::setType("WebSite");
         JsonLd::addImage("https://vitalneon.com/assets/seo/create-1.png", ["height" => 400, "width" => 760]);
 
-        return view('livewire.create-design');
+        return view('livewire.design-quote');
     }
 
     public function updated(){
@@ -363,7 +341,7 @@ class CreateDesign extends Component
         if($this->arraycheck()){
             $checkout_id = $this->randomPassword();
             $order_id = $this->randomPassword();
-            $stripe = new StripeClient(config('app.stripe'));
+            $stripe = new StripeClient(config('app.dujana-stripe'));
             $result = $stripe->prices->create([
                 'unit_amount' => $this->total_price * 100,
                 'currency' => 'USD',
@@ -402,7 +380,7 @@ class CreateDesign extends Component
                 'checkout_id' => $checkout_id
             ]);
             Http::post(config('app.order-pending'), [
-                'content' => "**Email:** $this->email\n**PhoneNumber:** $this->phone\n**CheckoutID:** $checkout_id\n**TotalPrice: $**$this->total_price\n**Jacket:** $this->jacket\n**Line 1:** $this->line1|$this->font|$this->color\n**Line 2:** $this->line2|$this->font2|$this->color3\n**Line 3:** $this->line3|$this->font3|$this->color3\n**Backboard:** $this->shape\n**Kit:** $this->kit\n**Location:** $this->location\n**Adaptor:** $this->adaptor\n**Remote:** $this->remote\n**Alignment:** $this->alignment\n**PriceID:** {$result['id']}\n**CheckoutURL:**{$checkout['url']}"
+                'content' => "**QuoteDesign**\n**Email:** $this->email\n**PhoneNumber:** $this->phone\n**CheckoutID:** $checkout_id\n**TotalPrice: $**$this->total_price\n**Jacket:** $this->jacket\n**Line 1:** $this->line1|$this->font|$this->color\n**Line 2:** $this->line2|$this->font2|$this->color3\n**Line 3:** $this->line3|$this->font3|$this->color3\n**Backboard:** $this->shape\n**Kit:** $this->kit\n**Location:** $this->location\n**Adaptor:** $this->adaptor\n**Remote:** $this->remote\n**Alignment:** $this->alignment\n**PriceID:** {$result['id']}\n**CheckoutURL:**{$checkout['url']}"
             ]);
             return redirect($checkout['url']);
         }else{

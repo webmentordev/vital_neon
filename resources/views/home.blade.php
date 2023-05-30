@@ -4,13 +4,7 @@
         <div class="splide__track w-full">
             <ul class="splide__list w-full">
                 <li class="splide__slide w-full">
-                    <img src="{{ asset('assets/slides/slider_03.png') }}" class="w-full" alt="Slider 03">
-                </li>
-                <li class="splide__slide w-full">
-                    <img src="{{ asset('assets/slides/slider_01.png') }}" class="w-full" alt="Slider 01">
-                </li>
-                <li class="splide__slide w-full">
-                    <img src="{{ asset('assets/slides/slider_02.png') }}" class="w-full" alt="Slider 02">
+                    <a href="{{ route('create-design') }}"><img src="{{ asset('assets/slides/slider_03.png') }}" class="w-full" alt="Slider 01"></a>
                 </li>
             </ul>
         </div>

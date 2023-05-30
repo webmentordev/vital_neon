@@ -19,6 +19,7 @@ use App\Http\Controllers\ProductsController;
 use App\Http\Controllers\CategoryPriceController;
 use App\Http\Controllers\CreateDesignController;
 use App\Http\Controllers\HomeController;
+use App\Http\Livewire\DesignQuote;
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
@@ -30,7 +31,7 @@ Route::get('/create-design', CreateDesign::class)->name('create-design');
 // Route::get('/create-design', [CreateDesignController::class, 'index'])->name('create-design');
 
 Route::get('/upload-design', [DesignController::class, 'index'])->name('upload-design');
-Route::post('/upload-design', [DesignController::class, 'store'])->middleware(['throttle:1,1']);
+Route::post('/upload-design', [DesignController::class, 'store'])->middleware(['throttle:60,5']);
 
 Route::get('/support', [SupportController::class, 'index'])->name('support');
 Route::post('/support', [SupportController::class, 'store'])->middleware(['throttle:2,5']);
@@ -71,6 +72,8 @@ Route::middleware('auth')->group(function () {
     Route::get('/product', [ProductController::class, 'index'])->name('product');
     Route::post('/upload', [ProductController::class, 'upload'])->name('upload');
     Route::post('/product', [ProductController::class, 'create']);
+
+    Route::get('/design-quote', DesignQuote::class)->name('design.quote');
 
     Route::get('/searches', [SearchController::class, 'index'])->name('searches');
 });

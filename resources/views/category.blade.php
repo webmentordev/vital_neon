@@ -23,9 +23,12 @@
 
                         <div class="w-full mr-2">
                             <select name="product" class="border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 rounded-md shadow-sm w-full">
-                                <option value="" selected>Select Product</option>
                                 @foreach ($products as $product)
-                                    <option value="{{ $product->id }}">{{ $product->name }}</option>
+                                    @if ($loop->first)
+                                        <option value="{{ $product->id }}" selected>{{ $product->name }}</option>
+                                    @else
+                                        <option value="{{ $product->id }}">{{ $product->name }}</option>
+                                    @endif
                                 @endforeach
                             </select>
                             @error('product')
@@ -45,17 +48,24 @@
                     <table class="w-full mt-3 rounded-lg overflow-hidden">
                         <tr class="bg-white text-gray-800 text-center text-sm">
                             <th class="p-2 text-start">Category</th>
-                            <th class="text-start">Price</th>
+                            <th class="p-2 text-start">Product</th>
+                            <th class="text-end">Price</th>
                             <th class="p-2 text-end">Created</th>
                         </tr>
                         @foreach ($categories as $item)
                             <tr class="text-center text-sm">
                                 <td class="p-2 text-start">{{ $item->name }}</td>
-                                <td class="text-start">${{ $item->price }}</td>
+                                <td class="p-2 text-start">${{ $item->product->name }}</td>
+                                <td class="text-end">${{ $item->price }}</td>
                                 <td class="p-2 text-end">{{ $item->created_at->diffForHumans() }}</td>
                             </tr>
                         @endforeach
                     </table>
+                    @if ($categories->hasPages())
+                        <div class="pagination p-3 rounded-lg bg-gray-700">
+                            {{ $categories->links() }}
+                        </div>
+                    @endif
                 </div>
             </div>
         </div>

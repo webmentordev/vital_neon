@@ -10,8 +10,8 @@ class CategoryPriceController extends Controller
 {
     public function index(){
         return view('category', [
-            'categories' => CategoryPrice::get(),
-            'products' => Product::get()
+            'categories' => CategoryPrice::latest()->paginate(30),
+            'products' => Product::orderBy('id', 'DESC')->get()
         ]);
     }
 

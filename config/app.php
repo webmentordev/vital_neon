@@ -27,6 +27,8 @@ return [
     'product-complete' => env('PRODUCT_COMPLETE', ''),
     'product-cancel' => env('PRODUCT_CANCEL', ''),
 
+    'dujana-stripe' => env('DUJANA_STRIPE', ''),
+
     /*
     |--------------------------------------------------------------------------
     | Application Environment
