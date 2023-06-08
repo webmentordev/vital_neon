@@ -55,7 +55,7 @@
                         @foreach ($categories as $item)
                             <tr class="text-center text-sm">
                                 <td class="p-2 text-start">{{ $item->name }}</td>
-                                <td class="p-2 text-start">${{ $item->product->name }}</td>
+                                <td class="p-2 text-start">{{ $item->product->name }}</td>
                                 <td class="text-end">${{ $item->price }}</td>
                                 <td class="p-2 text-end">{{ $item->created_at->diffForHumans() }}</td>
                             </tr>

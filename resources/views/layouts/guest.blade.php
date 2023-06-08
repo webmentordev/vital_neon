@@ -11,6 +11,14 @@
         <link rel="preconnect" href="https://fonts.bunny.net">
         <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
         <!-- Scripts -->
+        <meta name="facebook-domain-verification" content="y38e4f9vs00rn3zxrkqcdc2av8xw6g" />
+        
+        <script>
+        (function(w,d,s,r,n){w.TrustpilotObject=n;w[n]=w[n]||function(){(w[n].q=w[n].q||[]).push(arguments)};
+            a=d.createElement(s);a.async=1;a.src=r;a.type='text/java'+s;f=d.getElementsByTagName(s)[0];
+            f.parentNode.insertBefore(a,f)})(window,document,'script', 'https://invitejs.trustpilot.com/tp.min.js', 'tp');
+            tp('register', 'MLrVuffuEKHRxz5D');
+        </script>
         <script async src="https://www.googletagmanager.com/gtag/js?id=G-71G4KSCD1D"></script>
         <script>
             window.dataLayer = window.dataLayer || [];
@@ -19,6 +27,7 @@
 
             gtag('config', 'G-71G4KSCD1D');
         </script>
+        
         @vite(['resources/css/app.css', 'resources/js/app.js'])
         {!! SEOMeta::generate() !!}
         {!! OpenGraph::generate() !!}

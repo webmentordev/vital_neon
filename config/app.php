@@ -26,7 +26,6 @@ return [
     'product-pending' => env('PRODUCT_PENDING', ''),
     'product-complete' => env('PRODUCT_COMPLETE', ''),
     'product-cancel' => env('PRODUCT_CANCEL', ''),
-
     'dujana-stripe' => env('DUJANA_STRIPE', ''),
 
     /*

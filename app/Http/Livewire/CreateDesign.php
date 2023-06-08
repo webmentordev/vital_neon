@@ -367,7 +367,7 @@ class CreateDesign extends Component
             $result = $stripe->prices->create([
                 'unit_amount' => $this->total_price * 100,
                 'currency' => 'USD',
-                'product' => 'prod_NZuQ5Ir75DenC2',
+                'product' => 'prod_NrObUhsIcZnNcN',
             ]);
             $checkout = $stripe->checkout->sessions->create([
                 'success_url' => config('app.url')."/success/".$checkout_id,
