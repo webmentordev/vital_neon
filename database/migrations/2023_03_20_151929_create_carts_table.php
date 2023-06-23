@@ -28,6 +28,7 @@ return new class extends Migration
             $table->string('price_id');
             $table->string('email');
             $table->text('order_id');
+            $table->string('address');
             $table->string('status')->default('pending');
             $table->boolean('paid')->default(false);
             $table->text('checkout_id');

@@ -98,7 +98,7 @@ class CreateDesign extends Component
     $color,$color2, $color3, 
     $font, $font2, $font3,
     $location,
-    $kit;
+    $kit, $address;
 
     public $shapes, 
     $shape, 
@@ -120,6 +120,7 @@ class CreateDesign extends Component
 
     protected $rules = [
         'line1' => 'required',
+        'address' => 'required|max:255',
         'shape' => 'required',
         'remote' => 'required',
         'total_price' => 'required|numeric',
@@ -393,6 +394,7 @@ class CreateDesign extends Component
                 'adaptor' => $this->adaptor,
                 'remote' => $this->remote,
                 'align' => $this->alignment,
+                'address' => $this->address,
                 'email' => $this->email,
                 'phone' => $this->phone,
                 'kit' => $this->kit,
@@ -402,7 +404,7 @@ class CreateDesign extends Component
                 'checkout_id' => $checkout_id
             ]);
             Http::post(config('app.order-pending'), [
-                'content' => "**Email:** $this->email\n**PhoneNumber:** $this->phone\n**CheckoutID:** $checkout_id\n**TotalPrice: $**$this->total_price\n**Jacket:** $this->jacket\n**Line 1:** $this->line1|$this->font|$this->color\n**Line 2:** $this->line2|$this->font2|$this->color3\n**Line 3:** $this->line3|$this->font3|$this->color3\n**Backboard:** $this->shape\n**Kit:** $this->kit\n**Location:** $this->location\n**Adaptor:** $this->adaptor\n**Remote:** $this->remote\n**Alignment:** $this->alignment\n**PriceID:** {$result['id']}\n**CheckoutURL:**{$checkout['url']}"
+                'content' => "**Email:** $this->email\n**PhoneNumber:** $this->phone\n**CheckoutID:** $checkout_id\n**TotalPrice: $**$this->total_price\n**Jacket:** $this->jacket\n**Line 1:** $this->line1|$this->font|$this->color\n**Line 2:** $this->line2|$this->font2|$this->color3\n**Line 3:** $this->line3|$this->font3|$this->color3\n**Backboard:** $this->shape\n**Kit:** $this->kit\n**Location:** $this->location\n**Adaptor:** $this->adaptor\n**Remote:** $this->remote\n**Alignment:** $this->alignment\n**PriceID:** {$result['id']}\n**Address:** $this->address\n**CheckoutURL:**{$checkout['url']}"
             ]);
             return redirect($checkout['url']);
         }else{

@@ -11,6 +11,12 @@ module.exports = {
     theme: {
         extend: {
             screens: {
+                "1530px": {
+                    "max": "1530px"
+                },
+                "1330px": {
+                    "max": "1330px"
+                },
                 "1090px": {
                     "max": "1090px"
                 },

@@ -293,6 +293,11 @@
                 <p class="text-red-600 mb-2">{{ $message }}</p>
             @enderror
 
+            <input type="text" wire:model.debounce.500ms="address" placeholder="Shipping Address" class="w-full border-none bg-dark mt-2 rounded focus:border-main focus:ring-4 focus:ring-main text-base outline-none text-gray-300 py-2 px-3 leading-8 transition-colors duration-200 ease-in-out mb-3">
+            @error('address')
+                <p class="text-red-600 mb-2">{{ $message }}</p>
+            @enderror
+
             <input type="text" wire:model.debounce.500ms="email" placeholder="Email Address" class="w-full border-none bg-dark mt-2 rounded focus:border-main focus:ring-4 focus:ring-main text-base outline-none text-gray-300 py-2 px-3 leading-8 transition-colors duration-200 ease-in-out mb-3">
             @error('email')
                 <p class="text-red-600 mb-2">{{ $message }}</p>

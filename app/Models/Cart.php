@@ -27,6 +27,7 @@ class Cart extends Model
         'order_id',
         'price',
         'price_id',
+        'address',
         'checkout_id'
     ];
 }
