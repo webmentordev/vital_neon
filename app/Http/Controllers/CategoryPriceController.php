@@ -9,9 +9,8 @@ use Illuminate\Http\Request;
 class CategoryPriceController extends Controller
 {
     public function index(){
-        return view('category', [
-            'categories' => CategoryPrice::latest()->paginate(30),
-            'products' => Product::orderBy('id', 'DESC')->get()
+        return view('product-price', [
+            'products' => CategoryPrice::latest()->paginate(50)
         ]);
     }
 

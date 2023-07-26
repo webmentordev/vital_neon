@@ -63,8 +63,8 @@ Route::middleware('auth')->group(function () {
     Route::get('/lines', [LineController::class, 'index'])->name('line');
     Route::post('/lines', [LineController::class, 'create']);
 
-    Route::get('/category', [CategoryPriceController::class, 'index'])->name('category');
-    Route::post('/category', [CategoryPriceController::class, 'create']);
+    Route::get('/product-price', [CategoryPriceController::class, 'index'])->name('product.price');
+    Route::post('/product-price', [CategoryPriceController::class, 'create']);
 
     Route::get('/product-category', [CategoryController::class, 'index'])->name('product.category');
     Route::post('/product-category', [CategoryController::class, 'store']);

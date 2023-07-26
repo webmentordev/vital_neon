@@ -6,7 +6,9 @@
         <div class="grid grid-cols-3 gap-6 800px:grid-cols-2 m-auto 530px:grid-cols-1 530px:max-w-[280px]">
             @foreach ($products as $item)
                 <div class="overflow-hidden group transition-all">
-                    <img data-src="{{ asset('storage/'.$item->image) }}" class="group-hover:scale-110 rounded-lg lazyload" alt="{{ $item->name }}" loading="lazy" style="height: 300px; object-fit: cover">
+                    <div class="overflow-hidden rounded-lg">
+                        <img data-src="{{ asset('storage/'.$item->image) }}" class="group-hover:scale-125 transition-all lazyload" alt="{{ $item->name }}" loading="lazy" style="height: 300px; object-fit: cover">
+                    </div>
                     <div class="bg-light p-3 w-full bottom-0 left-0">
                         <h3 class="text-white text-center mb-3">{{ $item->name }}</h3>
                         <a href="{{ route('listing', $item->slug) }}" class="py-2 group-hover:bg-[#00FFFF] px-4 w-full text-center inline-block bg-gray-300 text-black font-semibold">BUY NOW</a>
@@ -14,7 +16,7 @@
                 </div>
             @endforeach
         </div>
-        <div class="w-full flex justify-center">
+        <div class="w-full flex justify-center mt-5">
             <a href="{{ route('products') }}" class="bg-white text-gray-800 py-2 px-6 mt-2 font-bold inline-block">View All Products</a>
         </div>
     </div>

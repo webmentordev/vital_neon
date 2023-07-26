@@ -98,7 +98,7 @@ class CreateDesign extends Component
     $color,$color2, $color3, 
     $font, $font2, $font3,
     $location,
-    $kit, $address;
+    $kit, $address, $direction;
 
     public $shapes, 
     $shape, 
@@ -142,6 +142,7 @@ class CreateDesign extends Component
         $this->chars = $this->lines[0]->chars;
         $this->font = $this->fonts[16];
         $this->color = $this->colors[0];
+        $this->direction = false;
 
         $this->font2 = $this->fonts[0];
         $this->color2 = $this->colors[0];
@@ -165,22 +166,6 @@ class CreateDesign extends Component
                 $this->backgroundImage = $_COOKIE['myimageurl'];
             }
         }
-    }
-
-    public function upSize(){
-        $this->size = $this->size + 10;
-    }
-
-    public function downSize(){
-        $this->size = $this->size - 10;
-    }
-
-    public function upHeight(){
-        $this->leading = $this->leading + 10;
-    }
-
-    public function downHeight(){
-        $this->leading = $this->leading - 10;
     }
 
     public function render(){

@@ -11,7 +11,7 @@
                     @if (session('success'))
                         <p class="py-3 border-green-700 mb-3 text-center border bg-green-700 bg-opacity-40 text-white rounded-lg">{{ session('success') }}</p>
                     @endif
-                    <h1 class="font-semibold mb-3">Create Shape</h1>
+                    <h1 class="font-semibold mb-3">Create Product Categories</h1>
                     <form action="{{ route('product.category') }}" method="post" class="flex">
                         @csrf
                         <div class="w-full mr-2">
@@ -20,23 +20,27 @@
                                 <p class="mt-1 text-red-600">{{ $message }}</p>
                             @enderror
                         </div>
-                        <button type="submit" class="px-4 py-2 bg-main rounded-md text-white">Submit</button>
+                        <button type="submit" class="px-4 py-2 bg-indigo-600 rounded-md text-white">Submit</button>
                     </form>
 
-                    <table class="w-full mt-3 rounded-lg overflow-hidden">
-                        <tr class="bg-white text-gray-800 text-center text-sm">
-                            <th class="p-2 text-start">Name</th>
-                            <th class="text-start">Slug</th>
-                            <th class="p-2 text-end">Created</th>
-                        </tr>
-                        @foreach ($categories as $item)
-                            <tr class="text-center text-sm">
-                                <td class="p-2 text-start">{{ $item->name }}</td>
-                                <td class="text-start">{{ $item->slug }}</td>
-                                <td class="p-2 text-end">{{ $item->created_at->diffForHumans() }}</td>
+                    @if (count($categories))
+                        <table class="w-full mt-3 rounded-lg overflow-hidden">
+                            <tr class="bg-white text-gray-800 text-center text-sm">
+                                <th class="p-2 text-start">Name</th>
+                                <th class="text-start">Slug</th>
+                                <th class="p-2 text-end">Created</th>
                             </tr>
-                        @endforeach
-                    </table>
+                            @foreach ($categories as $item)
+                                <tr class="text-center text-sm">
+                                    <td class="p-2 text-start">{{ $item->name }}</td>
+                                    <td class="text-start">{{ $item->slug }}</td>
+                                    <td class="p-2 text-end">{{ $item->created_at->diffForHumans() }}</td>
+                                </tr>
+                            @endforeach
+                        </table>
+                    @else
+                        <p class="text-center mt-3">No product category exist!</p>
+                    @endif
                 </div>
             </div>
         </div>

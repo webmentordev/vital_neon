@@ -44,7 +44,7 @@
                                     <p class="mt-1 text-red-600">{{ $message }}</p>
                                 @enderror
                             </div>
-                            <button type="submit" class="px-4 py-2 bg-main rounded-md text-white">Submit</button>
+                            <button type="submit" class="px-4 py-2 bg-indigo-600 rounded-md text-white">Submit</button>
                         </div>
                         <div class="w-full mb-3">
                             <input type="text" name="description" class="border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 rounded-md shadow-sm w-full" placeholder="SEO Description" value="{{ old('description') }}" autocomplete="off">
@@ -55,28 +55,47 @@
                         <textarea class="form-control" id="summary-ckeditor" name="body">{{ old('body') }}</textarea>
                     </form>
 
-                    <table class="w-full mt-3 rounded-lg overflow-hidden">
-                        <tr class="bg-white text-gray-800 text-center text-sm">
-                            <th class="p-3 text-start">Name</th>
-                            <th class="p-3 text-start">StripeID</th>
-                            <th class="p-3 text-start">Image</th>
-                            <th class="p-3 text-start">Slug</th>
-                            <th class="text-start">Description</th>
-                            <th class="text-end">Featured</th>
-                            <th class="p-3 text-end">Created</th>
-                        </tr>
-                        @foreach ($products as $item)
-                            <tr class="text-center text-sm">
-                                <td class="p-2 text-start">{{ $item->name }}</td>
-                                <td class="p-2 text-start">{{ $item->stripe_id }}</td>
-                                <td class="p-2 text-start"><a href="{{ asset('storage/'.$item->image) }}"><img src="{{ asset('storage/'.$item->image) }}" width="60"></a></td>
-                                <td class="p-2 text-start">{{ $item->slug }}</td>
-                                <td class="text-start">{!! $item->body !!}</td>
-                                <td class="text-end">{{ $item->featured }}</td>
-                                <td class="p-2 text-end">{{ $item->created_at->diffForHumans() }}</td>
+                    @if (count($products))
+                        <table class="w-full mt-3 rounded-lg overflow-hidden">
+                            <tr class="bg-white text-gray-800 text-center text-sm">
+                                <th class="p-3 text-start">Name</th>
+                                <th class="p-3 text-start">StripeID</th>
+                                <th class="p-3 text-start">Image</th>
+                                <th class="p-3 text-start">Slug</th>
+                                <th class="text-start">Description</th>
+                                <th class="text-end">Featured</th>
+                                <th class="p-3 text-end">Created</th>
                             </tr>
-                        @endforeach
-                    </table>
+                            @foreach ($products as $item)
+                                <tr class="text-center text-sm">
+                                    <td class="p-2 text-start">{{ $item->name }}</td>
+                                    <td class="p-2 text-start">{{ $item->stripe_id }}</td>
+                                    <td class="p-2 text-start"><a href="{{ asset('storage/'.$item->image) }}"><img src="{{ asset('storage/'.$item->image) }}" width="60"></a></td>
+                                    <td class="p-2 text-start">{{ $item->slug }}</td>
+                                    <td class="text-start" x-data="{ open: false }">
+                                        <span x-on:click="open = true" class="text-blue-400 underline cursor-pointer">Read</span>
+                                        <div x-show="open" x-cloak x-on:click.self="open = false" class="fixed bg-dark bg-opacity-80 backdrop-blur-md top-0 left-0 w-full h-full flex items-center justify-center">
+                                            <div class="max-w-7xl p-6 bg-white text-dark rounded-md">
+                                                <div>
+                                                    <h1 class="text-2xl mb-2 font-semibold">Description</h1>
+                                                    <p>{!! $item->body !!}</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="text-end">{{ $item->featured }}</td>
+                                    <td class="p-2 text-end">{{ $item->created_at->diffForHumans() }}</td>
+                                </tr>
+                            @endforeach
+                        </table>
+                        @if ($products->hasPages())
+                            <div class="pagination p-3 rounded-lg bg-gray-700">
+                                {{ $products->links() }}
+                            </div>
+                        @endif
+                    @else
+                        <p class="text-center py-12">No products Data exist!</p>
+                    @endif
                 </div>
             </div>
         </div>

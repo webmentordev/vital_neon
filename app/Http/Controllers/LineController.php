@@ -9,7 +9,7 @@ class LineController extends Controller
 {
     public function index(){
         return view('line', [
-            'lines' => Line::latest()->get()
+            'lines' => Line::latest()->paginate(50)
         ]);
     }
 

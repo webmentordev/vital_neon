@@ -1,10 +1,10 @@
 <section class="w-full py-[80px]">
-    <div class="grid grid-cols-2 text-white gap-6 max-w-[1360px] m-auto min-h-[800px] 575px:min-h-fit 890px:flex 890px:flex-col bg-light p-6 mb-6">
+    <div class="flex @if ($direction) flex-col @endif text-white max-w-[1360px] m-auto min-h-[800px] 575px:min-h-fit 890px:flex 890px:flex-col bg-light p-6 mb-6">
         <div wire:loading wire:target="checkout" class="fixed left-[45%] 575px:left-0 bottom-3">
             <div class="flex items-center bg-black text-white p-6 rounded-lg"><img src="https://api.iconify.design/svg-spinners:ring-resize.svg?color=%23ffffff" alt="Loading Icon"> <span class="ml-2">Processing...</span></div>
         </div>
-        <div class="bg-cover bg-center relative rounded-lg flex justify-center items-center 890px:min-h-[800px] h-full" style="background-image: url({{ $backgroundImage }})" id="backDiv">
-            <span class="fixed bg-main rounded-lg p-3 bottom-3 z-10 right-3 text-gray-800 text-4xl font-semibold z-50"><span class="text-2xl">$</span>{{ $total_price }}</span>
+        <div class="bg-cover bg-center relative rounded-lg flex justify-center items-center h-[980px] w-full 890px:min-h-[800px]" style="background-image: url({{ $backgroundImage }})" id="backDiv">
+            <span class="fixed bg-main rounded-lg p-3 bottom-3 right-3 text-gray-800 text-4xl font-semibold z-50"><span class="text-2xl">$</span>{{ $total_price }}</span>
             
             <div wire:click="$set('dark_mode', {{ !$dark_mode }})" class=" @if (!$dark_mode) bg-white @else bg-gray-800 @endif p-3 rounded-lg absolute top-2 left-2">
                 @if (!$dark_mode)
@@ -14,21 +14,25 @@
                 @endif
             </div>
 
+            <div wire:click="$set('direction', {{ !$direction }})" class="bg-white p-3 rounded-lg absolute top-3 left-[72px]">
+                <img src="https://api.iconify.design/akar-icons:full-screen.svg?color=%23e4aa0c" width="30" alt="Sun Image">
+            </div>
+
             <div class="absolute top-2 right-2">
                 <div class="flex items-center">
                     <div class="flex mr-1">
-                        <div class="bg-gray-800 p-1 rounded-lg mb-1 cursor-pointer h-fit mr-1" wire:click="upSize">
+                        <div class="bg-gray-800 p-1 rounded-lg mb-1 cursor-pointer h-fit mr-1" wire:click="$set('size', {{ $this->size + 10 }})">
                             <img src="https://api.iconify.design/material-symbols:add-rounded.svg?color=%23ffffff" width="30" alt="">
                         </div>
-                        <div class="bg-gray-800 p-1 rounded-lg cursor-pointer h-fit" wire:click="downSize">
+                        <div class="bg-gray-800 p-1 rounded-lg cursor-pointer h-fit" wire:click="$set('size', {{ $this->size - 10 }})">
                             <img src="https://api.iconify.design/ic:outline-remove.svg?color=%23ffffff" width="30" alt="">
                         </div>
                     </div>
                     <div class="flex flex-col">
-                        <div class="bg-gray-800 p-1 rounded-lg mb-1 cursor-pointer" wire:click="upHeight">
+                        <div class="bg-gray-800 p-1 rounded-lg mb-1 cursor-pointer" wire:click="$set('leading', {{ $this->leading + 10 }})">
                             <img src="https://api.iconify.design/ic:outline-keyboard-arrow-up.svg?color=%23ffffff" width="30" alt="">
                         </div>
-                        <div class="bg-gray-800 p-1 rounded-lg cursor-pointer" wire:click="downHeight">
+                        <div class="bg-gray-800 p-1 rounded-lg cursor-pointer" wire:click="$set('leading', {{ $this->leading - 10 }})">
                             <img src="https://api.iconify.design/ic:outline-keyboard-arrow-down.svg?color=%23ffffff" width="30" alt="">
                         </div>
                     </div>
@@ -81,7 +85,7 @@
                 </div>
             </div>
         </div>
-        <form wire:submit.prevent="checkout" method="POST" class="text-sm max-h-[900px] overflow-y-scroll 850px:max-h-full px-6 py-6 850px:px-0 850px:overflow-y-hidden">
+        <form wire:submit.prevent="checkout" method="POST" class="text-sm max-h-[980px] w-full overflow-y-scroll 850px:max-h-full px-6 py-6 850px:px-0 850px:overflow-y-hidden">
             <div class="flex items-center justify-between 490px:flex-col">
                 <h1 class="text-main font-bold text-3xl mb-3">Design Your Neon</h1>
                 <div class="flex items-center">
@@ -304,8 +308,10 @@
             @enderror
             <button class="submit-btn" type="submit"><span class="mr-2 text-xl">Checkout</span> <img src="{{ asset('assets/images/stripe_small.png') }}" width="50" alt="Stripe Logo"></button>
         </form>
-        <p class="p-6 col-span-2 border-l border-gray-400 bg-light text-white mb-6 leading-6">We're pleased to offer Stripe as our payment system, providing you with a secure and reliable way to make payments. With Stripe, your credit card information is kept safe and secure, as we don't store it on our servers. We only collect your email address for communication purposes, and we never share your personal information with third parties. Stripe's user-friendly interface allows for seamless payments, giving you peace of mind and a smooth payment experience. Thank you for choosing to shop with us!</p>
     </div>
+    <section class="max-w-[1366px] m-auto">
+        <p class="p-6 col-span-2 border-l border-gray-400 bg-light text-white mb-6 leading-6">We're pleased to offer Stripe as our payment system, providing you with a secure and reliable way to make payments. With Stripe, your credit card information is kept safe and secure, as we don't store it on our servers. We only collect your email address for communication purposes, and we never share your personal information with third parties. Stripe's user-friendly interface allows for seamless payments, giving you peace of mind and a smooth payment experience. Thank you for choosing to shop with us!</p>
+    </section>
     <section class="bg-light">
         <x-listing />
     </section>

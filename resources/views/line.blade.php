@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-            {{ __('Remotes Database') }}
+            {{ __('Lines Pricing') }}
         </h2>
     </x-slot>
     <div class="py-12">
@@ -11,7 +11,7 @@
                     @if (session('success'))
                         <p class="py-3 border-green-700 mb-3 text-center border bg-green-700 bg-opacity-40 text-white rounded-lg">{{ session('success') }}</p>
                     @endif
-                    <h1 class="font-semibold mb-3">Create Line Price</h1>
+                    <h1 class="font-semibold mb-3">Create Line with Price</h1>
                     <form action="{{ route('line') }}" method="post" class="flex">
                         @csrf
                         <div class="w-full mr-2">
@@ -40,27 +40,36 @@
                                 <p class="mt-1 text-red-600">{{ $message }}</p>
                             @enderror
                         </div>
-                        <button type="submit" class="px-4 py-2 bg-main rounded-md text-white">Submit</button>
+                        <button type="submit" class="px-4 py-2 bg-indigo-600 rounded-md text-white">Submit</button>
                     </form>
 
-                    <table class="w-full mt-3 rounded-lg overflow-hidden">
-                        <tr class="bg-white text-gray-800 text-center text-sm">
-                            <th class="p-2 text-start">Name</th>
-                            <th class="text-start">Price</th>
-                            <th class="text-start">Lines</th>
-                            <th class="text-start">Chars</th>
-                            <th class="p-2 text-end">Created</th>
-                        </tr>
-                        @foreach ($lines as $item)
-                            <tr class="text-center text-sm">
-                                <td class="p-2 text-start">{{ $item->name }}</td>
-                                <td class="text-start">${{ $item->price }}</td>
-                                <td class="text-start">{{ $item->lines }}</td>
-                                <td class="text-start">{{ $item->chars }}</td>
-                                <td class="p-2 text-end">{{ $item->created_at->diffForHumans() }}</td>
+                    @if (count($lines))
+                        <table class="w-full mt-3 rounded-lg overflow-hidden">
+                            <tr class="bg-white text-gray-800 text-center text-sm">
+                                <th class="p-2 text-start">Name</th>
+                                <th class="text-start">Price</th>
+                                <th class="text-start">Lines</th>
+                                <th class="text-start">Characters</th>
+                                <th class="p-2 text-end">Created</th>
                             </tr>
-                        @endforeach
-                    </table>
+                            @foreach ($lines as $item)
+                                <tr class="text-center text-sm">
+                                    <td class="p-2 text-start">{{ $item->name }}</td>
+                                    <td class="text-start">${{ $item->price }}</td>
+                                    <td class="text-start">{{ $item->lines }}</td>
+                                    <td class="text-start">{{ $item->chars }}</td>
+                                    <td class="p-2 text-end">{{ $item->created_at->diffForHumans() }}</td>
+                                </tr>
+                            @endforeach
+                        </table>
+                        @if ($lines->hasPages())
+                            <div class="pagination p-3 rounded-lg bg-gray-700">
+                                {{ $lines->links() }}
+                            </div>
+                        @endif
+                    @else
+                        <p class="text-center mt-3">No lines data exist!</p>
+                    @endif
                 </div>
             </div>
         </div>
