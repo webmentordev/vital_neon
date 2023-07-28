@@ -27,6 +27,6 @@ class LineController extends Controller
             'lines' => $request->lines,
             'chars' => $request->chars,
         ]);
-        return back()->with('success', 'Line Info added!');
+        return back()->with('success', 'Line Info and price has been added!');
     }
 }

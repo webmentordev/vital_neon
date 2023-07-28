@@ -5,7 +5,7 @@
             <h4 class="bebas text-white text-5xl mb-2">VISIT our Socials</h4>
             <div class="flex items-center">
                 <ul class="flex">
-                    <a class="mr-2" href="https://www.facebook.com/profile.php?id=100089690514265/" target="_blank" rel="nofollow"><img src="https://api.iconify.design/logos:facebook.svg?color=%23d83013" width="25" alt="Facebook"></a>
+                    <a class="mr-2" href="https://www.facebook.com/people/VITAL-NEON/100089690514265/" target="_blank" rel="nofollow"><img src="https://api.iconify.design/logos:facebook.svg?color=%23d83013" width="25" alt="Facebook"></a>
                     <a class="mr-2" href="https://www.instagram.com/vitalneon/" target="_blank" rel="nofollow"><img src="https://api.iconify.design/skill-icons:instagram.svg?color=%23f72696" width="25" alt="Instagram"></a>
                     <a class="mr-2" href="https://www.pinterest.com/mobycarts/" target="_blank" rel="nofollow"><img src="https://api.iconify.design/logos:pinterest.svg?color=%23f72696" width="25" alt="Pinterest"></a>
                 </ul>
@@ -29,7 +29,7 @@
     <section class="w-full px-4 pt-[50px] hidden 1330px:block">
         <h3 class="bebas text-4xl text-white mb-3 text-center">VISIT Our SOCIALS</h3>
         <div class="max-w-4xl m-auto grid grid-cols-3 gap-6 850px:grid-cols-2 850px:max-w-xl 575px:grid-cols-1 575px:max-w-[300px]">
-            <a href="https://www.facebook.com/profile.php?id=100089690514265/" class="flex justify-center items-center bg-light border border-white/10 rounded-lg p-6">
+            <a href="https://www.facebook.com/people/VITAL-NEON/100089690514265/" class="flex justify-center items-center bg-light border border-white/10 rounded-lg p-6">
                 <div class="flex items-center">
                     <img src="https://api.iconify.design/logos:facebook.svg?color=%23d83013" width="40" alt="Package Icon">
                     <span class="text-gray-300 font-semibold ml-3">FACEBOOK</span>

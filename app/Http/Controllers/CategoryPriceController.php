@@ -10,7 +10,8 @@ class CategoryPriceController extends Controller
 {
     public function index(){
         return view('product-price', [
-            'products' => CategoryPrice::latest()->paginate(50)
+            'products' => CategoryPrice::latest()->paginate(50),
+            'productNames' => Product::latest()->get()
         ]);
     }
 
@@ -25,6 +26,6 @@ class CategoryPriceController extends Controller
             'product_id' => $request->product,
             'price' => $request->price
         ]);
-        return back()->with('success', 'Category has been added!');
+        return back()->with('success', 'Price for a product has been added!');
     }
 }
