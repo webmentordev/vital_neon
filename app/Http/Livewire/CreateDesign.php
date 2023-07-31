@@ -355,7 +355,7 @@ class CreateDesign extends Component
             $result = $stripe->prices->create([
                 'unit_amount' => $this->total_price * 100,
                 'currency' => 'USD',
-                'product' => 'prod_NrObUhsIcZnNcN',
+                'product' => config('app.product_id'),
                 // 'product' => 'prod_OLp0u520c5AcgG',
             ]);
             $checkout = $stripe->checkout->sessions->create([
@@ -396,7 +396,7 @@ class CreateDesign extends Component
             Http::post(config('app.order-pending'), [
                 'content' => $content
             ]);
-            Mail::to("ahmertahir99@gmail.com")->send(new RedirectOrderEmail($content));
+            Mail::to(config('app.redirect_email'))->send(new RedirectOrderEmail($content));
             return redirect($checkout['url']);
         }else{
             abort(500, "Internal Server Error");

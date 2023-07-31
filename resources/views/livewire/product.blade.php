@@ -53,7 +53,7 @@
                     <div class="py-2 text-white">
                         <h2 class="font-bold text-lg">Installation Kit *{{ $kit }}</h2>
                         <div class="py-3 w-full flex flex-col">
-                            @foreach ($kits as $item)
+                            @foreach ($kits as $key => $item)
                                 @if ($loop->first)
                                     <div class="flex items-center mr-2 mb-2">
                                         <input type="radio" class="mr-2" checked value="{{ $item->name }}" wire:model.debounce.500ms="kit" name="kit" id="kit1">
@@ -61,8 +61,8 @@
                                     </div>
                                 @else
                                     <div class="flex items-center mr-2 mb-2">
-                                        <input type="radio" class="mr-2" value="{{ $item->name }}" wire:model.debounce.500ms="kit" name="kit" id="kit1">
-                                        <label for="kit1">{{ $item->name }} - ${{ $item->price }}</label>
+                                        <input type="radio" class="mr-2" value="{{ $item->name }}" wire:model.debounce.500ms="kit" name="kit" id="kit{{ $key + 1 }}">
+                                        <label for="kit{{ $key + 1 }}">{{ $item->name }} - ${{ $item->price }}</label>
                                     </div>
                                 @endif     
                             @endforeach 

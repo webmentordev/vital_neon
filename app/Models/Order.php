@@ -21,7 +21,8 @@ class Order extends Model
         'checkout_id',
         'stripe_product',
         'checkout_url',
-        'phone'
+        'phone',
+        'status'
     ];
 
     public function product(){

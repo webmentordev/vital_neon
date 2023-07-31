@@ -14,7 +14,6 @@ return new class extends Migration
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
             $table->foreignId('product_id');
-            $table->string('location');
             $table->string('adaptor');
             $table->string('remote');
             $table->string('email');
@@ -22,11 +21,11 @@ return new class extends Migration
             $table->string('kit');
             $table->string('price');
             $table->string('price_id');
+            $table->string('status')->default('pending');
             $table->string('checkout_id');
             $table->string('stripe_product');
             $table->text('checkout_url');
             $table->string('phone');
-            $table->string('shape');
             $table->timestamps();
         });
     }

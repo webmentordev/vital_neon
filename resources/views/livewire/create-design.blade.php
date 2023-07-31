@@ -306,7 +306,11 @@
             @error('email')
                 <p class="text-red-600 mb-2">{{ $message }}</p>
             @enderror
-            <button class="submit-btn" type="submit"><span class="mr-2 text-xl">Checkout</span> <img src="{{ asset('assets/images/stripe_small.png') }}" width="50" alt="Stripe Logo"></button>
+            <button class="py-3 px-4 w-full bg-white rounded-md font-bold text-dark" wire:click="checkout" type="submit">Checkout</button>
+            <div class="flex justify-between items-center w-full mt-2 py-3">
+                <img src="{{ asset('assets/images/payment_cards.png') }}" width="190px" alt="Stripe Payment methods icon">
+                <img src="{{ asset('assets/images/stripe_square_logo.png') }}" width="190px" alt="Powerd by stipe image">
+            </div>
         </form>
     </div>
     <section class="max-w-[1366px] m-auto">

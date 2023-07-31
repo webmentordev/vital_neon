@@ -22,6 +22,8 @@ return [
     'order-cancel' => env('ORDER_CANCEL', ''),
     
     'support' => env('SUPPORT', ''),
+    'redirect_email' => env('REDIRECT_EMAIL', ''),
+    'product_id' => env('DESIGN_PRODUCT', ''),
     'design' => env('DESIGN', ''),
     'product-pending' => env('PRODUCT_PENDING', ''),
     'product-complete' => env('PRODUCT_COMPLETE', ''),

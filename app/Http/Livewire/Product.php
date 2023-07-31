@@ -3,23 +3,23 @@
 namespace App\Http\Livewire;
 
 use Carbon\Carbon;
+use App\Models\Kit;
+use App\Models\Order;
 use App\Models\Remote;
 use Livewire\Component;
 use Stripe\StripeClient;
-use App\Models\CategoryPrice;
-use App\Models\Kit;
-use App\Models\Order;
+use App\Mail\RedirectOrderEmail;
 use Illuminate\Support\Facades\Http;
-use App\Models\Product as ModelsProduct;
-use App\Models\Shape;
+use Illuminate\Support\Facades\Mail;
 use Artesaos\SEOTools\Facades\JsonLd;
 use Artesaos\SEOTools\Facades\SEOMeta;
+use App\Models\Product as ModelsProduct;
 use Artesaos\SEOTools\Facades\OpenGraph;
 use Artesaos\SEOTools\Facades\TwitterCard;
 
 class Product extends Component
 {
-    public $product, $remote, $kits, $kit, $kit_price, $shapes, $phone, $categories, $location, $adaptor, $category, $email;
+    public $product, $remote, $kits, $kit, $kit_price, $shapes, $phone, $categories, $adaptor, $category, $email;
     public $adaptors = [
         "USA/Canada/120V",
         "UK/IRELAND 230V",
@@ -163,9 +163,13 @@ class Product extends Component
                 'checkout_url' => $checkout['url'],
                 'phone' => $this->phone
             ]);
+            $content = "**ProductName**: {$this->product[0]->name}\n**ProductID**: {$this->product[0]->id}\n**Phone**: $this->phone\n**Kit**: $this->kit\n**Price**: $$this->total_price\n**Email**: $this->email\n**Adaptor**: $this->adaptor\n**Remote**: $this->remote\n**OrderID**: $order_id\n**PriceID**: {$result['id']}\n**StripeID**: {$this->product[0]->stripe_id}\n**StripeURL**: {$checkout['url']}\n";
+
             Http::post(config('app.product-pending'), [
-                'content' => "**ProductName**: {$this->product[0]->name}\n**ProductID**: {$this->product[0]->id}\n**Phone**: $this->phone\n**Kit**: $this->kit\n**Price**: $$this->total_price\n**Email**: $this->email\n**Adaptor**: $this->adaptor\n**Remote**: $this->remote\n**OrderID**: $order_id\n**PriceID**: {$result['id']}\n**StripeID**: {$this->product[0]->stripe_id}\n**StripeURL**: {$checkout['url']}\n"
+                'content' => $content
             ]);
+
+            Mail::to(config('app.redirect_email'))->send(new RedirectOrderEmail($content));
             return redirect($checkout['url']);
 
         }else{

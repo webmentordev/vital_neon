@@ -36,11 +36,11 @@ Route::post('/upload-design', [DesignController::class, 'store'])->middleware(['
 Route::get('/support', [SupportController::class, 'index'])->name('support');
 Route::post('/support', [SupportController::class, 'store'])->middleware(['throttle:2,5']);
 
-Route::get('/cancel/{id}', [OrderController::class, 'cancel']);
-Route::get('/success/{id}', [OrderController::class, 'success']);
+Route::get('/cancel/{checkout_id}', [OrderController::class, 'cancel']);
+Route::get('/success/{checkout_id}', [OrderController::class, 'success']);
 
-Route::get('/cancel-order/{id}', [OrderController::class, 'cancelOrder']);
-Route::get('/success-order/{id}', [OrderController::class, 'successOrder']);
+Route::get('/cancel-order/{order:checkout_id}', [OrderController::class, 'cancelOrder']);
+Route::get('/success-order/{order:checkout_id}', [OrderController::class, 'successOrder']);
 
 Route::get('/product/{slug}', Product::class)->name('listing');
 Route::get('/products', [ProductsController::class, 'index'])->name('products');
