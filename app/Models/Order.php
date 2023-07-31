@@ -11,7 +11,6 @@ class Order extends Model
 
     protected $fillable = [
         'product_id',
-        'location',
         'adaptor',
         'remote',
         'email',
@@ -22,8 +21,7 @@ class Order extends Model
         'checkout_id',
         'stripe_product',
         'checkout_url',
-        'phone',
-        'shape'
+        'phone'
     ];
 
     public function product(){

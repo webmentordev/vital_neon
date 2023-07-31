@@ -19,24 +19,19 @@ use Artesaos\SEOTools\Facades\TwitterCard;
 
 class Product extends Component
 {
-    public $product, $remote, $kits, $kit, $kit_price, $shapes, $phone, $shape, $shape_price, $categories, $location, $adaptor, $category, $email;
+    public $product, $remote, $kits, $kit, $kit_price, $shapes, $phone, $categories, $location, $adaptor, $category, $email;
     public $adaptors = [
         "USA/Canada/120V",
         "UK/IRELAND 230V",
         "EUROPE 230V",
         "AUSTRALIA/NA 230V",
         "JAPAN 100V"
-    ],$locations = [
-        "In Door",
-        "Out Door"
     ], $remotes, $total_price = 0, $category_price;
 
     protected $rules = [
         'remote' => 'required',
         'adaptor' => 'required',
-        'location' => 'required',
         'email' => 'required|email',
-        'shape' => 'required',
         'phone' => 'required|numeric',
         'kit' => 'required',
     ];
@@ -44,18 +39,14 @@ class Product extends Component
     public function mount($slug){
         $result = ModelsProduct::where('slug', $slug)->with('categories')->get();
         if(count($result)){
-            $this->shapes = Shape::all();
             $this->remotes = Remote::all();
             $this->kits = Kit::all();
             $this->remote = $this->remotes[0]->type;
             $this->categories = $result[0]->categories;
-            $this->location = $this->locations[0];
             $this->adaptor = $this->adaptors[0];
             $this->kit = $this->kits[0]->name;
             $this->category_price = $result[0]->categories[0]->price;
             $this->product = $result;
-            $this->shape = $this->shapes[0]->shape;
-            $this->shape_price = $this->shapes[0]->price;
             $this->priceCalculator();
 
             SEOMeta::setTitle($result[0]->name);
@@ -94,11 +85,6 @@ class Product extends Component
                 $this->category_price = $category->price;
             }
         }
-        foreach($this->shapes as $shape){
-            if($this->shape == $shape->shape){
-                $this->shape_price = $shape->price;
-            }
-        }
         $this->priceCalculator();
     }
 
@@ -120,16 +106,7 @@ class Product extends Component
             abort(500, "Internal Server Error");
         }
         if($result != null){
-            $total_price = $this->category_price + $result->price + $this->shape_price + $kit_price->price;
-            if(in_array($this->location, $this->locations)){
-                if($this->location == "Out Door"){
-                    $this->total_price = $total_price + ($total_price * (15/100));
-                }else{
-                    $this->total_price = $total_price;
-                }
-            }else{
-                abort(500, 'Internal Error');
-            }
+            $this->total_price = $this->category_price + $result->price + $kit_price->price;
         }else{
             abort(500, 'Internal Error');
         }
@@ -174,7 +151,6 @@ class Product extends Component
             ]);
             Order::create([
                 'product_id' => $this->product[0]->id,
-                'location' => $this->location,
                 'adaptor' => $this->adaptor,
                 'remote' => $this->remote,
                 'email' => $this->email,
@@ -185,11 +161,10 @@ class Product extends Component
                 'checkout_id' => $checkout_id,
                 'stripe_product' => $this->product[0]->stripe_id,
                 'checkout_url' => $checkout['url'],
-                'shape' => $this->shape,
                 'phone' => $this->phone
             ]);
             Http::post(config('app.product-pending'), [
-                'content' => "**ProductName**: {$this->product[0]->name}\n**ProductID**: {$this->product[0]->id}\n**Phone**: $this->phone\n**Kit**: $this->kit\n**Shape**: $this->shape\n**Price**: $$this->total_price\n**Email**: $this->email\n**Location**: $this->location\n**Adaptor**: $this->adaptor\n**Remote**: $this->remote\n**OrderID**: $order_id\n**PriceID**: {$result['id']}\n**StripeID**: {$this->product[0]->stripe_id}\n**StripeURL**: {$checkout['url']}\n"
+                'content' => "**ProductName**: {$this->product[0]->name}\n**ProductID**: {$this->product[0]->id}\n**Phone**: $this->phone\n**Kit**: $this->kit\n**Price**: $$this->total_price\n**Email**: $this->email\n**Adaptor**: $this->adaptor\n**Remote**: $this->remote\n**OrderID**: $order_id\n**PriceID**: {$result['id']}\n**StripeID**: {$this->product[0]->stripe_id}\n**StripeURL**: {$checkout['url']}\n"
             ]);
             return redirect($checkout['url']);
 

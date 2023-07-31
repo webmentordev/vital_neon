@@ -1,5 +1,5 @@
 <section class="w-full py-[80px]">
-    <div class="flex @if ($direction) flex-col @endif text-white max-w-[1360px] m-auto min-h-[800px] 575px:min-h-fit 890px:flex 890px:flex-col bg-light p-6 mb-6">
+    <div class="flex @if ($direction) flex-col @endif text-white max-w-[1360px] m-auto 890px:flex 890px:flex-col bg-light p-6 mb-6">
         <div wire:loading wire:target="checkout" class="fixed left-[45%] 575px:left-0 bottom-3">
             <div class="flex items-center bg-black text-white p-6 rounded-lg"><img src="https://api.iconify.design/svg-spinners:ring-resize.svg?color=%23ffffff" alt="Loading Icon"> <span class="ml-2">Processing...</span></div>
         </div>
@@ -85,7 +85,7 @@
                 </div>
             </div>
         </div>
-        <form wire:submit.prevent="checkout" method="POST" class="text-sm max-h-[980px] w-full overflow-y-scroll 850px:max-h-full px-6 py-6 850px:px-0 850px:overflow-y-hidden">
+        <form wire:submit.prevent="checkout" method="POST" class="text-sm w-full px-6 py-6 850px:px-0 850px:overflow-y-hidden">
             <div class="flex items-center justify-between 490px:flex-col">
                 <h1 class="text-main font-bold text-3xl mb-3">Design Your Neon</h1>
                 <div class="flex items-center">

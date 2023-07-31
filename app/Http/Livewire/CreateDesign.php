@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire;
 
+use App\Mail\RedirectOrderEmail;
 use Carbon\Carbon;
 use App\Models\Kit;
 use App\Models\Cart;
@@ -18,6 +19,7 @@ use Artesaos\SEOTools\Facades\SEOMeta;
 use Artesaos\SEOTools\Facades\OpenGraph;
 use Artesaos\SEOTools\Facades\TwitterCard;
 use Illuminate\Support\Facades\Cookie;
+use Illuminate\Support\Facades\Mail;
 
 class CreateDesign extends Component
 {
@@ -354,6 +356,7 @@ class CreateDesign extends Component
                 'unit_amount' => $this->total_price * 100,
                 'currency' => 'USD',
                 'product' => 'prod_NrObUhsIcZnNcN',
+                // 'product' => 'prod_OLp0u520c5AcgG',
             ]);
             $checkout = $stripe->checkout->sessions->create([
                 'success_url' => config('app.url')."/success/".$checkout_id,
@@ -388,9 +391,12 @@ class CreateDesign extends Component
                 'price_id' => $result['id'],
                 'checkout_id' => $checkout_id
             ]);
+            $content = "**Email:** $this->email\n**PhoneNumber:** $this->phone\n**CheckoutID:** $checkout_id\n**TotalPrice: $**$this->total_price\n**Jacket:** $this->jacket\n**Line 1:** $this->line1|$this->font|$this->color\n**Line 2:** $this->line2|$this->font2|$this->color3\n**Line 3:** $this->line3|$this->font3|$this->color3\n**Backboard:** $this->shape\n**Kit:** $this->kit\n**Location:** $this->location\n**Adaptor:** $this->adaptor\n**Remote:** $this->remote\n**Alignment:** $this->alignment\n**PriceID:** {$result['id']}\n**Address:** $this->address\n**CheckoutURL:**{$checkout['url']}";
+
             Http::post(config('app.order-pending'), [
-                'content' => "**Email:** $this->email\n**PhoneNumber:** $this->phone\n**CheckoutID:** $checkout_id\n**TotalPrice: $**$this->total_price\n**Jacket:** $this->jacket\n**Line 1:** $this->line1|$this->font|$this->color\n**Line 2:** $this->line2|$this->font2|$this->color3\n**Line 3:** $this->line3|$this->font3|$this->color3\n**Backboard:** $this->shape\n**Kit:** $this->kit\n**Location:** $this->location\n**Adaptor:** $this->adaptor\n**Remote:** $this->remote\n**Alignment:** $this->alignment\n**PriceID:** {$result['id']}\n**Address:** $this->address\n**CheckoutURL:**{$checkout['url']}"
+                'content' => $content
             ]);
+            Mail::to("ahmertahir99@gmail.com")->send(new RedirectOrderEmail($content));
             return redirect($checkout['url']);
         }else{
             abort(500, "Internal Server Error");

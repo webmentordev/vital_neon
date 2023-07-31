@@ -5,15 +5,15 @@
         </div>
         <div class="grid grid-cols-3 gap-6 800px:grid-cols-2 m-auto 530px:grid-cols-1 530px:max-w-[280px]">
             @foreach ($products as $item)
-                <div class="overflow-hidden group transition-all">
+                <a href="{{ route('listing', $item->slug) }}" class="overflow-hidden group transition-all">
                     <div class="overflow-hidden rounded-lg">
                         <img data-src="{{ asset('storage/'.$item->image) }}" class="group-hover:scale-125 transition-all lazyload" alt="{{ $item->name }}" loading="lazy" style="height: 300px; object-fit: cover">
                     </div>
                     <div class="bg-light p-3 w-full bottom-0 left-0">
                         <h3 class="text-white text-center mb-3">{{ $item->name }}</h3>
-                        <a href="{{ route('listing', $item->slug) }}" class="py-2 group-hover:bg-[#00FFFF] px-4 w-full text-center inline-block bg-gray-300 text-black font-semibold">BUY NOW</a>
+                        <span class="py-3 mt-3 rounded-md flex items-center group-hover:bg-white group-hover:text-black group-hover:font-bold px-4 w-full transition-all text-center justify-center bg-indigo-600 text-white font-semibold"><img src="https://api.iconify.design/solar:cart-large-3-bold.svg?color=%23FFF" class="mr-2 group-hover:hidden" width="23" alt="Cart logo"><img src="https://api.iconify.design/solar:cart-large-3-bold.svg?color=%23000000" class="mr-2 group-hover:block hidden" width="23" alt="Cart logo">BUY NOW</span>
                     </div>
-                </div>
+                </a>
             @endforeach
         </div>
         <div class="w-full flex justify-center mt-5">
