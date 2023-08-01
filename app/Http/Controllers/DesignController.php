@@ -13,28 +13,28 @@ use Artesaos\SEOTools\Facades\TwitterCard;
 class DesignController extends Controller
 {
     public function index(){
-        SEOMeta::setTitle("Create Your Own Neon Sign: Upload Your Design | VitalNeon");
-        SEOMeta::setDescription("");
+        SEOMeta::setTitle("Upload Your Design | VitalNeon");
+        SEOMeta::setDescription("Upload your own designand get a free quote and a mockup. With your unique design, you have the freedom to set your own budget as well");
         SEOMeta::setCanonical("https://vitalneon.com/upload-design");
         SEOMeta::setRobots("index, follow");
         SEOMeta::addMeta("apple-mobile-web-app-title", "VitalNeon");
         SEOMeta::addMeta("application-name", "VitalNeon");
 
-        OpenGraph::setTitle("Create Your Own Neon Sign: Upload Your Design | VitalNeon");
-        OpenGraph::setDescription(""); 
+        OpenGraph::setTitle("Upload Your Design | VitalNeon");
+        OpenGraph::setDescription("Upload your own designand get a free quote and a mockup. With your unique design, you have the freedom to set your own budget as well"); 
         OpenGraph::setUrl("https://vitalneon.com/upload-design");
         OpenGraph::addProperty("type", "website");
         OpenGraph::addProperty("locale", "eu");
         OpenGraph::addImage("https://vitalneon.com/assets/seo/upload-2.png");
         OpenGraph::addImage("https://vitalneon.com/assets/seo/upload-1.png", ["height" => 400, "width" => 760]);
 
-        TwitterCard::setTitle("Create Your Own Neon Sign: Upload Your Design | VitalNeon");
+        TwitterCard::setTitle("Upload Your Design | VitalNeon");
         TwitterCard::setSite("@vitalneon");
         TwitterCard::setImage("https://vitalneon.com/assets/seo/upload-2.png");
-        TwitterCard::setDescription("");
+        TwitterCard::setDescription("Upload your own designand get a free quote and a mockup. With your unique design, you have the freedom to set your own budget as well");
 
-        JsonLd::setTitle("Create Your Own Neon Sign: Upload Your Design | VitalNeon");
-        JsonLd::setDescription("");
+        JsonLd::setTitle("Upload Your Design | VitalNeon");
+        JsonLd::setDescription("Upload your own designand get a free quote and a mockup. With your unique design, you have the freedom to set your own budget as well");
         JsonLd::addImage("https://vitalneon.com/assets/seo/upload-2.png");
         JsonLd::setType("WebSite");
         JsonLd::addImage("https://vitalneon.com/assets/seo/upload-1.png", ["height" => 400, "width" => 760]);
@@ -45,17 +45,23 @@ class DesignController extends Controller
         $this->validate($request, [
             'email' => 'required|max:255',
             'message' => 'required',
+            'size' => 'required|max:255',
+            'location' => 'required',
+            'budget' => 'required|numeric|min:200|max:2000',
             'name' => 'required|max:255',
-            'image' => 'required|mimes:png,jpg,gif,pdf,jpeg,svg,webp|max:2048',
+            'image' => 'required|mimes:png,jpg,gif,pdf,jpeg,svg,webp|max:3048',
         ]);
         $result = Design::create([
             'email' => $request->email,
             'message' => $request->message,
+            'size' => $request->size,
+            'location' => $request->location,
+            'budget' => $request->budget,
             'name' => $request->name,
             'image' => $request->image->store('designs', 'public_disk')
         ]);
         Http::post(config('app.design'), [
-            'content' => "**Email:** $result->email\n**Name:** $result->name\n**Message:** $result->message\n**Image:** https://vitalneon.com/storage/$result->image"
+            'content' => "**Email:** $result->email\n**Name:** $result->name\n**Message:** $result->message\n**Size:** $result->size\n**Location:** $result->location\n**Budget:** $$result->budget\n**Image:** https://vitalneon.com/storage/$result->image"
         ]);
         return back()->with('success', 'File uploaded. we will send you the quote in few hours');
     }

@@ -30,8 +30,8 @@ Route::get('/dashboard', function () {
 Route::get('/create-design', CreateDesign::class)->name('create-design');
 // Route::get('/create-design', [CreateDesignController::class, 'index'])->name('create-design');
 
-Route::get('/upload-design', [DesignController::class, 'index'])->name('upload-design');
-Route::post('/upload-design', [DesignController::class, 'store'])->middleware(['throttle:60,5']);
+Route::get('/upload-your-own-design', [DesignController::class, 'index'])->name('upload-design');
+Route::post('/upload-your-own-design', [DesignController::class, 'store'])->middleware(['throttle:60,5']);
 
 Route::get('/support', [SupportController::class, 'index'])->name('support');
 Route::post('/support', [SupportController::class, 'store'])->middleware(['throttle:2,5']);

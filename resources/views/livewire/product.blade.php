@@ -52,28 +52,11 @@
                     @enderror
                     <div class="py-2 text-white">
                         <h2 class="font-bold text-lg">Installation Kit *{{ $kit }}</h2>
-                        <div class="py-3 w-full flex flex-col">
-                            @foreach ($kits as $key => $item)
-                                @if ($loop->first)
-                                    <div class="flex items-center mr-2 mb-2">
-                                        <input type="radio" class="mr-2" checked value="{{ $item->name }}" wire:model.debounce.500ms="kit" name="kit" id="kit1">
-                                        <label for="kit1">{{ $item->name }} - ${{ $item->price }}</label>
-                                    </div>
-                                @else
-                                    <div class="flex items-center mr-2 mb-2">
-                                        <input type="radio" class="mr-2" value="{{ $item->name }}" wire:model.debounce.500ms="kit" name="kit" id="kit{{ $key + 1 }}">
-                                        <label for="kit{{ $key + 1 }}">{{ $item->name }} - ${{ $item->price }}</label>
-                                    </div>
-                                @endif     
-                            @endforeach 
-                            
-                            
-                            {{-- <select name="kit" id="kit" wire:model="kit" class="bg-dark flex items-center w-full justify-center p-3 cursor-pointer rounded-md flex-col border">
-                                @foreach ($kits as $item)
-                                    <option value="{{ $item->name }}">{{ $item->name }} - ${{ $item->price }}</option>  
-                                 @endforeach 
-                            </select> --}}
-                        </div>
+                        <select name="kit" id="kit" wire:model="kit" class="bg-dark flex items-center w-full justify-center p-3 cursor-pointer rounded-md flex-col border">
+                            @foreach ($kits as $item)
+                                <option value="{{ $item->name }}">{{ $item->name }} - ${{ $item->price }}</option>  
+                                @endforeach 
+                        </select>
                     </div>
                     @error('kit')
                         <p class="text-red-600 mb-2">{{ $message }}</p>

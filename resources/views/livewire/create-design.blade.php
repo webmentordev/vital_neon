@@ -1,5 +1,5 @@
 <section class="w-full py-[80px]">
-    <div class="flex @if ($direction) flex-col @endif text-white max-w-[1360px] m-auto 890px:flex 890px:flex-col bg-light p-6 mb-6">
+    <div class="flex @if ($direction) flex-col @endif text-white max-w-[1360px] m-auto 890px:flex 890px:flex-col bg-dark p-6 mb-6">
         <div wire:loading wire:target="checkout" class="fixed left-[45%] 575px:left-0 bottom-3">
             <div class="flex items-center bg-black text-white p-6 rounded-lg"><img src="https://api.iconify.design/svg-spinners:ring-resize.svg?color=%23ffffff" alt="Loading Icon"> <span class="ml-2">Processing...</span></div>
         </div>
@@ -14,7 +14,7 @@
                 @endif
             </div>
 
-            <div wire:click="$set('direction', {{ !$direction }})" class="bg-white p-3 rounded-lg absolute top-3 left-[72px]">
+            <div wire:click="$set('direction', {{ !$direction }})" class="bg-white p-[14px] rounded-lg absolute top-[10px] left-[72px]">
                 <img src="https://api.iconify.design/akar-icons:full-screen.svg?color=%23e4aa0c" width="30" alt="Sun Image">
             </div>
 
@@ -85,7 +85,7 @@
                 </div>
             </div>
         </div>
-        <form wire:submit.prevent="checkout" method="POST" class="text-sm w-full px-6 py-6 850px:px-0 850px:overflow-y-hidden">
+        <form wire:submit.prevent="checkout" method="POST" class="bg-light text-sm w-full px-6 py-6 850px:px-0 850px:overflow-y-hidden">
             <div class="flex items-center justify-between 490px:flex-col">
                 <h1 class="text-main font-bold text-3xl mb-3">Design Your Neon</h1>
                 <div class="flex items-center">
@@ -219,29 +219,30 @@
 
             <div class="py-2">
                 <h2 class="font-bold mb-2 text-lg">Neon Strip Color When Light Off</h2>
-                <div wire:click="$set('jacket', 'colored')" class="flex p-3 bg-dark cursor-pointer rounded-md flex-col mb-3 border @if ($jacket == 'colored') border-main @else border-gray-800 @endif">
-                    <p class="font-semibold mb-2">Similar Color as Light Color</p>
-                    <span class="text-gray-500 text-sm">The tube will be colored when turned off.</span>
-                </div>
-                <div wire:click="$set('jacket', 'white')" class="flex p-3 bg-dark cursor-pointer rounded-md flex-col mb-3 border @if ($jacket == 'white') border-main @else border-gray-800 @endif">
-                    <p class="font-semibold mb-2">Milky White</p>
-                    <span class="text-gray-500 text-sm">Your sign will be white when turned off.</span>
+                <div class="grid grid-cols-2 gap-3">
+                    <div wire:click="$set('jacket', 'colored')" class="flex p-3 bg-dark cursor-pointer rounded-md flex-col mb-3 border @if ($jacket == 'colored') border-main @else border-gray-800 @endif">
+                        <p class="font-semibold mb-2">Similar Color as Light Color</p>
+                        <span class="text-gray-500 text-sm">The tube will be colored when turned off.</span>
+                    </div>
+                    <div wire:click="$set('jacket', 'white')" class="flex p-3 bg-dark cursor-pointer rounded-md flex-col mb-3 border @if ($jacket == 'white') border-main @else border-gray-800 @endif">
+                        <p class="font-semibold mb-2">Milky White</p>
+                        <span class="text-gray-500 text-sm">Your sign will be white when turned off.</span>
+                    </div>
                 </div>
             </div>
 
             <div class="py-2">
-                <h2 class="font-bold text-lg mb-3">Backboard Style *{{ $shape }}</h2>
+                <h2 class="font-bold text-lg mb-3">Backboard Style <span class="text-main">* {{ $shape }}</span></h2>
                 <div class="py-3">
-                    @foreach ($shapes as $item)
-                        <div wire:click="$set('shape', '{{ $item->shape }}')" class="flex bg-dark mb-4 p-3 cursor-pointer rounded-md flex-col border @if ($shape ==  $item->shape) border-main @else border-gray-800 @endif">
-                            <p class="font-semibold mb-2">{{ $item->shape }} (${{ $item->price }})</p>
-                            <span class="text-gray-500 text-sm">{{ $item->description }}</span>
-                        </div>
-                    @endforeach
+                    <select name="shape" id="shape" wire:model="shape" class="bg-dark flex items-center w-full justify-center p-3 cursor-pointer rounded-md flex-col border">
+                        @foreach ($shapes as $item)
+                            <option value="{{ $item->shape }}">{{ $item->shape }} - ${{ $item->price }}</option>  
+                         @endforeach 
+                    </select>
                 </div>
             </div>
             <div class="py-2">
-                <h2 class="font-bold text-lg mb-3">Location *{{ $location }}</h2>
+                <h2 class="font-bold text-lg mb-1">Location <span class="text-main">* {{ $location }}</span></h2>
                 <div class="py-3 grid grid-cols-2 gap-4">
                     @foreach ($locations as $loc)
                         <div wire:click="$set('location', '{{ $loc }}')" class="flex bg-dark mb-4 items-center justify-center p-3 cursor-pointer rounded-md flex-col border @if ($location == $loc) border-main @else border-gray-800 @endif">
@@ -251,7 +252,7 @@
                 </div>
             </div>
             <div class="py-2">
-                <h2 class="font-bold text-lg">Power Adaptor *{{ $adaptor }}</h2>
+                <h2 class="font-bold text-lg">Power Adaptor <span class="text-main">* {{ $adaptor }}</span></h2>
                 <div class="mt-1">
                     <select wire:model="adaptor" class="w-full mt-2 bg-dark rounded border border-gray-800 focus:border-main focus:ring-4 focus:ring-main-light text-base outline-none text-gray-200 py-2 px-3 leading-8 transition-colors duration-200 ease-in-out mb-3">
                         @foreach ($adaptors as $itemAdapt)
@@ -265,8 +266,8 @@
                 </div>
             </div>
             <div class="py-2">
-                <h2 class="font-bold text-lg">Remote and Dimmer *{{ $remote }}</h2>
-                <p class="text-gray-500 text-sm">A remote and dimmer is included free with every sign! (Except for Multicolor Neon Signs, which are controlled by the APP)</p>
+                <h2 class="font-bold text-lg">Remote and Dimmer <span class="text-main">* {{ $remote }}</span></h2>
+                <p class="text-gray-500 text-sm">A remote and dimmer to control the light colour</p>
                 <div class="py-3 w-full">
                     <select name="remote" id="remote" wire:model="remote" class="bg-dark flex items-center w-full justify-center p-3 cursor-pointer rounded-md flex-col border">
                         @foreach ($remotes as $item)
@@ -279,7 +280,7 @@
                 <p class="text-red-600 mb-2">{{ $message }}</p>
             @enderror
             <div class="py-2">
-                <h2 class="font-bold text-lg">Installation Kit *{{ $kit }}</h2>
+                <h2 class="font-bold text-lg">Installation Kit <span class="text-main">* {{ $kit }}</span></h2>
                 <div class="py-3 w-full">
                     <select name="kit" id="kit" wire:model="kit" class="bg-dark flex items-center w-full justify-center p-3 cursor-pointer rounded-md flex-col border">
                         @foreach ($kits as $item)

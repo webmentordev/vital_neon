@@ -13,6 +13,9 @@ class Design extends Model
         'email',
         'message',
         'name',
-        'image'
+        'image',
+        'size',
+        'location',
+        'budget',
     ];
 }

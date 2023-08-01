@@ -17,6 +17,9 @@ return new class extends Migration
             $table->text('message');
             $table->string('name');
             $table->text('image');
+            $table->string('size');
+            $table->decimal('budget', 10, 2);
+            $table->string('location');
             $table->timestamps();
         });
     }
