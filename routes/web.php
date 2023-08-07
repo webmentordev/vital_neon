@@ -18,14 +18,11 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ProductsController;
 use App\Http\Controllers\CategoryPriceController;
 use App\Http\Controllers\CreateDesignController;
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\HomeController;
 use App\Http\Livewire\DesignQuote;
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
-
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::get('/create-design', CreateDesign::class)->name('create-design');
 // Route::get('/create-design', [CreateDesignController::class, 'index'])->name('create-design');
@@ -76,6 +73,10 @@ Route::middleware('auth')->group(function () {
     Route::get('/design-quote', DesignQuote::class)->name('design.quote');
 
     Route::get('/searches', [SearchController::class, 'index'])->name('searches');
+
+    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+    Route::get('/cart/dates/search', [DashboardController::class, 'cart_search'])->name('cart.search');
+    Route::get('/orders/dates/search', [DashboardController::class, 'order_search'])->name('order.search');
 });
 
 Route::get('/sitemap.xml', [SiteMapGenerator::class, 'index'])->name('sitemap');

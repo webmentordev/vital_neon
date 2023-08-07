@@ -274,14 +274,6 @@ class CreateDesign extends Component
         }
     }
 
-    public function arraycheck(){
-        if(in_array($this->font, $this->fonts) && in_array($this->jacket, $this->jackets) && in_array($this->color, $this->colors) && in_array($this->adaptor, $this->adaptors) && in_array($this->location, $this->locations) && in_array($this->alignment, $this->alignments)){
-            return true;
-        }else{
-            return false;
-        }
-    }
-
     function randomPassword() {
         $alphabet = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890';
         $pass = array();
@@ -348,7 +340,7 @@ class CreateDesign extends Component
         if(Kit::where('name', $this->kit)->first() == null){
             abort(500, 'Internal Server Error');
         }
-        if($this->arraycheck()){
+        if(in_array($this->font, $this->fonts) && in_array($this->jacket, $this->jackets) && in_array($this->color, $this->colors) && in_array($this->adaptor, $this->adaptors) && in_array($this->location, $this->locations) && in_array($this->alignment, $this->alignments)){
             $checkout_id = $this->randomPassword();
             $order_id = $this->randomPassword();
             $stripe = new StripeClient(config('app.stripe'));
@@ -391,12 +383,30 @@ class CreateDesign extends Component
                 'price_id' => $result['id'],
                 'checkout_id' => $checkout_id
             ]);
-            $content = "**Email:** $this->email\n**PhoneNumber:** $this->phone\n**CheckoutID:** $checkout_id\n**TotalPrice: $**$this->total_price\n**Jacket:** $this->jacket\n**Line 1:** $this->line1|$this->font|$this->color\n**Line 2:** $this->line2|$this->font2|$this->color3\n**Line 3:** $this->line3|$this->font3|$this->color3\n**Backboard:** $this->shape\n**Kit:** $this->kit\n**Location:** $this->location\n**Adaptor:** $this->adaptor\n**Remote:** $this->remote\n**Alignment:** $this->alignment\n**PriceID:** {$result['id']}\n**Address:** $this->address\n**CheckoutURL:**{$checkout['url']}";
-
+            $content = "**Email:** $this->email\n"
+            . "**PhoneNumber:** $this->phone\n"
+            . "**CheckoutID:** $checkout_id\n"
+            . "**TotalPrice:** $$this->total_price\n"
+            . "**Jacket:** $this->jacket\n"
+            . "**Line 1:** $this->line1|$this->font|$this->color\n"
+            . "**Line 2:** $this->line2|$this->font2|$this->color2\n"
+            . "**Line 3:** $this->line3|$this->font3|$this->color3\n"
+            . "**Backboard:** $this->shape\n"
+            . "**Kit:** $this->kit\n"
+            . "**Location:** $this->location\n"
+            . "**Adaptor:** $this->adaptor\n"
+            . "**Remote:** $this->remote\n"
+            . "**Alignment:** $this->alignment\n"
+            . "**PriceID:** {$result['id']}\n"
+            . "**Address:** $this->address\n"
+            . "**CheckoutURL:** {$checkout['url']}";
+            
             Http::post(config('app.order-pending'), [
                 'content' => $content
             ]);
+
             Mail::to(config('app.redirect_email'))->send(new RedirectOrderEmail($content));
+            
             return redirect($checkout['url']);
         }else{
             abort(500, "Internal Server Error");

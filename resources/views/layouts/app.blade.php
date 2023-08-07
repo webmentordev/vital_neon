@@ -11,6 +11,7 @@
         <link rel="preconnect" href="https://fonts.bunny.net">
         <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
         <meta name="facebook-domain-verification" content="y38e4f9vs00rn3zxrkqcdc2av8xw6g" />
+        <title>VitalNeon Dashboard</title>
         <!-- Meta Pixel Code -->
         <script>
         !function(f,b,e,v,n,t,s)

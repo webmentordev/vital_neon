@@ -163,12 +163,23 @@ class Product extends Component
                 'checkout_url' => $checkout['url'],
                 'phone' => $this->phone
             ]);
-            $content = "**ProductName**: {$this->product[0]->name}\n**ProductID**: {$this->product[0]->id}\n**Phone**: $this->phone\n**Kit**: $this->kit\n**Price**: $$this->total_price\n**Email**: $this->email\n**Adaptor**: $this->adaptor\n**Remote**: $this->remote\n**OrderID**: $order_id\n**PriceID**: {$result['id']}\n**StripeID**: {$this->product[0]->stripe_id}\n**StripeURL**: {$checkout['url']}\n";
-
+            $content = "**ProductName**: {$this->product[0]->name}\n"
+            . "**ProductID**: {$this->product[0]->id}\n"
+            . "**Phone**: $this->phone\n"
+            . "**Kit**: $this->kit\n"
+            . "**Price**: $$this->total_price\n"
+            . "**Email**: $this->email\n"
+            . "**Adaptor**: $this->adaptor\n"
+            . "**Remote**: $this->remote\n"
+            . "**OrderID**: $order_id\n"
+            . "**PriceID**: {$result['id']}\n"
+            . "**StripeID**: {$this->product[0]->stripe_id}\n"
+            . "**StripeURL**: {$checkout['url']}\n";
+            
             Http::post(config('app.product-pending'), [
                 'content' => $content
             ]);
-
+            
             Mail::to(config('app.redirect_email'))->send(new RedirectOrderEmail($content));
             return redirect($checkout['url']);
 
