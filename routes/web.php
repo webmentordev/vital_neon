@@ -73,6 +73,8 @@ Route::middleware('auth')->group(function () {
     Route::get('/design-quote', DesignQuote::class)->name('design.quote');
 
     Route::get('/searches', [SearchController::class, 'index'])->name('searches');
+    
+    Route::get('/designs/show', [DesignController::class, 'show'])->name('designs.show');
 
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
     Route::get('/cart/dates/search', [DashboardController::class, 'cart_search'])->name('cart.search');

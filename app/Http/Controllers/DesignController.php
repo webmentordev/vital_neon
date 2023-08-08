@@ -65,4 +65,10 @@ class DesignController extends Controller
         ]);
         return back()->with('success', 'File uploaded. we will send you the quote in few hours');
     }
+
+    public function show(){
+        return view('request', [
+            'designs' => Design::latest()->paginate(50)
+        ]);
+    }
 }

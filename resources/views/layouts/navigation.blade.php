@@ -46,7 +46,12 @@
                         {{ __('Price') }}
                     </x-nav-link>
                 </div>
-                
+                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                    <x-nav-link :href="route('designs.show')" :active="request()->routeIs('designs.show')">
+                        {{ __('Request') }}
+                    </x-nav-link>
+                </div>
+
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-nav-link :href="route('contact')" :active="request()->routeIs('contact')">
                         {{ __('Support') }}

@@ -23,11 +23,11 @@
                     <h2 class="font-semibold text-lg text-white">Neon Sign Location</h2>
                     <p class="mb-3 text-gray-200 text-sm">The location where you are going to place the neon sign. Outdoor cost more than indoor sign.</p>
                     <div class="flex items-center mb-3">
-                        <input type="radio" name="location" id="indoor" checked>
+                        <input type="radio" name="location" id="indoor" value="indoor" >
                         <label for="indoor" class="ml-2 text-white text-sm">Indoor Sign</label>
                     </div>
                     <div class="flex items-center mb-3">
-                        <input type="radio" name="location" id="outdoor">
+                        <input type="radio" name="location" id="outdoor" value="outdoor">
                         <label for="outdoor" class="ml-2 text-white text-sm">Outdoor Sign</label>
                     </div>
                     <x-input-error :messages="$errors->get('location')" class="mt-2" />
