@@ -8,7 +8,8 @@
             <ul class="flex items-center">
                 <a class="mr-4" href="https://www.instagram.com/vitalneon/" rel="nofollow" target="_blank"><img src="https://api.iconify.design/skill-icons:instagram.svg?color=%23f91a1a" width="25" alt="Social Media Icon"></a>
                 <a class="mr-4" href="https://www.facebook.com/profile.php?id=100089690514265/" rel="nofollow" target="_blank"><img src="https://api.iconify.design/logos:facebook.svg?color=%23f91a1a" width="25" alt="Social Media Icon"></a>
-                <a class="mr-2" href="https://www.pinterest.com/mobycarts/" target="_blank" rel="nofollow"><img src="https://api.iconify.design/logos:pinterest.svg?color=%23f72696" width="25" alt="Pinterest"></a>
+                <a class="mr-4" href="https://www.pinterest.com/mobycarts/" target="_blank" rel="nofollow"><img src="https://api.iconify.design/logos:pinterest.svg?color=%23f72696" width="25" alt="Pinterest"></a>
+                <a class="mr-2" href="https://wa.me/16476165799" target="_blank" rel="nofollow"><img src="https://api.iconify.design/logos:whatsapp-icon.svg?color=%23ffd402" width="25" alt="Pinterest"></a>
             </ul>
         </div>
        <div class="text-end 475px:text-start">
@@ -19,6 +20,8 @@
             <li class="mb-2"><a href="{{ route('upload-design') }}">Upload Design</a></li>
             <li class="mb-2"><a href="{{ route('products') }}">Products</a></li>
             <li class="mb-2"><a href="{{ route('support') }}">Support</a></li>
+            <li class="mb-2"><a href="{{ route('about') }}">About</a></li>
+            <li class="mb-2"><a href="{{ route('f.a.q') }}">FAQ</a></li>
             <li class="mb-2"><a href="{{ route('sitemap') }}">Sitemap</a></li>
         </ul>
        </div>

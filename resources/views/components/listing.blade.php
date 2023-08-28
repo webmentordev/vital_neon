@@ -1,13 +1,13 @@
 <section class="w-full px-4">
-    <div class="max-w-4xl m-auto py-[100px]">
+    <div class="max-w-7xl m-auto py-[100px]">
         <div class="text-center mb-6 border-b border-light py-3">
             <h4 class="text-[34.5px] uppercase mb-3 text-gray-300 font-bold flex text-9xl justify-center items-center m-auto featured">Featured Products</h4>
         </div>
-        <div class="grid grid-cols-3 gap-6 800px:grid-cols-2 m-auto 530px:grid-cols-1 530px:max-w-[280px]">
+        <div class="grid grid-cols-4 gap-6 m-auto 1170px:grid-cols-3 940px:grid-cols-2 940px:max-w-2xl 620px:grid-cols-1 620px:max-w-[390px]">
             @foreach ($products as $item)
                 <a href="{{ route('listing', $item->slug) }}" class="overflow-hidden group transition-all">
                     <div class="overflow-hidden rounded-lg">
-                        <img data-src="{{ asset('storage/'.$item->image) }}" class="group-hover:scale-125 transition-all lazyload" alt="{{ $item->name }}" loading="lazy" style="height: 300px; object-fit: cover">
+                        <img data-src="{{ asset('storage/'.$item->image) }}" class="group-hover:scale-125 transition-all lazyload" alt="{{ $item->name }}" loading="lazy" style="height: 300px; width: 100%; object-fit: cover">
                     </div>
                     <div class="bg-light p-3 w-full bottom-0 left-0">
                         @if (strlen($item->name) >= 26)

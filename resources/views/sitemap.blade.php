@@ -30,6 +30,20 @@
         <changefreq>weekly</changefreq>
         <priority>0.90</priority>
     </url>
+
+    <url>
+        <loc>https://vitalneon.com/about</loc>
+        <lastmod>2023-08-28T13:40:00+05:00</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.90</priority>
+    </url>
+
+    <url>
+        <loc>https://vitalneon.com/f-a-q</loc>
+        <lastmod>2023-08-28T13:40:00+05:00</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.90</priority>
+    </url>
     @foreach ($categories as $category)
         <url>
             <loc>{{ url('/') }}/products/category/{{ $category->slug }}</loc>

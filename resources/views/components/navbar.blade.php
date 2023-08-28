@@ -1,11 +1,13 @@
 <nav class="w-full py-2 sticky top-0 left-0 z-50 bg-dark text-white bg-opacity-80 backdrop-blur-lg">
     <div class="flex items-center justify-between max-w-[90%] m-auto w-full px-2">
         <a href="{{ route('home') }}" class="text-3xl font-semibold py-1"><img src="{{ asset('assets/neon_tranp_white.png') }}" width="150" alt="Vital Neon"></a>
-        <ul class="flex items-center uppercase 1090px:hidden">
+        <ul class="flex items-center uppercase 1210px:hidden">
             <a class="mx-4" href="{{ route('home') }}">Home</a>
             <a class="mx-4" href="{{ route('create-design') }}">Design Your Own</a>
             <a class="mx-4" href="{{ route('upload-design') }}">Upload Design</a>
             <a class="mx-4" href="{{ route('products') }}">Products</a>
+            <a class="mx-4" href="{{ route('about') }}">About</a>
+            <a class="mx-4" href="{{ route('f.a.q') }}">F.A.Q</a>
             
             @auth
                 <a class="mx-4" href="{{ route('design.quote') }}">Quote</a>
@@ -25,10 +27,18 @@
                     </ul>
                 </div>
             </div>
-            <a class="px-5 border-r border-gray-600" href="{{ route('support') }}">Support</a>
-            <a href="https://wa.me/16476165799" class="ml-5"><img src="https://api.iconify.design/logos:whatsapp-icon.svg?color=%23ffd402" width="36" alt="Whatsapp Icon"></a>
+            <div class="mx-4 relative group">
+                <span class="category flex items-center">Support <img src="https://api.iconify.design/ic:outline-arrow-drop-down.svg?color=%23ffffff" width="28" alt="Carret Down Logo"></span>
+                <div class="hidden group-hover:block absolute top-7 max-w-[200px] w-full p-2 rounded-lg bg-dark bg-opacity-80 backdrop-blur-lg border border-white/10 text-gray-700">
+                    <ul class="flex flex-col w-full text-white text-center">
+                        <a class="text-[15px] mb-1 container border-b border-white/10" target="_blank" href="https://wa.me/16476165799">Whatsapp</a>
+                        <a class="text-[15px] mb-1 container border-b border-white/10" href="{{ route('support') }}">Ticket</a>
+                        <a class="text-[15px] container" target="_blank" href="https://m.me/100095082327532">Messenger</a>
+                    </ul>
+                </div>
+            </div>
         </ul>
-        <div class="hidden 1090px:block" x-data="{open: false}">
+        <div class="hidden 1210px:block" x-data="{open: false}">
             <ul x-on:click="open = true">
                 <li class="bg-white my-2 h-[2px] w-[80px]"></li>
                 <li class="bg-white my-2 h-[2px] w-[80px]"></li>
@@ -40,11 +50,20 @@
                     <a class="text-2xl mb-3" href="{{ route('create-design') }}">Design Your Own</a>
                     <a class="text-2xl mb-3" href="{{ route('upload-design') }}">Upload Design</a>
                     <a class="text-2xl mb-3" href="{{ route('products') }}">Products</a>
-                    <a class="text-2xl mb-3" href="{{ route('support') }}">Support</a>
+                    <a class="text-2xl mb-3" href="{{ route('about') }}">About</a>
+                    <a class="text-2xl mb-3" href="{{ route('f.a.q') }}">F.A.Q</a>
+                    <div class="mx-4 relative" x-data="{toggle: false}">
+                        <span class="flex items-center category text-3xl p-3 bg-light rounded-lg" x-on:click="toggle = !toggle">Support <img src="https://api.iconify.design/ic:outline-arrow-drop-down.svg?color=%23ffffff" width="28" alt="Carret Down Logo"></span>
+                        <div class="flex flex-col" x-show="toggle">
+                            <a class="text-2xl" href="https://wa.me/16476165799" target="_blank">Whatsapp</a>
+                            <a class="text-2xl" href="{{ route('support') }}">Ticket</a>
+                            <a class="text-2xl" href="https://m.me/100095082327532" target="_blank">Messenger</a>
+                        </div>
+                    </div>
                     @auth   
                         <a class="text-2xl mb-3" href="{{ route('design.quote') }}">Quote</a>
                     @endauth
-                    <div class="mx-4 relative" x-data="{toggle: false}">
+                    <div class="mx-4 relative mt-2" x-data="{toggle: false}">
                         <span class="flex items-center category text-3xl p-3 bg-light rounded-lg" x-on:click="toggle = !toggle">Categories <img src="https://api.iconify.design/ic:outline-arrow-drop-down.svg?color=%23ffffff" width="28" alt="Carret Down Logo"></span>
                         <div class="flex flex-col" x-show="toggle">
                             @foreach ($categories as $item)
@@ -52,7 +71,6 @@
                             @endforeach
                         </div>
                     </div>
-                    <a href="https://wa.me/16476165799" class="text-2xl mb-3 m-auto"><img src="https://api.iconify.design/logos:whatsapp-icon.svg?color=%23ffd402" width="36" alt="Whatsapp Icon"></a>
                 </ul>
             </div>
         </div>

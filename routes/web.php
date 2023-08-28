@@ -21,11 +21,22 @@ use App\Http\Controllers\CreateDesignController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\HomeController;
 use App\Http\Livewire\DesignQuote;
+use Artesaos\SEOTools\Facades\SEOMeta;
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
 Route::get('/create-design', CreateDesign::class)->name('create-design');
 // Route::get('/create-design', [CreateDesignController::class, 'index'])->name('create-design');
+
+Route::get("/about", function(){
+    SEOMeta::setTitle("About VitalNeon");
+    return view('about');
+})->name('about');
+
+Route::get("/f-a-q", function(){
+    SEOMeta::setTitle("Frequently Asked Question | VitalNeon");
+    return view('f-a-q');
+})->name('f.a.q');
 
 Route::get('/upload-your-own-design', [DesignController::class, 'index'])->name('upload-design');
 Route::post('/upload-your-own-design', [DesignController::class, 'store'])->middleware(['throttle:60,5']);

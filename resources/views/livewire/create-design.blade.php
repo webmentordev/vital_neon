@@ -3,7 +3,7 @@
         <div wire:loading wire:target="checkout" class="fixed left-[45%] 575px:left-0 bottom-3">
             <div class="flex items-center bg-black text-white p-6 rounded-lg"><img src="https://api.iconify.design/svg-spinners:ring-resize.svg?color=%23ffffff" alt="Loading Icon"> <span class="ml-2">Processing...</span></div>
         </div>
-        <div class="bg-cover bg-center relative rounded-lg flex justify-center items-center h-[980px] w-full 890px:min-h-[800px]" style="background-image: url({{ $backgroundImage }})" id="backDiv">
+        <div class="bg-cover bg-center sticky top-[80px] left-0 rounded-lg flex justify-center items-center h-[980px] w-full 890px:min-h-[800px]" style="background-image: url({{ $backgroundImage }})" id="backDiv">
             <span class="fixed bg-main rounded-lg p-3 bottom-3 right-3 text-gray-800 text-4xl font-semibold z-50"><span class="text-2xl">$</span>{{ $total_price }}</span>
             
             <div wire:click="$set('dark_mode', {{ !$dark_mode }})" class=" @if (!$dark_mode) bg-white @else bg-gray-800 @endif p-3 rounded-lg absolute top-2 left-2">
@@ -127,7 +127,7 @@
                 @endif
                 <div class="py-2" x-data="{ open: false }">
                     <h2 class="font-bold mb-2 text-lg">Choose Line-1 Font</h2>
-                    <span class="p-6 border border-main bg-dark w-full inline-block rounded-lg text-center font-semibold mb-3 uppercase" x-on:click="open = !open">Open / close</span>
+                    <span class="p-6 border border-main bg-dark w-full inline-block rounded-lg text-center font-semibold mb-3 uppercase" x-on:click="open = !open">Font Options</span>
                     <div class="grid grid-cols-2 gap-2 475px:grid-cols-1" x-show="open" x-cloak>
                         @foreach ($fonts as $fonty)
                             <div class="p-3 cursor-pointer rounded-lg text-center border text-lg capitalize {{ $fonty }} @if ($font == $fonty) border-main @else border-white/10 @endif" wire:click="$set('font', '{{ $fonty }}')">
@@ -161,7 +161,7 @@
                     @endif
                     <div class="py-2" x-data="{ open: false }">
                         <h2 class="font-bold mb-2 text-lg">Choose Line-2 Font</h2>
-                        <span class="p-6 border border-main bg-dark w-full inline-block rounded-lg text-center font-semibold mb-3 uppercase" x-on:click="open = !open">Open / close</span>
+                        <span class="p-6 border border-main bg-dark w-full inline-block rounded-lg text-center font-semibold mb-3 uppercase" x-on:click="open = !open">Font Options</span>
                         <div class="grid grid-cols-2 gap-2 475px:grid-cols-1" x-show="open" x-cloak>
                             @foreach ($fonts as $fonty)
                                 <div class="p-3 cursor-pointer rounded-lg text-center border text-lg capitalize {{ $fonty }} @if ($font2 == $fonty) border-main @else border-white/10 @endif" wire:click="$set('font2', '{{ $fonty }}')">
@@ -195,7 +195,7 @@
                     @endif
                     <div class="py-2" x-data="{ open: false }">
                         <h2 class="font-bold mb-2 text-lg">Choose Line-3 Font</h2>
-                        <span class="p-6 border border-main bg-dark w-full inline-block rounded-lg text-center font-semibold mb-3 uppercase" x-on:click="open = !open">Open / close</span>
+                        <span class="p-6 border border-main bg-dark w-full inline-block rounded-lg text-center font-semibold mb-3 uppercase" x-on:click="open = !open">Font Options</span>
                         <div class="grid grid-cols-2 gap-2 475px:grid-cols-1" x-show="open" x-cloak>
                             @foreach ($fonts as $fonty)
                                 <div class="p-3 cursor-pointer rounded-lg text-center border text-lg capitalize {{ $fonty }} @if ($font3 == $fonty) border-main @else border-white/10 @endif" wire:click="$set('font3', '{{ $fonty }}')">
@@ -316,12 +316,6 @@
     </div>
     <section class="max-w-[1366px] m-auto">
         <p class="p-6 col-span-2 border-l border-gray-400 bg-light text-white mb-6 leading-6">We're pleased to offer Stripe as our payment system, providing you with a secure and reliable way to make payments. With Stripe, your credit card information is kept safe and secure, as we don't store it on our servers. We only collect your email address for communication purposes, and we never share your personal information with third parties. Stripe's user-friendly interface allows for seamless payments, giving you peace of mind and a smooth payment experience. Thank you for choosing to shop with us!</p>
-    </section>
-    <section class="bg-light">
-        <x-listing />
-    </section>
-    <section class="bg-dark">
-        <x-f-a-q />
     </section>
     <script>
         const color = document.getElementById('color');
