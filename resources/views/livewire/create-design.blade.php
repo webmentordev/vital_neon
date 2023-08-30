@@ -3,8 +3,8 @@
         <div wire:loading wire:target="checkout" class="fixed left-[45%] 575px:left-0 bottom-3">
             <div class="flex items-center bg-black text-white p-6 rounded-lg"><img src="https://api.iconify.design/svg-spinners:ring-resize.svg?color=%23ffffff" alt="Loading Icon"> <span class="ml-2">Processing...</span></div>
         </div>
-        <div class="bg-cover bg-center sticky top-[80px] left-0 rounded-lg flex justify-center items-center h-[980px] w-full 890px:min-h-[800px]" style="background-image: url({{ $backgroundImage }})" id="backDiv">
-            <span class="fixed bg-main rounded-lg p-3 bottom-3 right-3 text-gray-800 text-4xl font-semibold z-50"><span class="text-2xl">$</span>{{ $total_price }}</span>
+        <div class="bg-cover bg-center sticky top-[80px] 890px:static left-0 rounded-lg flex justify-center items-center h-[980px] w-full 890px:min-h-[800px]" style="background-image: url({{ $backgroundImage }})" id="backDiv">
+            <span class="fixed bg-main rounded-lg p-3 bottom-3 left-3 text-gray-800 text-4xl font-semibold z-50"><span class="text-2xl">$</span>{{ $total_price }}</span>
             
             <div wire:click="$set('dark_mode', {{ !$dark_mode }})" class=" @if (!$dark_mode) bg-white @else bg-gray-800 @endif p-3 rounded-lg absolute top-2 left-2">
                 @if (!$dark_mode)
@@ -219,7 +219,7 @@
 
             <div class="py-2">
                 <h2 class="font-bold mb-2 text-lg">Neon Strip Color When Light Off</h2>
-                <div class="grid grid-cols-2 gap-3">
+                <div class="grid grid-cols-2 gap-3 530px:grid-cols-1">
                     <div wire:click="$set('jacket', 'colored')" class="flex p-3 bg-dark cursor-pointer rounded-md flex-col mb-3 border @if ($jacket == 'colored') border-main @else border-gray-800 @endif">
                         <p class="font-semibold mb-2">Similar Color as Light Color</p>
                         <span class="text-gray-500 text-sm">The tube will be colored when turned off.</span>
@@ -308,7 +308,7 @@
                 <p class="text-red-600 mb-2">{{ $message }}</p>
             @enderror
             <button class="py-3 px-4 w-full bg-white rounded-md font-bold text-dark" wire:click="checkout" type="submit">Checkout</button>
-            <div class="flex justify-between items-center w-full mt-2 py-3">
+            <div class="flex justify-between 530px:flex-col items-center w-full mt-2 py-3">
                 <img src="{{ asset('assets/images/payment_cards.png') }}" width="190px" alt="Stripe Payment methods icon">
                 <img src="{{ asset('assets/images/stripe_square_logo.png') }}" width="190px" alt="Powerd by stipe image">
             </div>

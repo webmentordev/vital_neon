@@ -49,10 +49,34 @@
     {!! JsonLd::generate() !!}
 </head>
 <body class="antialiased">
+    <section class="py-4 px-4 text-white text-center bg-light">
+        <p>💸 Free world wide 🌎 shipping in 5 Days 🚚</p>
+    </section>
     @if (!Request::is('success/*') && !Request::is('cancel/*'))
         <x-navbar />
     @endif
     @yield('content')
     <x-footer />
+    <button id="myBtn" class="fixed bottom-5 right-5 z-50 bg-white rounded-full p-2"><img src="https://api.iconify.design/bx:arrow-to-top.svg?color=%23121212" width="30" alt="Go To Top Button"></button>
 </body>
+<script>
+    let mybutton = document.getElementById("myBtn");
+
+    // When the user scrolls down 20px from the top of the document, show the button
+    window.onscroll = function() {scrollFunction()};
+
+    function scrollFunction() {
+    if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+        mybutton.style.display = "block";
+    } else {
+        mybutton.style.display = "none";
+    }
+    }
+
+    // When the user clicks on the button, scroll to the top of the document
+    function topFunction() {
+    document.body.scrollTop = 0; // For Safari
+    document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+    }
+</script>
 </html>

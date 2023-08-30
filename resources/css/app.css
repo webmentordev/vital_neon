@@ -429,3 +429,8 @@ nav a, nav .category{
 .pagination p{
     @apply text-white;
 }
+
+#myBtn {
+    display: none;
+}
+  

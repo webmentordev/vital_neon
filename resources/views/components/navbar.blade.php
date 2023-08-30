@@ -29,11 +29,10 @@
             </div>
             <div class="mx-4 relative group">
                 <span class="category flex items-center">Support <img src="https://api.iconify.design/ic:outline-arrow-drop-down.svg?color=%23ffffff" width="28" alt="Carret Down Logo"></span>
-                <div class="hidden group-hover:block absolute top-7 max-w-[200px] w-full p-2 rounded-lg bg-dark bg-opacity-80 backdrop-blur-lg border border-white/10 text-gray-700">
+                <div class="hidden group-hover:block absolute top-7 right-0 w-[120px] p-2 rounded-lg bg-dark bg-opacity-80 backdrop-blur-lg border border-white/10 text-gray-700">
                     <ul class="flex flex-col w-full text-white text-center">
-                        <a class="text-[15px] mb-1 container border-b border-white/10" target="_blank" href="https://wa.me/16476165799">Whatsapp</a>
-                        <a class="text-[15px] mb-1 container border-b border-white/10" href="{{ route('support') }}">Ticket</a>
-                        <a class="text-[15px] container" target="_blank" href="https://m.me/100095082327532">Messenger</a>
+                        <a class="text-[15px] p-1 mb-1 container border-b border-white/10 flex items-center" target="_blank" href="https://wa.me/16476165799"><img src="https://api.iconify.design/logos:whatsapp-icon.svg?color=%23ffd402" class="mr-2" width="20" alt="Social Media Icon">Whatsapp</a>
+                        <a class="text-[15px] p-1 container flex items-center" target="_blank" href="https://m.me/100095082327532"><img src="https://api.iconify.design/logos:facebook.svg?color=%23f91a1a" class="mr-2" width="20" alt="Social Media Icon">Facebook</a>
                     </ul>
                 </div>
             </div>
@@ -55,9 +54,8 @@
                     <div class="mx-4 relative" x-data="{toggle: false}">
                         <span class="flex items-center category text-3xl p-3 bg-light rounded-lg" x-on:click="toggle = !toggle">Support <img src="https://api.iconify.design/ic:outline-arrow-drop-down.svg?color=%23ffffff" width="28" alt="Carret Down Logo"></span>
                         <div class="flex flex-col" x-show="toggle">
-                            <a class="text-2xl" href="https://wa.me/16476165799" target="_blank">Whatsapp</a>
-                            <a class="text-2xl" href="{{ route('support') }}">Ticket</a>
-                            <a class="text-2xl" href="https://m.me/100095082327532" target="_blank">Messenger</a>
+                            <a class="text-2xl flex items-center" href="https://wa.me/16476165799" target="_blank"><img src="https://api.iconify.design/logos:whatsapp-icon.svg?color=%23ffd402" class="mr-2" width="20" alt="Social Media Icon">Whatsapp</a>
+                            <a class="text-2xl flex items-center" href="https://m.me/100095082327532" target="_blank"><img src="https://api.iconify.design/logos:facebook.svg?color=%23f91a1a" class="mr-2" width="20" alt="Social Media Icon">Facebook</a>
                         </div>
                     </div>
                     @auth   

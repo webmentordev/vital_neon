@@ -8,7 +8,7 @@
         </div>
         <span class="fixed bg-main rounded-lg p-3 bottom-3 z-10 right-3 text-gray-800 text-4xl font-semibold"><span class="text-2xl">$</span>{{ $total_price }}</span>
         @foreach ($product as $item)
-            <div class="grid grid-cols-2 gap-3 rounded-lg mb-6 overflow-hidden">
+            <div class="grid grid-cols-2 gap-3 rounded-lg mb-6 overflow-hidden 890px:grid-cols-1 890px:max-w-lg m-auto">
                 <a href="{{ asset('storage/'.$item->image) }}" class="h-fit" target="_blank" rel=dofollow>
                     <img data-src="{{ asset('storage/'.$item->image) }}" class="h-fit w-full lazyload rounded-lg" loading="lazy" alt="Buy {{ $item->name }}">
                 </a>
@@ -70,7 +70,7 @@
                         <p class="text-red-600 mb-2">{{ $message }}</p>
                     @enderror
                     <button class="py-3 px-4 w-full bg-white rounded-md font-bold text-dark" wire:click="checkout" type="submit">Checkout</button>
-                    <div class="flex justify-between items-center w-full mt-2 py-3">
+                    <div class="flex justify-between items-center 530px:flex-col w-full mt-2 py-3">
                         <img src="{{ asset('assets/images/payment_cards.png') }}" width="190px" alt="Stripe Payment methods icon">
                         <img src="{{ asset('assets/images/stripe_square_logo.png') }}" width="190px" alt="Powerd by stipe image">
                     </div>
@@ -82,5 +82,4 @@
             {!! $product[0]->body !!}
         </main>
     </div>
-    <x-f-a-q />
 </section>
