@@ -57,7 +57,7 @@
     @endif
     @yield('content')
     <x-footer />
-    <button id="myBtn" class="fixed bottom-5 right-5 z-50 bg-white rounded-full p-2"><img src="https://api.iconify.design/bx:arrow-to-top.svg?color=%23121212" width="30" alt="Go To Top Button"></button>
+    <button id="myBtn" onclick="topFunction()" class="fixed bottom-5 right-5 z-50 bg-white rounded-full p-2"><img src="https://api.iconify.design/bx:arrow-to-top.svg?color=%23121212" width="30" alt="Go To Top Button"></button>
 </body>
 <script>
     let mybutton = document.getElementById("myBtn");

@@ -28,12 +28,14 @@
                             <tr class="bg-white text-gray-800 text-center text-sm">
                                 <th class="p-2 text-start">Name</th>
                                 <th class="text-start">Slug</th>
+                                <th class="text-start">Products</th>
                                 <th class="p-2 text-end">Created</th>
                             </tr>
                             @foreach ($categories as $item)
                                 <tr class="text-center text-sm">
                                     <td class="p-2 text-start">{{ $item->name }}</td>
                                     <td class="text-start">{{ $item->slug }}</td>
+                                    <td class="text-start">{{ count($item->products) }}</td>
                                     <td class="p-2 text-end">{{ $item->created_at->diffForHumans() }}</td>
                                 </tr>
                             @endforeach

@@ -53,7 +53,7 @@ Route::get('/success-order/{order:checkout_id}', [OrderController::class, 'succe
 Route::get('/product/{slug}', Product::class)->name('listing');
 Route::get('/products', [ProductsController::class, 'index'])->name('products');
 Route::get('/products/search', [ProductsController::class, 'search'])->name('product.search');
-Route::get('/products/category/{category}', [ProductsController::class, 'category'])->name('category.search');
+Route::get('/products/category/{category:slug}', [ProductsController::class, 'category'])->name('category.search');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

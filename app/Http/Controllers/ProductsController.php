@@ -78,40 +78,35 @@ class ProductsController extends Controller
             'products' => $result
         ]);
     }
-    public function category($category){
-        $result = Category::where('name', $category)->with('products')->first();
-        if($result != null){
-            SEOMeta::setTitle("Custom Neon Sign Categories | VitalNeon");
-            SEOMeta::setDescription("Discover the vibrant world of neon signs at VitalNeon. Our extensive collection of pre-made neon signs includes a variety of designs, from classic to contemporary, that are sure to catch the eye and brighten any space. We also offer the option to create your own personalized neon sign, so you can bring your unique vision to life. All of our neon signs are handcrafted using high-quality materials and advanced techniques, ensuring that each sign is built to last. Browse our selection now and add a touch of neon to your life with VitalNeon.");
-            SEOMeta::setCanonical("https://vitalneon.com/products");
-            SEOMeta::setRobots("index, follow");
-            SEOMeta::addMeta("apple-mobile-web-app-title", "VitalNeon");
-            SEOMeta::addMeta("application-name", "VitalNeon");
+    public function category(Category $category){
+        SEOMeta::setTitle("Custom Neon Sign Categories | VitalNeon");
+        SEOMeta::setDescription("Discover the vibrant world of neon signs at VitalNeon. Our extensive collection of pre-made neon signs includes a variety of designs, from classic to contemporary, that are sure to catch the eye and brighten any space. We also offer the option to create your own personalized neon sign, so you can bring your unique vision to life. All of our neon signs are handcrafted using high-quality materials and advanced techniques, ensuring that each sign is built to last. Browse our selection now and add a touch of neon to your life with VitalNeon.");
+        SEOMeta::setCanonical("https://vitalneon.com/products");
+        SEOMeta::setRobots("index, follow");
+        SEOMeta::addMeta("apple-mobile-web-app-title", "VitalNeon");
+        SEOMeta::addMeta("application-name", "VitalNeon");
 
-            OpenGraph::setTitle("Custom Neon Sign Categories | VitalNeon");
-            OpenGraph::setDescription("Discover the vibrant world of neon signs at VitalNeon. Our extensive collection of pre-made neon signs includes a variety of designs, from classic to contemporary, that are sure to catch the eye and brighten any space. We also offer the option to create your own personalized neon sign, so you can bring your unique vision to life. All of our neon signs are handcrafted using high-quality materials and advanced techniques, ensuring that each sign is built to last. Browse our selection now and add a touch of neon to your life with VitalNeon."); 
-            OpenGraph::setUrl("https://vitalneon.com/products");
-            OpenGraph::addProperty("type", "website");
-            OpenGraph::addProperty("locale", "eu");
-            OpenGraph::addImage("https://vitalneon.com/assets/seo/category-2.png");
-            OpenGraph::addImage("https://vitalneon.com/assets/seo/category-1.png", ["height" => 400, "width" => 760]);
+        OpenGraph::setTitle("Custom Neon Sign Categories | VitalNeon");
+        OpenGraph::setDescription("Discover the vibrant world of neon signs at VitalNeon. Our extensive collection of pre-made neon signs includes a variety of designs, from classic to contemporary, that are sure to catch the eye and brighten any space. We also offer the option to create your own personalized neon sign, so you can bring your unique vision to life. All of our neon signs are handcrafted using high-quality materials and advanced techniques, ensuring that each sign is built to last. Browse our selection now and add a touch of neon to your life with VitalNeon."); 
+        OpenGraph::setUrl("https://vitalneon.com/products");
+        OpenGraph::addProperty("type", "website");
+        OpenGraph::addProperty("locale", "eu");
+        OpenGraph::addImage("https://vitalneon.com/assets/seo/category-2.png");
+        OpenGraph::addImage("https://vitalneon.com/assets/seo/category-1.png", ["height" => 400, "width" => 760]);
 
-            TwitterCard::setTitle("Custom Neon Sign Categories | VitalNeon");
-            TwitterCard::setSite("@vitalneon");
-            TwitterCard::setImage("https://vitalneon.com/assets/seo/category-2.png");
-            TwitterCard::setDescription("Discover the vibrant world of neon signs at VitalNeon. Our extensive collection of pre-made neon signs includes a variety of designs, from classic to contemporary, that are sure to catch the eye and brighten any space. We also offer the option to create your own personalized neon sign, so you can bring your unique vision to life. All of our neon signs are handcrafted using high-quality materials and advanced techniques, ensuring that each sign is built to last. Browse our selection now and add a touch of neon to your life with VitalNeon.");
+        TwitterCard::setTitle("Custom Neon Sign Categories | VitalNeon");
+        TwitterCard::setSite("@vitalneon");
+        TwitterCard::setImage("https://vitalneon.com/assets/seo/category-2.png");
+        TwitterCard::setDescription("Discover the vibrant world of neon signs at VitalNeon. Our extensive collection of pre-made neon signs includes a variety of designs, from classic to contemporary, that are sure to catch the eye and brighten any space. We also offer the option to create your own personalized neon sign, so you can bring your unique vision to life. All of our neon signs are handcrafted using high-quality materials and advanced techniques, ensuring that each sign is built to last. Browse our selection now and add a touch of neon to your life with VitalNeon.");
 
-            JsonLd::setTitle("Custom Neon Sign Categories | VitalNeon");
-            JsonLd::setDescription("Discover the vibrant world of neon signs at VitalNeon. Our extensive collection of pre-made neon signs includes a variety of designs, from classic to contemporary, that are sure to catch the eye and brighten any space. We also offer the option to create your own personalized neon sign, so you can bring your unique vision to life. All of our neon signs are handcrafted using high-quality materials and advanced techniques, ensuring that each sign is built to last. Browse our selection now and add a touch of neon to your life with VitalNeon.");
-            JsonLd::addImage("https://vitalneon.com/assets/seo/category-2.png");
-            JsonLd::setType("WebSite");
-            JsonLd::addImage("https://vitalneon.com/assets/seo/category-1.png", ["height" => 400, "width" => 760]);
+        JsonLd::setTitle("Custom Neon Sign Categories | VitalNeon");
+        JsonLd::setDescription("Discover the vibrant world of neon signs at VitalNeon. Our extensive collection of pre-made neon signs includes a variety of designs, from classic to contemporary, that are sure to catch the eye and brighten any space. We also offer the option to create your own personalized neon sign, so you can bring your unique vision to life. All of our neon signs are handcrafted using high-quality materials and advanced techniques, ensuring that each sign is built to last. Browse our selection now and add a touch of neon to your life with VitalNeon.");
+        JsonLd::addImage("https://vitalneon.com/assets/seo/category-2.png");
+        JsonLd::setType("WebSite");
+        JsonLd::addImage("https://vitalneon.com/assets/seo/category-1.png", ["height" => 400, "width" => 760]);
 
-            return view('products', [
-                'products' => $result->products
-            ]);
-        }else{
-            abort(404, 'Not Found!');
-        }
+        return view('products', [
+            'products' => $category->products
+        ]);
     }
 };

@@ -39,9 +39,9 @@
         </ul>
         <div class="hidden 1210px:block" x-data="{open: false}">
             <ul x-on:click="open = true">
-                <li class="bg-white my-2 h-[2px] w-[80px]"></li>
-                <li class="bg-white my-2 h-[2px] w-[80px]"></li>
-                <li class="bg-white my-2 h-[2px] w-[80px]"></li>
+                <li class="bg-white my-2 h-[2px] w-[50px]"></li>
+                <li class="bg-white my-2 h-[2px] w-[50px]"></li>
+                <li class="bg-white my-2 h-[2px] w-[50px]"></li>
             </ul>
             <div class="fixed top-0 left-0 w-full h-screen bg-dark backdrop-blur-lg flex justify-center items-center z-50" x-show="open" x-on:click.self="open = !open">
                 <ul class="text-center flex flex-col">

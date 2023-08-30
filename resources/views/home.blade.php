@@ -8,13 +8,13 @@
     <section id="image-carousel max-h-[675px] overflow-hidden" class="splide w-full" aria-label="Beautiful Images">
         <div class="splide__track w-full">
             <ul class="splide__list w-full">
-                <li class="splide__slide w-full flex justify-between items-center py-6 text-white px-4">
+                <li class="splide__slide w-full flex justify-between items-center py-6 text-white px-4 670px:flex-col">
                     <span>World Wide Shipping</span>
                     <span>30% Off using Our Coupon Code</span>
                     <span>5 Days Shipping Time</span>
                 </li>
 
-                <li class="splide__slide w-full flex justify-between items-center py-6 text-white px-4">
+                <li class="splide__slide w-full flex justify-between items-center py-6 text-white px-4 670px:flex-col">
                     <span>It's a Sale-Bration</span>
                     <span>Limitless Creativity with Your Own Designs</span>
                     <span><a href="{{ route('products') }}" class="underline">Show Now</a></span>
@@ -63,6 +63,10 @@
                 </div>
             </div>
         </div>
+    </section>
+
+    <section class="bg-dark">
+        <x-brands />
     </section>
 
     <script>
