@@ -4,25 +4,6 @@
         <a href="{{ route('products') }}"><img src="{{ asset('assets/slides/BANNER.gif') }}" class="w-full" alt="Slider 01"></a>
     </section>
 
-
-    <section id="image-carousel max-h-[675px] overflow-hidden" class="splide w-full" aria-label="Beautiful Images">
-        <div class="splide__track w-full">
-            <ul class="splide__list w-full">
-                <li class="splide__slide w-full flex justify-between items-center py-6 text-white px-4 670px:flex-col">
-                    <span>World Wide Shipping</span>
-                    <span>30% Off using Our Coupon Code</span>
-                    <span>5 Days Shipping Time</span>
-                </li>
-
-                <li class="splide__slide w-full flex justify-between items-center py-6 text-white px-4 670px:flex-col">
-                    <span>It's a Sale-Bration</span>
-                    <span>Limitless Creativity with Your Own Designs</span>
-                    <span><a href="{{ route('products') }}" class="underline">Show Now</a></span>
-                </li>
-            </ul>
-        </div>
-    </section>
-
     <section class="bg-light">
         <div class="max-w-6xl m-auto py-[120px] px-4">
             <div class="grid grid-cols-4 gap-6 mb-6 940px:grid-cols-3 710px:grid-cols-2 475px:grid-cols-1 m-auto">

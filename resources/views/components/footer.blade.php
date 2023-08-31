@@ -7,18 +7,23 @@
             <address class="flex items-center mb-3"><img class="mr-2" src="https://api.iconify.design/mdi:gmail.svg?color=%23dbdbdb" width="25" alt="Address Icon"> contact@vitalneon.com</address>
             <ul class="flex items-center">
                 <a class="mr-4" href="https://www.instagram.com/vitalneon/" rel="nofollow" target="_blank"><img src="https://api.iconify.design/skill-icons:instagram.svg?color=%23f91a1a" width="25" alt="Social Media Icon"></a>
-                <a class="mr-4" href="https://www.facebook.com/profile.php?id=100089690514265/" rel="nofollow" target="_blank"><img src="https://api.iconify.design/logos:facebook.svg?color=%23f91a1a" width="25" alt="Social Media Icon"></a>
+                
+                <a class="mr-4" href="https://www.facebook.com/profile.php?id=100089690514265/" rel="nofollow" target="_blank"><img src="https://api.iconify.design/logos:facebook.svg?color=%23f91a1a" width="25" alt="Facebook Icon"></a>
+                
                 <a class="mr-4" href="https://www.pinterest.com/mobycarts/" target="_blank" rel="nofollow"><img src="https://api.iconify.design/logos:pinterest.svg?color=%23f72696" width="25" alt="Pinterest"></a>
-                <a class="mr-2" href="https://wa.me/16476165799" target="_blank" rel="nofollow"><img src="https://api.iconify.design/logos:whatsapp-icon.svg?color=%23ffd402" width="25" alt="Pinterest"></a>
+                
+                <a class="mr-2" href="https://wa.me/16476165799" target="_blank" rel="nofollow"><img src="https://api.iconify.design/logos:whatsapp-icon.svg?color=%23ffd402" width="25" alt="Whatsapp Icon"></a>
+                
+                <a class="mr-2" href="https://m.me/100095082327532" target="_blank" rel="nofollow"><img src="https://api.iconify.design/logos:messenger.svg?color=%23121212" width="25" alt="Messenger Icon"></a>
             </ul>
         </div>
        <div class="text-end 475px:text-start">
         <h3 class="text-2xl pb-3 border-b border-white/5 mb-3">Navigations</h3>
         <ul class="text-gray-200 links">
             <li class="mb-2"><a href="{{ route('home') }}">Home</a></li>
+            <li class="mb-2"><a href="{{ route('products') }}">Products</a></li>
             <li class="mb-2"><a href="{{ route('create-design') }}">Design Your Own</a></li>
             <li class="mb-2"><a href="{{ route('upload-design') }}">Upload Design</a></li>
-            <li class="mb-2"><a href="{{ route('products') }}">Products</a></li>
             <li class="mb-2"><a href="{{ route('support') }}">Support</a></li>
             <li class="mb-2"><a href="{{ route('about') }}">About</a></li>
             <li class="mb-2"><a href="{{ route('f.a.q') }}">FAQ</a></li>

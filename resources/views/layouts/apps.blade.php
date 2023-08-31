@@ -49,8 +49,8 @@
     {!! JsonLd::generate() !!}
 </head>
 <body class="antialiased">
-    <section class="py-4 px-4 text-white text-center bg-light">
-        <p>💸 Free world wide 🌎 shipping in 5 Days 🚚</p>
+    <section class="py-4 px-4 text-white text-center bg-white">
+        <p class="uppercase text-lg text-dark font-bold">💸 Free world wide 🌎 shipping in 5 Days 🚚</p>
     </section>
     @if (!Request::is('success/*') && !Request::is('cancel/*'))
         <x-navbar />
