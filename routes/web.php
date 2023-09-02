@@ -20,6 +20,7 @@ use App\Http\Controllers\CategoryPriceController;
 use App\Http\Controllers\CreateDesignController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\HomeController;
+use App\Http\Livewire\Carts;
 use App\Http\Livewire\DesignQuote;
 use Artesaos\SEOTools\Facades\SEOMeta;
 
@@ -54,6 +55,8 @@ Route::get('/product/{slug}', Product::class)->name('listing');
 Route::get('/products', [ProductsController::class, 'index'])->name('products');
 Route::get('/products/search', [ProductsController::class, 'search'])->name('product.search');
 Route::get('/products/category/{category:slug}', [ProductsController::class, 'category'])->name('category.search');
+
+Route::get('/cart', Carts::class)->name('carts');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

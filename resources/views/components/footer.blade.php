@@ -12,7 +12,7 @@
                 
                 <a class="mr-4" href="https://www.pinterest.com/mobycarts/" target="_blank" rel="nofollow"><img src="https://api.iconify.design/logos:pinterest.svg?color=%23f72696" width="25" alt="Pinterest"></a>
                 
-                <a class="mr-2" href="https://wa.me/16476165799" target="_blank" rel="nofollow"><img src="https://api.iconify.design/logos:whatsapp-icon.svg?color=%23ffd402" width="25" alt="Whatsapp Icon"></a>
+                <a class="mr-4" href="https://wa.me/16476165799" target="_blank" rel="nofollow"><img src="https://api.iconify.design/logos:whatsapp-icon.svg?color=%23ffd402" width="25" alt="Whatsapp Icon"></a>
                 
                 <a class="mr-2" href="https://m.me/100095082327532" target="_blank" rel="nofollow"><img src="https://api.iconify.design/logos:messenger.svg?color=%23121212" width="25" alt="Messenger Icon"></a>
             </ul>

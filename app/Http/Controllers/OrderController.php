@@ -48,7 +48,7 @@ class OrderController extends Controller
             $order->status = 'canceled';
             $order->save();
             Http::post(config('app.order-cancel'), [
-                'content' => "**OrderID**: $order->order_id worth of $$order->price has been cancelled."
+                'content' => "**OrderID**: $order->checkout_id has been cancelled."
             ]);
             return view('cancel');
         }else{
@@ -61,11 +61,11 @@ class OrderController extends Controller
             $order->status = 'success';
             $order->save();
             Http::post(config('app.order-complete'), [
-                'content' => "**OrderID**: $order->order_id worth of $$order->price has been Completed & Paid."
+                'content' => "**OrderID**: $order->checkout_id has been Completed & Paid."
             ]);
-            Mail::to($order->email)->send(new OrderConfirm([$order->order_id, $order->price]));
+            Mail::to($order->email)->send(new OrderConfirm([$order->checkout_id, $order->price]));
             return view('success', [
-                'order_id' => $order->order_id
+                'order_id' => $order->checkout_id
             ]);
         }else{
             abort(500, 'Internal Server Error!');

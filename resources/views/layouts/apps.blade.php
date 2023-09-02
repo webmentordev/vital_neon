@@ -47,17 +47,19 @@
     {!! OpenGraph::generate() !!}
     {!! Twitter::generate() !!}
     {!! JsonLd::generate() !!}
+    @livewireStyles
 </head>
 <body class="antialiased">
     <section class="py-4 px-4 text-white text-center bg-white">
         <p class="uppercase text-lg text-dark font-bold">💸 Free world wide 🌎 shipping in 5 Days 🚚</p>
     </section>
     @if (!Request::is('success/*') && !Request::is('cancel/*'))
-        <x-navbar />
+        @livewire('navbar')
     @endif
     @yield('content')
     <x-footer />
     <button id="myBtn" onclick="topFunction()" class="fixed bottom-5 right-5 z-50 bg-white rounded-full p-2"><img src="https://api.iconify.design/bx:arrow-to-top.svg?color=%23121212" width="30" alt="Go To Top Button"></button>
+    @livewireScripts
 </body>
 <script>
     let mybutton = document.getElementById("myBtn");

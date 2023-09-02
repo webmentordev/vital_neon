@@ -50,7 +50,7 @@
     <section class="py-4 px-4 text-white text-center bg-white">
         <p class="uppercase text-lg text-dark font-bold">💸 Free world wide 🌎 shipping in 5 Days 🚚</p>
     </section>
-    <x-navbar />
+    @livewire('navbar')
     {{ $slot }}
     <x-footer />
     @livewireScripts()

@@ -13,19 +13,15 @@ return new class extends Migration
     {
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('product_id');
-            $table->string('adaptor');
-            $table->string('remote');
-            $table->string('email');
-            $table->string('order_id');
-            $table->string('kit');
-            $table->string('price');
-            $table->string('price_id');
+            $table->string('quantity');
+            $table->decimal('price', 10, 2);
+            $table->string('slug');
+            $table->string('name');
+            $table->string('details');
+            $table->string('address_id');
+            $table->text('checkout_id');
             $table->string('status')->default('pending');
-            $table->string('checkout_id');
-            $table->string('stripe_product');
-            $table->text('checkout_url');
-            $table->string('phone');
+            $table->string('shipping')->default('Processing');
             $table->timestamps();
         });
     }

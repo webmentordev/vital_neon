@@ -19,7 +19,7 @@ use Artesaos\SEOTools\Facades\TwitterCard;
 
 class Product extends Component
 {
-    public $product, $remote, $kits, $kit, $kit_price, $shapes, $phone, $categories, $adaptor, $category, $email;
+    public $product, $remote, $kits, $kit, $kit_price, $shapes, $categories, $adaptor, $category;
     public $adaptors = [
         "USA/Canada/120V",
         "UK/IRELAND 230V",
@@ -31,8 +31,6 @@ class Product extends Component
     protected $rules = [
         'remote' => 'required',
         'adaptor' => 'required',
-        'email' => 'required|email',
-        'phone' => 'required|numeric',
         'kit' => 'required',
     ];
 
@@ -98,7 +96,7 @@ class Product extends Component
             return redirect("https://wa.me/16476165799");
         }
     }
-    
+
     public function priceCalculator(){
         $result = Remote::where('type', $this->remote)->first();
         $kit_price = Kit::where("name", $this->kit)->first();
@@ -123,68 +121,21 @@ class Product extends Component
         return implode($pass);
     }
 
-    public function checkout(){
+    public function addToCart($slug){
         $this->validate();
         $this->priceCalculator();
-        if($this->total_price > 0){
-            $checkout_id = $this->randomPassword();
-            $order_id = $this->randomPassword();
-            $stripe = new StripeClient(config('app.stripe'));
-            $result = $stripe->prices->create([
-                'unit_amount' => $this->total_price * 100,
-                'currency' => 'USD',
-                'product' => $this->product[0]->stripe_id,
-            ]);
-            $checkout = $stripe->checkout->sessions->create([
-                'success_url' => config('app.url')."/success-order/".$checkout_id,
-                'cancel_url' => config('app.url')."/cancel-order/".$checkout_id,
-                'currency' => "USD",
-                'billing_address_collection' => 'required',
-                'expires_at' => Carbon::now()->addMinutes(60)->timestamp,
-                'line_items' => [
-                    [
-                        'price' => $result['id'],
-                        'quantity' => 1,
-                    ],
-                ],
-                'mode' => 'payment',
-            ]);
-            Order::create([
-                'product_id' => $this->product[0]->id,
-                'adaptor' => $this->adaptor,
-                'remote' => $this->remote,
-                'email' => $this->email,
-                'order_id' => $order_id,
-                'kit' => $this->kit,
-                'price' => $this->total_price,
-                'price_id' => $result['id'],
-                'checkout_id' => $checkout_id,
-                'stripe_product' => $this->product[0]->stripe_id,
-                'checkout_url' => $checkout['url'],
-                'phone' => $this->phone
-            ]);
-            $content = "**ProductName**: {$this->product[0]->name}\n"
-            . "**ProductID**: {$this->product[0]->id}\n"
-            . "**Phone**: $this->phone\n"
-            . "**Kit**: $this->kit\n"
-            . "**Price**: $$this->total_price\n"
-            . "**Email**: $this->email\n"
-            . "**Adaptor**: $this->adaptor\n"
-            . "**Remote**: $this->remote\n"
-            . "**OrderID**: $order_id\n"
-            . "**PriceID**: {$result['id']}\n"
-            . "**StripeID**: {$this->product[0]->stripe_id}\n"
-            . "**StripeURL**: {$checkout['url']}\n";
-            
-            Http::post(config('app.product-pending'), [
-                'content' => $content
-            ]);
-            
-            Mail::to(config('app.redirect_email'))->send(new RedirectOrderEmail($content));
-            return redirect($checkout['url']);
-
-        }else{
-            abort(500, 'Internal Error');
-        }
+        $cartItems = session()->get('cart');
+        $cartItems[$slug] = [
+            'quantity' => 1,
+            'price' => $this->total_price,
+            'product_id' => $this->product[0]->stripe_id,
+            'slug' => $slug,
+            'name' => $this->product[0]->name,
+            'image' => config('app.url').'/storage/'.$this->product[0]->image,
+            'details' => $this->kit."—".$this->category."—".$this->remote."—".$this->adaptor
+        ];
+        session()->put('cart', $cartItems);
+        session()->flash('success', 'Product has been added to the cart!');
+        $this->emit('cartCheck');
     }
 }

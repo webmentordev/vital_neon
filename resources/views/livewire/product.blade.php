@@ -8,6 +8,9 @@
         </div>
         <span class="fixed bg-main rounded-lg p-3 bottom-3 z-10 right-3 text-gray-800 text-4xl font-semibold"><span class="text-2xl">$</span>{{ $total_price }}</span>
         @foreach ($product as $item)
+            @if (session('success'))
+                <x-success :message="session('success')" />
+            @endif
             <div class="grid grid-cols-2 gap-3 rounded-lg mb-6 overflow-hidden 890px:grid-cols-1 890px:max-w-lg m-auto">
                 <a href="{{ asset('storage/'.$item->image) }}" class="h-fit" target="_blank" rel=dofollow>
                     <img data-src="{{ asset('storage/'.$item->image) }}" class="h-fit w-full lazyload rounded-lg" loading="lazy" alt="Buy {{ $item->name }}">
@@ -50,7 +53,7 @@
                     @error('remote')
                         <p class="text-red-600 mb-2">{{ $message }}</p>
                     @enderror
-                    <div class="py-2 text-white">
+                    <div class="py-2 text-white mb-3">
                         <h2 class="font-bold text-lg">Installation Kit *{{ $kit }}</h2>
                         <select name="kit" id="kit" wire:model="kit" class="bg-dark flex items-center w-full justify-center p-3 cursor-pointer rounded-md flex-col border">
                             @foreach ($kits as $item)
@@ -61,15 +64,10 @@
                     @error('kit')
                         <p class="text-red-600 mb-2">{{ $message }}</p>
                     @enderror
-                    <input type="number" wire:model.debounce.500ms="phone" placeholder="Phone (for shipping purpose)" class="w-full border-none bg-dark mt-2 rounded focus:border-main focus:ring-4 focus:ring-main text-base outline-none text-gray-300 py-2 px-3 leading-8 transition-colors duration-200 ease-in-out mb-3">
-                    @error('phone')
-                        <p class="text-red-600 mb-2">{{ $message }}</p>
-                    @enderror
-                    <input type="text" wire:model.debounce.500ms="email" placeholder="Email Address" class="w-full border-none bg-dark mt-2 rounded focus:border-main focus:ring-4 focus:ring-main text-base outline-none text-gray-300 py-2 px-3 leading-8 transition-colors duration-200 ease-in-out mb-3">
-                    @error('email')
-                        <p class="text-red-600 mb-2">{{ $message }}</p>
-                    @enderror
-                    <button class="py-3 px-4 mb-3 w-full bg-white rounded-md font-bold text-dark" wire:click="checkout" type="submit">Checkout</button>
+                    <div class="flex items-center">
+                        <button class="py-3 px-4 mb-3 mr-3 w-full bg-white rounded-md font-bold text-dark" wire:click="addToCart('{{ $product[0]->slug }}')">Add To Cart</button>
+                        <a href="{{ route('carts') }}" class="py-3 px-4 mb-3 w-full bg-white rounded-md text-center font-bold text-dark">Checkout</a>
+                    </div>
                     
                     <p class="text-gray-300">🚚 Estimated Delivery: {{ \Carbon\Carbon::now()->format('d-M-y') }} - {{ \Carbon\Carbon::now()->addDays(5)->format('d-M-y') }}</p>
 

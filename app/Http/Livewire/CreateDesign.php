@@ -344,23 +344,21 @@ class CreateDesign extends Component
             $checkout_id = $this->randomPassword();
             $order_id = $this->randomPassword();
             $stripe = new StripeClient(config('app.stripe'));
-            $result = $stripe->prices->create([
-                'unit_amount' => $this->total_price * 100,
-                'currency' => 'USD',
-                'product' => config('app.product_id'),
-                // 'product' => 'prod_OLp0u520c5AcgG',
-            ]);
             $checkout = $stripe->checkout->sessions->create([
                 'success_url' => config('app.url')."/success/".$checkout_id,
                 'cancel_url' => config('app.url')."/cancel/".$checkout_id,
                 'currency' => "USD",
                 'billing_address_collection' => 'required',
                 'expires_at' => Carbon::now()->addMinutes(60)->timestamp,
-                'line_items' => [
+                'line_items' => [ 
                     [
-                        'price' => $result['id'],
-                        'quantity' => 1,
-                    ],
+                        'price_data' => [
+                                "product" => config('app.product_id'),
+                                "currency" => 'USD',
+                                "unit_amount" =>  $this->total_price * 100,
+                            ], 
+                        'quantity' => 1 
+                    ]
                 ],
                 'mode' => 'payment',
             ]);
@@ -380,7 +378,7 @@ class CreateDesign extends Component
                 'kit' => $this->kit,
                 'order_id' => $order_id,
                 'price' => $this->total_price,
-                'price_id' => $result['id'],
+                'price_id' => $checkout['id'],
                 'checkout_id' => $checkout_id
             ]);
             $content = "**Email:** $this->email\n"
@@ -397,7 +395,7 @@ class CreateDesign extends Component
             . "**Adaptor:** $this->adaptor\n"
             . "**Remote:** $this->remote\n"
             . "**Alignment:** $this->alignment\n"
-            . "**PriceID:** {$result['id']}\n"
+            . "**PriceID:** {$checkout['id']}\n"
             . "**Address:** $this->address\n"
             . "**CheckoutURL:** {$checkout['url']}";
             
