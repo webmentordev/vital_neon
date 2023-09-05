@@ -44,12 +44,12 @@ class OrderController extends Controller
         }
     }
 
-    public function cancelOrder(Order $order){
-        if($order->status == 'pending'){
-            $order->status = 'canceled';
-            $order->save();
+    public function cancelOrder($checkout){
+        $order = Order::where('checkout_id', $checkout)->get();
+        if($order[0]->status == 'pending'){
+            Order::where('checkout_id', $checkout)->update(['status' => 'canceled']);
             Http::post(config('app.order-cancel'), [
-                'content' => "**OrderID**: $order->checkout_id has been cancelled."
+                'content' => "**OrderID**: $checkout has been cancelled."
             ]);
             return view('cancel');
         }else{
@@ -57,16 +57,20 @@ class OrderController extends Controller
         }
     }
 
-    public function successOrder(Order $order){
-        if($order->status == 'pending'){
-            $order->status = 'success';
-            $order->save();
+    public function successOrder($checkout){
+        $order = Order::where('checkout_id', $checkout)->get();
+        if($order[0]->status == 'pending'){
+            Order::where('checkout_id', $checkout)->update(['status' => 'success']);
+            $totalPrice = 0;
+            foreach ($order as $item) {
+                $totalPrice += $item->price;
+            }
             Http::post(config('app.order-complete'), [
-                'content' => "**OrderID**: $order->checkout_id has been Completed & Paid."
+                'content' => "**OrderID**: $checkout has been Completed & Paid."
             ]);
-            Mail::to($order->email)->send(new OrderConfirm([$order->checkout_id, $order->price]));
+            Mail::to($order[0]->address->email)->send(new OrderConfirm([$checkout, $totalPrice]));
             return view('success', [
-                'order_id' => $order->checkout_id
+                'order_id' => $checkout
             ]);
         }else{
             abort(500, 'Internal Server Error!');
@@ -78,5 +82,11 @@ class OrderController extends Controller
         return view('orders-data', [
             'orders' => Order::latest()->paginate(50)
         ]);
+    }
+
+    public function orderUpdate(Request $request, Order $order){
+        $order->shipping = $request->shipping;
+        $order->save();
+        return back()->with('success', 'Order shipping status changed!');
     }
 }

@@ -19,7 +19,11 @@
                     <h3 class="text-white font-semibold">Dimensions</h3>
                     <select name="category" id="category" wire:model="category" class="w-full mt-2 bg-dark rounded border border-gray-800 focus:border-main focus:ring-4 focus:ring-main-light text-base outline-none text-gray-200 py-2 px-3 leading-8 transition-colors duration-200 ease-in-out mb-3">
                         @foreach ($categories as $category)
-                            <option value="{{ $category->name }}">Up to {{ $category->name }} - ${{ $category->price }}</option>
+                            @if ($loop->first)
+                                <option selected value="{{ $category->name }}">Up to {{ $category->name }} - ${{ $category->price }}</option>
+                            @else
+                                <option value="{{ $category->name }}">Up to {{ $category->name }} - ${{ $category->price }}</option>
+                            @endif
                         @endforeach
                         <option value="custom">CUSTOMIZED</option>
                     </select>

@@ -20,6 +20,7 @@
                             <th class="text-start">Price</th>
                             <th class="p-2 text-end">Shipping</th>
                             <th class="p-2 text-end">Created</th>
+                            <th class="p-2 text-end">Address</th>
                         </tr>
                         @foreach ($orders as $item)
                             <tr class="text-center text-sm">
@@ -36,8 +37,32 @@
                                     @endif
                                 </td>
                                 <td class="text-start">${{ $item->price }}</td>
-                                <td class="text-end">{{ $item->shipping }}</td>
+                                <td class="text-end">
+                                    @if ($item->status == 'success')
+                                        <form action="{{ route('orders.status', $item->id) }}" method="post">
+                                            @csrf
+                                            @method('PATCH')
+                                            <select name="shipping" onchange="this.form.submit()" class="bg-slate-800 text-white">
+                                                <option value="{{ $item->shipping }}" selected>{{ $item->shipping }}</option>
+                                                <option value="Processing">Processing</option>
+                                                <option value="Processed">Processed</option>
+                                                <option value="Transit">Transit</option>
+                                                <option value="Completed">Completed</option>
+                                            </select>
+                                        </form>
+                                    @else
+                                        <span class="text-red-600">Cancelled</span>
+                                    @endif
+                                </td>
                                 <td class="p-2 text-end">{{ $item->created_at->diffForHumans() }}</td>
+                                <td class="p-2 text-end">
+                                    <div x-data="{ open: false }">
+                                        <span class="text-blue-600">View</span>
+                                        <div class="p-6 rounded-xl fixed bottom-3 right-3 bg-white z-10" x-show="open" x-transition x-cloak>
+
+                                        </div>
+                                    </div>
+                                </td>
                             </tr>
                         @endforeach
                     </table>

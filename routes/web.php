@@ -20,6 +20,7 @@ use App\Http\Controllers\CategoryPriceController;
 use App\Http\Controllers\CreateDesignController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\TrackController;
 use App\Http\Livewire\Carts;
 use App\Http\Livewire\DesignQuote;
 use Artesaos\SEOTools\Facades\SEOMeta;
@@ -48,13 +49,16 @@ Route::post('/support', [SupportController::class, 'store'])->middleware(['throt
 Route::get('/cancel/{checkout_id}', [OrderController::class, 'cancel']);
 Route::get('/success/{checkout_id}', [OrderController::class, 'success']);
 
-Route::get('/cancel-order/{order:checkout_id}', [OrderController::class, 'cancelOrder']);
-Route::get('/success-order/{order:checkout_id}', [OrderController::class, 'successOrder']);
+Route::get('/cancel-order/{checkout_id}', [OrderController::class, 'cancelOrder']);
+Route::get('/success-order/{checkout_id}', [OrderController::class, 'successOrder']);
 
 Route::get('/product/{slug}', Product::class)->name('listing');
 Route::get('/products', [ProductsController::class, 'index'])->name('products');
 Route::get('/products/search', [ProductsController::class, 'search'])->name('product.search');
 Route::get('/products/category/{category:slug}', [ProductsController::class, 'category'])->name('category.search');
+
+Route::get('/track-order', [TrackController::class, 'index'])->name('track');
+Route::post('/track-order', [TrackController::class, 'search'])->name('track.search');
 
 Route::get('/cart', Carts::class)->name('carts');
 
@@ -91,6 +95,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/designs/show', [DesignController::class, 'show'])->name('designs.show');
 
     Route::get('/orders', [OrderController::class, 'orders'])->name('orders.show');
+    Route::patch('/orders/status/update/{order:id}', [OrderController::class, 'orderUpdate'])->name('orders.status');
 
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
     Route::get('/cart/dates/search', [DashboardController::class, 'cart_search'])->name('cart.search');
