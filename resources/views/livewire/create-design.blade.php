@@ -117,25 +117,26 @@
             
             @if ($line_count >= 1)
             <div class="p-6 bg-[#1E1E1E] rounded-lg mb-5">
-                <h2 class="font-bold text-lg">Line One Text</h2>
                 @error('line1')
-                    <p class="text-red-600 mb-2">{{ $message }}</p>
+                <p class="text-red-600 mb-2">{{ $message }}</p>
                 @enderror
-                <input type="text" wire:model.debounce.1000ms="line1" placeholder="Text Line One" class="w-full mt-2 bg-dark rounded border focus:border-main focus:ring-4 focus:ring-main-light text-base outline-none text-gray-200 py-2 px-3 leading-8 transition-colors duration-200 ease-in-out mb-3">
-                @if (session('lineCount1'))
-                    <p class="text-red-600 mb-2">{{ session('lineCount1') }}</p>
-                @endif
                 <div class="py-2" x-data="{ open: false }">
                     <h2 class="font-bold mb-2 text-lg">Choose Line-1 Font</h2>
                     <span class="p-6 border border-main bg-dark w-full inline-block rounded-lg text-center font-semibold mb-3 uppercase" x-on:click="open = !open">Font Options</span>
                     <div class="grid grid-cols-2 gap-2 475px:grid-cols-1" x-show="open" x-cloak>
                         @foreach ($fonts as $fonty)
-                            <div class="p-3 cursor-pointer rounded-lg text-center border text-lg capitalize {{ $fonty }} @if ($font == $fonty) border-main @else border-white/10 @endif" wire:click="$set('font', '{{ $fonty }}')">
-                                {{ $fonty }}
-                            </div>
+                        <div class="p-3 cursor-pointer rounded-lg text-center border text-lg capitalize {{ $fonty }} @if ($font == $fonty) border-main @else border-white/10 @endif" wire:click="$set('font', '{{ $fonty }}')">
+                            {{ $fonty }}
+                        </div>
                         @endforeach
                     </div>
                 </div>
+                <h2 class="font-bold text-lg">Line One Text</h2>
+                <input type="text" wire:model.debounce.1000ms="line1" placeholder="Text Line One" class="w-full mt-2 bg-dark rounded border focus:border-main focus:ring-4 focus:ring-main-light text-base outline-none text-gray-200 py-2 px-3 leading-8 transition-colors duration-200 ease-in-out mb-3">
+                @if (session('lineCount1'))
+                    <p class="text-red-600 mb-2">{{ session('lineCount1') }}</p>
+                @endif
+                
                 <div class="py-2">
                     <h2 class="font-bold mb-2 text-lg">Choose a colour</h2>
                     <div class="flex flex-wrap">
@@ -151,14 +152,6 @@
 
             @if ($line_count >= 2)
                 <div class="p-6 bg-[#1E1E1E] rounded-lg mb-5">
-                    <h2 class="font-bold text-lg">Line Two Text</h2>
-                    @error('line2')
-                        <p class="text-red-600 mb-2">{{ $message }}</p>
-                    @enderror
-                    <input type="text" wire:model.debounce.1000ms="line2" placeholder="Text Line Two" class="w-full mt-2 bg-dark rounded border focus:border-main focus:ring-4 focus:ring-main-light text-base outline-none text-gray-200 py-2 px-3 leading-8 transition-colors duration-200 ease-in-out mb-3">
-                    @if (session('lineCount2'))
-                        <p class="text-red-600 mb-2">{{ session('lineCount2') }}</p>
-                    @endif
                     <div class="py-2" x-data="{ open: false }">
                         <h2 class="font-bold mb-2 text-lg">Choose Line-2 Font</h2>
                         <span class="p-6 border border-main bg-dark w-full inline-block rounded-lg text-center font-semibold mb-3 uppercase" x-on:click="open = !open">Font Options</span>
@@ -170,6 +163,15 @@
                             @endforeach
                         </div>
                     </div>
+                    <h2 class="font-bold text-lg">Line Two Text</h2>
+                    @error('line2')
+                        <p class="text-red-600 mb-2">{{ $message }}</p>
+                    @enderror
+                    <input type="text" wire:model.debounce.1000ms="line2" placeholder="Text Line Two" class="w-full mt-2 bg-dark rounded border focus:border-main focus:ring-4 focus:ring-main-light text-base outline-none text-gray-200 py-2 px-3 leading-8 transition-colors duration-200 ease-in-out mb-3">
+                    @if (session('lineCount2'))
+                        <p class="text-red-600 mb-2">{{ session('lineCount2') }}</p>
+                    @endif
+                    
                     <div class="py-2">
                         <h2 class="font-bold mb-2 text-lg">Choose a colour</h2>
                         <div class="flex flex-wrap">
@@ -185,14 +187,6 @@
 
             @if ($line_count == 3)
                <div class="p-6 bg-[#1E1E1E] rounded-lg mb-5">
-                    <h2 class="font-bold text-lg">Line Three Text</h2>
-                    @error('line3')
-                        <p class="text-red-600 mb-2">{{ $message }}</p>
-                    @enderror
-                    <input type="text" wire:model.debounce.1000ms="line3" placeholder="Text Line Three" class="w-full mt-2 bg-dark rounded border focus:border-main focus:ring-4 focus:ring-main-light text-base outline-none text-gray-200 py-2 px-3 leading-8 transition-colors duration-200 ease-in-out mb-3">
-                    @if (session('lineCount3'))
-                        <p class="text-red-600 mb-2">{{ session('lineCount3') }}</p>
-                    @endif
                     <div class="py-2" x-data="{ open: false }">
                         <h2 class="font-bold mb-2 text-lg">Choose Line-3 Font</h2>
                         <span class="p-6 border border-main bg-dark w-full inline-block rounded-lg text-center font-semibold mb-3 uppercase" x-on:click="open = !open">Font Options</span>
@@ -204,6 +198,15 @@
                             @endforeach
                         </div>
                     </div>
+                    <h2 class="font-bold text-lg">Line Three Text</h2>
+                    @error('line3')
+                        <p class="text-red-600 mb-2">{{ $message }}</p>
+                    @enderror
+                    <input type="text" wire:model.debounce.1000ms="line3" placeholder="Text Line Three" class="w-full mt-2 bg-dark rounded border focus:border-main focus:ring-4 focus:ring-main-light text-base outline-none text-gray-200 py-2 px-3 leading-8 transition-colors duration-200 ease-in-out mb-3">
+                    @if (session('lineCount3'))
+                        <p class="text-red-600 mb-2">{{ session('lineCount3') }}</p>
+                    @endif
+                    
                     <div class="py-2">
                         <h2 class="font-bold mb-2 text-lg">Choose a colour</h2>
                         <div class="flex flex-wrap">

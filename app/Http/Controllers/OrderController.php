@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Cart;
 use App\Models\Order;
 use App\Mail\OrderConfirm;
+use Artesaos\SEOTools\Facades\SEOMeta;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Mail;
@@ -70,5 +71,12 @@ class OrderController extends Controller
         }else{
             abort(500, 'Internal Server Error!');
         }
+    }
+
+    public function orders(){
+        SEOMeta::setTitle("Orders Listing");
+        return view('orders-data', [
+            'orders' => Order::latest()->paginate(50)
+        ]);
     }
 }
