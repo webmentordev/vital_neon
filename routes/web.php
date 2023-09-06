@@ -95,7 +95,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/designs/show', [DesignController::class, 'show'])->name('designs.show');
 
     Route::get('/orders', [OrderController::class, 'orders'])->name('orders.show');
-    Route::patch('/orders/status/update/{order:id}', [OrderController::class, 'orderUpdate'])->name('orders.status');
+    Route::patch('/orders/status/update/{checkout_id}', [OrderController::class, 'orderUpdate'])->name('orders.status');
 
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
     Route::get('/cart/dates/search', [DashboardController::class, 'cart_search'])->name('cart.search');

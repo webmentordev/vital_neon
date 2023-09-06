@@ -22,6 +22,7 @@
             </div>
             <a class="mx-4" href="{{ route('about') }}">About</a>
             <a class="mx-4" href="{{ route('f.a.q') }}">F.A.Q</a>
+            <a class="mx-4" href="{{ route('track') }}">Track</a>
             <div class="mx-4 relative group">
                 <span class="category flex items-center">Support <img src="https://api.iconify.design/ic:outline-arrow-drop-down.svg?color=%23ffffff" width="28" alt="Carret Down Logo"></span>
                 <div class="hidden group-hover:block absolute top-7 right-0 w-[120px] p-2 rounded-lg bg-dark bg-opacity-80 backdrop-blur-lg border border-white/10 text-gray-700">
@@ -58,6 +59,7 @@
                     </div>
                     <a class="text-2xl mb-3" href="{{ route('about') }}">About</a>
                     <a class="text-2xl mb-3" href="{{ route('f.a.q') }}">F.A.Q</a>
+                    <a class="text-2xl mb-3" href="{{ route('track') }}">Track</a>
                     <div class="mx-4 relative mb-3" x-data="{toggle: false}">
                         <span class="flex items-center category text-3xl p-3 bg-light rounded-lg" x-on:click="toggle = !toggle">Support <img src="https://api.iconify.design/ic:outline-arrow-drop-down.svg?color=%23ffffff" width="28" alt="Carret Down Logo"></span>
                         <div class="flex flex-col" x-show="toggle">

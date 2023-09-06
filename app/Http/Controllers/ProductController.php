@@ -40,15 +40,20 @@ class ProductController extends Controller
             'category' => "required|numeric",
         ]);
 
+        $imageLink = $request->image->store('products', 'public_disk');
+
         $result = $stripe->products->create([
             'name' => $request->name,
+            'images' => [
+                config('app.url').'/storage/'.$imageLink
+            ]
         ]);
 
         Product::create([
             'name' => $request->name,
             'stripe_id' => $result['id'],
             'slug' => strtolower(str_replace(' ', '-', $request->slug)),
-            'image' => $request->image->store('products', 'public_disk'),
+            'image' => $imageLink,
             'body' => $request->body,
             'description' => $request->description,
             'category_id' => $request->category

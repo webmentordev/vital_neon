@@ -13,6 +13,7 @@
                     @endif
                     <table class="w-full mt-3 rounded-lg overflow-hidden">
                         <tr class="bg-white text-gray-800 text-center text-sm">
+                            <th class="p-2 text-start">CheckoutID</th>
                             <th class="p-2 text-start">Name</th>
                             <th class="p-2 text-start">Quantity</th>
                             <th class="p-2 text-start">Details</th>
@@ -24,6 +25,7 @@
                         </tr>
                         @foreach ($orders as $item)
                             <tr class="text-center text-sm">
+                                <td class="p-2 text-start">{{ $item->checkout_id }}</td>
                                 <td class="p-2 text-start">{{ $item->name }}</td>
                                 <td class="p-2 text-start">{{ $item->quantity }}</td>
                                 <td class="p-2 text-start">{{ $item->details }}</td>
@@ -37,12 +39,12 @@
                                     @endif
                                 </td>
                                 <td class="text-start">${{ $item->price }}</td>
-                                <td class="text-end">
+                                <td class="text-end py-2">
                                     @if ($item->status == 'success')
-                                        <form action="{{ route('orders.status', $item->id) }}" method="post">
+                                        <form action="{{ route('orders.status', $item->checkout_id) }}" method="post">
                                             @csrf
                                             @method('PATCH')
-                                            <select name="shipping" onchange="this.form.submit()" class="bg-slate-800 text-white">
+                                            <select name="shipping" onchange="this.form.submit()" class="bg-slate-800 text-white rounded-lg">
                                                 <option value="{{ $item->shipping }}" selected>{{ $item->shipping }}</option>
                                                 <option value="Processing">Processing</option>
                                                 <option value="Processed">Processed</option>
@@ -57,15 +59,26 @@
                                 <td class="p-2 text-end">{{ $item->created_at->diffForHumans() }}</td>
                                 <td class="p-2 text-end">
                                     <div x-data="{ open: false }">
-                                        <span class="text-blue-600">View</span>
-                                        <div class="p-6 rounded-xl fixed bottom-3 right-3 bg-white z-10" x-show="open" x-transition x-cloak>
-
+                                        <span x-on:click="open = !open" class="text-blue-400 underline cursor-pointer">View</span>
+                                        <div class="p-6 rounded-xl  w-[400px] text-start fixed bottom-3 right-3 bg-black z-10" x-show="open" x-transition x-cloak>
+                                            <div class="relative">
+                                                <span x-on:click="open = false" class="absolute -top-8 cursor-pointer p-1 px-2 rounded-full bg-red-600/10 text-red-600 -left-8">X</span>
+                                                <p class="mb-1"><b>Name:</b> {{ $item->address->name }}</p>
+                                                <p class="mb-1"><b>Email:</b> {{ $item->address->email }}</p>
+                                                <p class="mb-1"><b>Phone:</b> {{ $item->address->number }}</p>
+                                                <p><b>Address:</b> {{ $item->address->address }}</p>
+                                            </div>
                                         </div>
                                     </div>
                                 </td>
                             </tr>
                         @endforeach
                     </table>
+                    @if ($orders->hasPages())
+                        <div class="pagination p-3 rounded-lg bg-gray-700">
+                            {{ $orders->links() }}
+                        </div>
+                    @endif
                 </div>
             </div>
         </div>

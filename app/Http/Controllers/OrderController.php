@@ -84,9 +84,8 @@ class OrderController extends Controller
         ]);
     }
 
-    public function orderUpdate(Request $request, Order $order){
-        $order->shipping = $request->shipping;
-        $order->save();
+    public function orderUpdate(Request $request, $checkout_id){
+        Order::where('checkout_id', $checkout_id)->update(['shipping' => $request->shipping]);
         return back()->with('success', 'Order shipping status changed!');
     }
 }
