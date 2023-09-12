@@ -31,9 +31,6 @@
     background: #555; 
   }
 
-body{
-    @apply bg-dark;
-}
 
 h1, h2, h3{
     font-family: 'Epilogue', sans-serif;
