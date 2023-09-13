@@ -396,7 +396,7 @@ nav a, nav .category{
 }
 
 .main-body{
-    @apply text-white;
+    @apply text-gray-600;
 }
 
 .main-body p {
@@ -404,7 +404,7 @@ nav a, nav .category{
 }
 
 .main-body h2, .main-body h3{
-    @apply text-gray-200 font-bold mb-3;
+    @apply text-black font-bold mb-3 mt-8;
 }
 
 .main-body h2{

@@ -24,8 +24,10 @@ class Carts extends Component
 
     public function mount(){
         $carts = session()->get('cart');
-        foreach($carts as $cart){
-            $this->total_price+= $cart['price'];
+        if($carts){
+            foreach($carts as $cart){
+                $this->total_price+= $cart['price'];
+            }
         }
     }
     public function render()

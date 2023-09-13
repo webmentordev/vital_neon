@@ -1,7 +1,7 @@
 <nav class="w-full py-2 sticky top-0 left-0 z-50 bg-white text-black bg-opacity-80 backdrop-blur-lg">
     <div class="flex items-center justify-between max-w-[90%] m-auto w-full px-2">
         <a href="{{ route('home') }}" class="text-3xl font-semibold py-1"><img src="{{ asset('assets/neon_tranp_black.png') }}" width="150" alt="Vital Neon"></a>
-        <ul class="flex items-center uppercase 1210px:hidden">
+        <ul class="flex items-center uppercase 1340px:hidden">
             <a class="mx-4" href="{{ route('home') }}">Home</a>
             <a class="mx-4" href="{{ route('products') }}">Products</a>
             <a class="mx-4" href="{{ route('create-design') }}">Design Your Own</a>
@@ -37,11 +37,11 @@
                 <span class="bg-white absolute -top-3 h-[20px] w-[20px] flex items-center justify-center text-[10px] right-0 p-[2px] font-bold px-[5px] rounded-full text-black">{{ $itemsCount }}</span>
             </a>
         </ul>
-        <div class="hidden 1210px:block" x-data="{open: false}">
+        <div class="hidden 1340px:block" x-data="{open: false}">
             <ul x-on:click="open = true">
-                <li class="bg-white my-2 h-[2px] w-[50px]"></li>
-                <li class="bg-white my-2 h-[2px] w-[50px]"></li>
-                <li class="bg-white my-2 h-[2px] w-[50px]"></li>
+                <li class="bg-black my-2 h-[2px] w-[50px]"></li>
+                <li class="bg-black my-2 h-[2px] w-[50px]"></li>
+                <li class="bg-black my-2 h-[2px] w-[50px]"></li>
             </ul>
             <div class="fixed top-0 left-0 w-full h-screen bg-dark backdrop-blur-lg flex justify-center items-center z-50" x-show="open" x-on:click.self="open = !open">
                 <ul class="text-center flex flex-col">
