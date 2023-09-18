@@ -4,24 +4,24 @@
         <a href="{{ route('products') }}"><img src="{{ asset('assets/slides/BANNER.gif') }}" class="w-full" alt="Slider 01"></a>
     </section>
 
-    <section class="w-full bg-gray-100">
+    <section class="bg-light">
         <div class="max-w-6xl m-auto py-[120px] px-4">
             <div class="grid grid-cols-4 gap-6 mb-6 940px:grid-cols-3 710px:grid-cols-2 475px:grid-cols-1 m-auto">
-                <div class="p-3 py-12 text-center rounded-lg bg-gray-200 hover:bg-white group transition-all">
+                <div class="p-3 py-12 text-center rounded-lg bg-dark hover:bg-white group transition-all">
                     <img data-src="https://api.iconify.design/emojione:airplane.svg?color=%234bcc14" class="m-auto mb-3 lazyload" loading="lazy" width="60" alt="Delivery Icon">
-                    <h2 class="mb-3 font-semibold text-black group-hover:text-gray-700">Fast & Free Delivery</h2>
+                    <h2 class="mb-3 font-semibold text-white group-hover:text-gray-700">Fast & Free Delivery</h2>
                 </div>
-                <div class="p-3 py-12 text-center rounded-lg bg-gray-200 hover:bg-white group transition-all">
+                <div class="p-3 py-12 text-center rounded-lg bg-dark hover:bg-white group transition-all">
                     <img data-src="https://api.iconify.design/fxemoji:fourleafclover.svg?color=%234bcc14" class="m-auto mb-3 lazyload" loading="lazy" width="60" alt="Delivery Icon">
-                    <h2 class="mb-3 font-semibold text-black group-hover:text-gray-700">High Efficiency</h2>
+                    <h2 class="mb-3 font-semibold text-white group-hover:text-gray-700">High Efficiency</h2>
                 </div>
-                <div class="p-3 py-12 text-center rounded-lg bg-gray-200 hover:bg-white group transition-all">
+                <div class="p-3 py-12 text-center rounded-lg bg-dark hover:bg-white group transition-all">
                     <img data-src="https://api.iconify.design/noto-v1:shield.svg?color=%234bcc14" class="m-auto mb-3 lazyload" loading="lazy" width="60" alt="Delivery Icon">
-                    <h2 class="mb-3 font-semibold text-black group-hover:text-gray-700">2-Year Guarantee</h2>
+                    <h2 class="mb-3 font-semibold text-white group-hover:text-gray-700">2-Year Guarantee</h2>
                 </div>
-                <div class="p-3 py-12 text-center rounded-lg bg-gray-200 hover:bg-white group transition-all">
+                <div class="p-3 py-12 text-center rounded-lg bg-dark hover:bg-white group transition-all">
                     <img data-src="https://api.iconify.design/flat-color-icons:shipped.svg?color=%234bcc14" class="m-auto mb-3 lazyload" loading="lazy" width="60" alt="Delivery Icon">
-                    <h2 class="mb-3 font-semibold text-black group-hover:text-gray-700">Easy Installation</h2>
+                    <h2 class="mb-3 font-semibold text-white group-hover:text-gray-700">Easy Installation</h2>
                 </div>
             </div>
         </div>
