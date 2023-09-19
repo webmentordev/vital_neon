@@ -3,3 +3,5 @@ Allow: /
 
 User-agent: *
 Disallow: /login
+
+Sitemap: https://vitalneon.com/sitemap.xml

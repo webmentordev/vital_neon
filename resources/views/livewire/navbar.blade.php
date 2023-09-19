@@ -20,6 +20,7 @@
                     </ul>
                 </div>
             </div>
+            <a class="mx-4" href="{{ route('blogs') }}">Blogs</a>
             <a class="mx-4" href="{{ route('about') }}">About</a>
             <a class="mx-4" href="{{ route('f.a.q') }}">F.A.Q</a>
             <a class="mx-4" href="{{ route('track') }}">Track</a>
@@ -57,6 +58,7 @@
                             @endforeach
                         </div>
                     </div>
+                    <a class="text-2xl mb-3" href="{{ route('blogs') }}">Blogs</a>
                     <a class="text-2xl mb-3" href="{{ route('about') }}">About</a>
                     <a class="text-2xl mb-3" href="{{ route('f.a.q') }}">F.A.Q</a>
                     <a class="text-2xl mb-3" href="{{ route('track') }}">Track</a>

@@ -9,12 +9,12 @@ return [
          * The default configurations to be used by the meta generator.
          */
         'defaults'       => [
-            'title'        => false, // set false to total remove
-            'titleBefore'  => false, // Put defaults.title before page title, like 'It's Over 9000! - Dashboard'
+            'title'        => "Buy Eye Catching Custom Neon Signs", // set false to total remove
+            'titleBefore'  => "Vital Neon", // Put defaults.title before page title, like 'It's Over 9000! - Dashboard'
             'description'  => false, // set false to total remove
-            'separator'    => ' - ',
+            'separator'    => ' — ',
             'keywords'     => [],
-            'canonical'    => false, // Set to null or 'full' to use Url::full(), set to 'current' to use Url::current(), set false to total remove
+            'canonical'    => null, // Set to null or 'full' to use Url::full(), set to 'current' to use Url::current(), set false to total remove
             'robots'       => false, // Set to 'all', 'none' or any combination of index/noindex and follow/nofollow
         ],
         /*
@@ -38,10 +38,12 @@ return [
         'defaults' => [
             'title'       => false, // set false to total remove
             'description' => false, // set false to total remove
-            'url'         => false, // Set null for using Url::current(), set false to total remove
+            'url'         => null, // Set null for using Url::current(), set false to total remove
             'type'        => false,
-            'site_name'   => false,
-            'images'      => [],
+            'site_name'   => 'VitalNeon',
+            'images'      => [
+                'https://vitalneon.com/assets/seo/home-2.png'
+            ],
         ],
     ],
     'twitter' => [
@@ -49,8 +51,8 @@ return [
          * The default values to be used by the twitter cards generator.
          */
         'defaults' => [
-            //'card'        => 'summary',
-            //'site'        => '@LuizVinicius73',
+            'card'        => 'large_summary',
+            'site'        => '@vitalneon',
         ],
     ],
     'json-ld' => [
@@ -58,11 +60,13 @@ return [
          * The default configurations to be used by the json-ld generator.
          */
         'defaults' => [
-            'title'       => false, // set false to total remove
+            'title'       => "Buy Eye Catching Custom Neon Signs", // set false to total remove
             'description' => false, // set false to total remove
-            'url'         => false, // Set to null or 'full' to use Url::full(), set to 'current' to use Url::current(), set false to total remove
+            'url'         => null, // Set to null or 'full' to use Url::full(), set to 'current' to use Url::current(), set false to total remove
             'type'        => 'WebPage',
-            'images'      => [],
+            'images'      => [
+                'https://vitalneon.com/assets/seo/home-2.png'
+            ],
         ],
     ],
 ];

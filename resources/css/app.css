@@ -578,3 +578,74 @@ nav a, nav .category{
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 }
+
+.blog ul, .blog ol{
+    margin-left: 30px;
+    list-style-type: disc;
+    margin-bottom: 15px;
+    font-family: 'Inter', sans-serif;
+    @apply 620px:ml-3;
+}
+
+.blog ul li, .blog ol li{
+    margin: 10px 0px;
+    color: #dcdcdc;
+    font-family: 'Inter', sans-serif;
+}
+
+.blog p{
+    @apply mb-4 leading-8;
+    font-family: 'Inter', sans-serif;
+    color: #dcdcdc;
+}
+
+.blog  a {
+    text-decoration: underline;
+    font-family: 'Inter', sans-serif;
+    @apply text-indigo-600;
+}
+
+.blog img{
+    width: 100%;
+    border-radius: 10px;
+    margin-bottom: 30px;
+}
+
+.blog h1, .blog h2, .blog h3, .blog h4, .blog h5, .blog h6{
+    font-family: 'Epilogue', sans-serif;
+    font-weight: 600;
+    margin-bottom: 10px;
+    color: #fff;
+    @apply mb-3;
+}
+
+.blog h2{
+    @apply text-3xl;
+}
+.blog h3{
+    @apply text-2xl;
+}
+.blog h4{
+    @apply text-xl;
+}
+
+.blog-title{
+    font-family: 'Epilogue', sans-serif;
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+
+.code p, .code p code{
+    @apply text-gray-300;
+}
+
+.blog .code{
+    @apply p-5 bg-dark text-gray-300 rounded-lg mb-4 w-full break-words;
+}
+.blog .code span{
+    @apply text-indigo-600;
+}
+
+.blog .step_links {
+    @apply flex flex-col list-disc;
+}
