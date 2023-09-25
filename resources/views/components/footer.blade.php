@@ -24,9 +24,9 @@
             <li class="mb-2"><a href="{{ route('products') }}">Products</a></li>
             <li class="mb-2"><a href="{{ route('create-design') }}">Design Your Own</a></li>
             <li class="mb-2"><a href="{{ route('upload-design') }}">Upload Design</a></li>
-            <li class="mb-2"><a href="{{ route('support') }}">Support</a></li>
+            <li class="mb-2"><a href="{{ route('support') }}" rel="nofollow">Support</a></li>
             <li class="mb-2"><a href="{{ route('about') }}">About</a></li>
-            <li class="mb-2"><a href="{{ route('f.a.q') }}">FAQ</a></li>
+            <li class="mb-2"><a href="{{ route('f.a.q') }}" rel="nofollow">FAQ</a></li>
             <li class="mb-2"><a href="{{ route('sitemap') }}">Sitemap</a></li>
         </ul>
        </div>

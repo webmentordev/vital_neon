@@ -1,7 +1,7 @@
 <nav class="w-full py-2 sticky top-0 left-0 z-50 bg-dark text-white bg-opacity-80 backdrop-blur-lg">
-    <div class="flex items-center justify-between max-w-[90%] m-auto w-full px-2">
+    <div class="flex items-center justify-between max-w-[98%] m-auto w-full px-2">
         <a href="{{ route('home') }}" class="text-3xl font-semibold py-1"><img src="{{ asset('assets/neon_tranp_white.png') }}" width="150" alt="Vital Neon"></a>
-        <ul class="flex items-center uppercase 1210px:hidden">
+        <ul class="flex items-center uppercase 1290px:hidden">
             <a class="mx-4" href="{{ route('home') }}">Home</a>
             <a class="mx-4" href="{{ route('products') }}">Products</a>
             <a class="mx-4" href="{{ route('create-design') }}">Design Your Own</a>
@@ -21,15 +21,15 @@
                 </div>
             </div>
             <a class="mx-4" href="{{ route('blogs') }}">Blogs</a>
-            <a class="mx-4" href="{{ route('about') }}">About</a>
-            <a class="mx-4" href="{{ route('f.a.q') }}">F.A.Q</a>
-            <a class="mx-4" href="{{ route('track') }}">Track</a>
+            <a class="mx-4" href="{{ route('about') }}" rel="nofollow">About</a>
+            <a class="mx-4" href="{{ route('f.a.q') }}" rel="nofollow">F.A.Q</a>
+            <a class="mx-4" href="{{ route('track') }}" rel="nofollow">Track</a>
             <div class="mx-4 relative group">
                 <span class="category flex items-center">Support <img src="https://api.iconify.design/ic:outline-arrow-drop-down.svg?color=%23ffffff" width="28" alt="Carret Down Logo"></span>
                 <div class="hidden group-hover:block absolute top-7 right-0 w-[120px] p-2 rounded-lg bg-dark bg-opacity-80 backdrop-blur-lg border border-white/10 text-gray-700">
                     <ul class="flex flex-col w-full text-white text-center">
-                        <a class="text-[15px] p-1 mb-1 container border-b border-white/10 flex items-center" target="_blank" href="https://wa.me/16476165799"><img src="https://api.iconify.design/logos:whatsapp-icon.svg?color=%23ffd402" class="mr-2" width="20" alt="Social Media Icon">Whatsapp</a>
-                        <a class="text-[15px] p-1 container flex items-center" target="_blank" href="https://m.me/100095082327532"><img src="https://api.iconify.design/logos:messenger.svg?color=%23121212" class="mr-2" width="20" alt="Social Media Icon">Facebook</a>
+                        <a rel="nofollow" class="text-[15px] p-1 mb-1 container border-b border-white/10 flex items-center" target="_blank" href="https://wa.me/16476165799"><img src="https://api.iconify.design/logos:whatsapp-icon.svg?color=%23ffd402" class="mr-2" width="20" alt="Social Media Icon">Whatsapp</a>
+                        <a rel="nofollow" class="text-[15px] p-1 container flex items-center" target="_blank" href="https://m.me/100095082327532"><img src="https://api.iconify.design/logos:messenger.svg?color=%23121212" class="mr-2" width="20" alt="Social Media Icon">Facebook</a>
                     </ul>
                 </div>
             </div>
@@ -38,7 +38,7 @@
                 <span class="bg-white absolute -top-3 h-[20px] w-[20px] flex items-center justify-center text-[10px] right-0 p-[2px] font-bold px-[5px] rounded-full text-black">{{ $itemsCount }}</span>
             </a>
         </ul>
-        <div class="hidden 1210px:block" x-data="{open: false}">
+        <div class="hidden 1290px:block" x-data="{open: false}">
             <ul x-on:click="open = true">
                 <li class="bg-white my-2 h-[2px] w-[50px]"></li>
                 <li class="bg-white my-2 h-[2px] w-[50px]"></li>

@@ -44,10 +44,25 @@
         <changefreq>weekly</changefreq>
         <priority>0.90</priority>
     </url>
+
+    <url>
+        <loc>https://vitalneon.com/blogs</loc>
+        <lastmod>2023-09-24T13:40:00+05:00</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.90</priority>
+    </url>
     @foreach ($categories as $category)
         <url>
             <loc>{{ url('/') }}/products/category/{{ $category->slug }}</loc>
             <lastmod>{{ $category->created_at->tz('UTC')->toAtomString() }}</lastmod>
+            <changefreq>weekly</changefreq>
+            <priority>0.80</priority>
+        </url>
+    @endforeach
+    @foreach ($blogs as $blog)
+        <url>
+            <loc>{{ url('/') }}/blog/{{ $blog->slug }}</loc>
+            <lastmod>{{ $blog->created_at->tz('UTC')->toAtomString() }}</lastmod>
             <changefreq>weekly</changefreq>
             <priority>0.80</priority>
         </url>
@@ -57,7 +72,7 @@
             <loc>{{ url('/') }}/product/{{ $product->slug }}</loc>
             <lastmod>{{ $product->created_at->tz('UTC')->toAtomString() }}</lastmod>
             <changefreq>weekly</changefreq>
-            <priority>0.90</priority>
+            <priority>0.80</priority>
         </url>
     @endforeach
 </urlset>

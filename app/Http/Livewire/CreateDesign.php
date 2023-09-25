@@ -40,7 +40,7 @@ class CreateDesign extends Component
         "white"
     ],$locations = [
         "In Door",
-        "Out Door"
+        "Out Door (water proof)"
     ],$colors = [
         "rgb(252, 96, 2)",
         "rgb(255, 255, 255)",
@@ -97,8 +97,8 @@ class CreateDesign extends Component
         "wiretype",
         "yarorg"
     ], $kits, $adaptor, 
-    $color,$color2, $color3, 
-    $font, $font2, $font3,
+    $color, 
+    $font,
     $location,
     $kit, $address, $direction;
 
@@ -110,12 +110,12 @@ class CreateDesign extends Component
     $lines, 
     $total_price,
     $alignment,
-    $line_price,
+    $line_price = 0,
     $Select, $chars,
     $line1, $line2, $line3, $kit_price, $phone,
     $jacket, $leading = 50, $size = 42;
 
-    public $line_count = 1,
+    public $line_count = 0,
     $dark_mode = false,
     $backgroundImage;
 
@@ -141,24 +141,16 @@ class CreateDesign extends Component
         $this->remotes = Remote::all();
         $this->lines = Line::all();
         $this->kits = Kit::all();
-        $this->chars = $this->lines[0]->chars;
         $this->font = $this->fonts[16];
         $this->color = $this->colors[0];
         $this->direction = false;
-
-        $this->font2 = $this->fonts[0];
-        $this->color2 = $this->colors[0];
-
-        $this->font3 = $this->fonts[0];
-        $this->color3 = $this->colors[0];
-
+        
         $this->location = $this->locations[0];
         $this->adaptor = $this->adaptors[0];
         $this->alignment = $this->alignments[0];
         $this->jacket = $this->jackets[0];
         $this->remote = $this->remotes[0]->type;
         $this->shape = $this->shapes[0]->shape;
-        $this->line_price = $this->lines[0]->price;
         $this->line1 = "Text Here";
         $this->kit = $this->kits[0]->name;
         $this->kit_price = $this->kits[0]->price;
@@ -232,6 +224,9 @@ class CreateDesign extends Component
     }
 
     public function updatedSelect(){
+        if($this->Select == "custom"){
+            return redirect("https://wa.me/16476165799");
+        }
         $lines = Line::where("name", $this->Select)->first();
         if($lines != null){
             $this->line_count = $lines->lines;
@@ -248,7 +243,10 @@ class CreateDesign extends Component
             $this->updatedline3();
             $this->priceCalculator();
         }else{
-            abort(500, "Internal Server Error");
+            $this->line_count = 0;
+            $this->line_price = 0;
+            $this->line1 = "";
+            $this->priceCalculator();
         }
     }
 
@@ -304,7 +302,7 @@ class CreateDesign extends Component
             abort(500, "Internal Server Error");
         }
         $total_price = $shape_price->price + $remote_price->price + $jacket_price + $this->line_price + $kit_price->price;
-        if($this->location == "Out Door"){
+        if($this->location == "Out Door (water proof)"){
             $this->total_price = $total_price + ($total_price * (15/100));
         }else{
             $this->total_price = $total_price;
@@ -365,8 +363,8 @@ class CreateDesign extends Component
             Cart::create([
                 'text' => $this->line1.'|'.$this->line2.'|'.$this->line3,
                 'jacket' => $this->jacket,
-                'font' => "$this->font|$this->font2|$this->font3",
-                'color' => "$this->color|$this->color2|$this->color3",
+                'font' => "$this->font",
+                'color' => "$this->color",
                 'backboard' => $this->shape,
                 'location' => $this->location,
                 'adaptor' => $this->adaptor,

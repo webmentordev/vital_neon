@@ -29,7 +29,7 @@
                 @endforeach
             </div>
             @else
-                <p class="text-center text-lg text-white">Blogs(s) not found!</p>
+                <p class="text-center text-lg text-white">Blog(s) not found!</p>
             @endif
         </div>
     </section>

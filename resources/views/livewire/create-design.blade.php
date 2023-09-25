@@ -1,9 +1,9 @@
-<section class="w-full py-[80px]">
-    <div class="flex @if ($direction) flex-col @endif text-white max-w-[1360px] m-auto 890px:flex 890px:flex-col bg-dark p-6 mb-6">
+<section class="w-full py-[10px]">
+    <div class="grid grid-cols-5 text-white relative m-auto 890px:flex 890px:flex-col bg-dark p-6 mb-6">
         <div wire:loading wire:target="checkout" class="fixed left-[45%] 575px:left-0 bottom-3">
             <div class="flex items-center bg-black text-white p-6 rounded-lg"><img src="https://api.iconify.design/svg-spinners:ring-resize.svg?color=%23ffffff" alt="Loading Icon"> <span class="ml-2">Processing...</span></div>
         </div>
-        <div class="bg-cover bg-center sticky top-[80px] 890px:static left-0 rounded-lg flex justify-center items-center h-[970px] w-full 890px:min-h-[970px]" style="background-image: url({{ $backgroundImage }})" id="backDiv">
+        <div class="bg-cover bg-center @if ($direction) col-span-5 relative @else sticky col-span-3 @endif top-0 890px:static left-0 rounded-lg flex justify-center items-center h-[970px] w-full 890px:relative 890px:min-h-[970px]" style="background-image: url({{ $backgroundImage }})" id="backDiv">
             <span class="fixed bg-main rounded-lg p-3 bottom-3 left-3 text-gray-800 text-4xl font-semibold z-50"><span class="text-2xl">$</span>{{ $total_price }}</span>
             
             <div wire:click="$set('dark_mode', {{ !$dark_mode }})" class=" @if (!$dark_mode) bg-white @else bg-gray-800 @endif p-3 rounded-lg absolute top-2 left-2">
@@ -48,28 +48,28 @@
                 {{ $color }} 0px 0px 30px,
                 {{ $color }} 0px 0px 40px,
                 {{ $color }} 0px 0px 55px,
-                {{ $color }} 0px 0px 75px; @endif font-size: {{ $size }}px;">{{ $line1 }}</span>
+                {{ $color }} 0px 0px 75px; @endif font-size: {{ $size }}px;">{{ $line1 ? $line1 : "Text Here" }}</span>
                 @if ($line2)
-                <span class="text-white {{ $font2 }} font-semibold" 
+                <span class="text-white {{ $font }} font-semibold" 
                 style="@if (!$dark_mode) text-shadow:
-                    {{ $color2 }} 0px 0px 5px,
-                    {{ $color2 }} 0px 0px 10px,
-                    {{ $color2 }} 0px 0px 20px,
-                    {{ $color2 }} 0px 0px 30px,
-                    {{ $color2 }} 0px 0px 40px,
-                    {{ $color2 }} 0px 0px 55px,
-                    {{ $color2 }} 0px 0px 75px; @endif font-size: {{ $size }}px; margin-top: {{ $leading }}px">{{ $line2 }}</span>
+                    {{ $color }} 0px 0px 5px,
+                    {{ $color }} 0px 0px 10px,
+                    {{ $color }} 0px 0px 20px,
+                    {{ $color }} 0px 0px 30px,
+                    {{ $color }} 0px 0px 40px,
+                    {{ $color }} 0px 0px 55px,
+                    {{ $color }} 0px 0px 75px; @endif font-size: {{ $size }}px; margin-top: {{ $leading }}px">{{ $line2 }}</span>
                 @endif
                 @if ($line3)
-                    <span class="text-white {{ $font3 }} font-semibold" 
+                    <span class="text-white {{ $font }} font-semibold" 
                     style="@if (!$dark_mode) text-shadow:
-                    {{ $color3 }} 0px 0px 5px,
-                    {{ $color3 }} 0px 0px 10px,
-                    {{ $color3 }} 0px 0px 20px,
-                    {{ $color3 }} 0px 0px 30px,
-                    {{ $color3 }} 0px 0px 40px,
-                    {{ $color3 }} 0px 0px 55px,
-                    {{ $color3 }} 0px 0px 75px; @endif font-size: {{ $size }}px; margin-top: {{ $leading }}px">{{ $line3 }}</span>
+                    {{ $color }} 0px 0px 5px,
+                    {{ $color }} 0px 0px 10px,
+                    {{ $color }} 0px 0px 20px,
+                    {{ $color }} 0px 0px 30px,
+                    {{ $color }} 0px 0px 40px,
+                    {{ $color }} 0px 0px 55px,
+                    {{ $color }} 0px 0px 75px; @endif font-size: {{ $size }}px; margin-top: {{ $leading }}px">{{ $line3 }}</span>
                 @endif
             </div>
 
@@ -85,7 +85,7 @@
                 </div>
             </div>
         </div>
-        <form wire:submit.prevent="checkout" method="POST" class="bg-light text-sm w-full px-6 py-6 850px:px-0 850px:overflow-y-hidden">
+        <form wire:submit.prevent="checkout" method="POST" class="bg-light inline-block @if ($direction) col-span-5 @else col-span-2 @endif text-sm w-full px-6 py-6 850px:p-3 850px:overflow-y-hidden">
             <div class="flex items-center justify-between 490px:flex-col">
                 <h1 class="text-main font-bold text-3xl mb-3">Design Your Neon</h1>
                 <div class="flex items-center">
@@ -104,122 +104,61 @@
                 @enderror
                 <div class="mt-1">
                     <select wire:model="Select" class="w-full mt-2 bg-dark rounded border focus:border-main focus:ring-4 focus:ring-main-light text-base outline-none text-gray-300 py-2 px-3 leading-8 transition-colors duration-200 ease-in-out mb-3">
+                        <option value="" selected>Select number of lines and size</option>
                         @foreach ($lines as $line)
-                            @if ($loop->first)
-                                <option value="{{ $line->name }}" selected>{{ $line->name }}</option>
-                            @else
-                                <option value="{{ $line->name }}">{{ $line->name }}</option>
-                            @endif
+                            <option value="{{ $line->name }}">{{ $line->name }} - ${{ $line->price }}</option>
                         @endforeach
+                        <option value="custom">Custom Lines and Size</option>
                     </select>
                 </div>
             </div>
             
+           <div class="p-6 rounded-lg bg-dark">
             @if ($line_count >= 1)
-            <div class="p-6 bg-[#1E1E1E] rounded-lg mb-5">
                 @error('line1')
-                <p class="text-red-600 mb-2">{{ $message }}</p>
+                    <p class="text-red-600 mb-2">{{ $message }}</p>
                 @enderror
-                <div class="py-2" x-data="{ open: false }">
-                    <h2 class="font-bold mb-2 text-lg">Choose Line-1 Font</h2>
-                    <span class="p-6 border border-main bg-dark w-full inline-block rounded-lg text-center font-semibold mb-3 uppercase" x-on:click="open = !open">Font Options</span>
-                    <div class="grid grid-cols-2 gap-2 475px:grid-cols-1" x-show="open" x-cloak>
-                        @foreach ($fonts as $fonty)
-                        <div class="p-3 cursor-pointer rounded-lg text-center border text-lg capitalize {{ $fonty }} @if ($font == $fonty) border-main @else border-white/10 @endif" wire:click="$set('font', '{{ $fonty }}')">
-                            {{ $fonty }}
-                        </div>
-                        @endforeach
-                    </div>
-                </div>
-                <h2 class="font-bold text-lg">Line One Text</h2>
-                <input type="text" wire:model.debounce.1000ms="line1" placeholder="Text Line One" class="w-full mt-2 bg-dark rounded border focus:border-main focus:ring-4 focus:ring-main-light text-base outline-none text-gray-200 py-2 px-3 leading-8 transition-colors duration-200 ease-in-out mb-3">
+                <h2 class="font-bold text-lg">Text For Each Line:</h2>
+                <input type="text" wire:model.debounce.1000ms="line1" placeholder="Line 1 text" class="w-full mt-2 bg-dark rounded border focus:border-main focus:ring-4 focus:ring-main-light text-base outline-none text-gray-200 py-2 px-3 leading-8 transition-colors duration-200 ease-in-out mb-3">
                 @if (session('lineCount1'))
                     <p class="text-red-600 mb-2">{{ session('lineCount1') }}</p>
                 @endif
-                
-                <div class="py-2">
-                    <h2 class="font-bold mb-2 text-lg">Choose a colour</h2>
-                    <div class="flex flex-wrap">
-                        @foreach ($colors as $item)
-                            <div wire:click="$set('color', '{{ $item }}')" class="rounded-full m-2" style="@if($color == $item) border: 2px {{ $item }} solid; @endif">
-                                <span class="flex p-2 cursor-pointer rounded-full flex-col border border-white shadow-md" style="background-color: {{ $item }};"></span>
-                            </div>
-                        @endforeach
-                    </div>
+            @endif
+            @if ($line_count >= 2)
+                @error('line2')
+                    <p class="text-red-600 mb-2">{{ $message }}</p>
+                @enderror
+                <input type="text" wire:model.debounce.1000ms="line2" placeholder="Line 2 text" class="w-full mt-2 bg-dark rounded border focus:border-main focus:ring-4 focus:ring-main-light text-base outline-none text-gray-200 py-2 px-3 leading-8 transition-colors duration-200 ease-in-out mb-3">
+                @if (session('lineCount2'))
+                    <p class="text-red-600 mb-2">{{ session('lineCount2') }}</p>
+                @endif
+            @endif
+            @if ($line_count == 3)
+                @error('line3')
+                    <p class="text-red-600 mb-2">{{ $message }}</p>
+                @enderror
+                <input type="text" wire:model.debounce.1000ms="line3" placeholder="Line 3 text" class="w-full mt-2 bg-dark rounded border focus:border-main focus:ring-4 focus:ring-main-light text-base outline-none text-gray-200 py-2 px-3 leading-8 transition-colors duration-200 ease-in-out mb-3">
+                @if (session('lineCount3'))
+                    <p class="text-red-600 mb-2">{{ session('lineCount3') }}</p>
+                @endif
+            @endif
+            <div class="grid grid-cols-3 gap-2 1210px:grid-cols-2 870px:grid-cols-3 575px:grid-cols-2 475px:grid-cols-1">
+                @foreach ($fonts as $fonty)
+                <div class="p-3 cursor-pointer rounded-lg text-center border text-lg capitalize {{ $fonty }} @if ($font == $fonty) border-main @else border-white/10 @endif" wire:click="$set('font', '{{ $fonty }}')">
+                    {{ $fonty }}
+                </div>
+                @endforeach
+            </div>
+            <div class="py-2">
+                <div class="flex flex-wrap">
+                    @foreach ($colors as $item)
+                        <div wire:click="$set('color', '{{ $item }}')" class="rounded-full m-2" style="@if($color == $item) border: 2px {{ $item }} solid; @endif">
+                            <span class="flex p-2 cursor-pointer rounded-full flex-col border border-white shadow-md" style="background-color: {{ $item }};"></span>
+                        </div>
+                    @endforeach
                 </div>
             </div>
-            @endif
-
-            @if ($line_count >= 2)
-                <div class="p-6 bg-[#1E1E1E] rounded-lg mb-5">
-                    <div class="py-2" x-data="{ open: false }">
-                        <h2 class="font-bold mb-2 text-lg">Choose Line-2 Font</h2>
-                        <span class="p-6 border border-main bg-dark w-full inline-block rounded-lg text-center font-semibold mb-3 uppercase" x-on:click="open = !open">Font Options</span>
-                        <div class="grid grid-cols-2 gap-2 475px:grid-cols-1" x-show="open" x-cloak>
-                            @foreach ($fonts as $fonty)
-                                <div class="p-3 cursor-pointer rounded-lg text-center border text-lg capitalize {{ $fonty }} @if ($font2 == $fonty) border-main @else border-white/10 @endif" wire:click="$set('font2', '{{ $fonty }}')">
-                                    {{ $fonty }}
-                                </div>
-                            @endforeach
-                        </div>
-                    </div>
-                    <h2 class="font-bold text-lg">Line Two Text</h2>
-                    @error('line2')
-                        <p class="text-red-600 mb-2">{{ $message }}</p>
-                    @enderror
-                    <input type="text" wire:model.debounce.1000ms="line2" placeholder="Text Line Two" class="w-full mt-2 bg-dark rounded border focus:border-main focus:ring-4 focus:ring-main-light text-base outline-none text-gray-200 py-2 px-3 leading-8 transition-colors duration-200 ease-in-out mb-3">
-                    @if (session('lineCount2'))
-                        <p class="text-red-600 mb-2">{{ session('lineCount2') }}</p>
-                    @endif
-                    
-                    <div class="py-2">
-                        <h2 class="font-bold mb-2 text-lg">Choose a colour</h2>
-                        <div class="flex flex-wrap">
-                            @foreach ($colors as $item)
-                                <div wire:click="$set('color2', '{{ $item }}')" class="rounded-full m-2" style="@if($color2 == $item) border: 2px {{ $item }} solid; @endif">
-                                    <span class="flex p-2 cursor-pointer rounded-full flex-col border border-white shadow-md" style="background-color: {{ $item }};"></span>
-                                </div>
-                            @endforeach
-                        </div>
-                    </div>
-                </div>
-            @endif
-
-            @if ($line_count == 3)
-               <div class="p-6 bg-[#1E1E1E] rounded-lg mb-5">
-                    <div class="py-2" x-data="{ open: false }">
-                        <h2 class="font-bold mb-2 text-lg">Choose Line-3 Font</h2>
-                        <span class="p-6 border border-main bg-dark w-full inline-block rounded-lg text-center font-semibold mb-3 uppercase" x-on:click="open = !open">Font Options</span>
-                        <div class="grid grid-cols-2 gap-2 475px:grid-cols-1" x-show="open" x-cloak>
-                            @foreach ($fonts as $fonty)
-                                <div class="p-3 cursor-pointer rounded-lg text-center border text-lg capitalize {{ $fonty }} @if ($font3 == $fonty) border-main @else border-white/10 @endif" wire:click="$set('font3', '{{ $fonty }}')">
-                                    {{ $fonty }}
-                                </div>
-                            @endforeach
-                        </div>
-                    </div>
-                    <h2 class="font-bold text-lg">Line Three Text</h2>
-                    @error('line3')
-                        <p class="text-red-600 mb-2">{{ $message }}</p>
-                    @enderror
-                    <input type="text" wire:model.debounce.1000ms="line3" placeholder="Text Line Three" class="w-full mt-2 bg-dark rounded border focus:border-main focus:ring-4 focus:ring-main-light text-base outline-none text-gray-200 py-2 px-3 leading-8 transition-colors duration-200 ease-in-out mb-3">
-                    @if (session('lineCount3'))
-                        <p class="text-red-600 mb-2">{{ session('lineCount3') }}</p>
-                    @endif
-                    
-                    <div class="py-2">
-                        <h2 class="font-bold mb-2 text-lg">Choose a colour</h2>
-                        <div class="flex flex-wrap">
-                            @foreach ($colors as $item)
-                                <div wire:click="$set('color3', '{{ $item }}')" class="rounded-full m-2" style="@if($color3 == $item) border: 2px {{ $item }} solid; @endif">
-                                    <span class="flex p-2 cursor-pointer rounded-full flex-col border border-white shadow-md" style="background-color: {{ $item }};"></span>
-                                </div>
-                            @endforeach
-                        </div>
-                    </div>
-               </div>
-            @endif
-
+           </div>
             <div class="py-2">
                 <h2 class="font-bold mb-2 text-lg">Neon Strip Color When Light Off</h2>
                 <div class="grid grid-cols-2 gap-3 530px:grid-cols-1">
@@ -235,7 +174,7 @@
             </div>
 
             <div class="py-2">
-                <h2 class="font-bold text-lg mb-3">Backboard Style <span class="text-main">* {{ $shape }}</span></h2>
+                <h2 class="font-bold text-lg mb-3 group relative flex items-center w-fit">Backboard Style <img src="https://api.iconify.design/ant-design:exclamation-circle-twotone.svg?color=%23b0b0b0" width="20" class="mx-2 -translate-y-[2px]" title="Backboard Style Idea Icon" alt="Backboard Style Idea Icon"> <span class="text-main">* {{ $shape }}</span><img class="absolute left-0 top-6 hidden group-hover:block" src="{{ asset('assets/back_cut.jpg') }}" width="300px" title="Backboard Style" alt="Neon Backboard Style"></h2>
                 <div class="py-3">
                     <select name="shape" id="shape" wire:model="shape" class="bg-dark flex items-center w-full justify-center p-3 cursor-pointer rounded-md flex-col border">
                         @foreach ($shapes as $item)
