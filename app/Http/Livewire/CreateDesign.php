@@ -111,7 +111,7 @@ class CreateDesign extends Component
     $lines, 
     $total_price = 0,
     $alignment,
-    $line_price = 0,
+    $line_price = 0, $increment = 0,
     $Select, $chars,
     $line1, $line2, $line3, $kit_price, $phone,
     $jacket, $leading = 50, $size = 42;
@@ -142,9 +142,11 @@ class CreateDesign extends Component
         $this->remotes = Remote::all();
         $this->lines = Line::all();
         $this->kits = Kit::all();
+        $increment = PriceIncrement::where('is_active', true)->first();
         $this->font = $this->fonts[16];
         $this->color = $this->colors[0];
         $this->direction = false;
+        $this->increment = $increment->percentage;
         
         $this->location = $this->locations[0];
         $this->adaptor = $this->adaptors[0];

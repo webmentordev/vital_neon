@@ -22,11 +22,7 @@
                             <option selected value="" selected>Select product dimenions</option>
                         @endif
                         @foreach ($categories as $category)
-                            @if ($loop->first)
-                                <option selected value="{{ $category->name }}">Up to {{ $category->name }} - ${{ $category->price }}</option>
-                            @else
-                                <option value="{{ $category->name }}">Up to {{ $category->name }} - ${{ $category->price }}</option>
-                            @endif
+                            <option value="{{ $category->name }}">Up to {{ $category->name }} - ${{ $category->price + ($category->price * ($increment / 100))  }}</option>
                         @endforeach
                         <option value="custom">CUSTOMIZED</option>
                     </select>

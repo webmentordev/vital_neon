@@ -27,7 +27,7 @@ class Product extends Component
         "EUROPE 230V",
         "AUSTRALIA/NA 230V",
         "JAPAN 100V"
-    ], $remotes, $total_price = 0, $category_price;
+    ], $remotes, $total_price = 0, $increment = 0, $category_price;
 
     protected $rules = [
         'remote' => 'required',
@@ -40,12 +40,14 @@ class Product extends Component
         if(count($result)){
             $this->remotes = Remote::all();
             $this->kits = Kit::all();
+            $increment = PriceIncrement::where('is_active', true)->first();
             $this->remote = $this->remotes[0]->type;
             $this->categories = $result[0]->categories;
             $this->adaptor = $this->adaptors[0];
             $this->kit = $this->kits[0]->name;
             $this->category_price = 0;
             $this->product = $result;
+            $this->increment = $increment->percentage;
             $this->priceCalculator();
 
             SEOMeta::setTitle($result[0]->name);

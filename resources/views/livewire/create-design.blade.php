@@ -106,7 +106,7 @@
                     <select wire:model="Select" class="w-full mt-2 bg-dark rounded border focus:border-main focus:ring-4 focus:ring-main-light text-base outline-none text-gray-300 py-2 px-3 leading-8 transition-colors duration-200 ease-in-out mb-3">
                         <option value="" selected>Select number of lines and size</option>
                         @foreach ($lines as $line)
-                            <option value="{{ $line->name }}">{{ $line->name }} - ${{ $line->price }}</option>
+                            <option value="{{ $line->name }}">{{ $line->name }} - ${{ $line->price + ($line->price * ($increment / 100)) }}</option>
                         @endforeach
                         <option value="custom">Custom Lines and Size</option>
                     </select>
