@@ -9,6 +9,7 @@ use App\Models\Remote;
 use Livewire\Component;
 use Stripe\StripeClient;
 use App\Mail\RedirectOrderEmail;
+use App\Models\PriceIncrement;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Mail;
 use Artesaos\SEOTools\Facades\JsonLd;
@@ -43,7 +44,7 @@ class Product extends Component
             $this->categories = $result[0]->categories;
             $this->adaptor = $this->adaptors[0];
             $this->kit = $this->kits[0]->name;
-            $this->category_price = $result[0]->categories[0]->price;
+            $this->category_price = 0;
             $this->product = $result;
             $this->priceCalculator();
 
@@ -100,11 +101,13 @@ class Product extends Component
     public function priceCalculator(){
         $result = Remote::where('type', $this->remote)->first();
         $kit_price = Kit::where("name", $this->kit)->first();
+        $total = PriceIncrement::where("is_active", true)->first();
         if($kit_price == null){
             abort(500, "Internal Server Error");
         }
         if($result != null){
-            $this->total_price = $this->category_price + $result->price + $kit_price->price;
+            $sub_total = $this->category_price + $result->price + $kit_price->price;
+            $this->total_price = $sub_total + ($sub_total * ($total->percentage/100));
         }else{
             abort(500, 'Internal Error');
         }

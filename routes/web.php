@@ -18,9 +18,9 @@ use App\Http\Controllers\SupportController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ProductsController;
 use App\Http\Controllers\CategoryPriceController;
-use App\Http\Controllers\CreateDesignController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\PriceIncrementController;
 use App\Http\Controllers\TrackController;
 use App\Http\Livewire\Carts;
 use App\Http\Livewire\DesignQuote;
@@ -112,6 +112,9 @@ Route::middleware('auth')->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
     Route::get('/cart/dates/search', [DashboardController::class, 'cart_search'])->name('cart.search');
     Route::get('/orders/dates/search', [DashboardController::class, 'order_search'])->name('order.search');
+
+    Route::get('/price-percentage', [PriceIncrementController::class, 'index'])->name('price.percentage');
+    Route::post('/price-percentage', [PriceIncrementController::class, 'store']);
 });
 
 Route::get('/sitemap.xml', [SiteMapGenerator::class, 'index'])->name('sitemap');

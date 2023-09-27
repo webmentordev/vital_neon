@@ -7,6 +7,7 @@ use Carbon\Carbon;
 use App\Models\Kit;
 use App\Models\Cart;
 use App\Models\Line;
+use App\Models\PriceIncrement;
 use App\Models\Shape;
 use App\Models\Remote;
 use Livewire\Component;
@@ -108,7 +109,7 @@ class CreateDesign extends Component
     $remotes, 
     $remote, 
     $lines, 
-    $total_price,
+    $total_price = 0,
     $alignment,
     $line_price = 0,
     $Select, $chars,
@@ -154,7 +155,7 @@ class CreateDesign extends Component
         $this->line1 = "Text Here";
         $this->kit = $this->kits[0]->name;
         $this->kit_price = $this->kits[0]->price;
-        $this->priceCalculator();
+        // $this->priceCalculator();
         if(isset($_COOKIE['myimageurl'])){
             if($_COOKIE['myimageurl']){
                 $this->backgroundImage = $_COOKIE['myimageurl'];
@@ -288,6 +289,7 @@ class CreateDesign extends Component
         $shape_price = Shape::where("shape", $this->shape)->first();
         $remote_price = Remote::where("type", $this->remote)->first();
         $kit_price = Kit::where("name", $this->kit)->first();
+        $price_increments = PriceIncrement::where("is_active", true)->first();
 
         if($kit_price == null){
             abort(500, "Internal Server Error");
@@ -302,10 +304,13 @@ class CreateDesign extends Component
             abort(500, "Internal Server Error");
         }
         $total_price = $shape_price->price + $remote_price->price + $jacket_price + $this->line_price + $kit_price->price;
+
         if($this->location == "Out Door (water proof)"){
-            $this->total_price = $total_price + ($total_price * (15/100));
+            $sub_total = $total_price + ($total_price * ($price_increments->percentage/100));
+            $this->total_price = ($total_price * (20/100)) + $sub_total;
+
         }else{
-            $this->total_price = $total_price;
+            $this->total_price = $total_price + ($total_price * ($price_increments->percentage/100)) ;
         }
     }
 

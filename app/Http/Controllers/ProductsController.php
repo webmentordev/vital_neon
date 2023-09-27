@@ -15,14 +15,14 @@ class ProductsController extends Controller
 {
     public function index(){
         SEOMeta::setTitle("Buy Eye Catching Custom Neon Signs | Vital Neon");
-        SEOMeta::setDescription("Discover the vibrant world of neon signs at VitalNeon. Our extensive collection of pre-made neon signs includes a variety of designs, from classic to contemporary, that are sure to catch the eye and brighten any space. We also offer the option to create your own personalized neon sign, so you can bring your unique vision to life. All of our neon signs are handcrafted using high-quality materials and advanced techniques, ensuring that each sign is built to last. Browse our selection now and add a touch of neon to your life with VitalNeon.");
+        SEOMeta::setDescription("Buy artistic anime, wedding, bedroom, business, special event related custom neon signs with local power adaptor and 2 years warrenty");
         SEOMeta::setCanonical("https://vitalneon.com/products");
         SEOMeta::setRobots("index, follow");
         SEOMeta::addMeta("apple-mobile-web-app-title", "VitalNeon");
         SEOMeta::addMeta("application-name", "VitalNeon");
 
         OpenGraph::setTitle("Buy Eye Catching Custom Neon Signs | Vital Neon");
-        OpenGraph::setDescription("Discover the vibrant world of neon signs at VitalNeon. Our extensive collection of pre-made neon signs includes a variety of designs, from classic to contemporary, that are sure to catch the eye and brighten any space. We also offer the option to create your own personalized neon sign, so you can bring your unique vision to life. All of our neon signs are handcrafted using high-quality materials and advanced techniques, ensuring that each sign is built to last. Browse our selection now and add a touch of neon to your life with VitalNeon."); 
+        OpenGraph::setDescription("Buy artistic anime, wedding, bedroom, business, special event related custom neon signs with local power adaptor and 2 years warrenty"); 
         OpenGraph::setUrl("https://vitalneon.com/products");
         OpenGraph::addProperty("type", "website");
         OpenGraph::addProperty("locale", "eu");
@@ -32,10 +32,10 @@ class ProductsController extends Controller
         TwitterCard::setTitle("Buy Eye Catching Custom Neon Signs | Vital Neon");
         TwitterCard::setSite("@vitalneon");
         TwitterCard::setImage("https://vitalneon.com/assets/seo/listing-2.png");
-        TwitterCard::setDescription("Discover the vibrant world of neon signs at VitalNeon. Our extensive collection of pre-made neon signs includes a variety of designs, from classic to contemporary, that are sure to catch the eye and brighten any space. We also offer the option to create your own personalized neon sign, so you can bring your unique vision to life. All of our neon signs are handcrafted using high-quality materials and advanced techniques, ensuring that each sign is built to last. Browse our selection now and add a touch of neon to your life with VitalNeon.");
+        TwitterCard::setDescription("Buy artistic anime, wedding, bedroom, business, special event related custom neon signs with local power adaptor and 2 years warrenty");
 
         JsonLd::setTitle("Buy Eye Catching Custom Neon Signs | Vital Neon");
-        JsonLd::setDescription("Discover the vibrant world of neon signs at VitalNeon. Our extensive collection of pre-made neon signs includes a variety of designs, from classic to contemporary, that are sure to catch the eye and brighten any space. We also offer the option to create your own personalized neon sign, so you can bring your unique vision to life. All of our neon signs are handcrafted using high-quality materials and advanced techniques, ensuring that each sign is built to last. Browse our selection now and add a touch of neon to your life with VitalNeon.");
+        JsonLd::setDescription("Buy artistic anime, wedding, bedroom, business, special event related custom neon signs with local power adaptor and 2 years warrenty");
         JsonLd::addImage("https://vitalneon.com/assets/seo/listing-2.png");
         JsonLd::setType("WebSite");
         JsonLd::addImage("https://vitalneon.com/assets/seo/listing-1.png", ["height" => 400, "width" => 760]);
@@ -50,14 +50,14 @@ class ProductsController extends Controller
             'search' => $request->search
         ]);
         SEOMeta::setTitle("Search Eye Catching Custom Neon Signs | Vital Neon");
-        SEOMeta::setDescription("Discover the vibrant world of neon signs at VitalNeon. Our extensive collection of pre-made neon signs includes a variety of designs, from classic to contemporary, that are sure to catch the eye and brighten any space. We also offer the option to create your own personalized neon sign, so you can bring your unique vision to life. All of our neon signs are handcrafted using high-quality materials and advanced techniques, ensuring that each sign is built to last. Browse our selection now and add a touch of neon to your life with VitalNeon.");
+        SEOMeta::setDescription("Buy artistic anime, wedding, bedroom, business, special event related custom neon signs with local power adaptor and 2 years warrenty");
         SEOMeta::setCanonical("https://vitalneon.com/products");
         SEOMeta::setRobots("index, follow");
         SEOMeta::addMeta("apple-mobile-web-app-title", "VitalNeon");
         SEOMeta::addMeta("application-name", "VitalNeon");
 
         OpenGraph::setTitle("Search Eye Catching Custom Neon Signs | Vital Neon");
-        OpenGraph::setDescription("Discover the vibrant world of neon signs at VitalNeon. Our extensive collection of pre-made neon signs includes a variety of designs, from classic to contemporary, that are sure to catch the eye and brighten any space. We also offer the option to create your own personalized neon sign, so you can bring your unique vision to life. All of our neon signs are handcrafted using high-quality materials and advanced techniques, ensuring that each sign is built to last. Browse our selection now and add a touch of neon to your life with VitalNeon."); 
+        OpenGraph::setDescription("Buy artistic anime, wedding, bedroom, business, special event related custom neon signs with local power adaptor and 2 years warrenty."); 
         OpenGraph::setUrl("https://vitalneon.com/products");
         OpenGraph::addProperty("type", "website");
         OpenGraph::addProperty("locale", "eu");
@@ -67,10 +67,10 @@ class ProductsController extends Controller
         TwitterCard::setTitle("Search Eye Catching Custom Neon Signs | Vital Neon");
         TwitterCard::setSite("@vitalneon");
         TwitterCard::setImage("https://vitalneon.com/assets/seo/listing-2.png");
-        TwitterCard::setDescription("Discover the vibrant world of neon signs at VitalNeon. Our extensive collection of pre-made neon signs includes a variety of designs, from classic to contemporary, that are sure to catch the eye and brighten any space. We also offer the option to create your own personalized neon sign, so you can bring your unique vision to life. All of our neon signs are handcrafted using high-quality materials and advanced techniques, ensuring that each sign is built to last. Browse our selection now and add a touch of neon to your life with VitalNeon.");
+        TwitterCard::setDescription("Buy artistic anime, wedding, bedroom, business, special event related custom neon signs with local power adaptor and 2 years warrenty.");
 
         JsonLd::setTitle("Search Eye Catching Custom Neon Signs | Vital Neon");
-        JsonLd::setDescription("Discover the vibrant world of neon signs at VitalNeon. Our extensive collection of pre-made neon signs includes a variety of designs, from classic to contemporary, that are sure to catch the eye and brighten any space. We also offer the option to create your own personalized neon sign, so you can bring your unique vision to life. All of our neon signs are handcrafted using high-quality materials and advanced techniques, ensuring that each sign is built to last. Browse our selection now and add a touch of neon to your life with VitalNeon.");
+        JsonLd::setDescription("Buy artistic anime, wedding, bedroom, business, special event related custom neon signs with local power adaptor and 2 years warrenty.");
         JsonLd::addImage("https://vitalneon.com/assets/seo/listing-2.png");
         JsonLd::setType("WebSite");
         JsonLd::addImage("https://vitalneon.com/assets/seo/listing-1.png", ["height" => 400, "width" => 760]);
@@ -80,14 +80,14 @@ class ProductsController extends Controller
     }
     public function category(Category $category){
         SEOMeta::setTitle("Eye Cathing Neon Signs Categories | VitalNeon");
-        SEOMeta::setDescription("Discover the vibrant world of neon signs at VitalNeon. Our extensive collection of pre-made neon signs includes a variety of designs, from classic to contemporary, that are sure to catch the eye and brighten any space. We also offer the option to create your own personalized neon sign, so you can bring your unique vision to life. All of our neon signs are handcrafted using high-quality materials and advanced techniques, ensuring that each sign is built to last. Browse our selection now and add a touch of neon to your life with VitalNeon.");
+        SEOMeta::setDescription("Buy artistic anime, wedding, bedroom, business, love, cartoon, artwork neon signs with 2 years warrenty and free shipping");
         SEOMeta::setCanonical("https://vitalneon.com/products");
         SEOMeta::setRobots("index, follow");
         SEOMeta::addMeta("apple-mobile-web-app-title", "VitalNeon");
         SEOMeta::addMeta("application-name", "VitalNeon");
 
         OpenGraph::setTitle("Eye Cathing Neon Signs Categories | VitalNeon");
-        OpenGraph::setDescription("Discover the vibrant world of neon signs at VitalNeon. Our extensive collection of pre-made neon signs includes a variety of designs, from classic to contemporary, that are sure to catch the eye and brighten any space. We also offer the option to create your own personalized neon sign, so you can bring your unique vision to life. All of our neon signs are handcrafted using high-quality materials and advanced techniques, ensuring that each sign is built to last. Browse our selection now and add a touch of neon to your life with VitalNeon."); 
+        OpenGraph::setDescription("Buy artistic anime, wedding, bedroom, business, love, cartoon, artwork neon signs with 2 years warrenty and free shipping"); 
         OpenGraph::setUrl("https://vitalneon.com/products");
         OpenGraph::addProperty("type", "website");
         OpenGraph::addProperty("locale", "eu");
@@ -97,10 +97,10 @@ class ProductsController extends Controller
         TwitterCard::setTitle("Eye Cathing Neon Signs Categories | VitalNeon");
         TwitterCard::setSite("@vitalneon");
         TwitterCard::setImage("https://vitalneon.com/assets/seo/category-2.png");
-        TwitterCard::setDescription("Discover the vibrant world of neon signs at VitalNeon. Our extensive collection of pre-made neon signs includes a variety of designs, from classic to contemporary, that are sure to catch the eye and brighten any space. We also offer the option to create your own personalized neon sign, so you can bring your unique vision to life. All of our neon signs are handcrafted using high-quality materials and advanced techniques, ensuring that each sign is built to last. Browse our selection now and add a touch of neon to your life with VitalNeon.");
+        TwitterCard::setDescription("Buy artistic anime, wedding, bedroom, business, love, cartoon, artwork neon signs with 2 years warrenty and free shipping");
 
         JsonLd::setTitle("Eye Cathing Neon Signs Categories | VitalNeon");
-        JsonLd::setDescription("Discover the vibrant world of neon signs at VitalNeon. Our extensive collection of pre-made neon signs includes a variety of designs, from classic to contemporary, that are sure to catch the eye and brighten any space. We also offer the option to create your own personalized neon sign, so you can bring your unique vision to life. All of our neon signs are handcrafted using high-quality materials and advanced techniques, ensuring that each sign is built to last. Browse our selection now and add a touch of neon to your life with VitalNeon.");
+        JsonLd::setDescription("Buy artistic anime, wedding, bedroom, business, love, cartoon, artwork neon signs with 2 years warrenty and free shipping");
         JsonLd::addImage("https://vitalneon.com/assets/seo/category-2.png");
         JsonLd::setType("WebSite");
         JsonLd::addImage("https://vitalneon.com/assets/seo/category-1.png", ["height" => 400, "width" => 760]);

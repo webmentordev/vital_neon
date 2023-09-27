@@ -18,6 +18,9 @@
                 <div class="bg-light p-6 w-full bottom-0 left-0 870px:max-h-fit overflow-y-scroll">
                     <h3 class="text-white font-semibold">Dimensions</h3>
                     <select name="category" id="category" wire:model="category" class="w-full mt-2 bg-dark rounded border border-gray-800 focus:border-main focus:ring-4 focus:ring-main-light text-base outline-none text-gray-200 py-2 px-3 leading-8 transition-colors duration-200 ease-in-out mb-3">
+                        @if ($total_price == 0)
+                            <option selected value="" selected>Select product dimenions</option>
+                        @endif
                         @foreach ($categories as $category)
                             @if ($loop->first)
                                 <option selected value="{{ $category->name }}">Up to {{ $category->name }} - ${{ $category->price }}</option>
