@@ -11,10 +11,8 @@ use App\Http\Controllers\DesignController;
 use App\Http\Controllers\RemoteController;
 use App\Http\Controllers\SearchController;
 use App\Http\Controllers\SiteMapGenerator;
-use App\Http\Controllers\ContactController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\SupportController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ProductsController;
 use App\Http\Controllers\CategoryPriceController;
@@ -43,9 +41,6 @@ Route::get("/f-a-q", function(){
 
 Route::get('/upload-your-own-design', [DesignController::class, 'index'])->name('upload-design');
 Route::post('/upload-your-own-design', [DesignController::class, 'store'])->middleware(['throttle:60,5']);
-
-Route::get('/support', [SupportController::class, 'index'])->name('support');
-Route::post('/support', [SupportController::class, 'store'])->middleware(['throttle:2,5']);
 
 Route::get('/cancel/{checkout_id}', [OrderController::class, 'cancel']);
 Route::get('/success/{checkout_id}', [OrderController::class, 'success']);
@@ -78,7 +73,6 @@ Route::middleware('auth')->group(function () {
     Route::get('/remote', [RemoteController::class, 'index'])->name('remote');
     Route::post('/remote', [RemoteController::class, 'create']);
     
-    Route::get('/contact', [ContactController::class, 'index'])->name('contact');
 
     Route::get('/lines', [LineController::class, 'index'])->name('line');
     Route::post('/lines', [LineController::class, 'create']);
