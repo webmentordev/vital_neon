@@ -259,6 +259,44 @@
     <section class="max-w-[1366px] m-auto">
         <p class="p-6 col-span-2 border-l border-gray-400 bg-light text-white mb-6 leading-6">We're pleased to offer Stripe as our payment system, providing you with a secure and reliable way to make payments. With Stripe, your credit card information is kept safe and secure, as we don't store it on our servers. We only collect your email address for communication purposes, and we never share your personal information with third parties. Stripe's user-friendly interface allows for seamless payments, giving you peace of mind and a smooth payment experience. Thank you for choosing to shop with us!</p>
     </section>
+
+    <section class="bg-light">
+        <div class="max-w-6xl m-auto py-[120px] px-4">
+            <h2 class="text-4xl mb-3 text-white font-semibold">How to create Custom Neon Sign?</h2>
+            <div class="grid grid-cols-2 gap-6 mb-6 710px:grid-cols-1 m-auto">
+                <div class="p-3 border border-white/10 px-6 py-12 text-white rounded-lg bg-dark hover:bg-white group transition-all">
+                    <h3 class="mb-2 text-2xl font-semibold group-hover:text-gray-700 flex items-center">Lines Based Pricing <img data-src="https://api.iconify.design/noto:dollar-banknote.svg" class="ml-2 lazyload" loading="lazy" width="35" alt="Delivery Icon"></h3>
+                    <p class="group-hover:text-gray-700 text-white/70">You have the option to select the size and number of characters per line, ensuring that you don't get overpriced. If you desire a larger neon sign than what is mentioned, feel free to contact us</p>
+                </div>
+
+                <div class="p-3 border border-white/10 px-6 py-12 text-white rounded-lg bg-dark hover:bg-white group transition-all">
+                    <h3 class="mb-2 text-2xl font-semibold group-hover:text-gray-700 flex items-center">Neon Fonts Style <img data-src="https://api.iconify.design/vscode-icons:folder-type-fonts-opened.svg?color=%23413e3e" class="ml-2 lazyload" loading="lazy" width="35" alt="Delivery Icon"></h3>
+                    <p class="group-hover:text-gray-700 text-white/70">You have the option to select the font style for each line and character. We offer more than 40 fonts, and the selection is continuously expanding to provide you with various options</p>
+                </div>
+
+                <div class="p-3 border border-white/10 px-6 py-12 text-white rounded-lg bg-dark hover:bg-white group transition-all">
+                    <h3 class="mb-2 text-2xl font-semibold group-hover:text-gray-700 flex items-center">Local Power Adaptors <img data-src="https://api.iconify.design/fluent-emoji-flat:battery.svg" class="ml-2 lazyload" loading="lazy" width="35" alt="Delivery Icon"></h3>
+                    <p class="group-hover:text-gray-700 text-white/70">All neon signs come with a free power adapter. You have a variety of choices to select from your local power adapters. Please verify the kind of adapter that aligns with your energy laws</p>
+                </div>
+
+                <div class="p-3 border border-white/10 px-6 py-12 text-white rounded-lg bg-dark hover:bg-white group transition-all">
+                    <h3 class="mb-2 text-2xl font-semibold group-hover:text-gray-700 flex items-center">Water Resistant <img data-src="https://api.iconify.design/fxemoji:sunraincloud.svg" class="ml-2 lazyload" loading="lazy" width="35" alt="Delivery Icon"></h3>
+                    <p class="group-hover:text-gray-700 text-white/70">You get the option to select if you want the Indoor neon sign which is cheap but not water resistant and Outdoor option which is Water resistant but comes at extra cost</p>
+                </div>
+
+                <div class="p-3 border border-white/10 px-6 py-12 text-white rounded-lg bg-dark hover:bg-white group transition-all">
+                    <h3 class="mb-2 text-2xl font-semibold group-hover:text-gray-700 flex items-center">Dimmer Controller <img data-src="https://api.iconify.design/twemoji:light-bulb.svg" class="ml-2 lazyload" loading="lazy" width="35" alt="Delivery Icon"></h3>
+                    <p class="group-hover:text-gray-700 text-white/70">We offer three different types of dimmers, <b>Simple Dimmer</b>: Adjusts the lighting intensity. <b>Remote Dimmer</b>: Controls various lighting effects. <b>RGB Dimmer</b>: Changes the color of your neon sign</p>
+                </div>
+
+                <div class="p-3 border border-white/10 px-6 py-12 text-white rounded-lg bg-dark hover:bg-white group transition-all">
+                    <h3 class="mb-2 text-2xl font-semibold group-hover:text-gray-700 flex items-center">Neon Installation Kits <img data-src="https://api.iconify.design/twemoji:light-bulb.svg" class="ml-2 lazyload" loading="lazy" width="35" alt="Delivery Icon"></h3>
+                    <p class="group-hover:text-gray-700 text-white/70">We offer three types of installation kits, <b>Screw Fixation (Free)</b>: Basic installation using screws, <b>Hinge Suspension or Both</b>: Options for dynamic and versatile installations. <b>Acrylic Stand</b>: An alternative stand option for your neon sign.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <script>
         const color = document.getElementById('color');
         var output = document.getElementById('backDiv');
