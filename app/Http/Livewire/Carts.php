@@ -99,6 +99,7 @@ class Carts extends Component
                     "quantity" => $cart['quantity'],
                     "price" => $cart['price'],
                     "slug" => $cart['slug'],
+                    "color" => $cart['color'],
                     "name" => $cart['name'],
                     "details" => $cart['details'],
                     "address_id" => $address->id,

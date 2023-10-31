@@ -33,7 +33,25 @@ class Product extends Component
         'remote' => 'required',
         'adaptor' => 'required',
         'kit' => 'required',
+        'color_selected' => 'required',
     ];
+
+    public $colors = [
+        "Same As Image",
+        "Warm White",
+        "Cool White",
+        "Lemon Yellow",
+        "Gold Yellow",
+        "Orange",
+        "Dark Blue",
+        "Ice Blue",
+        "Green",
+        "Hot Pink",
+        "Red",
+        "Purple",
+        "Real",
+        "RGB",
+    ], $color_selected;
 
     public function mount($slug){
         $result = ModelsProduct::where('slug', $slug)->with('categories')->get();
@@ -48,6 +66,7 @@ class Product extends Component
             $this->category_price = 0;
             $this->product = $result;
             $this->increment = $increment->percentage;
+            $this->color_selected = $this->colors[0];
             $this->priceCalculator();
 
             SEOMeta::setTitle($result[0]->name);
@@ -109,7 +128,12 @@ class Product extends Component
         }
         if($result != null){
             $sub_total = $this->category_price + $result->price + $kit_price->price;
-            $this->total_price = $sub_total + ($sub_total * ($total->percentage/100));
+            $total_price = $sub_total + ($sub_total * ($total->percentage/100));
+            if($this->color_selected == "RGB"){
+                $this->total_price = $total_price + 50;
+            }else{
+                $this->total_price = $total_price;
+            }
         }else{
             abort(500, 'Internal Error');
         }
@@ -136,8 +160,9 @@ class Product extends Component
             'product_id' => $this->product[0]->stripe_id,
             'slug' => $slug,
             'name' => $this->product[0]->name,
+            'color' => $this->color_selected,
             'image' => config('app.url').'/storage/'.$this->product[0]->image,
-            'details' => $this->kit."—".$this->category."—".$this->remote."—".$this->adaptor
+            'details' => $this->kit."—".$this->category."—".$this->remote."—".$this->adaptor."—".$this->color_selected
         ];
         session()->put('cart', $cartItems);
         session()->flash('success', 'Product has been added to the cart!');

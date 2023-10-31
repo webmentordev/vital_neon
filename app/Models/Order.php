@@ -14,6 +14,7 @@ class Order extends Model
         "quantity",
         "price",
         "slug",
+        "color",
         "name",
         "details",
         "address_id",

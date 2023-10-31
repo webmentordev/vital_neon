@@ -12,10 +12,13 @@
                 <x-success :message="session('success')" />
             @endif
             <div class="grid grid-cols-2 gap-3 rounded-lg mb-6 overflow-hidden 890px:grid-cols-1 890px:max-w-lg m-auto">
-                <a href="{{ asset('storage/'.$item->image) }}" title="{{ $item->name }}" class="h-fit" target="_blank" rel=dofollow>
-                    <img data-src="{{ asset('storage/'.$item->image) }}" class="h-fit w-full lazyload rounded-lg" loading="lazy" alt="Buy {{ $item->name }}" title="Buy {{ $item->name }}">
-                </a>
-                <div class="bg-light p-6 w-full bottom-0 left-0 870px:max-h-fit overflow-y-scroll">
+                <div class="w-full">
+                    <a href="{{ asset('storage/'.$item->image) }}" title="{{ $item->name }}" class="h-fit" target="_blank" rel=dofollow>
+                        <img data-src="{{ asset('storage/'.$item->image) }}" class="h-fit w-full lazyload rounded-lg" loading="lazy" alt="Buy {{ $item->name }}" title="Buy {{ $item->name }}">
+                    </a>
+                    <img class="mt-3" src="{{ asset('assets/colors.png') }}" title="VitalNeon signs colors" alt="Colors selection">
+                </div>
+                <div class="bg-light p-6 h-fit w-full bottom-0 left-0 870px:max-h-fit overflow-y-scroll">
                     <h3 class="text-white font-semibold">Dimensions</h3>
                     <select name="category" id="category" wire:model="category" class="w-full mt-2 bg-dark rounded border border-gray-800 focus:border-main focus:ring-4 focus:ring-main-light text-base outline-none text-gray-200 py-2 px-3 leading-8 transition-colors duration-200 ease-in-out mb-3">
                         @if ($total_price == 0)
@@ -44,7 +47,7 @@
                     @error('adaptor')
                         <p class="text-red-600 mb-2">{{ $message }}</p>
                     @enderror
-                    <h3 class="text-white font-semibold">Remote and Dimmer *{{ $remote }}</h2>
+                    <h3 class="text-white font-semibold">Remote and Dimmer *<span class="text-main">{{ $remote }}</span></h2>
                     <p class="text-gray-300 text-sm">A remote and dimmer is included free with every sign! (Except for Multicolor Neon Signs, which are controlled by the APP)</p>
                     <div class="py-3 w-full">
                         <select name="remote" id="remote" wire:model="remote" class="bg-dark text-white flex items-center w-full justify-center p-3 cursor-pointer rounded-md flex-col border">
@@ -56,8 +59,30 @@
                     @error('remote')
                         <p class="text-red-600 mb-2">{{ $message }}</p>
                     @enderror
+                    @if ($product[0]->category->name != "Artistic")
+                        <div class="py-2 text-white mb-3">
+                            <h2 class="font-bold text-lg">Neon Color *<span class="text-main">{{ $color_selected }}</span></h2>
+                            <select name="color_selected" id="color_selected" wire:model="color_selected" class="bg-dark flex items-center w-full justify-center p-3 cursor-pointer rounded-md flex-col border">
+                                @foreach ($colors as $color)
+                                    @if ($color != "RGB")
+                                        @if ($loop->first)
+                                            <option value="{{ $color }}" selected>{{ $color }}</option>
+                                        @else
+                                            <option value="{{ $color }}">{{ $color }}</option>
+                                        @endif
+                                    @else
+                                        <option value="{{ $color }}">{{ $color }} (+50$)</option>
+                                    @endif
+                                @endforeach 
+                            </select>
+                        </div>
+                        @error('color_selected')
+                            <p class="text-red-600 mb-2">{{ $message }}</p>
+                        @enderror
+                    @endif
+
                     <div class="py-2 text-white mb-3">
-                        <h2 class="font-bold text-lg">Installation Kit *{{ $kit }}</h2>
+                        <h2 class="font-bold text-lg">Installation Kit *<span class="text-main">{{ $kit }}</span></h2>
                         <select name="kit" id="kit" wire:model="kit" class="bg-dark flex items-center w-full justify-center p-3 cursor-pointer rounded-md flex-col border">
                             @foreach ($kits as $item)
                                 <option value="{{ $item->name }}">{{ $item->name }} - ${{ $item->price }}</option>  

@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('quantity');
             $table->decimal('price', 10, 2);
             $table->string('slug');
+            $table->string('color');
             $table->string('name');
             $table->string('details');
             $table->string('address_id');
