@@ -10,7 +10,7 @@
         "guzzlehttp/guzzle": "^7.2",
         "laravel/breeze": "^1.19",
         "laravel/framework": "^10.0",
-        "laravel/sanctum": "^3.2",
+        "laravel/sanctum": "^3.3",
         "laravel/tinker": "^2.8",
         "livewire/livewire": "^2.12",
         "stripe/stripe-php": "^10.10"
