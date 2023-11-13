@@ -12,6 +12,7 @@ class ProductApiController extends Controller
         $product_info = $products->map(function ($data) {
             $data->created = $data->created_at->format('D d/m/Y H:i:s A');
             $data->image = config('app.url').'/storage/'.$data->image;
+            $data->stripe_id = null;
             return $data;
         });
         return response()->json([
