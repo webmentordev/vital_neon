@@ -1,28 +1,29 @@
 <?php
 
-use App\Http\Controllers\BlogController;
+use App\Http\Livewire\Carts;
 use App\Http\Livewire\Product;
+use App\Http\Livewire\DesignQuote;
 use App\Http\Livewire\CreateDesign;
 use Illuminate\Support\Facades\Route;
+use Artesaos\SEOTools\Facades\SEOMeta;
+use App\Http\Controllers\BlogController;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LineController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ShapeController;
+use App\Http\Controllers\TrackController;
 use App\Http\Controllers\DesignController;
 use App\Http\Controllers\RemoteController;
+use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\SearchController;
 use App\Http\Controllers\SiteMapGenerator;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ProductsController;
-use App\Http\Controllers\CategoryPriceController;
 use App\Http\Controllers\DashboardController;
-use App\Http\Controllers\HomeController;
+use App\Http\Controllers\CategoryPriceController;
 use App\Http\Controllers\PriceIncrementController;
-use App\Http\Controllers\TrackController;
-use App\Http\Livewire\Carts;
-use App\Http\Livewire\DesignQuote;
-use Artesaos\SEOTools\Facades\SEOMeta;
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
@@ -109,6 +110,12 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/price-percentage', [PriceIncrementController::class, 'index'])->name('price.percentage');
     Route::post('/price-percentage', [PriceIncrementController::class, 'store']);
+
+    Route::get('/reviews', [ReviewController::class, 'index'])->name('reviews');
+    Route::get('/create/review', [ReviewController::class, 'create'])->name('create.review');
+    Route::post('/post/review', [ReviewController::class, 'store'])->name('post.review');
+    Route::get('/post/review/{review:id}', [ReviewController::class, 'update'])->name('review.update');
+    Route::patch('/post/review/update/{review:id}', [ReviewController::class, 'review_update'])->name('update.review');
 });
 
 Route::get('/sitemap.xml', [SiteMapGenerator::class, 'index'])->name('sitemap');
