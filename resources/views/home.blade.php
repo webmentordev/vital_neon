@@ -27,6 +27,8 @@
         </div>
     </section>
 
+    <x-reviews />
+    
     <x-listing />
     
     <section class="w-full">
