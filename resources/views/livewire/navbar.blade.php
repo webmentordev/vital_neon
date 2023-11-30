@@ -6,6 +6,7 @@
             <a class="mx-4" href="{{ route('products') }}">Products</a>
             <a class="mx-4" href="{{ route('create-design') }}">Design Your Own</a>
             <a class="mx-4" href="{{ route('upload-design') }}">Upload Design</a>
+            <a class="mx-4" href="/#reviews">Reviews</a>
             <div class="mx-4 relative group">
                 <span class="category flex items-center">Categories <img src="https://api.iconify.design/ic:outline-arrow-drop-down.svg?color=%23ffffff" width="28" alt="Carret Down Logo"></span>
                 <div class="hidden group-hover:block absolute top-7 max-w-[200px] w-full p-2 rounded-lg bg-dark bg-opacity-80 backdrop-blur-lg border border-white/10 text-gray-700">
@@ -50,6 +51,7 @@
                     <a class="text-2xl mb-3" href="{{ route('products') }}">Products</a>
                     <a class="text-2xl mb-3" href="{{ route('create-design') }}">Design Your Own</a>
                     <a class="text-2xl mb-3" href="{{ route('upload-design') }}">Upload Design</a>
+                    <a class="text-2xl mb-3" href="/#reviews">Reviews</a>
                     <div class="mx-4 relative mt-2" x-data="{toggle: false}">
                         <span class="flex items-center category text-3xl p-3 bg-light rounded-lg" x-on:click="toggle = !toggle">Categories <img src="https://api.iconify.design/ic:outline-arrow-drop-down.svg?color=%23ffffff" width="28" alt="Carret Down Logo"></span>
                         <div class="flex flex-col" x-show="toggle">

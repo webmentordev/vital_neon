@@ -27,9 +27,9 @@
         </div>
     </section>
 
-    <x-reviews />
-    
     <x-listing />
+
+    <x-reviews />
     
     <section class="w-full">
         <div class="py-[120px] relative z-10 overflow-x-hidden">
@@ -46,6 +46,8 @@
             </div>
         </div>
     </section>
+
+    
 
     <section class="w-full">
         <x-brands />

@@ -22,7 +22,7 @@
                         </tr>
                         @foreach ($reviews as $item)
                             <tr class="text-sm odd:bg-gray-100">
-                                <td class="p-2 text-start"><img class="bg-center bg-cover rounded-full" src="{{ $item->name }}" width="40px" height="40px"></td>
+                                <td class="p-2 text-start"><img class="bg-center bg-cover rounded-full" src="{{ asset('/storage/'.$item->image) }}" width="40px" height="40px"></td>
                                 <td class="p-2 text-start">{{ $item->name }}</td>
                                 <td class="p-2 text-start">{{ $item->date }}</td>
                                 <td class="p-2 text-start">{{ $item->review }}</td>

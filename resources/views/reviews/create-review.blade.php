@@ -9,7 +9,7 @@
     </x-slot>
     <section class="w-full">
         <div class="w-full max-w-2xl m-auto mt-6 px-6 py-4 bg-gray-700 shadow-md overflow-hidden rounded-lg">
-            <form action="{{ route('post.review') }}" method="POST">
+            <form action="{{ route('post.review') }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 @if (session('success'))
                     <x-success :message="session('success')" />
