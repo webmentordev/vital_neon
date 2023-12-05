@@ -1,5 +1,5 @@
 <div class="w-full">
-    <div class="max-w-[80%] w-full m-auto py-12 px-4 grid grid-cols-6 gap-6 text-center text-white">
+    <div class="max-w-[80%] w-full m-auto py-12 px-4 grid grid-cols-6 740px:grid-cols-3 575px:grid-cols-1 gap-6 text-center text-white">
         <a href="{{ route('category.search', 'animals') }}" class="custom1 amejo text-5xl">Animals</a>
         <a href="{{ route('category.search', 'kids-room') }}" class="custom2 artelyinks text-5xl">Kids Room</a>
         <a href="{{ route('category.search', 'business') }}" class="custom3 bayshore text-5xl">Business</a>

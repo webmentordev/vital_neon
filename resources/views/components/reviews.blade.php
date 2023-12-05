@@ -17,7 +17,13 @@
                 </div>
                 <h2 class="text-3xl mb-4 text-white font-bold">What our esty customers think</h2>
             </div>
-            <div class="w-full grid grid-cols-3 gap-3">
+            <div class="w-full grid grid-cols-3 m-auto gap-3 940px:grid-cols-2 670px:grid-cols-1 670px:max-w-[400px]">
+                @foreach ($reviews as $review)
+                    <x-single-review :review="$review" />
+                @endforeach
+                @foreach ($reviews as $review)
+                    <x-single-review :review="$review" />
+                @endforeach
                 @foreach ($reviews as $review)
                     <x-single-review :review="$review" />
                 @endforeach
