@@ -80,6 +80,7 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/product-price', [CategoryPriceController::class, 'index'])->name('product.price');
     Route::post('/product-price', [CategoryPriceController::class, 'create']);
+    Route::patch('/product-price/update/{id}', [CategoryPriceController::class, 'update'])->name('product.price.update');
 
     Route::get('/product-category', [CategoryController::class, 'index'])->name('product.category');
     Route::post('/product-category', [CategoryController::class, 'store']);

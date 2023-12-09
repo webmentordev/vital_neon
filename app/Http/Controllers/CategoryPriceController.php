@@ -28,4 +28,27 @@ class CategoryPriceController extends Controller
         ]);
         return back()->with('success', 'Price for a product has been added!');
     }
+
+
+    public function update(Request $request, $id){
+        $this->validate($request, [
+            'up_name' => "required|max:255",
+            'up_product' => "required|numeric",
+            'up_price' => "required|numeric|min:1",
+        ]);
+    
+        $price = CategoryPrice::find($id);
+    
+        if($price != null){
+            $price->name = $request->up_name;
+            $price->product_id = $request->up_product;
+            $price->price = $request->up_price;
+    
+            $price->save();
+    
+            return back()->with('success', 'Price for a product has been updated!');
+        } else {
+            abort(404, 'Not Found!');
+        }
+    }
 }
