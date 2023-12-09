@@ -19,6 +19,7 @@
                             <th class="p-2 text-start">Review</th>
                             <th class="p-2 text-start">Stars</th>
                             <th class="p-2 text-end">URL</th>
+                            <th class="p-2 text-end">Update</th>
                         </tr>
                         @foreach ($reviews as $item)
                             <tr class="text-sm odd:bg-gray-100">
@@ -28,6 +29,7 @@
                                 <td class="p-2 text-start">{{ $item->review }}</td>
                                 <td class="p-2 text-start">{{ $item->star }}</td>
                                 <td class="p-2 text-start"><a class="underline text-indigo-600 font-semibold" href="{{ $item->url }}">Visit</a></td>
+                                <td class="p-2 text-start"><a class="underline text-indigo-600 font-semibold" href="{{ route('review.update', $item->id) }}">Update</a></td>
                             </tr>
                         @endforeach
                     </table>

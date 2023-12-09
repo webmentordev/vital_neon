@@ -21,12 +21,6 @@
                 @foreach ($reviews as $review)
                     <x-single-review :review="$review" />
                 @endforeach
-                @foreach ($reviews as $review)
-                    <x-single-review :review="$review" />
-                @endforeach
-                @foreach ($reviews as $review)
-                    <x-single-review :review="$review" />
-                @endforeach
             </div>
         </div>
     </section>
