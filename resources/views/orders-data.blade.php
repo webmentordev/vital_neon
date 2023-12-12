@@ -40,16 +40,17 @@
                                 </td>
                                 <td class="text-start">${{ $item->price }}</td>
                                 <td class="text-end py-2">
-                                    @if ($item->status == 'success')
+                                    @if ($item->status != 'Cancelled')
                                         <form action="{{ route('orders.status', $item->checkout_id) }}" method="post">
                                             @csrf
                                             @method('PATCH')
                                             <select name="shipping" onchange="this.form.submit()" class="bg-slate-800 text-white rounded-lg">
-                                                <option value="{{ $item->shipping }}" selected>{{ $item->shipping }}</option>
-                                                <option value="Processing">Processing</option>
-                                                <option value="Processed">Processed</option>
-                                                <option value="Transit">Transit</option>
-                                                <option value="Completed">Completed</option>
+                                                <option value="{{ $item->shipping }}" selected class="capitalize">{{ $item->shipping }}</option>
+                                                <option value="processing">Processing</option>
+                                                <option value="processed">Processed</option>
+                                                <option value="transit">Transit</option>
+                                                <option value="completed">Completed</option>
+                                                <option value="cancelled">Cancelled</option>
                                             </select>
                                         </form>
                                     @else
