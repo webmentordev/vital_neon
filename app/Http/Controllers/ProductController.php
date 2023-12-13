@@ -60,4 +60,21 @@ class ProductController extends Controller
         ]);
         return back()->with('success', 'Product has been added!');
     }
+
+
+
+    public function update(Product $product){
+        return view('update-product', [
+            'product' => $product,
+            'categories' => Category::latest()->get()
+        ]);
+    }
+
+
+    public function update_product(Product $product){
+        return view('update-product', [
+            'product' => $product,
+            'categories' => Category::latest()->get()
+        ]);
+    }
 }

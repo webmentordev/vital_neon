@@ -88,6 +88,8 @@ Route::middleware('auth')->group(function () {
     Route::get('/product', [ProductController::class, 'index'])->name('product');
     Route::post('/upload', [ProductController::class, 'upload'])->name('upload');
     Route::post('/product', [ProductController::class, 'create']);
+    Route::get('/product/{product:slug}/update', [ProductController::class, 'update'])->name('product.update');
+    Route::patch('/product/update/{product:slug}', [ProductController::class, 'update_product'])->name('update.product');
 
     Route::get('/design-quote', DesignQuote::class)->name('design.quote');
 
