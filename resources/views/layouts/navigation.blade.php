@@ -79,6 +79,12 @@
                         {{ __('Reviews') }}
                     </x-nav-link>
                 </div>
+
+                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                    <x-nav-link :href="route('email.send')" :active="request()->routeIs('email.send')">
+                        {{ __('Email') }}
+                    </x-nav-link>
+                </div>
             </div>
 
             <!-- Settings Dropdown -->

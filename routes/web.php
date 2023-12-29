@@ -9,6 +9,7 @@ use Artesaos\SEOTools\Facades\SEOMeta;
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LineController;
+use App\Http\Controllers\EmailController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ShapeController;
 use App\Http\Controllers\TrackController;
@@ -119,6 +120,13 @@ Route::middleware('auth')->group(function () {
     Route::post('/post/review', [ReviewController::class, 'store'])->name('post.review');
     Route::get('/post/review/{review:id}', [ReviewController::class, 'update'])->name('review.update');
     Route::patch('/post/review/update/{review:id}', [ReviewController::class, 'review_update'])->name('update.review');
+
+    Route::get('/send-email', [EmailController::class, 'index'])->name('email.send');
+    Route::post('/email/send', [EmailController::class, 'store'])->name('send.email');
+
+
+    Route::get('/preview-email', [EmailController::class, 'preview'])->name('email.preview');
+    Route::post('/email/preview', [EmailController::class, 'show'])->name('preview.email');
 });
 
 Route::get('/sitemap.xml', [SiteMapGenerator::class, 'index'])->name('sitemap');
