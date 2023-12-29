@@ -24,7 +24,7 @@
 
                     <div class="w-full col-span-2">
                         <x-input-label for="attachments" :value="__('Attachments')" />
-                        <input id="attachments" autocomplete="off" name="attachments[]" type="file" class="border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 rounded-md shadow-sm w-full block mt-1">
+                        <input id="attachments" autocomplete="off" name="attachments[]" multiple type="file" class="border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 rounded-md shadow-sm w-full block mt-1">
                         <x-input-error :messages="$errors->get('attachments')" class="mt-2" />
                     </div>
 

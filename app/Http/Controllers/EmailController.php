@@ -15,9 +15,9 @@ class EmailController extends Controller
 
     public function store(Request $request){
         $this->validate($request, [
-            'email' => 'required|max:255',
+            'email' => 'required|email|max:255',
             'subject' => 'required|max:255',
-            'content' => 'required',
+            'content' => 'required'
         ]);
 
         Mail::to($request->email)->send(new SendEmail($request));
@@ -35,6 +35,7 @@ class EmailController extends Controller
             'subject' => 'required|max:255',
             'content' => 'required',
         ]);
+
         return new SendEmail($request);
     }
 }

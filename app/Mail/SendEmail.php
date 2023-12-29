@@ -57,11 +57,9 @@ class SendEmail extends Mailable
     public function attachments(): array
     {
         $attachment = [];
-        if($this->data->attachments != null){
-            foreach($this->data->attachments as $item){
-                foreach($item as $file){
-                    $attachment[] = Attachment::fromPath($file->getRealPath())->as($file->getClientOriginalName())->withMime($file->getClientMimeType());
-                }
+        foreach($this->data->files as $item){
+            foreach($item as $file){
+                $attachment[] = Attachment::fromPath($file->getRealPath())->as($file->getClientOriginalName())->withMime($file->getClientMimeType());
             }
         }
         return $attachment;

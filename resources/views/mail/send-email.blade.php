@@ -2,6 +2,6 @@
 
 {{ $content }}
 
-Best Regards,<br>
+Best regards,<br>
 **VitalNeon**
 </x-mail::message>
