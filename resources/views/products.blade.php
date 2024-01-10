@@ -25,7 +25,7 @@
                             @else
                                 <h3 class="text-white text-center mb-3">{{ $item->name }}</h3>
                             @endif
-                            <span class="py-3 mt-3 rounded-md flex items-center group-hover:bg-white group-hover:text-black group-hover:font-bold px-4 w-full transition-all text-center justify-center bg-indigo-600 text-white font-semibold"><img src="https://api.iconify.design/solar:cart-large-3-bold.svg?color=%23FFF" class="mr-2 group-hover:hidden" width="23" alt="Cart logo"><img src="https://api.iconify.design/solar:cart-large-3-bold.svg?color=%23000000" class="mr-2 group-hover:block hidden" width="23" alt="Cart logo">BUY NOW</span>
+                            <span class="py-3 mt-3 rounded-md flex items-center group-hover:bg-white group-hover:text-black group-hover:font-bold px-4 w-full transition-all text-center justify-center bg-indigo-600 text-white font-semibold">US${{ $item->categories[0]->price }}</span>
                         </div>
                     </a>
                 @endforeach

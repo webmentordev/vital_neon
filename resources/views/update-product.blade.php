@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-            {{ __('Products') }}
+            {{ __('Update Product') }}
         </h2>
     </x-slot>
     <div class="py-12">
@@ -11,7 +11,7 @@
                     @if (session('success'))
                         <p class="py-3 border-green-700 mb-3 text-center border bg-green-700 bg-opacity-40 text-white rounded-lg">{{ session('success') }}</p>
                     @endif
-                    <h1 class="font-semibold mb-3">Create Product</h1>
+                    <h1 class="font-semibold mb-3">Update Product</h1>
                     <form action="{{ route('update.product', $product->slug) }}" enctype="multipart/form-data" method="post" class="grid grid-cols-2 gap-3">
                         @csrf
                         @method('PATCH')
@@ -29,7 +29,7 @@
                         </div>
                         <div class="w-full">
                             <select name="category" id="category" class="border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 p-[6px] px-2 focus:ring-indigo-500 dark:focus:ring-indigo-600 rounded-md shadow-sm w-full" required>
-                                <option value="" selected>__Select Category__</option>
+                                <option value="{{ $product->category->id }}" selected>{{ $product->category->name }}</option>
                                 @foreach ($categories as $category)
                                     <option value="{{ $category->id }}">{{ $category->name }}</option>
                                 @endforeach

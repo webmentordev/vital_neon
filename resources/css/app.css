@@ -399,23 +399,23 @@ nav a, nav .category{
 }
 
 .main-body{
-    @apply text-white;
+    @apply text-white p-12 bg-light rounded-lg;
 }
 
 .main-body p {
-    @apply leading-7 mb-2;
+    @apply leading-7 mb-4 text-gray-100;
 }
 
 .main-body h2, .main-body h3{
-    @apply text-gray-200 font-bold mb-3;
+    @apply text-white font-bold;
 }
 
 .main-body h2{
-    @apply text-3xl;
+    @apply text-5xl 620px:text-3xl mb-4;
 }
 
 .main-body h3{
-    @apply text-2xl;
+    @apply text-2xl 620px:text-lg mb-1;
 }
 
 .main-body p span{

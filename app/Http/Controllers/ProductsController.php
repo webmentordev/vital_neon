@@ -41,7 +41,7 @@ class ProductsController extends Controller
         JsonLd::addImage("https://vitalneon.com/assets/seo/listing-1.png", ["height" => 400, "width" => 760]);
 
         return view('products', [
-            'products' => Product::latest()->get()
+            'products' => Product::latest()->with('categories')->get()
         ]);
     }
     public function search(Request $request){
