@@ -10,6 +10,7 @@ class Design extends Model
     use HasFactory;
 
     protected $fillable = [
+        'order_id',
         'email',
         'message',
         'name',

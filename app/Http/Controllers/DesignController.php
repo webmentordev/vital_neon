@@ -41,6 +41,18 @@ class DesignController extends Controller
 
         return view('design');
     }
+
+    function randomOrderID() {
+        $alphabet = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890';
+        $pass = array();
+        $alphaLength = strlen($alphabet) - 1;
+        for ($i = 0; $i < 30; $i++) {
+            $n = rand(0, $alphaLength);
+            $pass[] = $alphabet[$n];
+        }
+        return implode($pass);
+    }
+
     public function store(Request $request){
         $this->validate($request, [
             'email' => 'required|max:255',
@@ -51,7 +63,9 @@ class DesignController extends Controller
             'name' => 'required|max:255',
             'image' => 'required|mimes:png,jpg,gif,pdf,jpeg,svg,webp|max:3048',
         ]);
+        $order_id = $this->randomOrderID();
         $result = Design::create([
+            'order_id' => $order_id,
             'email' => $request->email,
             'message' => $request->message,
             'size' => $request->size,
@@ -61,9 +75,9 @@ class DesignController extends Controller
             'image' => $request->image->store('designs', 'public_disk')
         ]);
         Http::post(config('app.design'), [
-            'content' => "**Email:** $result->email\n**Name:** $result->name\n**Message:** $result->message\n**Size:** $result->size\n**Location:** $result->location\n**Budget:** $$result->budget\n**Image:** https://vitalneon.com/storage/$result->image"
+            'content' => "**Order:** $order_id\n**Email:** $result->email\n**Name:** $result->name\n**Message:** $result->message\n**Size:** $result->size\n**Location:** $result->location\n**Budget:** $$result->budget\n**Image:** https://vitalneon.com/storage/$result->image"
         ]);
-        return back()->with('success', 'File uploaded. we will send you the quote in few hours');
+        return back()->with('success', 'File uploaded. we will contact you with mockup of your design and quote');
     }
 
     public function show(){

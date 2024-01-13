@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('designs', function (Blueprint $table) {
             $table->id();
             $table->string('email');
+            $table->string('order_id');
             $table->text('message');
             $table->string('name');
             $table->text('image');
