@@ -134,6 +134,7 @@ class CreateDesign extends Component
         'adaptor' => 'required',
         'location' => 'required',
         'kit' => 'required',
+        'Select' => 'required',
         'email' => 'required|email',
     ];
 

@@ -11,6 +11,10 @@
                 <div class="p-6 text-gray-900 dark:text-gray-100">
                     <div class="grid grid-cols-4 gap-5 mb-6">
                         <div class="rounded-lg bg-dark border border-white/10 p-6">
+                            <h2 class="text-2xl bebas">Total Products</h2>
+                            <p class="text-3xl font-semibold">{{ $products }}</p>
+                        </div>
+                        <div class="rounded-lg bg-dark border border-white/10 p-6">
                             <h2 class="text-2xl bebas">Custom Design Orders</h2>
                             <p class="text-3xl font-semibold">{{ $design_orders }}</p>
                         </div>
@@ -28,9 +32,6 @@
                             <h2 class="text-2xl bebas">Custom Design Cancelled</h2>
                             <p class="text-3xl font-semibold">{{ $design_orders_canceled }}</p>
                         </div>
-                    </div>
-
-                    <div class="grid grid-cols-4 gap-5 mb-6">
                         <div class="rounded-lg bg-dark border border-white/10 p-6">
                             <h2 class="text-2xl bebas">Product Orders</h2>
                             <p class="text-3xl font-semibold">{{ $product_orders }}</p>

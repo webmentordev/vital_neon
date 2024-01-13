@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Cart;
 use App\Models\Order;
+use App\Models\Product;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 
@@ -29,6 +30,7 @@ class DashboardController extends Controller
             "design_orders_success" => Cart::where('status', 'success')->count(),
             "design_orders_canceled" => Cart::where('status', 'canceled')->count(),
             "product_orders" => Order::count(),
+            "products" => Product::count(),
             "product_pending" => Order::where('status', 'pending')->count(),
             "product_success" => Order::where('status', 'success')->count(),
             "product_canceled" => Order::where('status', 'canceled')->count()
@@ -68,6 +70,7 @@ class DashboardController extends Controller
                     "design_orders_success" => Cart::where('status', 'success')->count(),
                     "design_orders_canceled" => Cart::where('status', 'canceled')->count(),
                     "product_orders" => Order::count(),
+                    "products" => Product::count(),
                     "product_pending" => Order::where('status', 'pending')->count(),
                     "product_success" => Order::where('status', 'success')->count(),
                     "product_canceled" => Order::where('status', 'canceled')->count()
@@ -100,6 +103,7 @@ class DashboardController extends Controller
                     "data" => $priceArray,
                     "total" => array_sum($priceArray),
                     "design_orders" => Cart::count(),
+                    "products" => Product::count(),
                     "design_orders_pending" => Cart::where('status', 'pending')->count(),
                     "design_orders_success" => Cart::where('status', 'success')->count(),
                     "design_orders_canceled" => Cart::where('status', 'canceled')->count(),

@@ -45,7 +45,12 @@ class ProductsController extends Controller
         ]);
     }
     public function search(Request $request){
-        $result = Product::where('name', 'LIKE', '%'.$request->search.'%')->get();
+
+        $this->validate($request, [
+            'search' => 'required|max:255'
+        ]);
+
+        $result = Product::where('name', 'LIKE', '%'.$request->search.'%')->orWhere('body', 'LIKE', '%'.$request->search.'%')->get();
         Search::create([
             'search' => $request->search
         ]);

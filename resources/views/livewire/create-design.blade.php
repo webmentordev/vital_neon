@@ -98,31 +98,33 @@
                 <p class="text-white p-6 fixed bottom-2 left-2 z-20 rounded-lg bg-red-700 mb-3 border-red-600 border">{{ session('failed') }}</p>
             @endif
             <div class="py-2">
-                <h2 class="font-bold text-lg">Text Line & Size Options</h2>
+                <h2 class="font-bold text-lg">Select number of lines and size</h2>
                 @error('line_check')
                     <p class="text-red-600 mb-2">{{ $message }}</p>
                 @enderror
                 <div class="mt-1">
-                    <select wire:model="Select" class="w-full mt-2 bg-dark rounded border focus:border-main focus:ring-4 focus:ring-main-light text-base outline-none text-gray-300 py-2 px-3 leading-8 transition-colors duration-200 ease-in-out mb-3">
-                        <option value="" selected>Select number of lines and size</option>
+                    <select wire:model="Select" class="w-full mt-2 bg-dark rounded border border-main focus:ring-4 text-base outline-none text-gray-300 py-2 px-3 leading-8 transition-colors duration-200 ease-in-out mb-3">
+                        <option value="" selected>——Please select here——</option>
                         @foreach ($lines as $line)
                             <option value="{{ $line->name }}">{{ $line->name }} - ${{ $line->price + ($line->price * ($increment / 100)) }}</option>
                         @endforeach
                         <option value="custom">Custom Lines and Size</option>
                     </select>
+                    @error('Select')
+                    <p class="text-red-600 mb-2">{{ $message }}</p>
+                @enderror
                 </div>
             </div>
             
            <div class="p-6 rounded-lg bg-dark">
-            @if ($line_count >= 1)
-                @error('line1')
-                    <p class="text-red-600 mb-2">{{ $message }}</p>
-                @enderror
-                <h2 class="font-bold text-lg">Text For Each Line:</h2>
-                <input type="text" wire:model.debounce.1000ms="line1" placeholder="Line 1 text" class="w-full mt-2 bg-dark rounded border focus:border-main focus:ring-4 focus:ring-main-light text-base outline-none text-gray-200 py-2 px-3 leading-8 transition-colors duration-200 ease-in-out mb-3">
-                @if (session('lineCount1'))
-                    <p class="text-red-600 mb-2">{{ session('lineCount1') }}</p>
-                @endif
+            
+            <h2 class="font-bold text-lg">Text For Each Line:</h2>
+            <input type="text" wire:model.debounce.1000ms="line1" placeholder="Line 1 text" class="w-full mt-2 bg-dark rounded border focus:border-main focus:ring-4 focus:ring-main-light text-base outline-none text-gray-200 py-2 px-3 leading-8 transition-colors duration-200 ease-in-out mb-3">
+            @error('line1')
+                <p class="text-red-600 mb-2">{{ $message }}</p>
+            @enderror
+            @if (session('lineCount1'))
+                <p class="text-red-600 mb-2">{{ session('lineCount1') }}</p>
             @endif
             @if ($line_count >= 2)
                 @error('line2')

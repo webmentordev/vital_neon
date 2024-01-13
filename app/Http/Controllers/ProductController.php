@@ -9,9 +9,9 @@ use Illuminate\Http\Request;
 
 class ProductController extends Controller
 {
-    public function index(){
+    public function index(Request $request){
         return view('product', [
-            'products' => Product::latest()->with('categories')->paginate(20),
+            'products' => Product::latest()->orWhere('name', 'LIKE', '%'.$request->search.'%')->with('categories')->paginate(20),
             'categories' => Category::latest()->get()
         ]);
     }
@@ -69,7 +69,6 @@ class ProductController extends Controller
             'categories' => Category::latest()->get()
         ]);
     }
-
 
     public function update_product(Product $product){
         return view('update-product', [

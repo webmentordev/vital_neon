@@ -55,12 +55,19 @@
                         <textarea class="form-control" id="summary-ckeditor" name="body">{{ old('body') }}</textarea>
                     </form>
 
+                    <form action="{{ route('product') }}" method="GET" class="flex my-4">
+                        <div class="w-full mr-2">
+                            <input type="search" name="search" class="border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 rounded-md shadow-sm w-full" placeholder="Search by name..." autocomplete="off">
+                        </div>
+                        <button type="submit" class="px-4 py-2 bg-indigo-600 rounded-md text-white">Search</button>
+                    </form>
+
                     @if (count($products))
                         <table class="w-full mt-3 rounded-lg overflow-hidden">
                             <tr class="bg-white text-gray-800 text-center text-sm">
                                 <th class="p-3 text-start">Name</th>
                                 <th class="p-3 text-start">StripeID</th>
-                                <th class="p-3 text-start">Image</th>
+                                {{-- <th class="p-3 text-start">Image</th> --}}
                                 <th class="p-3 text-start">Slug</th>
                                 <th class="text-start">Description</th>
                                 <th class="text-end">Featured</th>
@@ -71,7 +78,7 @@
                                 <tr class="text-center text-sm">
                                     <td class="p-2 text-start">{{ $item->name }}</td>
                                     <td class="p-2 text-start">{{ $item->stripe_id }}</td>
-                                    <td class="p-2 text-start"><a href="{{ asset('storage/'.$item->image) }}"><img src="{{ asset('storage/'.$item->image) }}" width="60"></a></td>
+                                    {{-- <td class="p-2 text-start"><a href="{{ asset('storage/'.$item->image) }}"><img src="{{ asset('storage/'.$item->image) }}" width="60"></a></td> --}}
                                     <td class="p-2 text-start">{{ $item->slug }}</td>
                                     <td class="text-start" x-data="{ open: false }">
                                         <span x-on:click="open = true" class="text-blue-400 underline cursor-pointer">Read</span>
