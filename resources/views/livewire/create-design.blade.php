@@ -98,7 +98,7 @@
                 <p class="text-white p-6 fixed bottom-2 left-2 z-20 rounded-lg bg-red-700 mb-3 border-red-600 border">{{ session('failed') }}</p>
             @endif
             <div class="py-2">
-                <h2 class="font-bold text-lg">Select number of lines and size</h2>
+                <h2 class="font-bold text-lg">Select number of lines and size <span class="text-red-600">*</span></h2>
                 @error('line_check')
                     <p class="text-red-600 mb-2">{{ $message }}</p>
                 @enderror

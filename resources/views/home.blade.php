@@ -24,7 +24,7 @@
                 </div>
                 <div class="p-3 py-12 text-center rounded-lg bg-dark hover:bg-white group transition-all">
                     <img data-src="https://api.iconify.design/noto-v1:shield.svg?color=%234bcc14" class="m-auto mb-3 lazyload" loading="lazy" width="60" alt="Delivery Icon">
-                    <h2 class="mb-3 font-semibold text-white group-hover:text-gray-700">2-Year Guarantee</h2>
+                    <h2 class="mb-3 font-semibold text-white group-hover:text-gray-700">2-Year Warranty</h2>
                 </div>
                 <div class="p-3 py-12 text-center rounded-lg bg-dark hover:bg-white group transition-all">
                     <img data-src="https://api.iconify.design/flat-color-icons:shipped.svg?color=%234bcc14" class="m-auto mb-3 lazyload" loading="lazy" width="60" alt="Delivery Icon">
