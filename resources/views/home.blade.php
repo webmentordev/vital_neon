@@ -37,6 +37,8 @@
     <x-listing />
 
     <x-reviews />
+
+    <x-trust-pilot />
     
     <section class="w-full">
         <div class="py-[120px] relative z-10 overflow-x-hidden">
