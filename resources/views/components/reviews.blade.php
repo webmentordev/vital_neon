@@ -15,7 +15,7 @@
                         <p class="text-white">from <b>70+</b> Happy Customers</p>
                     </div>
                 </div>
-                <h2 class="text-3xl mb-4 text-white font-bold">What our esty customers think</h2>
+                <h2 class="text-3xl mt-3 mb-4 text-white font-bold flex" title="VitalNeon Etsy Reviews">What our <img src="{{ asset('assets/etsy_logo.png') }}" width="40" height="35" class="mx-2 inline-block" alt="Etsy Logo"> customers think</h2>
             </div>
             <div class="w-full grid grid-cols-3 m-auto gap-3 940px:grid-cols-2 670px:grid-cols-1 670px:max-w-[400px]">
                 @foreach ($reviews as $review)
