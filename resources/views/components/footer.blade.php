@@ -16,6 +16,12 @@
                 
                 <a class="mr-2" href="https://m.me/100095082327532" target="_blank" rel="nofollow"><img src="https://api.iconify.design/logos:messenger.svg?color=%23121212" width="25" alt="Messenger Icon"></a>
             </ul>
+
+            <ul class="mt-3">
+                <a class="mr-2 text-main underline" href="{{ route('terms') }}">Terms of service</a>
+                <a class="mr-2 text-main underline" href="{{ route('privacy') }}">Privacy policy</a>
+                <a class="text-main underline" href="{{ route('return') }}">Return policy</a>
+            </ul>
         </div>
        <div class="text-end 475px:text-start">
         <h3 class="text-2xl pb-3 border-b border-white/5 mb-3">Navigations</h3>

@@ -25,6 +25,7 @@ use App\Http\Controllers\ProductsController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\CategoryPriceController;
 use App\Http\Controllers\PriceIncrementController;
+use App\Http\Controllers\ServiceController;
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
@@ -61,6 +62,10 @@ Route::post("blog/search/", [BlogController::class, 'search'])->name('blog.searc
 
 Route::get('/track-order', [TrackController::class, 'index'])->name('track');
 Route::post('/track-order', [TrackController::class, 'search'])->name('track.search');
+
+Route::get('/terms-of-service', [ServiceController::class, 'terms'])->name('terms');
+Route::get('/privacy-policy', [ServiceController::class, 'privacy'])->name('privacy');
+Route::get('/return-policy', [ServiceController::class, 'return'])->name('return');
 
 Route::get('/cart', Carts::class)->name('carts');
 
