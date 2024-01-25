@@ -78,7 +78,7 @@
             <loc>{{ url('/') }}/products/category/{{ $category->slug }}</loc>
             <lastmod>{{ $category->created_at->tz('UTC')->toAtomString() }}</lastmod>
             <changefreq>weekly</changefreq>
-            <priority>0.90</priority>
+            <priority>0.80</priority>
         </url>
     @endforeach
     @foreach ($blogs as $blog)
@@ -86,7 +86,7 @@
             <loc>{{ url('/') }}/blog/{{ $blog->slug }}</loc>
             <lastmod>{{ $blog->created_at->tz('UTC')->toAtomString() }}</lastmod>
             <changefreq>weekly</changefreq>
-            <priority>0.90</priority>
+            <priority>0.80</priority>
         </url>
     @endforeach
     @foreach ($products as $product)
@@ -94,7 +94,7 @@
             <loc>{{ url('/') }}/product/{{ $product->slug }}</loc>
             <lastmod>{{ $product->created_at->tz('UTC')->toAtomString() }}</lastmod>
             <changefreq>weekly</changefreq>
-            <priority>0.90</priority>
+            <priority>0.80</priority>
         </url>
     @endforeach
 </urlset>

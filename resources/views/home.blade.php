@@ -58,17 +58,39 @@
 
     <section class="w-full">
         <div class="max-w-6xl m-auto py-6 px-4">
-            <h2 class="text-white font-semibold text-3xl mb-3 400px:text-2xl">Bright and Vivid Colors:</h2>
-            <p class="mb-6 text-gray-200 leading-8">Neon signs are known for their vibrant and eye-catching colors. The use of different gases, such as neon, argon, and mercury vapor, produces distinct hues. Neon emits a red-orange glow, while argon produces blues and purples. The combination of phosphor coatings on the glass tubes further enhances the color palette. This characteristic makes neon signs highly visible, especially in low-light environments, contributing to their popularity in signage and decorative displays.</p>
+            <div class="flex items-center mb-12 800px:flex-col">
+                <div class="w-full py-3 pr-12 800px:pr-0">
+                    <h2 class="text-white font-semibold text-3xl mb-3 400px:text-2xl">Bright and Vivid Colors:</h2>
+                    <p class="mb-6 text-gray-200 leading-8">Neon signs are known for their vibrant and eye-catching colors. The use of different gases, such as neon, argon, and mercury vapor, produces distinct hues. Neon emits a red-orange glow, while argon produces blues and purples. The combination of phosphor coatings on the glass tubes further enhances the color palette. This characteristic makes neon signs highly visible, especially in low-light environments, contributing to their popularity in signage and decorative displays.</p>
+                </div>
+                <img class="max-w-[350px] w-full rounded-md 670px:max-w-full" src="{{ asset('assets/bright.png') }}" title="Buy Bright Neon Signs" alt="Buy Bright Neon Signs">
+            </div>
 
-            <h2 class="text-white font-semibold text-3xl mb-3 400px:text-2xl">Glow and Illumination:</h2>
-            <p class="mb-6 text-gray-200 leading-8">Neon signs possess a distinctive radiant glow that sets them apart from other lighting sources. This glow is created through the ionization of gases within the sealed glass tubes when an electric current passes through them. The illumination is evenly distributed along the length of the tube, providing a consistent and attractive light output. This characteristic makes neon signs ideal for creating a warm and inviting ambiance in various settings, from storefronts and restaurants to entertainment venues.</p>
 
-            <h2 class="text-white font-semibold text-3xl mb-3 400px:text-2xl">Versatility in Design:</h2>
-            <p class="mb-6 text-gray-200 leading-8">Neon signs offer remarkable flexibility in design, allowing for intricate and artistic creations. Skilled artisans can shape the glass tubes into a wide range of forms, from simple letters and logos to complex and intricate designs. The malleability of the tubes enables the creation of custom shapes and symbols, making neon signs a popular choice for businesses seeking unique and personalized signage. This characteristic has contributed to the enduring appeal of neon signs as iconic elements in urban landscapes.</p>
+            <div class="flex items-center mb-12 800px:flex-col">
+                <img class="max-w-[350px] w-full rounded-md 800px:order-2 670px:max-w-full" src="{{ asset('assets/glow.png') }}" title="Buy Bright / Glowing Neon Signs" alt="Buy Bright / Glowing Neon Signs">
+                <div class="w-full py-3 pl-12 800px:pl-0 800px:order-1">
+                    <h2 class="text-white font-semibold text-3xl mb-3 400px:text-2xl">Glow and Illumination:</h2>
+                    <p class="mb-6 text-gray-200 leading-8">Neon signs possess a distinctive radiant glow that sets them apart from other lighting sources. This glow is created through the ionization of gases within the sealed glass tubes when an electric current passes through them. The illumination is evenly distributed along the length of the tube, providing a consistent and attractive light output. This characteristic makes neon signs ideal for creating a warm and inviting ambiance in various settings, from storefronts and restaurants to entertainment venues.</p>
+                </div>
+            </div>
 
-            <h2 class="text-white font-semibold text-3xl mb-3 400px:text-2xl">Longevity and Durability:</h2>
-            <p class="mb-6 text-gray-200 leading-8">Neon signs are known for their durability and long lifespan. The sealed glass tubes protect the gases from external elements, preventing oxidation and ensuring a consistent performance over time. When properly maintained, neon signs can last for many years, providing a cost-effective and reliable lighting solution. This longevity, coupled with their ability to withstand various weather conditions, makes neon signs a durable choice for both indoor and outdoor applications. Additionally, the lack of filaments or delicate components reduces the risk of damage due to vibrations or impacts, further enhancing their robustness.</p>
+
+            <div class="flex items-center mb-12 800px:flex-col">
+                <div class="w-full py-3 pr-12 800px:pr-0">
+                    <h2 class="text-white font-semibold text-3xl mb-3 400px:text-2xl">Versatility in Design:</h2>
+                    <p class="mb-6 text-gray-200 leading-8">Neon signs offer remarkable flexibility in design, allowing for intricate and artistic creations. Skilled artisans can shape the glass tubes into a wide range of forms, from simple letters and logos to complex and intricate designs. The malleability of the tubes enables the creation of custom shapes and symbols, making neon signs a popular choice for businesses seeking unique and personalized signage. This characteristic has contributed to the enduring appeal of neon signs as iconic elements in urban landscapes.</p>
+                </div>
+                <img class="max-w-[350px] w-full rounded-md 670px:max-w-full" src="{{ asset('assets/versat.png') }}" title="Buy Versatility In Design Neon Signs" alt="Buy Versatility In Design Neon Signs">
+            </div>
+
+            <div class="flex items-center 800px:flex-col">
+                <img class="max-w-[350px] w-full rounded-md 800px:order-2 670px:max-w-full" src="{{ asset('assets/durability.png') }}" title="Buy Durability Neon Signs" alt="Buy Durability Neon Signs">
+                <div class="w-full py-3 pl-12 800px:pl-0 800px:order-1">
+                    <h2 class="text-white font-semibold text-3xl mb-3 400px:text-2xl">Longevity and Durability:</h2>
+                    <p class="mb-6 text-gray-200 leading-8">Neon signs are known for their durability and long lifespan. The sealed glass tubes protect the gases from external elements, preventing oxidation and ensuring a consistent performance over time. When properly maintained, neon signs can last for many years, providing a cost-effective and reliable lighting solution. This longevity, coupled with their ability to withstand various weather conditions, makes neon signs a durable choice for both indoor and outdoor applications. Additionally, the lack of filaments or delicate components reduces the risk of damage due to vibrations or impacts, further enhancing their robustness.</p>
+                </div>
+            </div>
         </div>
     </section>
 

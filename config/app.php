@@ -30,6 +30,8 @@ return [
     'product-cancel' => env('PRODUCT_CANCEL', ''),
     'dujana-stripe' => env('DUJANA_STRIPE', ''),
 
+    'storage' => env('STORAGE', ''),
+
     /*
     |--------------------------------------------------------------------------
     | Application Environment
