@@ -81,8 +81,7 @@ class Product extends Component
             OpenGraph::setUrl("https://vitalneon.com/".$result[0]->slug);
             OpenGraph::addProperty("type", "website");
             OpenGraph::addProperty("locale", "eu");
-            OpenGraph::addImage("https://vitalneon.com/storage/".$result[0]->image);
-            OpenGraph::addImage("https://vitalneon.com/storage/".$result[0]->image, ["height" => 400, "width" => 760]);
+            OpenGraph::addImage("https://vitalneon.com/storage/".$result[0]->image, ["height" => 630, "width" => 1200]);
 
             TwitterCard::setTitle($result[0]->name);
             TwitterCard::setSite("@vitalneon");
@@ -91,9 +90,8 @@ class Product extends Component
 
             JsonLd::setTitle($result[0]->name);
             JsonLd::setDescription($result[0]->description);
-            JsonLd::addImage("https://vitalneon.com/storage/".$result[0]->image);
             JsonLd::setType("WebSite");
-            JsonLd::addImage("https://vitalneon.com/storage/".$result[0]->image, ["height" => 400, "width" => 760]);
+            JsonLd::addImage("https://vitalneon.com/storage/".$result[0]->image, ["height" => 630, "width" => 1200]);
         }else{
             abort(404, 'Not Found');
         }
