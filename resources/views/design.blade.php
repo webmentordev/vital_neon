@@ -63,6 +63,25 @@
                 @enderror
                 <button type="submit" class="submit-btn">Request The Quote</button>
             </form>
+            <div class="text-white mt-6">
+                <h2 class="mb-3 text-3xl font-bold" title="Request Your Custom Neon Sign">Request Your Custom Neon Sign</h2>
+                <p class="mb-4">Transform your vision into radiant reality with our personalized neon sign service. At Vital Neon, we believe in bringing your unique ideas to life, and we've made the process simple and seamless. Upload your own design and request a quote for a one-of-a-kind neon sign that reflects your style and personality.</p>
+
+                <h3 class="font-bold text-lg">Customization at Your Fingertips</h3>
+                <p class="mb-4">Express yourself by uploading your own design. Whether it's a logo, artwork, a special message, anime, or your favorite movie character, we'll turn it into a stunning neon masterpiece.</p>
+
+                <h3 class="font-bold text-lg">Easy Quote Request</h3>
+                <p class="mb-4">Getting started is a breeze. Simply fill out our user-friendly form with essential details, and our team will provide you with a comprehensive quote. After submitting the form, you will receive a mockup design via email, detailing the size and color configuration. We will not proceed with manufacturing until you are satisfied with the mockup.</p>
+
+                <h3 class="font-bold text-lg">Tailor-Made Specifications</h3>
+                <p class="mb-4">Your satisfaction is our priority. Specify your budget, preferred position (indoor or outdoor), desired dimensions (height and width) and your budget. This ensures a tailor-made neon sign that perfectly fits your space.</p>
+
+                <h3 class="font-bold text-lg">Quality That Lasts</h3>
+                <p class="mb-4">We understand the importance of durability. Indicate whether your neon sign will be placed indoors or outdoors for a higher quality that withstands weather elements.</p>
+
+                <h3 class="font-bold text-lg">Attention to Detail</h3>
+                <p class="mb-4">If your design involves text, let us know your preferred font style and color. We pay attention to the finer details to ensure your neon sign is a true reflection of your vision</p>
+            </div>
         </div>
     </section>
 @endsection

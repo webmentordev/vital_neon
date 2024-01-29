@@ -19,10 +19,10 @@
                     <img class="mt-3" src="{{ asset('assets/colors.png') }}" title="VitalNeon signs colors" alt="Colors selection">
                 </div>
                 <div class="bg-light p-6 h-fit w-full bottom-0 left-0 870px:max-h-fit overflow-y-scroll">
-                    <h3 class="text-white font-semibold">Dimensions</h3>
-                    <select name="category" id="category" wire:model="category" class="w-full mt-2 bg-dark rounded border border-gray-800 focus:border-main focus:ring-4 focus:ring-main-light text-base outline-none text-gray-200 py-2 px-3 leading-8 transition-colors duration-200 ease-in-out mb-3">
+                    <h3 class="text-white font-semibold">Dimensions <span class="text-main">(Step#01)</span></h3>
+                    <select name="category" id="category" wire:model="category" class="w-full mt-2 bg-dark rounded border border-main focus:ring-4 focus:ring-main-light text-base outline-none text-gray-200 py-2 px-3 leading-8 transition-colors duration-200 ease-in-out mb-3">
                         @if ($total_price == 0)
-                            <option selected value="" selected>Select product dimenions</option>
+                            <option selected value="" selected>— Select product dimenions —</option>
                         @endif
                         @foreach ($categories as $category)
                             <option value="{{ $category->name }}">Up to {{ $category->name }} - ${{ $category->price + ($category->price * ($increment / 100))  }}</option>
@@ -32,12 +32,12 @@
                     @error('category')
                         <p class="text-red-600 mb-2">{{ $message }}</p>
                     @enderror
-                    <h3 class="text-white font-semibold">Power Adaptor *{{ $adaptor }}</h3>
+                    <h3 class="text-white font-semibold">Power Adaptor <span class="text-main">(Step#02)</span></h3>
                     <div class="mt-1">
-                        <select wire:model="adaptor" class="w-full mt-2 bg-dark rounded border border-gray-800 focus:border-main focus:ring-4 focus:ring-main-light text-base outline-none text-gray-200 py-2 px-3 leading-8 transition-colors duration-200 ease-in-out mb-3">
+                        <select wire:model="adaptor" class="w-full mt-2 bg-dark rounded border border-main focus:ring-4 focus:ring-main-light text-base outline-none text-gray-200 py-2 px-3 leading-8 transition-colors duration-200 ease-in-out mb-3">
                             @foreach ($adaptors as $itemAdapt)
                                 @if ($loop->first)
-                                    <option value="{{ $itemAdapt }}" selected>{{ $itemAdapt }}</option>
+                                    <option value="{{ $itemAdapt }}" selected>{{ $itemAdapt }} - Default</option>
                                 @else
                                     <option value="{{ $itemAdapt }}">{{ $itemAdapt }}</option>
                                 @endif
@@ -47,10 +47,10 @@
                     @error('adaptor')
                         <p class="text-red-600 mb-2">{{ $message }}</p>
                     @enderror
-                    <h3 class="text-white font-semibold">Remote and Dimmer *<span class="text-main">{{ $remote }}</span></h2>
+                    <h3 class="text-white font-semibold">Remote and Dimmer <span class="text-main">(Step#03)</span></h2>
                     <p class="text-gray-300 text-sm">A remote and dimmer is included free with every sign! (Except for Multicolor Neon Signs, which are controlled by the APP)</p>
                     <div class="py-3 w-full">
-                        <select name="remote" id="remote" wire:model="remote" class="bg-dark text-white flex items-center w-full justify-center p-3 cursor-pointer rounded-md flex-col border">
+                        <select name="remote" id="remote" wire:model="remote" class="bg-dark text-white flex items-center w-full justify-center p-3 cursor-pointer rounded-md flex-col border border-main">
                             @foreach ($remotes as $item)
                                 <option value="{{ $item->type }}">{{ $item->type }} - ${{ $item->price }}</option>  
                             @endforeach 
@@ -61,8 +61,8 @@
                     @enderror
                     @if ($product[0]->category->name != "Artistic")
                         <div class="py-2 text-white mb-3">
-                            <h2 class="font-bold text-lg">Neon Color *<span class="text-main">{{ $color_selected }}</span></h2>
-                            <select name="color_selected" id="color_selected" wire:model="color_selected" class="bg-dark flex items-center w-full justify-center p-3 cursor-pointer rounded-md flex-col border">
+                            <h2 class="font-bold text-lg">Neon Color <span class="text-main">(Step#04)</span></h2>
+                            <select name="color_selected" id="color_selected" wire:model="color_selected" class="bg-dark flex items-center w-full justify-center p-3 cursor-pointer rounded-md flex-col border border-main">
                                 @foreach ($colors as $color)
                                     @if ($color != "RGB")
                                         @if ($loop->first)
@@ -82,8 +82,12 @@
                     @endif
 
                     <div class="py-2 text-white mb-3">
-                        <h2 class="font-bold text-lg">Installation Kit *<span class="text-main">{{ $kit }}</span></h2>
-                        <select name="kit" id="kit" wire:model="kit" class="bg-dark flex items-center w-full justify-center p-3 cursor-pointer rounded-md flex-col border">
+                        @if ($product[0]->category->name != "Artistic")
+                            <h2 class="font-bold text-lg">Installation Kit <span class="text-main">(Step#05)</span></h2>
+                        @else
+                            <h2 class="font-bold text-lg">Installation Kit <span class="text-main">(Step#04)</span></h2>
+                        @endif
+                        <select name="kit" id="kit" wire:model="kit" class="bg-dark flex items-center w-full justify-center p-3 cursor-pointer rounded-md flex-col border border-main">
                             @foreach ($kits as $item)
                                 <option value="{{ $item->name }}">{{ $item->name }} - ${{ $item->price }}</option>  
                                 @endforeach 
