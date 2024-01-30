@@ -24,6 +24,7 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ProductsController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\CategoryPriceController;
+use App\Http\Controllers\DiscountController;
 use App\Http\Controllers\PriceIncrementController;
 use App\Http\Controllers\ServiceController;
 
@@ -119,6 +120,11 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/price-percentage', [PriceIncrementController::class, 'index'])->name('price.percentage');
     Route::post('/price-percentage', [PriceIncrementController::class, 'store']);
+
+
+    Route::get('/price-discount', [DiscountController::class, 'index'])->name('price.discount');
+    Route::post('/price-discount', [DiscountController::class, 'store']);
+    Route::delete('/price-discount/delete/{id}', [DiscountController::class, 'delete'])->name('price.discount.delete');
 
     Route::get('/reviews', [ReviewController::class, 'index'])->name('reviews');
     Route::get('/create/review', [ReviewController::class, 'create'])->name('create.review');
