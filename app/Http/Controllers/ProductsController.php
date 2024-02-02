@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Category;
-use App\Models\Product;
 use App\Models\Search;
+use App\Models\Product;
+use App\Models\Category;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Artesaos\SEOTools\Facades\JsonLd;
 use Artesaos\SEOTools\Facades\SEOMeta;
 use Artesaos\SEOTools\Facades\OpenGraph;
@@ -41,7 +42,8 @@ class ProductsController extends Controller
         JsonLd::addImage("https://vitalneon.com/assets/seo/listing-1.png", ["height" => 400, "width" => 760]);
 
         return view('products', [
-            'products' => Product::latest()->with('categories')->get()
+            'products' => Product::latest()->with('categories')->get(),
+            'discount' => DB::table('discounts')->latest()->first()
         ]);
     }
     public function search(Request $request){
@@ -50,7 +52,7 @@ class ProductsController extends Controller
             'search' => 'required|max:255'
         ]);
 
-        $result = Product::where('name', 'LIKE', '%'.$request->search.'%')->orWhere('body', 'LIKE', '%'.$request->search.'%')->get();
+        $result = Product::where('name', 'LIKE', '%'.$request->search.'%')->orWhere('body', 'LIKE', '%'.$request->search.'%')->orWhere('description', 'LIKE', '%'.$request->search.'%')->latest()->get();
         Search::create([
             'search' => $request->search
         ]);
@@ -80,7 +82,8 @@ class ProductsController extends Controller
         JsonLd::setType("WebSite");
         JsonLd::addImage("https://vitalneon.com/assets/seo/listing-1.png", ["height" => 400, "width" => 760]);
         return view('products', [
-            'products' => $result
+            'products' => $result,
+            'discount' => DB::table('discounts')->latest()->first()
         ]);
     }
     public function category(Category $category){
@@ -111,7 +114,8 @@ class ProductsController extends Controller
         JsonLd::addImage("https://vitalneon.com/assets/seo/category-1.png", ["height" => 400, "width" => 760]);
 
         return view('products', [
-            'products' => $category->products
+            'products' => $category->products,
+            'discount' => DB::table('discounts')->latest()->first()
         ]);
     }
 };
