@@ -67,9 +67,12 @@
     @if (!Request::is('success/*') && !Request::is('cancel/*'))
         @livewire('navbar')
     @endif
+
+    <a class="fixed bottom-[70px] right-2 z-50 opacity-50 hover:opacity-100 transition-all" href="https://wa.me/16476165799" target="_blank"><img src="https://api.iconify.design/logos:whatsapp-icon.svg?color=%23ffd402" class="mr-2" width="50" alt="Social Media Icon"></a>
+
     @yield('content')
     <x-footer />
-    <button id="myBtn" onclick="topFunction()" class="fixed bottom-5 right-5 z-50 bg-black rounded-full p-2"><img src="https://api.iconify.design/bx:arrow-to-top.svg?color=%23ffffff" width="30" alt="Go To Top Button"></button>
+    <button id="myBtn" onclick="topFunction()" class="fixed bottom-3 right-3 z-50 bg-black rounded-full p-2"><img src="https://api.iconify.design/bx:arrow-to-top.svg?color=%23ffffff" width="30" alt="Go To Top Button"></button>
     @livewireScripts
 </body>
 <script>

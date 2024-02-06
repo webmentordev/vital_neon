@@ -60,6 +60,9 @@
         <p class="uppercase text-lg text-dark font-bold">💸 Free world wide 🌎 shipping in 5 Days 🚚</p>
     </section>
     @livewire('navbar')
+    
+    <a class="fixed bottom-[70px] right-2 z-50 opacity-50 hover:opacity-100 transition-all" href="https://wa.me/16476165799" target="_blank"><img src="https://api.iconify.design/logos:whatsapp-icon.svg?color=%23ffd402" class="mr-2" width="50" alt="Social Media Icon"></a>
+    
     {{ $slot }}
     <x-footer />
     @livewireScripts()

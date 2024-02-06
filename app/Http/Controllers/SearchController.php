@@ -12,4 +12,9 @@ class SearchController extends Controller
             'searches' => Search::latest()->paginate(200)
         ]);
     }
+
+    public function delete(Search $search){
+        $search->delete();
+        return back();
+    }
 }

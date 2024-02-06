@@ -101,6 +101,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/design-quote', DesignQuote::class)->name('design.quote');
 
     Route::get('/searches', [SearchController::class, 'index'])->name('searches');
+    Route::delete('/searche/delete/{search}', [SearchController::class, 'delete'])->name('searche.delete');
     
     Route::get('/designs/show', [DesignController::class, 'show'])->name('designs.show');
 
