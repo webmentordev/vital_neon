@@ -65,6 +65,9 @@ module.exports = {
                 "670px": {
                     "max": "670px"
                 },
+                "650px": {
+                    "max": "650px"
+                },
                 "620px": {
                     "max": "620px"
                 },

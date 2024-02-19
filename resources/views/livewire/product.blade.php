@@ -6,7 +6,7 @@
         <div wire:loading wire:target="checkout" class="fixed left-[45%] bottom-3">
             <div class="flex items-center bg-black text-white p-6 rounded-lg"><img src="https://api.iconify.design/svg-spinners:ring-resize.svg?color=%23ffffff" alt="Loading Icon"> <span class="ml-2">Processing...</span></div>
         </div>
-        <span class="fixed bg-main rounded-lg p-3 bottom-3 z-10 right-3 text-gray-800 text-4xl font-semibold"><span class="text-2xl">$</span>{{ $total_price }}</span>
+        <span class="fixed bg-main rounded-lg p-3 bottom-3 z-10 650px:left-3 w-fit right-3 text-gray-800 text-4xl font-semibold"><span class="text-2xl">$</span>{{ $total_price }}</span>
         @foreach ($product as $item)
             @if (session('success'))
                 <x-success :message="session('success')" />

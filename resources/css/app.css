@@ -399,7 +399,7 @@ nav a, nav .category{
 }
 
 .main-body{
-    @apply text-white p-12 bg-light rounded-lg;
+    @apply text-white p-12 bg-light rounded-lg 650px:px-0 650px:bg-transparent;
 }
 
 .main-body p {
