@@ -39,7 +39,7 @@
             </div>
             <p class="text-gray-300 mb-3">🚚 Estimated Delivery: {{ \Carbon\Carbon::now()->format('d-M-y') }} - {{ \Carbon\Carbon::now()->addDays(5)->format('d-M-y') }}</p>
             @if ($total_price != 0)
-                <button wire:click="checkout" class="py-3 px-5 rounded-md text-black bg-white font-semibold">Pay Now</button>
+                <button wire:click="checkout" class="py-3 px-5 rounded-md text-black bg-white font-semibold product_checkout_button">Pay Now</button>
             @endif
         </div>
         <div class="w-full border-l border-white/10 px-6 1130px:border-none 1130px:px-0">
