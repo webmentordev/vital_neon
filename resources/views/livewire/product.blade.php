@@ -97,7 +97,7 @@
                         <p class="text-red-600 mb-2">{{ $message }}</p>
                     @enderror
                     <div class="flex items-center">
-                        <button class="py-3 px-4 mb-3 mr-3 w-full bg-white rounded-md font-bold text-dark product_add_to_cart" wire:click="addToCart('{{ $product[0]->slug }}')">Add To Cart</button>
+                        <button class="py-3 px-4 mb-3 mr-3 w-full bg-white rounded-md font-bold text-dark add_to_cart" wire:click="addToCart('{{ $product[0]->slug }}')">Add To Cart</button>
                         <a href="{{ route('carts') }}" class="py-3 px-4 mb-3 w-full bg-white rounded-md text-center font-bold text-dark">Checkout</a>
                     </div>
                     

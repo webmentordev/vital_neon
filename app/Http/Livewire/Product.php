@@ -31,9 +31,10 @@ class Product extends Component
 
     protected $rules = [
         'remote' => 'required',
+        'remote' => 'required',
         'adaptor' => 'required',
         'kit' => 'required',
-        'color_selected' => 'required',
+        'category' => 'required'
     ];
 
     public $colors = [
