@@ -97,7 +97,7 @@
                         <p class="text-red-600 mb-2">{{ $message }}</p>
                     @enderror
                     <div class="flex items-center">
-                        <button class="py-3 px-4 mb-3 mr-3 w-full bg-white rounded-md font-bold text-dark add_to_cart" wire:click="addToCart('{{ $product[0]->slug }}')">Add To Cart</button>
+                        <button class="py-3 px-4 mb-3 mr-3 w-full bg-white rounded-md font-bold text-dark add_to_cart" wire:click="addToCart('{{ $product[0]->slug }}')" id="add_to_cart">Add To Cart</button>
                         <a href="{{ route('carts') }}" class="py-3 px-4 mb-3 w-full bg-white rounded-md text-center font-bold text-dark">Checkout</a>
                     </div>
                     
@@ -115,4 +115,16 @@
             {!! $product[0]->body !!}
         </main>
     </div>
+
+    <script>
+        document.getElementById('add_to_cart').addEventListener('click', () => {
+            gtag('event', 'add_to_cart', {
+                'event_category': 'Shopping',
+                'event_action': 'add_to_cart',
+                'event_label': "{{ $product[0]->name }}",
+                'value': {{ number_format($total_price, 2) }}
+            });
+            gtag_report_conversion("{{ url()->current() }}");
+        });
+    </script>
 </section>
