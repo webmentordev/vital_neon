@@ -72,4 +72,12 @@
             </div>
         </div>
     </div>
+    <script>
+        document.getElementById('checkout_click').addEventListener('click', () => {
+            gtag('event', 'conversion', {
+                'send_to': 'AW-16465873503/yfJ4CMPJh5YZEN-Uxas9',
+                'event_callback': callback
+            });
+        });
+    </script>
 </section>
