@@ -49,6 +49,7 @@
         'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
         })(window,document,'script','dataLayer','GTM-MXZJWCNX');</script>
         <!-- End Google Tag Manager -->
+    <script type="text/javascript">window.$crisp=[];window.CRISP_WEBSITE_ID="f03607c6-c8b4-41cb-a1ac-1d42d4834a0d";(function(){d=document;s=d.createElement("script");s.src="https://client.crisp.chat/l.js";s.async=1;d.getElementsByTagName("head")[0].appendChild(s);})();</script>
 </head>
 <body class="font-sans text-gray-900 antialiased">
     <!-- Google Tag Manager (noscript) -->

@@ -52,6 +52,8 @@
         })(window,document,'script','dataLayer','GTM-MXZJWCNX');</script>
         <!-- End Google Tag Manager -->
         
+        <script type="text/javascript">window.$crisp=[];window.CRISP_WEBSITE_ID="f03607c6-c8b4-41cb-a1ac-1d42d4834a0d";(function(){d=document;s=d.createElement("script");s.src="https://client.crisp.chat/l.js";s.async=1;d.getElementsByTagName("head")[0].appendChild(s);})();</script>
+        
     </head>
     <body class="font-sans antialiased">
         <!-- Google Tag Manager (noscript) -->
@@ -61,9 +63,6 @@
         
         <div class="min-h-screen bg-gray-100 dark:bg-gray-900">
             @include('layouts.navigation')
-
-            <a class="fixed bottom-[80px] right-2 z-50 opacity-50 hover:opacity-100 transition-all" href="https://wa.me/16476165799" target="_blank"><img src="https://api.iconify.design/logos:whatsapp-icon.svg?color=%23ffd402" class="mr-2" width="50" alt="Social Media Icon"></a>
-
             <!-- Page Heading -->
             @if (isset($header))
                 <header class="bg-white dark:bg-gray-800 shadow">

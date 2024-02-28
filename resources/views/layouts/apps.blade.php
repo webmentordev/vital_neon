@@ -41,6 +41,7 @@
             return false;
         }
     </script>
+    
 
     <!-- Google Tag Manager -->
     <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
@@ -49,6 +50,8 @@
         'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
         })(window,document,'script','dataLayer','GTM-MXZJWCNX');</script>
     <!-- End Google Tag Manager -->
+    
+    <script type="text/javascript">window.$crisp=[];window.CRISP_WEBSITE_ID="f03607c6-c8b4-41cb-a1ac-1d42d4834a0d";(function(){d=document;s=d.createElement("script");s.src="https://client.crisp.chat/l.js";s.async=1;d.getElementsByTagName("head")[0].appendChild(s);})();</script>
     
     @livewireStyles
 </head>
@@ -64,8 +67,6 @@
     @if (!Request::is('success/*') && !Request::is('cancel/*'))
         @livewire('navbar')
     @endif
-
-    <a class="fixed bottom-3 right-2 z-50 opacity-50 hover:opacity-100 transition-all" href="https://wa.me/16476165799" target="_blank"><img src="https://api.iconify.design/logos:whatsapp-icon.svg?color=%23ffd402" class="mr-2" width="50" alt="Social Media Icon"></a>
 
     @yield('content')
     <x-footer />
