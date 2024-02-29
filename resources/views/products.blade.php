@@ -22,7 +22,7 @@
                             @endif
                         @endif
                         <div class="overflow-hidden rounded-lg">
-                            <img data-src="{{ asset('storage/'.$item->image) }}" class="group-hover:scale-125 transition-all lazyload" alt="{{ $item->name }}" title="{{ $item->name }} Image" loading="lazy" style="height: 300px; width: 100%; object-fit: cover">
+                            <img data-src="{{ asset('storage/'.$item->image) }}" class="group-hover:scale-125 transition-all lazyload h-[300px] 620px:h-full" alt="{{ $item->name }}" title="{{ $item->name }} Image" loading="lazy" style="width: 100%; object-fit: cover">
                         </div>
                         <div class="bg-light p-3 w-full bottom-0 left-0">
                             @if (strlen($item->name) >= 26)
