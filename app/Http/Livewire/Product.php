@@ -22,11 +22,11 @@ class Product extends Component
 {
     public $product, $remote, $kits, $kit, $kit_price, $shapes, $categories, $adaptor, $category;
     public $adaptors = [
-        "USA/Canada/120V",
-        "UK/IRELAND 230V",
-        "EUROPE 230V",
-        "AUSTRALIA/NA 230V",
-        "JAPAN 100V"
+        "USA/Canada",
+        "UK/IRELAND",
+        "EUROPE",
+        "AUSTRALIA/NA",
+        "JAPAN"
     ], $remotes, $total_price = 0, $increment = 0, $category_price;
 
     protected $rules = [
@@ -166,5 +166,6 @@ class Product extends Component
         session()->put('cart', $cartItems);
         session()->flash('success', 'Product has been added to the cart!');
         $this->emit('cartCheck');
+        $this->emit('addToCart');
     }
 }

@@ -22,11 +22,11 @@ class DesignQuote extends Component
     use WithFileUploads;
 
     public $adaptors = [
-        "USA/Canada/120V",
-        "UK/IRELAND 230V",
-        "EUROPE 230V",
-        "AUSTRALIA/NA 230V",
-        "JAPAN 100V"
+        "USA/Canada",
+        "UK/IRELAND",
+        "EUROPE",
+        "AUSTRALIA/NA",
+        "JAPAN"
     ],$alignments = [
         "items-center",
         "items-start",

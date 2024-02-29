@@ -1,6 +1,6 @@
 <section class="w-full min-h-[70vh]">
-    <div class="max-w-7xl m-auto py-12 px-4 grid grid-cols-2 gap-12 1130px:grid-cols-1 1130px:max-w-2xl">
-        <div class="w-full flex flex-col">
+    <div class="max-w-7xl m-auto py-12 px-4 flex gap-12 1130px:grid-cols-1 1130px:max-w-2xl 1130px:flex-col">
+        <div class="w-full flex flex-col order-1 1130px:order-2">
             <div class="flex items-center justify-between pb-6 border-b border-white/10 mb-3">
                 <h1 class="text-3xl text-white font-bold">Shopping Cart</h1>
                 @if ($total_price != 0)
@@ -42,7 +42,7 @@
                 <button wire:click="checkout" class="py-3 px-5 rounded-md text-black bg-white font-semibold checkout_click">Pay Now</button>
             @endif
         </div>
-        <div class="w-full border-l border-white/10 px-6 1130px:border-none 1130px:px-0">
+        <div class="w-full border-l border-white/10 px-6 1130px:border-none 1130px:px-0 order-2 1130px:order-1">
             @if ($carts != null)
             @foreach ($carts as $cart)
                 @if (session('success'))

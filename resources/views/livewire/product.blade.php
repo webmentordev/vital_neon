@@ -6,14 +6,15 @@
         <div wire:loading wire:target="checkout" class="fixed left-[45%] bottom-3">
             <div class="flex items-center bg-black text-white p-6 rounded-lg"><img src="https://api.iconify.design/svg-spinners:ring-resize.svg?color=%23ffffff" alt="Loading Icon"> <span class="ml-2">Processing...</span></div>
         </div>
-        <span class="fixed bg-main rounded-lg p-3 bottom-3 z-10 650px:left-3 w-fit right-3 text-gray-800 text-4xl font-semibold"><span class="text-2xl">$</span>{{ $total_price }}</span>
+        <span class="fixed bg-main rounded-lg p-3 bottom-3 z-10 w-fit left-3 text-gray-800 text-4xl font-semibold"><span class="text-2xl">$</span>{{ $total_price }}</span>
+
+        @if (session('success'))
+            <x-success class="bottom-[85px]" :message="session('success')" />
+        @endif
         @foreach ($product as $item)
-            @if (session('success'))
-                <x-success :message="session('success')" />
-            @endif
             <div class="grid grid-cols-2 gap-3 rounded-lg mb-6 overflow-hidden 890px:grid-cols-1 890px:max-w-lg m-auto">
                 <div class="w-full">
-                    <a href="{{ asset('storage/'.$item->image) }}" title="{{ $item->name }}" class="h-fit" target="_blank" rel=dofollow>
+                    <a href="{{ asset('storage/'.$item->image) }}" title="{{ $item->name }}" class="h-fit" target="_blank">
                         <img data-src="{{ asset('storage/'.$item->image) }}" class="h-fit w-full lazyload rounded-lg" loading="lazy" alt="Buy {{ $item->name }}" title="Buy {{ $item->name }}">
                     </a>
                     <img class="mt-3" src="{{ asset('assets/colors.png') }}" title="VitalNeon signs colors" alt="Colors selection">
@@ -115,16 +116,19 @@
             {!! $product[0]->body !!}
         </main>
     </div>
-
     <script>
-        document.getElementById('add_to_cart').addEventListener('click', () => {
-            gtag('event', 'add_to_cart', {
-                'event_category': 'Shopping',
-                'event_action': 'add_to_cart',
-                'event_label': "{{ $product[0]->name }}",
-                'value': {{ number_format($total_price, 2) }}
+        document.addEventListener('livewire:load', function (event) {
+            Livewire.on('addToCart', () => {
+                gtag('event', 'add_to_cart', {
+                    'event_category': 'Shopping',
+                    'event_action': 'add_to_cart',
+                    'event_label': "{{ $product[0]->name }}",
+                    'value': {{ number_format($total_price, 2) }}
+                });
+                gtag('event', 'conversion', {
+                    'send_to': 'AW-16465873503/W_pKCJ-8k5YZEN-Uxas9'
+                });
             });
-            gtag_report_conversion("{{ url()->current() }}");
         });
     </script>
 </section>

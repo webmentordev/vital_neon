@@ -4,6 +4,12 @@
         <a href="{{ route('products') }}"><img src="{{ asset('assets/slides/BANNER.gif') }}" class="w-full" alt="Slider 01"></a>
     </section>
 
+    <x-listing />
+
+    <x-reviews />
+
+    <x-trust-pilot />
+
     <section class="bg-light">
         <div class="max-w-6xl m-auto py-12 px-4">
             <form action="{{ route('product.search') }}" class="mb-6" method="get">
@@ -33,12 +39,6 @@
             </div>
         </div>
     </section>
-
-    <x-listing />
-
-    <x-reviews />
-
-    <x-trust-pilot />
     
     <section class="w-full">
         <div class="py-[120px] relative z-10 overflow-x-hidden">

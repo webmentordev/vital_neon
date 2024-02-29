@@ -25,20 +25,6 @@
         gtag('config', 'AW-16465873503');
         gtag('config', 'G-QLMRNLQCJQ');
     </script>
-    <script>
-        function gtag_report_conversion(url) {
-            var callback = function () {
-                if (typeof(url) != 'undefined') {
-                    window.location = url;
-                }
-            };
-            gtag('event', 'conversion', {
-                'send_to': 'AW-16465873503/W_pKCJ-8k5YZEN-Uxas9',
-                'event_callback': callback
-            });
-            return false;
-        }
-    </script>
 
     
     <!-- Google Tag Manager -->
