@@ -40,7 +40,7 @@ class ProductController extends Controller
             'category' => "required|numeric",
         ]);
 
-        $imageLink = $request->image->store('products', 'public_disk');
+        $imageLink = $request->image->storeAs('products', strtolower(str_replace(' ', '-', $request->slug)).".".$request->image->getClientOriginalExtension(), 'public_disk');
 
         $result = $stripe->products->create([
             'name' => $request->name,
