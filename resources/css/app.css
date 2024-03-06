@@ -663,5 +663,9 @@ nav a, nav .category{
 }
 
 .terms ul{
-    @apply mb-5 text-gray-100 list-disc ml-6;
+    @apply mb-6 text-gray-100 list-disc ml-6;
+}
+
+.terms ul li{
+    @apply text-gray-100 mb-2;
 }

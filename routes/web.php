@@ -67,6 +67,7 @@ Route::post('/track-order', [TrackController::class, 'search'])->name('track.sea
 Route::get('/terms-of-service', [ServiceController::class, 'terms'])->name('terms');
 Route::get('/privacy-policy', [ServiceController::class, 'privacy'])->name('privacy');
 Route::get('/return-policy', [ServiceController::class, 'return'])->name('return');
+Route::get('/dmca-policy', [ServiceController::class, 'dmca'])->name('dmca');
 
 Route::get('/cart', Carts::class)->name('carts');
 

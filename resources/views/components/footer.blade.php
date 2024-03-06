@@ -22,6 +22,7 @@
                 <a class="mr-2 text-main underline" href="{{ route('privacy') }}">Privacy policy</a>
                 <a class="text-main underline" href="{{ route('return') }}">Return policy</a>
             </ul>
+            <a class="text-main underline" href="{{ route('dmca') }}">DMCA Copyright policy</a>
         </div>
        <div class="text-end 475px:text-start">
         <h3 class="text-2xl pb-3 border-b border-white/5 mb-3">Navigations</h3>

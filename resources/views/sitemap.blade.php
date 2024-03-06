@@ -9,26 +9,26 @@
     <url>
         <loc>https://vitalneon.com/support</loc>
         <lastmod>2023-04-18T05:05:00+05:00</lastmod>
-        <changefreq>weekly</changefreq>
+        <changefreq>yearly</changefreq>
         <priority>0.90</priority>
     </url>
     <url>
         <loc>https://vitalneon.com/create-design</loc>
         <lastmod>2023-04-18T05:05:00+05:00</lastmod>
-        <changefreq>weekly</changefreq>
+        <changefreq>yearly</changefreq>
         <priority>0.90</priority>
     </url>
     <url>
         <loc>https://vitalneon.com/upload-design</loc>
         <lastmod>2023-04-18T05:05:00+05:00</lastmod>
-        <changefreq>weekly</changefreq>
+        <changefreq>yearly</changefreq>
         <priority>0.90</priority>
     </url>
     <url>
         <loc>https://vitalneon.com/products</loc>
         <lastmod>2023-04-18T05:05:00+05:00</lastmod>
         <changefreq>weekly</changefreq>
-        <priority>0.90</priority>
+        <priority>1.00</priority>
     </url>
 
     <url>
@@ -73,11 +73,18 @@
         <priority>0.90</priority>
     </url>
 
+    <url>
+        <loc>https://vitalneon.com/dmca-policy</loc>
+        <lastmod>2024-03-06T13:48:00+05:00</lastmod>
+        <changefreq>yearly</changefreq>
+        <priority>0.90</priority>
+    </url>
+
     @foreach ($categories as $category)
         <url>
             <loc>{{ url('/') }}/products/category/{{ $category->slug }}</loc>
             <lastmod>{{ $category->created_at->tz('UTC')->toAtomString() }}</lastmod>
-            <changefreq>weekly</changefreq>
+            <changefreq>occasionally</changefreq>
             <priority>0.80</priority>
         </url>
     @endforeach
@@ -85,7 +92,7 @@
         <url>
             <loc>{{ url('/') }}/blog/{{ $blog->slug }}</loc>
             <lastmod>{{ $blog->created_at->tz('UTC')->toAtomString() }}</lastmod>
-            <changefreq>weekly</changefreq>
+            <changefreq>occasionally</changefreq>
             <priority>0.80</priority>
         </url>
     @endforeach
@@ -94,7 +101,7 @@
             <loc>{{ url('/') }}/product/{{ $product->slug }}</loc>
             <lastmod>{{ $product->created_at->tz('UTC')->toAtomString() }}</lastmod>
             <changefreq>weekly</changefreq>
-            <priority>0.80</priority>
+            <priority>0.90</priority>
         </url>
     @endforeach
 </urlset>

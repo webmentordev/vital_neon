@@ -84,4 +84,30 @@ class ServiceController extends Controller
         JsonLd::addImage("https://vitalneon.com/assets/seo/home-1.png", ["height" => 400, "width" => 760]);
         return view('return-policy');
     }
+
+
+    public function dmca(){
+        SEOMeta::setTitle("Vital Neon DMCA Protection Policy");
+        SEOMeta::setCanonical("https://vitalneon.com/dmca-policy");
+        SEOMeta::setRobots("index, follow");
+        SEOMeta::addMeta("apple-mobile-web-app-title", "VitalNeon");
+        SEOMeta::addMeta("application-name", "VitalNeon");
+
+        OpenGraph::setTitle("Vital Neon DMCA Protection Policy");
+        OpenGraph::setUrl("https://vitalneon.com/dmca-policy");
+        OpenGraph::addProperty("type", "website");
+        OpenGraph::addProperty("locale", "eu");
+        OpenGraph::addImage("https://vitalneon.com/assets/seo/home-2.png");
+        OpenGraph::addImage("https://vitalneon.com/assets/seo/home-1.png", ["height" => 400, "width" => 760]);
+
+        TwitterCard::setTitle("Vital Neon DMCA Protection Policy");
+        TwitterCard::setSite("@vitalneon");
+        TwitterCard::setImage("https://vitalneon.com/assets/seo/home-2.png");
+
+        JsonLd::setTitle("Vital Neon DMCA Protection Policy");
+        JsonLd::addImage("https://vitalneon.com/assets/seo/home-2.png");
+        JsonLd::setType("WebSite");
+        JsonLd::addImage("https://vitalneon.com/assets/seo/home-1.png", ["height" => 400, "width" => 760]);
+        return view('dmca');
+    }
 }
