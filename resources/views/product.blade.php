@@ -5,7 +5,7 @@
         </h2>
     </x-slot>
     <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+        <div class="max-w-[98%] mx-auto sm:px-6 lg:px-8">
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900 dark:text-gray-100">
                     @if (session('success'))
@@ -71,6 +71,7 @@
                                 <th class="p-3 text-start">Slug</th>
                                 <th class="text-start">Description</th>
                                 <th class="text-end">Featured</th>
+                                <th class="text-end">Status</th>
                                 <th class="p-3 text-end">Created</th>
                                 <th class="p-3 text-end">Edit</th>
                             </tr>
@@ -91,7 +92,32 @@
                                             </div>
                                         </div>
                                     </td>
-                                    <td class="text-end">{{ $item->featured }}</td>
+                                    <td class="text-end p-2">
+                                        <form action="{{ route('product.feature', $item->slug) }}" method="post">
+                                            @csrf
+                                            @method('PATCH')
+                                            <button class="font-bold @if ($item->featured) bg-green-500 text-white @else bg-yellow-500 text-black @endif py-1 px-3">
+                                                @if ($item->featured)
+                                                    Featured
+                                                @else
+                                                    UnFeatured
+                                                @endif
+                                            </button>
+                                        </form>
+                                    </td>
+                                    <td class="text-end p-2">
+                                        <form action="{{ route('product.status', $item->slug) }}" method="post">
+                                            @csrf
+                                            @method('PATCH')
+                                            <button class="@if ($item->is_active) bg-blue-500 @else bg-red-500 @endif text-white py-1 px-3">
+                                                @if ($item->is_active)
+                                                    Active
+                                                @else
+                                                    InActive
+                                                @endif
+                                            </button>
+                                        </form>
+                                    </td>
                                     <td class="p-2 text-end">{{ $item->created_at->diffForHumans() }}</td>
                                     <td class="p-2 text-end"><a href="{{ route('product.update', $item->slug) }}" class="underline text-blue-600">Edit</a></td>
                                 </tr>

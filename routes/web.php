@@ -97,6 +97,8 @@ Route::middleware('auth')->group(function () {
     Route::post('/product', [ProductController::class, 'create']);
     Route::get('/product/{product:slug}/update', [ProductController::class, 'update'])->name('product.update');
     Route::patch('/product/update/{product:slug}', [ProductController::class, 'update_product'])->name('update.product');
+    Route::patch('/product/{product:slug}/status', [ProductController::class, 'status'])->name('product.status');
+    Route::patch('/product/{product:slug}/featured', [ProductController::class, 'featured'])->name('product.feature');
 
     Route::get('/design-quote', DesignQuote::class)->name('design.quote');
 

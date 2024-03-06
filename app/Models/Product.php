@@ -17,6 +17,7 @@ class Product extends Model
         'stripe_id',
         'category_id',
         'featured',
+        'is_active',
         'description'
     ];
 
