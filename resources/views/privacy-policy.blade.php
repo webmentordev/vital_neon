@@ -3,7 +3,7 @@
     <section class="w-full px-4">
         <div class="max-w-4xl m-auto py-[80px] terms">
             <h1 class="text-white text-4xl font-bold mb-2 575px:text-4xl" title="VitalNeon Privacy Policy">VitalNeon Privacy Policy</h1>
-            <h2 class="text-main mb-3">Effective Date: 30 Nav, 2023</h2>
+            <h2 class="text-main mb-3">Effective Date: 30 Nov, 2023</h2>
 
             <p>Welcome to VitalNeon, a Neon Signs seller company registered in Canada under the parent company MobyCarts. This Privacy Policy outlines how VitalNeon collects, uses, and protects the information provided by users of our services. By using our services, you agree to the terms outlined in this Privacy Policy.</p>
 

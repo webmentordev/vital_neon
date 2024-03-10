@@ -3,7 +3,7 @@
     <section class="w-full px-4">
         <div class="max-w-4xl m-auto py-[80px] terms">
             <h1 class="text-white text-4xl font-bold mb-2 575px:text-4xl" title="VitalNeon Terms of service">VitalNeon Terms of service</h1>
-            <h2 class="text-main mb-3">Effective Date: 30 Nav, 2023</h2>
+            <h2 class="text-main mb-3">Effective Date: 30 Nov, 2023</h2>
 
             <p>Welcome to VitalNeon, a Neon Signs seller company registered in Canada under the parent company MobyCarts. By using our services, you agree to comply with and be bound by the following terms and conditions. Please read them carefully.</p>
 

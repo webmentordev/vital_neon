@@ -20,7 +20,7 @@
                     Description of the infringing material and its location on VitalNeon, including a URL.
                 </li>
                 <li>
-                    Your contact information, including name, address, telephone number, and email address.
+                    Your contact information, including name, phone number, and email address.
                 </li>
                 <li>    
                     A statement that you have a good faith belief that use of the material in the manner complained of is not authorized by the copyright owner, its agent, or the law.
@@ -35,17 +35,11 @@
 
             <h3>Counter Notification</h3>
 
-            <p>If you believe that material you submitted to VitalNeon has been removed or disabled as a result of mistake or misidentification, you may submit a counter notification to <span class="font-semibold mb-3 text-lg text-main">contact@vitalneon.com</span>. Your counter notification should include:</p>
+            <p>If you believe that material on VitalNeon belongs to you, you may submit a counter notification to <span class="font-semibold mb-3 text-lg text-main">contact@vitalneon.com</span>. Your counter notification should include:</p>
 
-            <p>Identification of the material that has been removed or to which access has been disabled and the location at which the material appeared before it was removed or access to it was disabled. A statement, under penalty of perjury, that you have a good faith belief that the material was removed or disabled as a result of mistake or misidentification. Your name, address, telephone number, and email address.</p>
-            
-            
-            <p>A statement consenting to the jurisdiction of the Federal District Court for the judicial district in which your address is located, or if your address is outside of the United States, any judicial district in which VitalNeon may be found, and that you will accept service of process from the person who provided the DMCA Notice.</p>
-            <p>Upon receipt of a valid counter notification, VitalNeon will promptly provide the complainant with a copy of the counter notification and inform them that the removed material may be restored within 10 to 14 business days, unless the complainant provides notice that they have filed an action seeking a court order against the content provider.</p>
+            <p>Proof of ownership of the material that you consider to be your property, including the location where you found the material and the source from which you believe the material was used. Additionally, any relevant details or documentation supporting your claim of ownership should be provided.</p>
 
-            <h3>Conclusion</h3>
-
-            <p>VitalNeon reserves the right to terminate the accounts of users who are deemed to be repeat infringers. This DMCA Protection Policy may be updated or modified from time to time without prior notice.</p>
+            <p>Upon receipt of a valid counter notification, VitalNeon will promptly provide the complainant with a copy of the counter notification and inform them that the material will be reviewed and potentially reinstated within 10 to 14 business days.</p>
 
             <p>If you have any questions or concerns regarding copyright infringement or this policy, please contact us at <span class="font-semibold mb-3 text-lg text-main">contact@vitalneon.com</span>.</p>
 
