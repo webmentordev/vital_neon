@@ -6,8 +6,8 @@
 @tailwind utilities;
 
 *{
-    font-family: 'Open Sans', sans-serif;
-    /*font-family: 'Rubik', sans-serif;*/
+    /* font-family: 'Open Sans', sans-serif; */
+    font-family: 'Rubik', sans-serif;
     outline: none;
 }
 
@@ -61,10 +61,6 @@ h1, h2, h3{
     font-weight: 400;
 }
 
-nav a, nav .category{
-    font-family: 'Abel', sans-serif;
-    @apply text-lg font-medium;
-}
 .featured{
     font-family: 'Abel', sans-serif;
 }

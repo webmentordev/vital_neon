@@ -2,11 +2,12 @@
 
 namespace App\View\Components;
 
-use App\Models\Product;
 use Closure;
-use Illuminate\Contracts\View\View;
-use Illuminate\Support\Facades\DB;
+use App\Models\Product;
+use App\Models\Category;
 use Illuminate\View\Component;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Contracts\View\View;
 
 class Listing extends Component
 {
@@ -26,6 +27,7 @@ class Listing extends Component
         return view('components.listing', [
             'products' => Product::latest()->where('featured', true)->orderBy('id', 'DESC')->limit(12)->get(),
             'discount' => DB::table('discounts')->latest()->first(),
+            'categories' => Category::get()
         ]);
     }
 }

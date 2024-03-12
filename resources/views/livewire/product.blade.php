@@ -1,8 +1,5 @@
 <section class="w-full px-4">
     <div class="max-w-6xl m-auto py-[50px]">
-        <div class="text-center mb-6 border-b border-light py-3">
-            <h4 class="text-[34.5px] uppercase mb-3 text-white font-bold flex text-5xl 490px:text-2xl justify-center items-center m-auto choose">{{ $product[0]->name }}</h4>
-        </div>
         <div wire:loading wire:target="checkout" class="fixed left-[45%] bottom-3">
             <div class="flex items-center bg-black text-white p-6 rounded-lg"><img src="https://api.iconify.design/svg-spinners:ring-resize.svg?color=%23ffffff" alt="Loading Icon"> <span class="ml-2">Processing...</span></div>
         </div>
@@ -20,6 +17,7 @@
                     <img class="mt-3" src="{{ asset('assets/colors.png') }}" title="VitalNeon signs colors" alt="Colors selection">
                 </div>
                 <div class="bg-light p-6 h-fit w-full bottom-0 left-0 870px:max-h-fit overflow-y-scroll">
+                    <h1 class="text-white mb-3 text-3xl capitalize font-bold">{{ $product[0]->name }}</h1>
                     <h3 class="text-white font-semibold">Dimensions <span class="text-main">(Step#01)</span></h3>
                     <select name="category" id="category" wire:model="category" class="w-full mt-2 bg-dark rounded border border-main focus:ring-4 focus:ring-main-light text-base outline-none text-gray-200 py-2 px-3 leading-8 transition-colors duration-200 ease-in-out mb-3">
                         @if ($total_price == 0)

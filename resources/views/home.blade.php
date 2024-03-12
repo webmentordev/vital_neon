@@ -12,13 +12,6 @@
 
     <section class="bg-light">
         <div class="max-w-6xl m-auto py-12 px-4">
-            <form action="{{ route('product.search') }}" class="mb-6" method="get">
-                <div class="bg-dark p-3 pl-5 rounded-lg flex 490px:flex-col">
-                    <img class="490px:hidden" src="https://api.iconify.design/streamline:interface-search-glass-search-magnifying.svg?color=%23ffffff" width="30" alt="Search Icon">
-                    <input type="text" class="border-none bg-light mr-2 490px:border 490px:border-white/10 focus:outline-none 490px:rounded-lg py-2 490px:py-3 ml-3 490px:ml-0 490px:mb-2 w-full outline-none text-gray-300" autocomplete="off" placeholder="Search products..." name="search">
-                    <button type="submit" class="bg-white text-dark font-semibold px-6 rounded-lg 490px:py-3">Search</button>
-                </div>
-            </form>
             <div class="grid grid-cols-4 gap-6 mb-6 940px:grid-cols-3 710px:grid-cols-2 475px:grid-cols-1 m-auto">
                 <div class="p-3 py-12 text-center rounded-lg bg-dark hover:bg-white group transition-all">
                     <img data-src="https://api.iconify.design/emojione:airplane.svg?color=%234bcc14" class="m-auto mb-3 lazyload" loading="lazy" width="60" alt="Delivery Icon">

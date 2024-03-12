@@ -1,30 +1,23 @@
-<nav class="w-full py-2 sticky top-0 left-0 z-50 bg-dark text-white bg-opacity-80 backdrop-blur-lg">
+<nav class="w-full py-2 sticky top-0 left-0 z-50 bg-dark text-white bg-opacity-80 backdrop-blur-lg border-b border-white/10">
     <div class="flex items-center justify-between max-w-[98%] m-auto w-full px-2">
-        <a href="{{ route('home') }}" class="text-3xl font-semibold py-1"><img src="{{ asset('assets/neon_tranp_white.png') }}" width="150" alt="Vital Neon"></a>
-        <ul class="flex items-center uppercase 1290px:hidden">
+        <a href="{{ route('home') }}" class="text-3xl font-semibold py-1"><img src="{{ asset('assets/neon_tranp_white.png') }}" width="130" alt="Vital Neon"></a>
+        <ul class="flex font-normal items-center capitalize 1290px:hidden">
             <a class="mx-4" href="{{ route('home') }}">Home</a>
             <a class="mx-4" href="{{ route('products') }}">Products</a>
             <a class="mx-4" href="{{ route('create-design') }}">Design Your Own</a>
             <a class="mx-4" href="{{ route('upload-design') }}">Upload Design</a>
-            <a class="mx-4" href="/#reviews">Reviews</a>
+            {{-- <a class="mx-4" href="/#reviews">Reviews</a> --}}
+            
             <div class="mx-4 relative group">
                 <span class="category flex items-center">Categories <img src="https://api.iconify.design/ic:outline-arrow-drop-down.svg?color=%23ffffff" width="28" alt="Carret Down Logo"></span>
-                <div class="hidden group-hover:block absolute top-7 max-w-[200px] w-full p-2 rounded-lg bg-dark bg-opacity-80 backdrop-blur-lg border border-white/10 text-gray-700">
-                    <ul class="flex flex-col w-full text-white text-center">
+                <div class="hidden group-hover:block absolute top-7 w-[310px] right-0 p-2 rounded-lg bg-white text-gray-800">
+                    <div class="w-full grid grid-cols-2 gap-3 p-2">
                         @foreach ($categories as $item)
-                            @if ($loop->last)
-                                <a class="text-[15px] hover:font-semibold container" href="{{ route('category.search', $item->slug) }}">{{ $item->name }}</a>
-                            @else
-                                <a class="text-[15px] hover:font-semibold container border-b-4 border-white/10" href="{{ route('category.search', $item->slug) }}">{{ $item->name }}</a>
-                            @endif
+                            <a class="font-semibold container py-2 px-3 bg-gray-100 rounded-lg h-fit" href="{{ route('category.search', $item->slug) }}">{{ $item->name }}</a>
                         @endforeach
-                    </ul>
+                    </div>
                 </div>
             </div>
-            {{-- <a class="mx-4" href="{{ route('blogs') }}">Blogs</a> --}}
-            <a class="mx-4" title="About VitalNeon" href="{{ route('about') }}" rel="nofollow">About</a>
-            <a class="mx-4" title="VitalNeon FAQs" href="{{ route('f.a.q') }}" rel="nofollow">F.A.Q</a>
-            <a class="mx-4" title="Tack Order on VitalNeon" href="{{ route('track') }}" rel="nofollow">Track</a>
             <div class="mx-4 relative group">
                 <span class="category flex items-center">Support <img src="https://api.iconify.design/ic:outline-arrow-drop-down.svg?color=%23ffffff" width="28" alt="Carret Down Logo"></span>
                 <div class="hidden group-hover:block absolute top-7 right-0 w-[120px] p-2 rounded-lg bg-dark bg-opacity-80 backdrop-blur-lg border border-white/10 text-gray-700">
@@ -41,41 +34,37 @@
         </ul>
         <div class="hidden 1290px:block">
             <div class="flex items-center">
-                <a class="text-2xl mr-3" title="VitalNeon Neon Signs" href="{{ route('products') }}">Shop</a>
-                <a class="text-2xl mr-3" title="VitalNeon Cart" href="{{ route('carts') }}">Cart</a>
+                <a class="text-base mr-6" title="VitalNeon Neon Signs" href="{{ route('products') }}">Signs</a>
+                <a class="text-base mr-6" title="VitalNeon Cart" href="{{ route('carts') }}">Cart</a>
                 <div x-data="{open: false}">
-                    <div x-on:click="open = true" class="p-2 rounded-full bg-light cursor-pointer">
-                        <img width="30" src="https://api.iconify.design/ph:text-align-right-fill.svg?color=%23ffffff" alt="Align image">
+                    <div x-on:click="open = true" class="p-2 rounded-full bg-white cursor-pointer">
+                        <img width="30" src="https://api.iconify.design/ph:text-align-right-fill.svg?color=%23000000" alt="Align image">
                     </div>
-                    <div class="fixed top-0 left-0 w-full h-screen bg-dark backdrop-blur-lg flex justify-center items-center z-50" x-show="open" x-on:click.self="open = !open" x-cloak>
-                        <ul class="text-center flex flex-col">
-                            <a class="text-2xl mb-3" href="{{ route('home') }}">Home</a>
-                            <a class="text-2xl mb-3" title="VitalNeon Neon Signs" href="{{ route('products') }}">Products</a>
-                            <a class="text-2xl mb-3" title="Create You own Neon Design" href="{{ route('create-design') }}">Design Your Own</a>
-                            <a class="text-2xl mb-3" title="Request your neon sign" href="{{ route('upload-design') }}">Upload Design</a>
-                            <a class="text-2xl mb-3" title="VitalNeon reviews" href="/#reviews">Reviews</a>
-                            <div class="mx-4 relative mt-2" x-data="{toggle: false}">
-                                <span class="flex items-center category text-3xl p-3 bg-light rounded-lg" x-on:click="toggle = !toggle">Categories <img src="https://api.iconify.design/ic:outline-arrow-drop-down.svg?color=%23ffffff" width="28" alt="Carret Down Logo"></span>
-                                <div class="flex flex-col" x-show="toggle">
+                    <div class="fixed overflow-y-scroll top-0 left-0 max-w-[340px] w-full h-screen bg-white backdrop-blur-lg z-50" x-show="open" x-on:click.self="open = !open" x-cloak>
+                        <div class="w-full flex justify-end p-2 cursor-pointer">
+                            <img width="40" x-on:click="open = false" src="https://api.iconify.design/gridicons:cross-circle.svg?color=%23e12d2d" alt="Align image">
+                        </div>
+                        <ul class="flex flex-col text-black px-3 font-semibold">
+                            <a class="text-lg mb-3" href="{{ route('home') }}">Home</a>
+                            <a class="text-lg mb-3" title="VitalNeon Neon Signs" href="{{ route('products') }}">Products</a>
+                            <a class="text-lg mb-3" title="Create You own Neon Design" href="{{ route('create-design') }}">Design Your Own</a>
+                            <a class="text-lg mb-3" title="Request your neon sign" href="{{ route('upload-design') }}">Upload Design</a>
+                            <div class="relative mb-2" x-data="{toggle: false}">
+                                <span class="flex items-center category cursor-pointer p-2 bg-gray-200" x-on:click="toggle = 
+                                !toggle">Categories <img src="https://api.iconify.design/ic:outline-arrow-drop-down.svg?color=%23000000" width="28" alt="Carret Down Logo"></span>
+                                <div class="flex flex-col font-normal" x-show="toggle">
                                     @foreach ($categories as $item)
-                                        <a class="text-2xl" href="{{ route('category.search', $item->slug) }}">{{ $item->name }}</a>
+                                        <a class="p-1" href="{{ route('category.search', $item->slug) }}">{{ $item->name }}</a>
                                     @endforeach
                                 </div>
                             </div>
-                            {{-- <a class="text-2xl mb-3" href="{{ route('blogs') }}">Blogs</a> --}}
-                            <a class="text-2xl mb-3" title="About VitalNeon" href="{{ route('about') }}">About</a>
-                            <a class="text-2xl mb-3" title="VitalNeon FAQs" href="{{ route('f.a.q') }}">F.A.Q</a>
-                            <a class="text-2xl mb-3" title="Track Order in VitalNeon" href="{{ route('track') }}">Track</a>
-                            <div class="mx-4 relative mb-3" x-data="{toggle: false}">
-                                <span class="flex items-center category text-3xl p-3 bg-light rounded-lg" x-on:click="toggle = !toggle">Support <img src="https://api.iconify.design/ic:outline-arrow-drop-down.svg?color=%23ffffff" width="28" alt="Carret Down Logo"></span>
-                                <div class="flex flex-col" x-show="toggle">
-                                    <a class="text-2xl flex items-center" href="https://wa.me/16476165799" target="_blank"><img src="https://api.iconify.design/logos:whatsapp-icon.svg?color=%23ffd402" class="mr-2" width="20" alt="Social Media Icon">Whatsapp</a>
-                                    <a class="text-2xl flex items-center" href="https://m.me/100095082327532" target="_blank"><img src="https://api.iconify.design/logos:messenger.svg?color=%23121212" class="mr-2" width="20" alt="Social Media Icon">Facebook</a>
-                                </div>
+                            <div class="relative mb-3 mt-3">
+                                <a class="flex items-center mb-2" href="https://wa.me/16476165799" target="_blank"><img src="https://api.iconify.design/logos:whatsapp-icon.svg?color=%23ffd402" class="mr-2" width="30" alt="Social Media Icon">Whatsapp</a>
+                                <a class="flex items-center" href="https://m.me/100095082327532" target="_blank"><img src="https://api.iconify.design/logos:messenger.svg?color=%23121212" class="mr-2" width="30" alt="Social Media Icon">Facebook</a>
                             </div>
-                            <a href="{{ route('carts') }}" class="relative w-fit flex items-center m-auto">
+                            <a href="{{ route('carts') }}" class="w-fit flex items-center rounded-full bg-black p-3">
                                 <img src="https://api.iconify.design/ion:md-basket.svg?color=%23ffffff" width="30" alt="Cart">
-                                <span class="bg-white text-[10px] right-0 p-[2px] font-bold px-[5px] h-fit rounded-full text-black">{{ $itemsCount }}</span>
+                                <span class="bg-white rounded-full px-2 text-black text-lg ml-3 mr-3">{{ $itemsCount }}</span>
                             </a>
                         </ul>
                     </div>

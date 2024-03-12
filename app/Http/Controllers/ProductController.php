@@ -84,7 +84,7 @@ class ProductController extends Controller
     public function update_product(Request $request, Product $product){
         $stripe = new StripeClient(config('app.stripe'));
         $this->validate($request, [
-            'name' => "required|max:255|unique:products,name",
+            'name' => "required|max:255",
             'image' => "nullable|image|mimes:png,jpg,jpeg,webp",
             'slug' => "required|max:255",
             'body' => "required",
