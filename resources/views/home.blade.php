@@ -1,8 +1,28 @@
 @extends('layouts.apps')
 @section('content')
-    <section id="max-h-[675px] overflow-hidden relative h-fit" class="w-full" aria-label="Beautiful Images">
+    {{-- <section id="max-h-[675px] overflow-hidden relative h-fit" class="w-full" aria-label="Beautiful Images">
         <a href="{{ route('products') }}"><img src="{{ asset('assets/slides/BANNER.gif') }}" class="w-full" alt="Slider 01"></a>
+    </section> --}}
+
+    <section class="w-full font-semibold">
+        <div class="max-w-7xl m-auto py-12 px-4 grid grid-cols-3 gap-3">
+            <div class="relative w-full h-full col-span-2">
+                <img class="h-full w-full rounded-lg hover:border hover:border-white" src="{{ asset('assets/banner/banner-1.jpg') }}" alt="Banner 1">
+                <a href="{{ route('home') }}/products/search?search=art" class="absolute z-10 right-3 bottom-3 transition-all hover:bg-main bg-light/60 drop-shadow-lg border border-white/10 rounded-md text-white py-3 px-4">Shop Now</a>
+            </div>
+            <div class="grid grid-cols-1 gap-3">
+                <div class="h-full w-full relative">
+                    <img class="w-full rounded-lg hover:border hover:border-white" src="{{ asset('assets/banner/banner-2.jpg') }}" alt="Banner 2">
+                    <a href="{{ route('home') }}/products/search?search=rgb" class="absolute z-10 left-3 bottom-3 transition-all hover:bg-main bg-light/60 drop-shadow-lg border border-white/10 rounded-md text-white py-3 px-4">Shop Now</a>
+                </div>
+                <div class="h-full w-full relative">
+                    <img class="w-full rounded-lg hover:border hover:border-white" src="{{ asset('assets/banner/banner-3.jpg') }}" alt="Banner 3">
+                    <a href="{{ route('home') }}/products/search?search=art" class="absolute z-10 right-3 bottom-3 transition-all hover:bg-main bg-light/60 drop-shadow-lg border border-white/10 rounded-md text-white py-3 px-4">Shop Now</a>
+                </div>
+            </div>
+        </div>
     </section>
+
 
     <x-listing />
 

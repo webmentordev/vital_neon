@@ -1,13 +1,11 @@
 <nav class="w-full py-2 sticky top-0 left-0 z-50 bg-dark text-white bg-opacity-80 backdrop-blur-lg border-b border-white/10">
-    <div class="flex items-center justify-between max-w-[98%] m-auto w-full px-2">
+    <div class="flex items-center justify-between max-w-7xl m-auto w-full px-2">
         <a href="{{ route('home') }}" class="text-3xl font-semibold py-1"><img src="{{ asset('assets/neon_tranp_white.png') }}" width="130" alt="Vital Neon"></a>
-        <ul class="flex font-normal items-center capitalize 1290px:hidden">
+        <ul class="flex font-normal items-center capitalize 940px:hidden">
             <a class="mx-4" href="{{ route('home') }}">Home</a>
             <a class="mx-4" href="{{ route('products') }}">Products</a>
             <a class="mx-4" href="{{ route('create-design') }}">Design Your Own</a>
             <a class="mx-4" href="{{ route('upload-design') }}">Upload Design</a>
-            {{-- <a class="mx-4" href="/#reviews">Reviews</a> --}}
-            
             <div class="mx-4 relative group">
                 <span class="category flex items-center">Categories <img src="https://api.iconify.design/ic:outline-arrow-drop-down.svg?color=%23ffffff" width="28" alt="Carret Down Logo"></span>
                 <div class="hidden group-hover:block absolute top-7 w-[310px] right-0 p-2 rounded-lg bg-white text-gray-800">
@@ -32,9 +30,9 @@
                 <span class="bg-white absolute -top-3 h-[20px] w-[20px] flex items-center justify-center text-[10px] right-0 p-[2px] font-bold px-[5px] rounded-full text-black">{{ $itemsCount }}</span>
             </a>
         </ul>
-        <div class="hidden 1290px:block">
+        <div class="hidden 940px:block">
             <div class="flex items-center">
-                <a class="text-base mr-6" title="VitalNeon Neon Signs" href="{{ route('products') }}">Signs</a>
+                <a class="text-base mr-6" title="VitalNeon Neon Signs" href="{{ route('products') }}">Products</a>
                 <a class="text-base mr-6" title="VitalNeon Cart" href="{{ route('carts') }}">Cart</a>
                 <div x-data="{open: false}">
                     <div x-on:click="open = true" class="p-2 rounded-full bg-white cursor-pointer">

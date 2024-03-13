@@ -1,5 +1,5 @@
 <section class="w-full px-4">
-    <div class="max-w-7xl m-auto py-[100px] flex relative">
+    <div class="max-w-7xl m-auto py-[30px] flex relative">
         <div class="max-w-[270px] mr-6 w-full h-fit sticky top-1 left-0 1210px:hidden">
             <div class="w-full rounded-lg p-4 bg-light flex items-center mb-4 border border-white/10">
                 <img src="https://api.iconify.design/material-symbols:format-list-bulleted.svg?color=%23ffffff" width="20" alt="List">

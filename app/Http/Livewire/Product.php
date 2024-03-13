@@ -164,7 +164,7 @@ class Product extends Component
             'details' => $this->kit."—".$this->category."—".$this->remote."—".$this->adaptor."—".$this->color_selected
         ];
         session()->put('cart', $cartItems);
-        session()->flash('success', 'Product has been added to the cart!');
+        session()->flash('success', 'Added to the cart!');
         $this->emit('cartCheck');
         $this->emit('addToCart');
     }
