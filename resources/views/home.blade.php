@@ -56,7 +56,9 @@
         <div class="py-[120px] relative z-10 overflow-x-hidden">
             <h4 class="text-4xl text-center uppercase font-bold text-main mb-12 choose 475px:text-2xl">Light of Neon - Power of Will</h4>
             <div class="grid grid-cols-2 1045px:grid-cols-1 1045px:max-w-xl m-auto gap-6 bg-light backdrop-blur-lg  600px:p-3 shadow-md text-white" x-data="{ placeholder: 'Type here...', text: 'Your Text' }">
-                <div class="w-full bg-cover 1045px:h-[300px] overflow-hidden bg-center flex items-center justify-center lazyload" loading="lazy" style="background-image: url({{ asset('assets/background.jpg') }})"></div>
+                <div class="w-full bg-cover 1045px:h-[300px] overflow-hidden bg-center flex items-center justify-center">
+                    <video src="{{ asset('videos/neon-sign-unboxing-video.MOV') }}" controls loop autoplay muted></video>
+                </div>
                 <div class="p-6 py-12 flex flex-col 600px:p-2">
                     <h3 class="text-6xl font-semibold uppercase mb-3 leading-[80px] text-parrot rubik 600px:text-3xl">CREATE YOUR OWN <br> NEON SIGN</h3>
                     <i><p class="mb-3 leading-7">Design your unique neon sign with our online custom tool in less than 5 minutes and enjoy 20% OFF + Free Shipping worldwide! 
@@ -75,12 +77,12 @@
                     <h2 class="text-white font-semibold text-3xl mb-3 400px:text-2xl">Bright and Vivid Colors:</h2>
                     <p class="mb-6 text-gray-200 leading-8">Neon signs are known for their vibrant and eye-catching colors. The use of different gases, such as neon, argon, and mercury vapor, produces distinct hues. Neon emits a red-orange glow, while argon produces blues and purples. The combination of phosphor coatings on the glass tubes further enhances the color palette. This characteristic makes neon signs highly visible, especially in low-light environments, contributing to their popularity in signage and decorative displays.</p>
                 </div>
-                <img class="max-w-[350px] w-full rounded-md 670px:max-w-full" src="{{ asset('assets/bright.png') }}" title="Buy Bright Neon Signs" alt="Buy Bright Neon Signs">
+                <img class="max-w-[350px] w-full rounded-md 670px:max-w-full" src="{{ asset('assets/designs/vibrant-and-bright-neon-signs.jpeg') }}" title="Buy Bright Neon Signs" alt="Buy Bright Neon Signs">
             </div>
 
 
             <div class="flex items-center mb-12 800px:flex-col">
-                <img class="max-w-[350px] w-full rounded-md 800px:order-2 670px:max-w-full" src="{{ asset('assets/glow.png') }}" title="Buy Bright / Glowing Neon Signs" alt="Buy Bright / Glowing Neon Signs">
+                <img class="max-w-[350px] w-full rounded-md 800px:order-2 670px:max-w-full" src="{{ asset('assets/designs/neon-sign-glow.jpeg') }}" title="Buy Bright / Glowing Neon Signs" alt="Buy Bright / Glowing Neon Signs">
                 <div class="w-full py-3 pl-12 800px:pl-0 800px:order-1">
                     <h2 class="text-white font-semibold text-3xl mb-3 400px:text-2xl">Glow and Illumination:</h2>
                     <p class="mb-6 text-gray-200 leading-8">Neon signs possess a distinctive radiant glow that sets them apart from other lighting sources. This glow is created through the ionization of gases within the sealed glass tubes when an electric current passes through them. The illumination is evenly distributed along the length of the tube, providing a consistent and attractive light output. This characteristic makes neon signs ideal for creating a warm and inviting ambiance in various settings, from storefronts and restaurants to entertainment venues.</p>
@@ -93,11 +95,11 @@
                     <h2 class="text-white font-semibold text-3xl mb-3 400px:text-2xl">Versatility in Design:</h2>
                     <p class="mb-6 text-gray-200 leading-8">Neon signs offer remarkable flexibility in design, allowing for intricate and artistic creations. Skilled artisans can shape the glass tubes into a wide range of forms, from simple letters and logos to complex and intricate designs. The malleability of the tubes enables the creation of custom shapes and symbols, making neon signs a popular choice for businesses seeking unique and personalized signage. This characteristic has contributed to the enduring appeal of neon signs as iconic elements in urban landscapes.</p>
                 </div>
-                <img class="max-w-[350px] w-full rounded-md 670px:max-w-full" src="{{ asset('assets/versat.png') }}" title="Buy Versatility In Design Neon Signs" alt="Buy Versatility In Design Neon Signs">
+                <img class="max-w-[350px] w-full rounded-md 670px:max-w-full" src="{{ asset('assets/designs/different-versat-design-neon-signs.jpeg') }}" title="Buy Versatility In Design Neon Signs" alt="Buy Versatility In Design Neon Signs">
             </div>
 
             <div class="flex items-center 800px:flex-col">
-                <img class="max-w-[350px] w-full rounded-md 800px:order-2 670px:max-w-full" src="{{ asset('assets/durability.png') }}" title="Buy Durability Neon Signs" alt="Buy Durability Neon Signs">
+                <img class="max-w-[350px] w-full rounded-md 800px:order-2 670px:max-w-full" src="{{ asset('assets/designs/neon-sign-durability.jpeg') }}" title="Buy Durability Neon Signs" alt="Buy Durability Neon Signs">
                 <div class="w-full py-3 pl-12 800px:pl-0 800px:order-1">
                     <h2 class="text-white font-semibold text-3xl mb-3 400px:text-2xl">Longevity and Durability:</h2>
                     <p class="mb-6 text-gray-200 leading-8">Neon signs are known for their durability and long lifespan. The sealed glass tubes protect the gases from external elements, preventing oxidation and ensuring a consistent performance over time. When properly maintained, neon signs can last for many years, providing a cost-effective and reliable lighting solution. This longevity, coupled with their ability to withstand various weather conditions, makes neon signs a durable choice for both indoor and outdoor applications. Additionally, the lack of filaments or delicate components reduces the risk of damage due to vibrations or impacts, further enhancing their robustness.</p>
@@ -105,8 +107,6 @@
             </div>
         </div>
     </section>
-
-    
 
     <section class="w-full">
         <x-brands />

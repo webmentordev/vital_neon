@@ -20,3 +20,4 @@ yarn-error.log
 /*.sql
 /*.zip
 /public/*.zip
+/public/videos

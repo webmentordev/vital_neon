@@ -6,9 +6,9 @@
             <address class="flex items-center mb-3"><img class="mr-2" src="https://api.iconify.design/material-symbols:add-location-alt-rounded.svg?color=%23dbdbdb" width="25" alt="Address Icon"> L6T 2K5, Brampton, ON, Canada, Ontario</address>
             <address class="flex items-center mb-3"><img class="mr-2" src="https://api.iconify.design/mdi:gmail.svg?color=%23dbdbdb" width="25" alt="Address Icon"> contact@vitalneon.com</address>
             <ul class="flex items-center">
-                <a class="mr-4" href="https://www.instagram.com/vitalneon/" rel="nofollow" target="_blank"><img src="https://api.iconify.design/skill-icons:instagram.svg?color=%23f91a1a" width="25" alt="Social Media Icon"></a>
+                <a class="mr-4" href="https://www.instagram.com/vital.neon/" rel="nofollow" target="_blank"><img src="https://api.iconify.design/skill-icons:instagram.svg?color=%23f91a1a" width="25" alt="Social Media Icon"></a>
                 
-                <a class="mr-4" href="https://www.facebook.com/profile.php?id=100089690514265/" rel="nofollow" target="_blank"><img src="https://api.iconify.design/logos:facebook.svg?color=%23f91a1a" width="25" alt="Facebook Icon"></a>
+                <a class="mr-4" href="https://www.facebook.com/profile.php?id=100095082327532" rel="nofollow" target="_blank"><img src="https://api.iconify.design/logos:facebook.svg?color=%23f91a1a" width="25" alt="Facebook Icon"></a>
                 
                 <a class="mr-4" href="https://www.pinterest.com/mobycarts/" target="_blank" rel="nofollow"><img src="https://api.iconify.design/logos:pinterest.svg?color=%23f72696" width="25" alt="Pinterest"></a>
                 

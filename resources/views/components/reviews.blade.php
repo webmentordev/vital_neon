@@ -12,7 +12,7 @@
                             <li><img width="25px" src="https://api.iconify.design/material-symbols:star.svg?color=%23FFA41C" alt="Review star"></li>
                             <li><img width="25px" src="https://api.iconify.design/material-symbols:star-half.svg?color=%23FFA41C" alt="Review star"></li>
                         </ul>
-                        <p class="text-white">from <b>70+</b> Happy Customers</p>
+                        <p class="text-white">from <b>200+</b> Happy Customers</p>
                     </div>
                 </div>
                 <h2 class="text-3xl mt-3 mb-4 text-white font-bold flex" title="VitalNeon Etsy Reviews">What our <img src="{{ asset('assets/etsy_logo.png') }}" width="40" height="35" class="mx-2 inline-block" alt="Etsy Logo"> customers think</h2>

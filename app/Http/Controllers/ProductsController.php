@@ -50,10 +50,11 @@ class ProductsController extends Controller
         $this->validate($request, [
             'search' => 'required|max:255'
         ]);
-        $result = Product::where('name', 'LIKE', '%'.$request->search.'%')
-            ->where('is_active', true)
-            ->orWhere('body', 'LIKE', '%'.$request->search.'%')
-            ->orWhere('description', 'LIKE', '%'.$request->search.'%')
+        $result = Product::where('is_active', true)
+            ->where(function($query) use ($request) {
+                $query->orWhere('name', 'LIKE', '%'.$request->search.'%')
+                    ->orWhere('description', 'LIKE', '%'.$request->search.'%');
+            })
             ->latest()
             ->get();
         Search::create([
