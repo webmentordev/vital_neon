@@ -11,9 +11,7 @@
         @foreach ($product as $item)
             <div class="grid grid-cols-2 gap-3 rounded-lg mb-6 overflow-hidden 890px:grid-cols-1 890px:max-w-lg m-auto">
                 <div class="w-full">
-                    <a href="{{ asset('storage/'.$item->image) }}" title="{{ $item->name }}" class="h-fit" target="_blank">
-                        <img data-src="{{ asset('storage/'.$item->image) }}" class="w-full lazyload rounded-lg 890px:h-[450px] 890px:object-cover" loading="lazy" alt="Buy {{ $item->name }}" title="Buy {{ $item->name }}">
-                    </a>
+                    <img data-src="{{ asset('storage/'.$item->image) }}" class="w-full lazyload rounded-lg 890px:h-[450px] 890px:object-cover" loading="lazy" alt="Buy {{ $item->name }}" title="Buy {{ $item->name }}">
                     <img class="mt-3" src="{{ asset('assets/colors.png') }}" title="VitalNeon signs colors" alt="Colors selection">
                 </div>
                 <div class="bg-light p-6 h-fit w-full bottom-0 left-0 870px:max-h-fit overflow-y-scroll">

@@ -32,12 +32,6 @@
                     @endforeach
                 </div>
             </div>
-            <form action="{{ route('product.search') }}" class="mb-6" method="get">
-                <div class="bg-dark rounded-lg flex 490px:flex-col">
-                    <input type="text" id="search" class="border-white/10 border bg-light mr-2 490px:border 490px:border-white/10 focus:outline-none rounded-lg py-3 490px:py-3 490px:ml-0 490px:mb-2 w-full outline-none text-gray-300" autocomplete="off" placeholder="Search for any product..." name="search">
-                    <button type="submit" class="bg-main text-dark font-semibold px-6 rounded-lg 490px:py-3">Search</button>
-                </div>
-            </form>
             <div class="grid grid-cols-3 gap-6 m-auto 1170px:grid-cols-3 940px:grid-cols-2 940px:max-w-2xl 620px:grid-cols-1 620px:max-w-[390px]">
                 @foreach ($products as $item)
                     <a href="{{ route('listing', $item->slug) }}" class="overflow-hidden rounded-lg group transition-all relative">

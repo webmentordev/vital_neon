@@ -23,6 +23,9 @@ module.exports = {
                 "1290px": {
                     "max": "1290px"
                 },
+                "1220px": {
+                    "max": "1220px"
+                },
                 "1210px": {
                     "max": "1210px"
                 },

@@ -1,7 +1,7 @@
 <nav class="w-full py-2 sticky top-0 left-0 z-50 bg-dark text-white bg-opacity-80 backdrop-blur-lg border-b border-white/10">
     <div class="flex items-center justify-between max-w-7xl m-auto w-full px-2">
         <a href="{{ route('home') }}" class="text-3xl font-semibold py-1"><img src="{{ asset('assets/neon_tranp_white.png') }}" width="130" alt="Vital Neon"></a>
-        <ul class="flex font-normal items-center capitalize 940px:hidden">
+        <ul class="flex font-normal items-center capitalize 1220px:hidden">
             <a class="mx-4" href="{{ route('home') }}">Home</a>
             <a class="mx-4" href="{{ route('products') }}">Products</a>
             <a class="mx-4" href="{{ route('create-design') }}">Design Your Own</a>
@@ -25,15 +25,31 @@
                     </ul>
                 </div>
             </div>
+            <form action="{{ route('product.search') }}" method="get">
+                <div class="flex mr-2 items-center border bg-light border-white/10 rounded-full pr-1">
+                    <input type="text" id="search" class="bg-transparent border-none focus:outline-none rounded-lg py-2 w-full outline-none text-gray-300" autocomplete="off" placeholder="Search for any product..." name="search">
+                    <button type="submit" class="bg-main text-dark font-semibold rounded-full p-1 h-fit">
+                        <img src="https://api.iconify.design/ic:round-search.svg?color=%23272626" width="30" alt="Search icon">
+                    </button>
+                </div>
+            </form>
             <a href="{{ route('carts') }}" class="relative">
                 <img src="https://api.iconify.design/ion:md-basket.svg?color=%23ffffff" width="30" alt="Cart">
                 <span class="bg-white absolute -top-3 h-[20px] w-[20px] flex items-center justify-center text-[10px] right-0 p-[2px] font-bold px-[5px] rounded-full text-black">{{ $itemsCount }}</span>
             </a>
         </ul>
-        <div class="hidden 940px:block">
+        <div class="hidden 1220px:block">
             <div class="flex items-center">
                 <a class="text-base mr-6" title="VitalNeon Neon Signs" href="{{ route('products') }}">Products</a>
                 <a class="text-base mr-6" title="VitalNeon Cart" href="{{ route('carts') }}">Cart</a>
+                <form action="{{ route('product.search') }}" method="get">
+                    <div class="flex mr-2 items-center border bg-light border-white/10 rounded-full pr-1 670px:hidden">
+                        <input type="text" id="search" class="bg-transparent border-none focus:outline-none rounded-lg py-2 w-full outline-none text-gray-300" autocomplete="off" placeholder="Search for any product..." name="search">
+                        <button type="submit" class="bg-main text-dark font-semibold rounded-full p-1 h-fit">
+                            <img src="https://api.iconify.design/ic:round-search.svg?color=%23272626" width="30" alt="Search icon">
+                        </button>
+                    </div>
+                </form>
                 <div x-data="{open: false}">
                     <div x-on:click="open = true" class="p-2 rounded-full bg-white cursor-pointer">
                         <img width="30" src="https://api.iconify.design/ph:text-align-right-fill.svg?color=%23000000" alt="Align image">
@@ -69,5 +85,15 @@
                 </div>
             </div>
         </div>
+    </div>
+    <div class="px-2 hidden 670px:block">
+        <form action="{{ route('product.search') }}" method="get">
+            <div class="flex mt-4 items-center border bg-light border-white/10 rounded-full pr-1">
+                <input type="text" id="search" class="bg-transparent border-none focus:outline-none rounded-lg py-2 w-full outline-none text-gray-300" autocomplete="off" placeholder="Search for any product..." name="search">
+                <button type="submit" class="bg-main text-dark font-semibold rounded-full p-1 h-fit">
+                    <img src="https://api.iconify.design/ic:round-search.svg?color=%23272626" width="30" alt="Search icon">
+                </button>
+            </div>
+        </form>
     </div>
 </nav>
