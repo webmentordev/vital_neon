@@ -8,6 +8,12 @@
         @if (session('success'))
             <x-success class="bottom-[85px]" :message="session('success')" />
         @endif
+
+        <div wire:loading wire:target='clickPay'>
+            <x-processing class="bottom-[85px]" message="Processing..." />
+        </div>
+        
+
         @foreach ($product as $item)
             <div class="grid grid-cols-2 gap-3 rounded-lg mb-6 overflow-hidden 890px:grid-cols-1 890px:max-w-lg m-auto">
                 <div class="w-full">

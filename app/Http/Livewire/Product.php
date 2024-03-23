@@ -9,6 +9,7 @@ use App\Models\Remote;
 use App\Models\Address;
 use Livewire\Component;
 use Stripe\StripeClient;
+use App\Mail\OrderPlaced;
 use App\Models\PriceIncrement;
 use App\Mail\RedirectOrderEmail;
 use Illuminate\Support\Facades\Http;
@@ -180,7 +181,7 @@ class Product extends Component
             'cancel_url' => config('app.url').'/cancel-order/'.$checkout,
             'currency' => "USD",
             'billing_address_collection' => 'required',
-            'expires_at' => Carbon::now()->addMinutes(60)->timestamp,
+            'expires_at' => Carbon::now()->addMinutes(360)->timestamp,
             'line_items' => [
                     [ 
                         'price_data' => [
@@ -198,6 +199,7 @@ class Product extends Component
         Http::post(config('app.product-pending'), [
             'content' => $content
         ]);
+        Mail::to($this->email)->send(new OrderPlaced($checkout['url']));
         return redirect($checkout['url']);
     }
 }
