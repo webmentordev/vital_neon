@@ -6,10 +6,11 @@ use Carbon\Carbon;
 use App\Models\Kit;
 use App\Models\Order;
 use App\Models\Remote;
+use App\Models\Address;
 use Livewire\Component;
 use Stripe\StripeClient;
-use App\Mail\RedirectOrderEmail;
 use App\Models\PriceIncrement;
+use App\Mail\RedirectOrderEmail;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Mail;
 use Artesaos\SEOTools\Facades\JsonLd;
@@ -20,54 +21,38 @@ use Artesaos\SEOTools\Facades\TwitterCard;
 
 class Product extends Component
 {
-    public $product, $remote, $kits, $kit, $kit_price, $shapes, $categories, $adaptor, $category;
-    public $adaptors = [
-        "USA/Canada",
-        "UK/IRELAND",
-        "EUROPE",
-        "AUSTRALIA/NA",
-        "JAPAN"
-    ], $remotes, $total_price = 0, $increment = 0, $category_price;
-
-    protected $rules = [
-        'remote' => 'required',
-        'remote' => 'required',
-        'adaptor' => 'required',
-        'kit' => 'required',
-        'category' => 'required'
-    ];
+    public $product, $categories, $category, $email;
+    public $total_price = 0, $increment = 0, $category_price;
 
     public $colors = [
-        "Same As Image",
-        "Warm White",
-        "Cool White",
-        "Lemon Yellow",
-        "Gold Yellow",
-        "Orange",
-        "Dark Blue",
-        "Ice Blue",
-        "Green",
-        "Hot Pink",
-        "Red",
-        "Purple",
-        "Real",
-        "RGB",
+        "#FBF1B6",
+        "#ffffff",
+        "#FBF64F",
+        "#FDD630",
+        "#F98802",
+        "#0202DC",
+        "#90DCFD",
+        "#07E54F",
+        "#FB30E5",
+        "#F3031C",
+        "#A302DE",
+        "#80F9D6"
     ], $color_selected;
+
+    protected $rules = [
+        'category' => 'required',
+        'color_selected' => 'required',
+        'email' => 'required|email|max:255'
+    ];
 
     public function mount($slug){
         $result = ModelsProduct::where('slug', $slug)->with('categories')->get();
         if(count($result)){
-            $this->remotes = Remote::all();
-            $this->kits = Kit::all();
             $increment = PriceIncrement::where('is_active', true)->first();
-            $this->remote = $this->remotes[0]->type;
             $this->categories = $result[0]->categories;
-            $this->adaptor = $this->adaptors[0];
-            $this->kit = $this->kits[0]->name;
             $this->category_price = 0;
             $this->product = $result;
             $this->increment = $increment->percentage;
-            $this->color_selected = $this->colors[0];
             $this->priceCalculator();
 
             SEOMeta::setTitle($result[0]->name);
@@ -98,44 +83,28 @@ class Product extends Component
         }
     }
 
-    public function updated(){
-        foreach($this->categories as $category){
-            if($this->category == $category->name){
-                $this->category_price = $category->price;
-            }
-        }
-        $this->priceCalculator();
-    }
-
     public function render()
     {
         return view('livewire.product');
     }
 
     public function updatedcategory(){
+        foreach($this->categories as $category){
+            if($this->category == $category->name){
+                $this->category_price = $category->price;
+            }
+        }
         if($this->category == "custom"){
             return redirect("https://wa.me/16476165799");
         }
+        $this->priceCalculator();
     }
 
     public function priceCalculator(){
-        $result = Remote::where('type', $this->remote)->first();
-        $kit_price = Kit::where("name", $this->kit)->first();
         $total = PriceIncrement::where("is_active", true)->first();
-        if($kit_price == null){
-            abort(500, "Internal Server Error");
-        }
-        if($result != null){
-            $sub_total = $this->category_price + $result->price + $kit_price->price;
-            $total_price = $sub_total + ($sub_total * ($total->percentage/100));
-            if($this->color_selected == "RGB"){
-                $this->total_price = $total_price + 50;
-            }else{
-                $this->total_price = $total_price;
-            }
-        }else{
-            abort(500, 'Internal Error');
-        }
+        $sub_total = $this->category_price;
+        $total_price = $sub_total + ($sub_total * ($total->percentage/100));
+        $this->total_price = $total_price;
     }
 
     function randomPassword() {
@@ -161,11 +130,74 @@ class Product extends Component
             'name' => $this->product[0]->name,
             'color' => $this->color_selected,
             'image' => config('app.url').'/storage/'.$this->product[0]->image,
-            'details' => $this->kit."—".$this->category."—".$this->remote."—".$this->adaptor."—".$this->color_selected
+            'details' => "Color: ".$this->color_selected
         ];
         session()->put('cart', $cartItems);
         session()->flash('success', 'Added to the cart!');
         $this->emit('cartCheck');
         $this->emit('addToCart');
+    }
+
+    public function randomCheckout() {
+        $alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890';
+        $pass = array();
+        $alphaLength = strlen($alphabet) - 1;
+        for ($i = 0; $i < 20; $i++) {
+            $n = rand(0, $alphaLength);
+            $pass[] = $alphabet[$n];
+        }
+        return implode($pass);
+    }
+
+
+    public function clickPay(){
+        $this->validate();
+        $checkout = $this->randomCheckout();
+        $this->priceCalculator();
+        $address = Address::create([
+            'name' => "Check Stripe",
+            'address' => "Check Stripe",
+            'number' => 312331231231231,
+            'email' => $this->email,
+            'checkout_id' => $checkout
+        ]);
+
+        $stripe = new StripeClient(config('app.stripe'));
+        
+        Order::create([
+            'quantity' => 1,
+            'price' => $this->total_price,
+            'slug' => $this->product[0]->slug,
+            'name' => $this->product[0]->name,
+            'color' => $this->color_selected,
+            'details' => "Color: ".$this->color_selected,
+            "checkout_id" => $checkout,
+            "address_id" => $address->id
+        ]);
+
+        $checkout = $stripe->checkout->sessions->create([
+            'success_url' => config('app.url').'/success-order/'.$checkout,
+            'cancel_url' => config('app.url').'/cancel-order/'.$checkout,
+            'currency' => "USD",
+            'billing_address_collection' => 'required',
+            'expires_at' => Carbon::now()->addMinutes(60)->timestamp,
+            'line_items' => [
+                    [ 
+                        'price_data' => [
+                        "product" => $this->product[0]->stripe_id,
+                        "currency" => 'USD',
+                        "unit_amount" =>  $this->total_price * 100,
+                    ], 
+                'quantity' => 1 
+                ],
+            ],
+            'mode' => 'payment'
+        ]);
+        $content = "Direct order placed:**Details:** {$checkout['url']}";
+        
+        Http::post(config('app.product-pending'), [
+            'content' => $content
+        ]);
+        return redirect($checkout['url']);
     }
 }
