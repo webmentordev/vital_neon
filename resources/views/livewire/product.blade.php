@@ -17,8 +17,14 @@
         @foreach ($product as $item)
             <div class="grid grid-cols-2 gap-3 rounded-lg mb-6 overflow-hidden 890px:grid-cols-1 890px:max-w-lg m-auto">
                 <div class="w-full">
-                    <img data-src="{{ asset('storage/'.$item->image) }}" class="w-full lazyload rounded-lg 890px:h-[450px] 890px:object-cover" loading="lazy" alt="Buy {{ $item->name }}" title="Buy {{ $item->name }}">
-                    <img class="mt-3 890px:hidden" src="{{ asset('assets/colors.png') }}" title="VitalNeon signs colors" alt="Colors selection">
+                    <img data-src="{{ asset('storage/'.$item->image) }}" class="w-full lazyload rounded-lg mb-3 890px:h-[450px] 890px:object-cover" loading="lazy" alt="Buy {{ $item->name }}" title="Buy {{ $item->name }}">
+                    {{-- <img class="mt-3 890px:hidden" src="{{ asset('assets/colors.png') }}" title="VitalNeon signs colors" alt="Colors selection"> --}}
+                    <a href="https://www.trustpilot.com/review/vitalneon.com" title="Vital Neon TrustPilot reviews" target="_blank" rel="nofollow" class="py-3 rounded-lg bg-gray-100 mb-6">
+                        <img class="max-w-[80%] w-full m-auto" src="{{ asset('assets/vital-neon-trustpilot-reviews.png') }}" alt="Vital Neon TrustPilot reviews">
+                    </a>
+                    <a href="https://www.etsy.com/shop/VitalNeons" title="Vital Neon Etsy reviews" target="_blank" rel="nofollow" class="mb-3 py-3 rounded-lg bg-gray-100">
+                        <img class="max-w-[80%] w-full m-auto" src="{{ asset('assets/vital-neon-etsy-reviews.png') }}" alt="Vital Neon Etsy reviews">
+                    </a>
                 </div>
                 <div class="bg-light p-6 h-fit w-full bottom-0 left-0 870px:max-h-fit overflow-y-scroll">
                     <h1 class="text-white mb-3 text-3xl capitalize font-bold">{{ $product[0]->name }}</h1>
@@ -81,16 +87,9 @@
                         <img src="{{ asset('assets/images/payment_cards.png') }}" width="190px" alt="Stripe Payment methods icon">
                         <img src="{{ asset('assets/images/stripe_square_logo.png') }}" width="190px" alt="Powerd by stipe image">
                     </div>
-                    <a href="https://www.trustpilot.com/review/vitalneon.com" title="Vital Neon TrustPilot reviews" target="_blank" rel="nofollow" class="mb-3 py-2 rounded-lg bg-gray-100">
-                        <img class="max-w-[80%] w-full m-auto" src="{{ asset('assets/vital-neon-trustpilot-reviews.png') }}" alt="Vital Neon TrustPilot reviews">
-                    </a>
-                    <a href="https://www.etsy.com/shop/VitalNeons" title="Vital Neon Etsy reviews" target="_blank" rel="nofollow" class="mb-3 py-2 rounded-lg bg-gray-100">
-                        <img class="max-w-[60%] w-full m-auto" src="{{ asset('assets/vital-neon-etsy-reviews.png') }}" alt="Vital Neon Etsy reviews">
-                    </a>
                 </div>
             </div>
         @endforeach
-        <p class="p-6 border-l border-gray-400 bg-light text-white mb-6 text-[13px] leading-6">We're pleased to offer Stripe as our payment system, providing you with a secure and reliable way to make payments. With Stripe, your credit card information is kept safe and secure, as we don't store it on our servers. We only collect your email address for communication purposes, and we never share your personal information with third parties. Stripe's user-friendly interface allows for seamless payments, giving you peace of mind and a smooth payment experience. Thank you for choosing to shop with us!</p>
         <main class="main-body">
             {!! $product[0]->body !!}
         </main>

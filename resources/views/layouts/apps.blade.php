@@ -78,16 +78,18 @@
     document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
     }
 </script>
-<script>
-    document.addEventListener('keydown', function(e) {
-        // Check if F12 key is pressed
-        if (e.keyCode == 123) {
-            e.preventDefault();
-            return false;
-        }
-    });
-    document.addEventListener('contextmenu', function(e) {
-        e.preventDefault();
-    });
-</script>
+    @guest
+        <script>
+            document.addEventListener('keydown', function(e) {
+                // Check if F12 key is pressed
+                if (e.keyCode == 123) {
+                    e.preventDefault();
+                    return false;
+                }
+            });
+            document.addEventListener('contextmenu', function(e) {
+                e.preventDefault();
+            });
+        </script>
+    @endguest
 </html>

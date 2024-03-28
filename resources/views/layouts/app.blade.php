@@ -72,16 +72,18 @@
             filebrowserUploadMethod: 'form'
         });
     </script>
-    <script>
-        document.addEventListener('keydown', function(e) {
-            // Check if F12 key is pressed
-            if (e.keyCode == 123) {
+    @guest
+        <script>
+            document.addEventListener('keydown', function(e) {
+                // Check if F12 key is pressed
+                if (e.keyCode == 123) {
+                    e.preventDefault();
+                    return false;
+                }
+            });
+            document.addEventListener('contextmenu', function(e) {
                 e.preventDefault();
-                return false;
-            }
-        });
-        document.addEventListener('contextmenu', function(e) {
-            e.preventDefault();
-        });
-    </script>
+            });
+        </script>
+    @endguest
 </html>

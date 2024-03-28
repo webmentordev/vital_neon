@@ -6,7 +6,7 @@
 
     <section class="w-full font-semibold">
         <div class="max-w-7xl m-auto py-12 px-4 grid grid-cols-3 gap-3 w-full 670px:grid-cols-1">
-            <a href="{{ route('home') }}/products/search?search=acrylic" class="relative w-full h-full col-span-2">
+            <a href="{{ route('home') }}/products/search?search=artistic" class="relative w-full h-full col-span-2">
                 <img class="h-full w-full rounded-lg border border-transparent hover:border-white" src="{{ asset('assets/banner/pop-art-artistic-neon-sign-banner.gif') }}" alt="Banner 1">
                 <span class="absolute 1090px:hidden z-10 right-3 bottom-3 transition-all hover:bg-main bg-light/60 drop-shadow-lg border border-white/10 rounded-md text-white py-3 px-4">Shop Now</span>
             </a>
@@ -15,7 +15,7 @@
                     <img class="w-full rounded-lg border border-transparent hover:border-white" src="{{ asset('assets/banner/rgb-neon-sign-banner.gif') }}" alt="Banner 2">
                     <span class="absolute 1090px:hidden z-10 left-3 bottom-3 transition-all hover:bg-main bg-light/60 drop-shadow-lg border border-white/10 rounded-md text-white py-3 px-4">Shop Now</span>
                 </a>
-                <a class="h-full w-full relative" href="{{ route('home') }}/products/search?search=artistic">
+                <a class="h-full w-full relative" href="{{ route('home') }}/products/search?search=acrylic">
                     <img class="w-full rounded-lg border border-transparent hover:border-white" src="{{ asset('assets/banner/acrylic-neon-sign-banner.gif') }}" alt="Banner 3">
                     <span class="absolute 1090px:hidden z-10 right-3 bottom-3 transition-all hover:bg-main bg-light/60 drop-shadow-lg border border-white/10 rounded-md text-white py-3 px-4">Shop Now</span>
                 </a>
