@@ -58,14 +58,14 @@ class Product extends Component
 
             SEOMeta::setTitle($result[0]->name);
             SEOMeta::setDescription($result[0]->description);
-            SEOMeta::setCanonical("https://vitalneon.com/".$result[0]->slug);
+            SEOMeta::setCanonical("https://vitalneon.com/product/".$result[0]->slug);
             SEOMeta::setRobots("index, follow");
             SEOMeta::addMeta("apple-mobile-web-app-title", "VitalNeon");
             SEOMeta::addMeta("application-name", "VitalNeon");
 
             OpenGraph::setTitle($result[0]->name);
             OpenGraph::setDescription($result[0]->description); 
-            OpenGraph::setUrl("https://vitalneon.com/".$result[0]->slug);
+            OpenGraph::setUrl("https://vitalneon.com/product/".$result[0]->slug);
             OpenGraph::addProperty("type", "website");
             OpenGraph::addProperty("locale", "eu");
             OpenGraph::addImage("https://vitalneon.com/storage/".$result[0]->image, ["height" => 630, "width" => 630]);
