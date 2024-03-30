@@ -92,6 +92,10 @@
         @endforeach
         <main class="main-body">
             {!! $product[0]->body !!}
+            <p class="mb-1"><strong>Published at</strong>: <time class="entry-date published" datetime="{{ $product[0]->created_at->tz('UTC')->toAtomString() }}" itemprop="datePublished">{{ $product[0]->created_at->format('M, d Y') }}</time></p>
+            @if ($product[0]->created_at != $product[0]->updated_at)
+                <p class="mb-3"><strong>Last Updated</strong>: <time class="entry-date published" datetime="{{ $product[0]->updated_at->tz('UTC')->toAtomString() }}" itemprop="datePublished">{{ $product[0]->updated_at->format('M, d Y') }}</time>
+            @endif
         </main>
     </div>
     <script>

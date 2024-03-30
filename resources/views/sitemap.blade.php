@@ -84,15 +84,7 @@
         <url>
             <loc>{{ url('/') }}/products/category/{{ $category->slug }}</loc>
             <lastmod>{{ $category->created_at->tz('UTC')->toAtomString() }}</lastmod>
-            <changefreq>occasionally</changefreq>
-            <priority>0.80</priority>
-        </url>
-    @endforeach
-    @foreach ($blogs as $blog)
-        <url>
-            <loc>{{ url('/') }}/blog/{{ $blog->slug }}</loc>
-            <lastmod>{{ $blog->created_at->tz('UTC')->toAtomString() }}</lastmod>
-            <changefreq>occasionally</changefreq>
+            <changefreq>yearly</changefreq>
             <priority>0.80</priority>
         </url>
     @endforeach
