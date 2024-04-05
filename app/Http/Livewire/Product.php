@@ -23,6 +23,7 @@ use Artesaos\SEOTools\Facades\TwitterCard;
 class Product extends Component
 {
     public $product, $categories, $category, $email;
+    public $setting = "purchase";
     public $total_price = 0, $increment = 0, $category_price;
 
     public $colors = [

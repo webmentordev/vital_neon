@@ -28,65 +28,82 @@
                 </div>
                 <div class="bg-light p-6 h-fit w-full bottom-0 left-0 870px:max-h-fit overflow-y-scroll">
                     <h1 class="text-white mb-3 text-3xl capitalize font-bold">{{ $product[0]->name }}</h1>
-                    <h3 class="text-white font-semibold mb-1">Select size <span class="text-main">(Step#01)</span></h3>
-                    <div class="flex flex-wrap mb-4">
-                        @foreach ($categories as $item)
-                            <span wire:click="$set('category', '{{ $item->name }}')" class="text-sm cursor-pointer py-1 px-3 rounded-full border @if ($category == $item->name)
-                                border-main
-                            @else
-                                border-white/10
-                            @endif m-1 text-white">{{ $item->name }}</span>
-                        @endforeach
-                        <span wire:click="$set('category', 'custom')" class="text-sm cursor-pointer py-1 px-3 rounded-full border border-white/10 m-1 text-white">Custom</span>
+                    <div class="flex mb-3">
+                        <button class="w-full py-2 rounded-lg border border-white/10 px-3 text-white @if ($setting == 'purchase') bg-main @endif" wire:click="$set('setting', 'purchase')">
+                            Purchase
+                        </button>
+                        <button class="w-full py-2 ml-2 rounded-lg border border-white/10 px-3 text-white @if ($setting == 'install') bg-main @endif" wire:click="$set('setting', 'install')">
+                            Installation?
+                        </button>
                     </div>
-                    @error('category')
-                        <p class="text-red-600 mb-2">{{ $message }}</p>
-                    @enderror
-                    <h3 class="text-white font-semibold">Neon Sign color <span class="text-main">(Step#02)</span></h3>
-                    <p class="text-gray-300 text-sm mb-3">Same means that the neon sign color will be the same as in the image</p>
-                    <div class="flex flex-wrap mb-4 items-center">
-                        <span wire:click="$set('color_selected', 'Same')" class="p-1 px-3 m-1 border 
-                            @if ($color_selected == 'Same')
-                                border-main
-                            @else
-                                border-white/10
-                            @endif rounded-full cursor-pointer text-white text-sm">Same</span>
-                        @foreach ($colors as $color)
-                            <span wire:click="$set('color_selected', '{{ $color }}')" class="h-[15px] w-[15px] p-2 m-1 border-4 
-                            @if ($color_selected == $color)
-                                border-main
-                            @else
-                                border-transparent
-                            @endif rounded-full cursor-pointer" style="background-color: {{ $color }}"></span>
-                        @endforeach
-                    </div>
+                    @if ($setting == "purchase")
+                        <h3 class="text-white font-semibold mb-1">Select size <span class="text-main">(Step#01)</span></h3>
+                        <div class="flex flex-wrap mb-4">
+                            @foreach ($categories as $item)
+                                <span wire:click="$set('category', '{{ $item->name }}')" class="text-sm cursor-pointer py-1 px-3 rounded-full border @if ($category == $item->name)
+                                    border-main
+                                @else
+                                    border-white/10
+                                @endif m-1 text-white">{{ $item->name }}</span>
+                            @endforeach
+                            <span wire:click="$set('category', 'custom')" class="text-sm cursor-pointer py-1 px-3 rounded-full border border-white/10 m-1 text-white">Custom</span>
+                        </div>
+                        @error('category')
+                            <p class="text-red-600 mb-2">{{ $message }}</p>
+                        @enderror
+                        <h3 class="text-white font-semibold">Neon Sign color <span class="text-main">(Step#02)</span></h3>
+                        <p class="text-gray-300 text-sm mb-3">Same means that the neon sign color will be the same as in the image</p>
+                        <div class="flex flex-wrap mb-4 items-center">
+                            <span wire:click="$set('color_selected', 'Same')" class="p-1 px-3 m-1 border 
+                                @if ($color_selected == 'Same')
+                                    border-main
+                                @else
+                                    border-white/10
+                                @endif rounded-full cursor-pointer text-white text-sm">Same</span>
+                            @foreach ($colors as $color)
+                                <span wire:click="$set('color_selected', '{{ $color }}')" class="h-[15px] w-[15px] p-2 m-1 border-4 
+                                @if ($color_selected == $color)
+                                    border-main
+                                @else
+                                    border-transparent
+                                @endif rounded-full cursor-pointer" style="background-color: {{ $color }}"></span>
+                            @endforeach
+                        </div>
 
-                    @error('color_selected')
-                        <p class="text-red-600 mb-2">{{ $message }}</p>
-                    @enderror
+                        @error('color_selected')
+                            <p class="text-red-600 mb-2">{{ $message }}</p>
+                        @enderror
 
-                    <h3 class="text-white font-semibold mb-1">Email Address <span class="text-main">(Step#03)</span></h3>
-                    <input type="text" wire:model.debounce.2000ms="email" placeholder="Contact Email Address" class="w-full bg-dark mt-2 rounded border border-white/10 focus:ring-4 focus:ring-main text-base outline-none text-gray-300 py-2 px-3 leading-8 transition-colors duration-200 ease-in-out mb-3">
-                    @error('email')
-                        <p class="text-red-600 mb-2">{{ $message }}</p>
-                    @enderror
-                    
-                    <div class="flex items-center">
-                        <button class="py-3 px-4 mb-2 mr-3 w-full bg-white rounded-md font-bold text-dark add_to_cart" wire:click="addToCart('{{ $product[0]->slug }}')" id="add_to_cart">Add To Cart</button>
-                        <a href="{{ route('carts') }}" class="py-3 px-4 mb-3 w-full bg-white rounded-md text-center font-bold text-dark">Checkout</a>
-                    </div>
+                        <h3 class="text-white font-semibold mb-1">Email Address <span class="text-main">(Step#03)</span></h3>
+                        <input type="text" wire:model.debounce.2000ms="email" placeholder="Contact Email Address" class="w-full bg-dark mt-2 rounded border border-white/10 focus:ring-4 focus:ring-main text-base outline-none text-gray-300 py-2 px-3 leading-8 transition-colors duration-200 ease-in-out mb-3">
+                        @error('email')
+                            <p class="text-red-600 mb-2">{{ $message }}</p>
+                        @enderror
+                        
+                        <div class="flex items-center">
+                            <button class="py-3 px-4 mb-2 mr-3 w-full bg-white rounded-md font-bold text-dark add_to_cart" wire:click="addToCart('{{ $product[0]->slug }}')" id="add_to_cart">Add To Cart</button>
+                            <a href="{{ route('carts') }}" class="py-3 px-4 mb-3 w-full bg-white rounded-md text-center font-bold text-dark">Checkout</a>
+                        </div>
 
-                    <button class="p-3 bg-indigo-600 rounded-lg w-full mb-3 font-semibold text-lg text-white" wire:click="clickPay">
-                        {{-- <img src="{{ asset('assets/buy-with-stripe-logo.png') }}" class="w-[40%] m-auto" alt="Buy with stripe logo"> --}}
-                        Click and Pay Now
-                    </button>
-                    
-                    <p class="text-gray-300">🚚 Estimated Delivery: {{ \Carbon\Carbon::now()->format('d-M-y') }} - {{ \Carbon\Carbon::now()->addDays(5)->format('d-M-y') }}</p>
+                        <button class="p-3 bg-indigo-600 rounded-lg w-full mb-3 font-semibold text-lg text-white" wire:click="clickPay">
+                            {{-- <img src="{{ asset('assets/buy-with-stripe-logo.png') }}" class="w-[40%] m-auto" alt="Buy with stripe logo"> --}}
+                            Click and Pay Now
+                        </button>
+                        
+                        <p class="text-gray-300">🚚 Estimated Delivery: {{ \Carbon\Carbon::now()->format('d-M-y') }} - {{ \Carbon\Carbon::now()->addDays(5)->format('d-M-y') }}</p>
 
-                    <div class="flex justify-between items-center 530px:flex-col w-full mt-2 py-3 mb-2">
-                        <img src="{{ asset('assets/images/payment_cards.png') }}" width="190px" alt="Stripe Payment methods icon">
-                        <img src="{{ asset('assets/images/stripe_square_logo.png') }}" width="190px" alt="Powerd by stipe image">
-                    </div>
+                        <div class="flex justify-between items-center 530px:flex-col w-full mt-2 py-3 mb-2">
+                            <img src="{{ asset('assets/images/payment_cards.png') }}" width="190px" alt="Stripe Payment methods icon">
+                            <img src="{{ asset('assets/images/stripe_square_logo.png') }}" width="190px" alt="Powerd by stipe image">
+                        </div>
+                    @else
+                        <video src="{{ asset('videos/neon-sign-unboxing-video.MOV') }}" controls loop autoplay muted class="mb-3"></video>
+                        <p class="text-gray-300">🚚 Estimated Delivery: {{ \Carbon\Carbon::now()->format('d-M-y') }} - {{ \Carbon\Carbon::now()->addDays(5)->format('d-M-y') }}</p>
+                        <div class="flex justify-between items-center 530px:flex-col w-full mt-2 py-3 mb-2">
+                            <img src="{{ asset('assets/images/payment_cards.png') }}" width="190px" alt="Stripe Payment methods icon">
+                            <img src="{{ asset('assets/images/stripe_square_logo.png') }}" width="190px" alt="Powerd by stipe image">
+                        </div>
+                    @endif
                 </div>
             </div>
         @endforeach
