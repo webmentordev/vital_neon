@@ -57,7 +57,7 @@
             <h4 class="text-4xl text-center uppercase font-bold text-main mb-12 choose 475px:text-2xl">Light of Neon - Power of Will</h4>
             <div class="grid grid-cols-2 1045px:grid-cols-1 1045px:max-w-xl m-auto gap-6 bg-light backdrop-blur-lg  600px:p-3 shadow-md text-white" x-data="{ placeholder: 'Type here...', text: 'Your Text' }">
                 <div class="w-full bg-cover 1045px:h-[300px] overflow-hidden bg-center flex items-center justify-center">
-                    <video src="{{ asset('videos/neon-sign-unboxing-video.MOV') }}" controls loop autoplay muted></video>
+                    <video src="{{ asset('videos/how-to-create-custom-neon-sign.mp4') }}" controls loop autoplay muted></video>
                 </div>
                 <div class="p-6 py-12 flex flex-col 600px:p-2">
                     <h3 class="text-6xl font-semibold uppercase mb-3 leading-[80px] text-parrot rubik 600px:text-3xl">CREATE YOUR OWN <br> NEON SIGN</h3>
