@@ -36,9 +36,6 @@ class CreateDesign extends Component
         "items-center",
         "items-start",
         "items-end"
-    ],$jackets = [
-        "colored",
-        "white"
     ],$locations = [
         "In Door",
         "Out Door (water proof)"
@@ -100,21 +97,17 @@ class CreateDesign extends Component
     ], $kits, $adaptor, 
     $color, 
     $font,
-    $location,
-    $kit, $address, $direction;
+    $location, $address, $direction;
 
     public $shapes, 
     $shape, 
     $email, 
-    $remotes, 
-    $remote, 
     $lines, 
     $total_price = 0,
     $alignment,
     $line_price = 0, $increment = 0,
     $Select, $chars,
-    $line1, $line2, $line3, $kit_price, $phone,
-    $jacket, $leading = 50, $size = 42;
+    $line1, $line2, $line3, $kit_price, $phone, $leading = 50, $size = 42;
 
     public $line_count = 0,
     $dark_mode = false,
@@ -125,24 +118,19 @@ class CreateDesign extends Component
         'line1' => 'required',
         'address' => 'required|max:255',
         'shape' => 'required',
-        'remote' => 'required',
         'total_price' => 'required|numeric',
         'phone' => 'required|numeric',
         'alignment' => 'required',
         'color' => 'required',
         'font' => "required",
-        'adaptor' => 'required',
         'location' => 'required',
-        'kit' => 'required',
         'Select' => 'required',
         'email' => 'required|email',
     ];
 
     public function mount(){
         $this->shapes = Shape::all();
-        $this->remotes = Remote::all();
         $this->lines = Line::all();
-        $this->kits = Kit::all();
         $increment = PriceIncrement::where('is_active', true)->first();
         $this->font = $this->fonts[16];
         $this->color = $this->colors[0];
@@ -152,12 +140,7 @@ class CreateDesign extends Component
         $this->location = $this->locations[0];
         $this->adaptor = $this->adaptors[0];
         $this->alignment = $this->alignments[0];
-        $this->jacket = $this->jackets[0];
-        $this->remote = $this->remotes[0]->type;
-        $this->shape = $this->shapes[0]->shape;
         $this->line1 = "Text Here";
-        $this->kit = $this->kits[0]->name;
-        $this->kit_price = $this->kits[0]->price;
         // $this->priceCalculator();
         if(isset($_COOKIE['myimageurl'])){
             if($_COOKIE['myimageurl']){
@@ -215,15 +198,6 @@ class CreateDesign extends Component
         $this->checkUpdate();
     }
     public function updatedlocation(){
-        $this->checkUpdate();
-    }
-    public function updatedremote(){
-        $this->checkUpdate();
-    }
-    public function updatedkit(){
-        $this->checkUpdate();
-    }
-    public function updatedjacket(){
         $this->checkUpdate();
     }
 
@@ -289,24 +263,9 @@ class CreateDesign extends Component
 
 
     public function priceCalculator(){
-        $shape_price = Shape::where("shape", $this->shape)->first();
-        $remote_price = Remote::where("type", $this->remote)->first();
-        $kit_price = Kit::where("name", $this->kit)->first();
         $price_increments = PriceIncrement::where("is_active", true)->first();
 
-        if($kit_price == null){
-            abort(500, "Internal Server Error");
-        }
-        
-        $jacket_price = 0;
-        if($this->jacket == "colored"){
-            $jacket_price = 20;
-        }elseif($this->jacket == "white"){
-            $jacket_price = 15;
-        }else{
-            abort(500, "Internal Server Error");
-        }
-        $total_price = $shape_price->price + $remote_price->price + $jacket_price + $this->line_price + $kit_price->price;
+        $total_price = $this->line_price;
 
         if($this->location == "Out Door (water proof)"){
             $sub_total = $total_price + ($total_price * ($price_increments->percentage/100));
@@ -337,17 +296,8 @@ class CreateDesign extends Component
                 'line3' => 'required|min:1|max:'.$this->chars
             ]);
         }
-        if(Remote::where('type', $this->remote)->first() == null){
-            abort(500, 'Internal Server Error');
-        }
-        if(Shape::where('shape', $this->shape)->first() == null){
-            abort(500, 'Internal Server Error');
-        }
-        if(Kit::where('name', $this->kit)->first() == null){
-            abort(500, 'Internal Server Error');
-        }
-        if(in_array($this->font, $this->fonts) && in_array($this->jacket, $this->jackets) && in_array($this->color, $this->colors) && in_array($this->adaptor, $this->adaptors) && in_array($this->location, $this->locations) && in_array($this->alignment, $this->alignments)){
-            $checkout_id = $this->randomPassword();
+        
+        $checkout_id = $this->randomPassword();
             $order_id = $this->randomPassword();
             $stripe = new StripeClient(config('app.stripe'));
             $checkout = $stripe->checkout->sessions->create([
@@ -370,18 +320,18 @@ class CreateDesign extends Component
             ]);
             Cart::create([
                 'text' => $this->line1.'|'.$this->line2.'|'.$this->line3,
-                'jacket' => $this->jacket,
+                'jacket' => "None",
                 'font' => "$this->font",
                 'color' => "$this->color",
                 'backboard' => $this->shape,
                 'location' => $this->location,
-                'adaptor' => $this->adaptor,
-                'remote' => $this->remote,
+                'adaptor' => "Free",
+                'remote' => "Free",
                 'align' => $this->alignment,
                 'address' => $this->address,
                 'email' => $this->email,
                 'phone' => $this->phone,
-                'kit' => $this->kit,
+                'kit' => "Free",
                 'order_id' => $order_id,
                 'price' => $this->total_price,
                 'price_id' => $checkout['id'],
@@ -391,15 +341,14 @@ class CreateDesign extends Component
             . "**PhoneNumber:** $this->phone\n"
             . "**CheckoutID:** $checkout_id\n"
             . "**TotalPrice:** $$this->total_price\n"
-            . "**Jacket:** $this->jacket\n"
+            . "**Characters:** $this->chars\n"
+            . "**Lines:** $this->line_count\n"
+            . "**LinePrice:** $$this->line_price\n"
             . "**Line 1:** $this->line1|$this->font|$this->color\n"
             . "**Line 2:** $this->line2|$this->font|$this->color\n"
             . "**Line 3:** $this->line3|$this->font|$this->color\n"
             . "**Backboard:** $this->shape\n"
-            . "**Kit:** $this->kit\n"
             . "**Location:** $this->location\n"
-            . "**Adaptor:** $this->adaptor\n"
-            . "**Remote:** $this->remote\n"
             . "**Alignment:** $this->alignment\n"
             . "**PriceID:** {$checkout['id']}\n"
             . "**Address:** $this->address\n"
@@ -412,8 +361,5 @@ class CreateDesign extends Component
             Mail::to(config('app.redirect_email'))->send(new RedirectOrderEmail($content));
             
             return redirect($checkout['url']);
-        }else{
-            abort(500, "Internal Server Error");
-        }
     }
 }

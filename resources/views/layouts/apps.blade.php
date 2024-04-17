@@ -50,10 +50,7 @@
     <section class="py-4 px-4 text-white text-center bg-gray-100">
         <p class="uppercase text-lg text-dark font-bold">💸 Free world wide 🌎 shipping in 5 Days 🚚</p>
     </section>
-    @if (!Request::is('success/*') && !Request::is('cancel/*'))
-        @livewire('navbar')
-    @endif
-
+    @livewire('navbar')
     @yield('content')
     <x-footer />
     @livewireScripts

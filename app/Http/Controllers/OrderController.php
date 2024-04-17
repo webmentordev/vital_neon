@@ -14,13 +14,17 @@ class OrderController extends Controller
 {
     public function cancel($cart){
         $cart = Cart::where('checkout_id', $cart)->first();
-        if($cart->status == 'pending'){
-            $cart->status = 'canceled';
-            $cart->save();
-            Http::post(config('app.product-cancel'), [
-                'content' => "Custom Design **OrderID**: $cart->order_id worth of $$cart->price has been cancelled."
-            ]);
-            return view('cancel');
+        if($cart){
+            if($cart->status == 'pending'){
+                $cart->status = 'canceled';
+                $cart->save();
+                Http::post(config('app.product-cancel'), [
+                    'content' => "Custom Design **OrderID**: $cart->order_id worth of $$cart->price has been cancelled."
+                ]);
+                return view('cancel');
+            }else{
+                abort(500, 'Internal Server Error!');
+            }
         }else{
             abort(500, 'Internal Server Error!');
         }
@@ -28,17 +32,21 @@ class OrderController extends Controller
 
     public function success($cart){
         $cart = Cart::where('checkout_id', $cart)->first();
-        if($cart->status == 'pending'){
-            $cart->status = 'success';
-            $cart->paid = 1;
-            $cart->save();
-            Http::post(config('app.product-complete'), [
-                'content' => "Custom Design **OrderID**: $cart->order_id worth of $$cart->price has been paid."
-            ]);
-            Mail::to($cart->email)->send(new OrderConfirm([$cart->order_id, $cart->price]));
-            return view('success', [
-                'order_id' => $cart->order_id
-            ]);
+        if($cart){
+            if($cart->status == 'pending'){
+                $cart->status = 'success';
+                $cart->paid = 1;
+                $cart->save();
+                Http::post(config('app.product-complete'), [
+                    'content' => "Custom Design **OrderID**: $cart->order_id worth of $$cart->price has been paid."
+                ]);
+                Mail::to($cart->email)->send(new OrderConfirm([$cart->order_id, $cart->price]));
+                return view('success', [
+                    'order_id' => $cart->order_id
+                ]);
+            }else{
+                abort(500, 'Internal Server Error!');
+            }
         }else{
             abort(500, 'Internal Server Error!');
         }
