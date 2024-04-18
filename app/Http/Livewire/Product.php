@@ -48,7 +48,7 @@ class Product extends Component
     ];
 
     public function mount($slug){
-        $result = ModelsProduct::where('slug', $slug)->with('categories')->get();
+        $result = ModelsProduct::where('slug', $slug)->with(['categories', 'category'])->get();
         if(count($result)){
             $increment = PriceIncrement::where('is_active', true)->first();
             $this->categories = $result[0]->categories;
