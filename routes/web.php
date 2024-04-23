@@ -25,6 +25,7 @@ use App\Http\Controllers\ProductsController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\CategoryPriceController;
 use App\Http\Controllers\DiscountController;
+use App\Http\Controllers\LightBoxController;
 use App\Http\Controllers\PriceIncrementController;
 use App\Http\Controllers\ServiceController;
 
@@ -142,6 +143,15 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/preview-email', [EmailController::class, 'preview'])->name('email.preview');
     Route::post('/email/preview', [EmailController::class, 'show'])->name('preview.email');
+
+
+    Route::get('/light-box', [LightBoxController::class, 'index'])->name('lightbox');
+    Route::get('/light-box/orders', [LightBoxController::class, 'orders'])->name('lightbox.orders');
+    Route::post('/light-box/create', [LightBoxController::class, 'store'])->name('lightbox.create');
+    Route::get('/light-box/{light_box:slug}', [LightBoxController::class, 'update'])->name('lightbox.update');
+    Route::patch('/light-box/{light_box:slug}/update', [LightBoxController::class, 'update_box'])->name('update.lightbox');
+    Route::post('/light-box/{light_box:slug}/status', [LightBoxController::class, 'status'])->name('status.lightbox');
+
 });
 
 Route::get('/sitemap.xml', [SiteMapGenerator::class, 'index'])->name('sitemap');
