@@ -150,7 +150,8 @@ Route::middleware('auth')->group(function () {
     Route::post('/light-box/create', [LightBoxController::class, 'store'])->name('lightbox.create');
     Route::get('/light-box/{light_box:slug}', [LightBoxController::class, 'update'])->name('lightbox.update');
     Route::patch('/light-box/{light_box:slug}/update', [LightBoxController::class, 'update_box'])->name('update.lightbox');
-    Route::post('/light-box/{light_box:slug}/status', [LightBoxController::class, 'status'])->name('status.lightbox');
+    Route::patch('/light-box/{light_box:slug}/status', [LightBoxController::class, 'status'])->name('status.lightbox');
+    Route::patch('/light-box/{light_box:slug}/feature', [LightBoxController::class, 'feature'])->name('feature.lightbox');
 
 });
 

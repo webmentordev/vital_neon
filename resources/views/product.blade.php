@@ -73,6 +73,7 @@
                                 <th class="text-end">Featured</th>
                                 <th class="text-end">Status</th>
                                 <th class="p-3 text-end">Created</th>
+                                <th class="p-3 text-end">Updated</th>
                                 <th class="p-3 text-end">Edit</th>
                             </tr>
                             @foreach ($products as $item)
@@ -119,6 +120,7 @@
                                         </form>
                                     </td>
                                     <td class="p-2 text-end">{{ $item->created_at->diffForHumans() }}</td>
+                                    <td class="p-2 text-end">{{ $item->updated_at->diffForHumans() }}</td>
                                     <td class="p-2 text-end"><a href="{{ route('product.update', $item->slug) }}" class="underline text-blue-600">Edit</a></td>
                                 </tr>
                             @endforeach

@@ -11,6 +11,7 @@ class LightBox extends Model
 
     protected $fillable = [
         'title',
+        'stripe_id',
         'type',
         'slug',
         'body',
@@ -19,6 +20,6 @@ class LightBox extends Model
         'description',
         'price',
         'is_active',
-        'featured'
+        'is_featured'
     ];
 }
