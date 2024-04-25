@@ -60,7 +60,7 @@
                         <textarea class="form-control" id="summary-ckeditor" name="body">{{ old('body') }}</textarea>
                     </form>
 
-                    <form action="{{ route('product') }}" method="GET" class="flex my-4">
+                    <form action="{{ route('lightbox') }}" method="GET" class="flex my-4">
                         <div class="w-full mr-2">
                             <input type="search" name="search" class="border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 rounded-md shadow-sm w-full" placeholder="Search by name..." autocomplete="off">
                         </div>

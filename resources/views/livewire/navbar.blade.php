@@ -3,7 +3,15 @@
         <a href="{{ route('home') }}" class="text-3xl font-semibold py-1"><img src="{{ asset('assets/neon_tranp_white.png') }}" width="130" alt="Vital Neon"></a>
         <ul class="flex font-normal items-center capitalize 1220px:hidden">
             <a class="mx-4" href="{{ route('home') }}">Home</a>
-            <a class="mx-4" href="{{ route('products') }}">Products</a>
+            <div class="ml-4 relative group">
+                <span class="category flex items-center">Products <img src="https://api.iconify.design/ic:outline-arrow-drop-down.svg?color=%23ffffff" width="28" alt="Carret Down Logo"></span>
+                <div class="hidden group-hover:block absolute top-7 w-[310px] right-0 p-2 rounded-lg bg-white text-gray-800">
+                    <div class="w-full grid grid-cols-2 gap-3 p-2">
+                        <a class="font-semibold container py-2 px-3 bg-gray-100 rounded-lg h-fit" href="{{ route('products') }}">Neon Signs</a>
+                        <a class="font-semibold container py-2 px-3 bg-gray-100 rounded-lg h-fit" href="{{ route('lightboxes') }}">Light Boxes</a>
+                    </div>
+                </div>
+            </div>
             <a class="mx-4" href="{{ route('create-design') }}">Design Your Own</a>
             <a class="mx-4" href="{{ route('upload-design') }}">Upload Design</a>
             <div class="mx-4 relative group">
@@ -41,6 +49,7 @@
         <div class="hidden 1220px:block">
             <div class="flex items-center">
                 <a class="text-base mr-6" title="VitalNeon Neon Signs" href="{{ route('products') }}">Products</a>
+                <a class="text-base mr-6" title="VitalNeon Neon Signs" href="{{ route('lightboxes') }}">LightBoxes</a>
                 <a class="text-base mr-6" title="VitalNeon Cart" href="{{ route('carts') }}">Cart</a>
                 <form action="{{ route('product.search') }}" method="get">
                     <div class="flex mr-2 items-center border bg-light border-white/10 rounded-full pr-1 670px:hidden">

@@ -5,13 +5,18 @@ namespace App\Http\Controllers;
 use App\Models\LightBox;
 use Stripe\StripeClient;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Artesaos\SEOTools\Facades\JsonLd;
+use Artesaos\SEOTools\Facades\SEOMeta;
 use Illuminate\Support\Facades\Storage;
+use Artesaos\SEOTools\Facades\OpenGraph;
+use Artesaos\SEOTools\Facades\TwitterCard;
 
 class LightBoxController extends Controller
 {
-    public function index(){
+    public function index(Request $request){
         return view('lightbox.create', [
-            'lightboxes' => LightBox::latest()->paginate(100)
+            'lightboxes' => LightBox::latest()->orWhere('title', 'LIKE', '%'.$request->search.'%')->paginate(100)
         ]);
     }
     public function orders(){
@@ -20,6 +25,38 @@ class LightBoxController extends Controller
     public function update(LightBox $light_box){
         return view('lightbox.update', [
             'lightbox' => $light_box
+        ]);
+    }
+    public function light_index(){
+        SEOMeta::setTitle("Buy Anime LightBox Desk Lamp | VitalNeon");
+        SEOMeta::setDescription("Buy cheap high quality anime desk lamps with day and night effect.");
+        SEOMeta::setCanonical("https://vitalneon.com/lightboxes");
+        SEOMeta::setRobots("index, follow");
+        SEOMeta::addMeta("apple-mobile-web-app-title", "VitalNeon");
+        SEOMeta::addMeta("application-name", "VitalNeon");
+
+        OpenGraph::setTitle("Buy Anime LightBox Desk Lamp | VitalNeon");
+        OpenGraph::setDescription("Buy cheap high quality anime desk lamps with day and night effect."); 
+        OpenGraph::setUrl("https://vitalneon.com/lightboxes");
+        OpenGraph::addProperty("type", "website");
+        OpenGraph::addProperty("locale", "eu");
+        OpenGraph::addImage("https://vitalneon.com/assets/seo/listing-2.png");
+        OpenGraph::addImage("https://vitalneon.com/assets/seo/listing-1.png", ["height" => 400, "width" => 760]);
+
+        TwitterCard::setTitle("Buy Anime LightBox Desk Lamp | VitalNeon");
+        TwitterCard::setDescription("Buy cheap high quality anime desk lamps with day and night effect.");
+        TwitterCard::setSite("@vitalneon");
+        TwitterCard::setImage("https://vitalneon.com/assets/seo/listing-2.png");
+
+        JsonLd::setTitle("Buy Anime LightBox Desk Lamp | VitalNeon");
+        JsonLd::setDescription("Buy cheap high quality anime desk lamps with day and night effect.");
+        JsonLd::addImage("https://vitalneon.com/assets/seo/listing-2.png");
+        JsonLd::setType("WebSite");
+        JsonLd::addImage("https://vitalneon.com/assets/seo/listing-1.png", ["height" => 400, "width" => 760]);
+
+        return view('lightbox.products', [
+            'products' => LightBox::latest()->where('is_active', true)->get(),
+            'discount' => DB::table('discounts')->latest()->first()
         ]);
     }
 

@@ -70,7 +70,10 @@ Route::get('/privacy-policy', [ServiceController::class, 'privacy'])->name('priv
 Route::get('/return-policy', [ServiceController::class, 'return'])->name('return');
 Route::get('/dmca-policy', [ServiceController::class, 'dmca'])->name('dmca');
 
+
 Route::get('/cart', Carts::class)->name('carts');
+
+Route::get('/lightboxes', [LightBoxController::class, 'light_index'])->name('lightboxes');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
