@@ -28,6 +28,7 @@ use App\Http\Controllers\DiscountController;
 use App\Http\Controllers\LightBoxController;
 use App\Http\Controllers\PriceIncrementController;
 use App\Http\Controllers\ServiceController;
+use App\Http\Livewire\LightBoxIndex;
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
@@ -74,6 +75,7 @@ Route::get('/dmca-policy', [ServiceController::class, 'dmca'])->name('dmca');
 Route::get('/cart', Carts::class)->name('carts');
 
 Route::get('/lightboxes', [LightBoxController::class, 'light_index'])->name('lightboxes');
+Route::get('/lightboxe/{lightbox:slug}', LightBoxIndex::class)->name('lightboxe.product');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

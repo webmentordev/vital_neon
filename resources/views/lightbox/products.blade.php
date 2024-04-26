@@ -15,7 +15,7 @@
             @if (count($products))
             <div class="grid grid-cols-4 gap-6 m-auto 1170px:grid-cols-3 940px:grid-cols-2 940px:max-w-2xl 620px:grid-cols-1 620px:max-w-[390px]">
                 @foreach ($products as $item)
-                    <a href="{{ route('listing', $item->slug) }}" class="overflow-hidden group transition-all relative">
+                    <a href="{{ route('lightboxe.product', $item->slug) }}" class="overflow-hidden group transition-all relative">
                         @if ($discount)
                             @if ($discount->discount != 0.00)
                                 <span class="bg-red-600 p-2 rounded-lg absolute top-2 right-2 text-white font-semibold">{{ number_format($discount->discount, 0) }}% Off</span>
