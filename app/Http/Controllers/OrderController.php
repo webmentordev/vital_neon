@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Cart;
 use App\Models\Order;
 use App\Mail\OrderConfirm;
+use App\Models\LightBoxOrder;
 use Artesaos\SEOTools\Facades\SEOMeta;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
@@ -95,5 +96,35 @@ class OrderController extends Controller
     public function orderUpdate(Request $request, $checkout_id){
         Order::where('checkout_id', $checkout_id)->update(['shipping' => $request->shipping]);
         return back()->with('success', 'Order shipping status changed!');
+    }
+
+
+
+    public function lamp_order_cancel(LightBoxOrder $lightbox){
+        if($lightbox->status == 'pending'){
+            $lightbox->status = 'canceled';
+            $lightbox->save();
+            Http::post(config('app.order-cancel'), [
+                'content' => "Lamp - **OrderID**: $lightbox->checkout_id has been cancelled."
+            ]);
+            return view('cancel');
+        }else{
+            abort(500, 'Internal Server Error!');
+        }
+    }
+    public function lamp_order_success(LightBoxOrder $lightbox){
+        if($lightbox->status == 'pending'){
+            $lightbox->status = 'completed';
+            $lightbox->is_paid = true;
+            $lightbox->save();
+            Http::post(config('app.order-complete'), [
+                'content' => "Lamp - **OrderID**: $lightbox->checkout_id has been Completed & Paid."
+            ]);
+            return view('success', [
+                'order_id' => $lightbox->checkout_id
+            ]);
+        }else{
+            abort(500, 'Internal Server Error!');
+        }
     }
 }

@@ -67,6 +67,7 @@
                             <tr class="bg-white text-gray-800 text-center text-sm">
                                 <th class="p-3 text-start">Name</th>
                                 <th class="p-3 text-start">StripeID</th>
+                                <th class="p-3 text-start">Category</th>
                                 {{-- <th class="p-3 text-start">Image</th> --}}
                                 <th class="p-3 text-start">Slug</th>
                                 <th class="text-start">Description</th>
@@ -80,6 +81,7 @@
                                 <tr class="text-center text-sm">
                                     <td class="p-2 text-start">{{ $item->name }}</td>
                                     <td class="p-2 text-start">{{ $item->stripe_id }}</td>
+                                    <td class="p-2 text-start">{{ $item->category->name }}</td>
                                     {{-- <td class="p-2 text-start"><a href="{{ asset('storage/'.$item->image) }}"><img src="{{ asset('storage/'.$item->image) }}" width="60"></a></td> --}}
                                     <td class="p-2 text-start">{{ $item->slug }}</td>
                                     <td class="text-start" x-data="{ open: false }">

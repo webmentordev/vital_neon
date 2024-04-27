@@ -21,9 +21,16 @@
                                 <span class="bg-red-600 p-2 rounded-lg absolute top-2 right-2 text-white font-semibold">{{ number_format($discount->discount, 0) }}% Off</span>
                             @endif
                         @endif
-                        <div class="overflow-hidden rounded-lg">
-                            <img data-src="{{ asset('storage/'.$item->light_image) }}" class="group-hover:scale-125 transition-all lazyload h-[300px] 620px:h-full" alt="{{ $item->title }}" title="{{ $item->title }} Image" loading="lazy" style="width: 100%; object-fit: cover">
-                        </div>
+                        @if ($item->dark_image)
+                            <div class="overflow-hidden rounded-lg group">
+                                <img data-src="{{ asset('storage/'.$item->light_image) }}" class="group-hover:hidden transition-all lazyload h-[300px] 620px:h-full" alt="{{ $item->title }}" title="{{ $item->title }} Image" loading="lazy" style="width: 100%; object-fit: cover">
+                                <img data-src="{{ asset('storage/'.$item->dark_image) }}" class="hidden group-hover:block transition-all lazyload h-[300px] 620px:h-full" alt="{{ $item->title }}" title="{{ $item->title }} Image" loading="lazy" style="width: 100%; object-fit: cover">
+                            </div>
+                        @else
+                            <div class="overflow-hidden rounded-lg">
+                                <img data-src="{{ asset('storage/'.$item->light_image) }}" class="group-hover:scale-125 transition-all lazyload h-[300px] 620px:h-full" alt="{{ $item->title }}" title="{{ $item->title }} Image" loading="lazy" style="width: 100%; object-fit: cover">
+                            </div>
+                        @endif
                         <div class="bg-light p-3 w-full bottom-0 left-0">
                             @if (strlen($item->title) >= 26)
                                 <h3 class="text-white text-center mb-3">{{ substr($item->title, 0, 26) }}...</h3>

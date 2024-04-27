@@ -5,7 +5,7 @@
         </div>
         
         @if ($total_price != 0)
-            <span class="fixed bg-main rounded-lg p-3 bottom-3 z-10 w-fit left-3 text-gray-800 text-4xl font-semibold"><span class="text-2xl">$</span>{{ $total_price }}</span>
+            <span class="fixed bg-main rounded-lg p-3 bottom-3 z-10 w-fit left-3 text-gray-800 text-4xl font-semibold"><span class="text-2xl">$</span>{{ number_format($total_price, 2) }}</span>
         @endif
 
         @if (session('success'))
@@ -18,7 +18,14 @@
         
         <div class="grid grid-cols-2 gap-3 rounded-lg mb-6 overflow-hidden 890px:grid-cols-1 890px:max-w-lg m-auto">
             <div class="w-full">
-                <img data-src="{{ asset('storage/'.$product->light_image) }}" class="w-full lazyload rounded-lg mb-3 890px:h-[450px] 890px:object-cover" loading="lazy" alt="Buy {{ $product->title }}" title="Buy {{ $product->title }}">
+                @if ($product->dark_image)
+                    <div class="w-full group">
+                        <img data-src="{{ asset('storage/'.$product->light_image) }}" class="w-full block group-hover:hidden lazyload rounded-lg mb-3 890px:h-[450px] 890px:object-cover" loading="lazy" alt="Buy {{ $product->title }}" title="Buy {{ $product->title }}">
+                        <img data-src="{{ asset('storage/'.$product->dark_image) }}" class="w-full hidden group-hover:block lazyload rounded-lg mb-3 890px:h-[450px] 890px:object-cover" loading="lazy" alt="Buy {{ $product->title }}" title="Buy {{ $product->title }}">
+                    </div>
+                @else
+                    <img data-src="{{ asset('storage/'.$product->light_image) }}" class="w-full lazyload rounded-lg mb-3 890px:h-[450px] 890px:object-cover" loading="lazy" alt="Buy {{ $product->title }}" title="Buy {{ $product->title }}">
+                @endif
                 {{-- <img class="mt-3 890px:hidden" src="{{ asset('assets/colors.png') }}" title="VitalNeon signs colors" alt="Colors selection"> --}}
                 <a href="https://www.trustpilot.com/review/vitalneon.com" title="Vital Neon TrustPilot reviews" target="_blank" rel="nofollow" class="py-3 rounded-lg bg-gray-100 mb-6">
                     <img class="max-w-[80%] w-full m-auto" src="{{ asset('assets/vital-neon-trustpilot-reviews.png') }}" alt="Vital Neon TrustPilot reviews">
@@ -29,7 +36,7 @@
             </div>
             <div class="bg-light p-6 h-fit w-full bottom-0 left-0 870px:max-h-fit overflow-y-scroll">
                 <h1 class="text-white mb-3 text-3xl capitalize font-bold">{{ $product->title }}</h1>
-                <h3 class="text-white font-semibold mb-1">Select Remote type <span class="text-main">(Step#01)</span></h3>
+                <h3 class="text-white font-semibold mb-1 text-lg">Select Remote type <span class="text-main">(Step#01)</span></h3>
                 <div class="flex flex-wrap mb-4">
                     <span wire:click="$set('remote', 'standard')" class="text-sm cursor-pointer py-1 px-3 rounded-full border @if ($remote == 'standard') border-main @else border-white/10 @endif m-1 text-white">Standard</span>
                     <span wire:click="$set('remote', 'controller')" class="text-sm cursor-pointer py-1 px-3 rounded-full border @if ($remote == 'controller') border-main @else border-white/10 @endif m-1 text-white">Controller</span>
@@ -37,29 +44,29 @@
                 @error('remote')
                     <p class="text-red-600 mb-2">{{ $message }}</p>
                 @enderror
-                <h3 class="text-white font-semibold mb-1">Email Address <span class="text-main">(Step#02)</span></h3>
+                <h3 class="text-white font-semibold mb-1 text-lg">Email Address <span class="text-main">(Step#02)</span></h3>
                 <input type="text" wire:model.debounce.2000ms="email" placeholder="Contact Email Address" class="w-full bg-dark mt-2 rounded border border-white/10 focus:ring-4 focus:ring-main text-base outline-none text-gray-300 py-2 px-3 leading-8 transition-colors duration-200 ease-in-out mb-3">
                 @error('email')
                     <p class="text-red-600 mb-2">{{ $message }}</p>
                 @enderror
-                
-                <div class="flex items-center">
-                    <button class="py-3 px-4 mb-2 mr-3 w-full bg-white rounded-md font-bold text-dark add_to_cart" wire:click="addToCart('{{ $product->slug }}')" id="add_to_cart">Add To Cart</button>
-                    <a href="{{ route('carts') }}" class="py-3 px-4 mb-3 w-full bg-white rounded-md text-center font-bold text-dark">Checkout</a>
-                </div>
 
-                <button class="p-3 bg-indigo-600 rounded-lg w-full mb-3 font-semibold text-lg text-white" wire:click="clickPay">
-                    {{-- <img src="{{ asset('assets/buy-with-stripe-logo.png') }}" class="w-[40%] m-auto" alt="Buy with stripe logo"> --}}
-                    Click and Pay Now
+                <h3 class="text-white text-lg font-semibold mb-3 pb-2 border-b border-white/10">LightBox specifications:</h3>
+                <ul class="text-gray-100 mb-3">
+                    <li class="flex justify-between mb-1"><strong>Material</strong>Wood</li>
+                    <li class="flex justify-between mb-1"><strong>Type</strong>Lamp Decor</li>
+                    <li class="flex justify-between mb-1"><strong>Color</strong>1 colors or 16 color (controller required)</li>
+                    <li class="flex justify-between mb-1"><strong>Size</strong>196x92x53mm</li>
+                    <li class="flex justify-between mb-1"><strong>Main Material</strong>Paper+Solid Wood</li>
+                    <li class="flex justify-between"><strong>Power supply</strong>USB Charging Line or 3pc battery style</li>
+                </ul>
+                
+                <button class="p-3 bg-indigo-600 rounded-lg w-full mb-3 font-semibold text-lg text-white flex items-center justify-center" wire:click="clickPay">
+                    Pay Now
+                    <img src="{{ asset('assets/images/stripe_square_logo.png') }}" width="120px" class="ml-3" alt="Powerd by stipe image">
                 </button>
                 
                 <p class="text-gray-300">🚚 Estimated Delivery: {{ \Carbon\Carbon::now()->format('d-M-y') }} - {{ \Carbon\Carbon::now()->addDays(14)->format('d-M-y') }}</p>
 
-                <div class="flex justify-between items-center 530px:flex-col w-full mt-2 py-3 mb-2">
-                    <img src="{{ asset('assets/images/payment_cards.png') }}" width="190px" alt="Stripe Payment methods icon">
-                    <img src="{{ asset('assets/images/stripe_square_logo.png') }}" width="190px" alt="Powerd by stipe image">
-                </div>
-                
             </div>
         </div>
 
@@ -72,6 +79,11 @@
         </main>
     </div>
     <script>
+        var splide = new Splide( '#main-carousel', {
+            pagination: false,
+        });
+        splide.mount();
+
         document.addEventListener('livewire:load', function (event) {
             Livewire.on('addToCart', () => {
                 gtag('event', 'add_to_cart', {
@@ -86,4 +98,5 @@
             });
         });
     </script>
+    
 </section>

@@ -54,6 +54,9 @@ Route::get('/success/{checkout_id}', [OrderController::class, 'success']);
 Route::get('/cancel-order/{checkout_id}', [OrderController::class, 'cancelOrder']);
 Route::get('/success-order/{checkout_id}', [OrderController::class, 'successOrder']);
 
+Route::get('/cancel-lightbox-order/{lightbox:checkout_id}', [OrderController::class, 'lamp_order_cancel']);
+Route::get('/success-lightbox-order/{lightbox:checkout_id}', [OrderController::class, 'lamp_order_success']);
+
 Route::get('/product/{slug}', Product::class)->name('listing');
 Route::get('/products', [ProductsController::class, 'index'])->name('products');
 Route::get('/products/search', [ProductsController::class, 'search'])->name('product.search');
@@ -75,7 +78,7 @@ Route::get('/dmca-policy', [ServiceController::class, 'dmca'])->name('dmca');
 Route::get('/cart', Carts::class)->name('carts');
 
 Route::get('/lightboxes', [LightBoxController::class, 'light_index'])->name('lightboxes');
-Route::get('/lightboxe/{lightbox:slug}', LightBoxIndex::class)->name('lightboxe.product');
+Route::get('/lightbox/{lightbox:slug}', LightBoxIndex::class)->name('lightboxe.product');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

@@ -1,5 +1,6 @@
 @extends('layouts.apps')
 @section('content')
+    <title>Order Success</title>
     <header class="h-screen bg-main flex items-center justify-center">
         <div class="bg-white rounded-md p-6 max-w-lg w-full text-sm">
             <div class="text-center mb-2">
