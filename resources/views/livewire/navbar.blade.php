@@ -1,17 +1,10 @@
 <nav class="w-full py-2 sticky top-0 left-0 z-50 bg-dark text-white bg-opacity-80 backdrop-blur-lg border-b border-white/10">
-    <div class="flex items-center justify-between max-w-7xl m-auto w-full px-2">
+    <div class="flex items-center justify-between max-w-[95%] m-auto w-full px-2">
         <a href="{{ route('home') }}" class="text-3xl font-semibold py-1"><img src="{{ asset('assets/neon_tranp_white.png') }}" width="130" alt="Vital Neon"></a>
         <ul class="flex font-normal items-center capitalize 1220px:hidden">
             <a class="mx-4" href="{{ route('home') }}">Home</a>
-            <div class="ml-4 relative group">
-                <span class="category flex items-center">Products <img src="https://api.iconify.design/ic:outline-arrow-drop-down.svg?color=%23ffffff" width="28" alt="Carret Down Logo"></span>
-                <div class="hidden group-hover:block absolute top-7 w-[310px] right-0 p-2 rounded-lg bg-white text-gray-800">
-                    <div class="w-full grid grid-cols-2 gap-3 p-2">
-                        <a class="font-semibold container py-2 px-3 bg-gray-100 rounded-lg h-fit" href="{{ route('products') }}">Neon Signs</a>
-                        <a class="font-semibold container py-2 px-3 bg-gray-100 rounded-lg h-fit" href="{{ route('lightboxes') }}">Light Boxes</a>
-                    </div>
-                </div>
-            </div>
+            <a class="mx-4" href="{{ route('products') }}">Products</a>
+            <a class="mx-4" href="{{ route('lightboxes') }}">LightBoxs</a>
             <a class="mx-4" href="{{ route('create-design') }}">Design Your Own</a>
             <a class="mx-4" href="{{ route('upload-design') }}">Upload Design</a>
             <div class="mx-4 relative group">

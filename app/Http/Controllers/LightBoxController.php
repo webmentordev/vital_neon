@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\LightBox;
+use App\Models\LightBoxOrder;
 use Stripe\StripeClient;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -20,14 +21,16 @@ class LightBoxController extends Controller
         ]);
     }
     public function orders(){
-        return view('lightbox.orders');
+        return view('lightbox.orders', [
+            'orders' => LightBoxOrder::latest()->paginate(200)
+        ]);
     }
     public function update(LightBox $light_box){
         return view('lightbox.update', [
             'lightbox' => $light_box
         ]);
     }
-    public function light_index(){
+    public function light_index(Request $request){
         SEOMeta::setTitle("Buy Anime LightBox Desk Lamp | VitalNeon");
         SEOMeta::setDescription("Buy cheap high quality anime desk lamps with day and night effect.");
         SEOMeta::setCanonical("https://vitalneon.com/lightboxes");
@@ -55,7 +58,13 @@ class LightBoxController extends Controller
         JsonLd::addImage("https://vitalneon.com/assets/seo/listing-1.png", ["height" => 400, "width" => 760]);
 
         return view('lightbox.products', [
-            'products' => LightBox::latest()->where('is_active', true)->get(),
+            'products' => LightBox::where('is_active', true)
+            ->where(function($query) use ($request) {
+                $query->orWhere('title', 'LIKE', '%'.$request->search.'%')
+                    ->orWhere('description', 'LIKE', '%'.$request->search.'%');
+            })
+            ->latest()
+            ->get(),
             'discount' => DB::table('discounts')->latest()->first()
         ]);
     }

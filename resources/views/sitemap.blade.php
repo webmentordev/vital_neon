@@ -7,76 +7,82 @@
         <priority>1.00</priority>
     </url>
     <url>
-        <loc>https://vitalneon.com/support</loc>
+        <loc>{{ url('/') }}/support</loc>
         <lastmod>2023-04-18T05:05:00+05:00</lastmod>
         <changefreq>yearly</changefreq>
         <priority>0.90</priority>
     </url>
     <url>
-        <loc>https://vitalneon.com/create-design</loc>
+        <loc>{{ url('/') }}/create-design</loc>
         <lastmod>2023-04-18T05:05:00+05:00</lastmod>
         <changefreq>yearly</changefreq>
         <priority>0.90</priority>
     </url>
     <url>
-        <loc>https://vitalneon.com/upload-design</loc>
+        <loc>{{ url('/') }}/upload-design</loc>
         <lastmod>2023-04-18T05:05:00+05:00</lastmod>
         <changefreq>yearly</changefreq>
         <priority>0.90</priority>
     </url>
     <url>
-        <loc>https://vitalneon.com/products</loc>
+        <loc>{{ url('/') }}/products</loc>
         <lastmod>2023-04-18T05:05:00+05:00</lastmod>
         <changefreq>weekly</changefreq>
         <priority>1.00</priority>
     </url>
 
     <url>
-        <loc>https://vitalneon.com/about</loc>
+        <loc>{{ url('/') }}/about</loc>
         <lastmod>2023-08-28T13:40:00+05:00</lastmod>
         <changefreq>yearly</changefreq>
         <priority>0.90</priority>
     </url>
 
     <url>
-        <loc>https://vitalneon.com/f-a-q</loc>
+        <loc>{{ url('/') }}/f-a-q</loc>
         <lastmod>2023-08-28T13:40:00+05:00</lastmod>
         <changefreq>yearly</changefreq>
         <priority>0.90</priority>
     </url>
 
     <url>
-        <loc>https://vitalneon.com/blogs</loc>
+        <loc>{{ url('/') }}/blogs</loc>
         <lastmod>2023-01-24T13:40:00+05:00</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.90</priority>
     </url>
 
     <url>
-        <loc>https://vitalneon.com/terms-of-service</loc>
+        <loc>{{ url('/') }}/terms-of-service</loc>
         <lastmod>2024-01-23T13:48:00+05:00</lastmod>
         <changefreq>yearly</changefreq>
         <priority>0.90</priority>
     </url>
 
     <url>
-        <loc>https://vitalneon.com/privacy-policy</loc>
+        <loc>{{ url('/') }}/privacy-policy</loc>
         <lastmod>2024-01-23T13:48:00+05:00</lastmod>
         <changefreq>yearly</changefreq>
         <priority>0.90</priority>
     </url>
 
     <url>
-        <loc>https://vitalneon.com/return-policy</loc>
+        <loc>{{ url('/') }}/return-policy</loc>
         <lastmod>2024-01-23T13:48:00+05:00</lastmod>
         <changefreq>yearly</changefreq>
         <priority>0.90</priority>
     </url>
 
     <url>
-        <loc>https://vitalneon.com/dmca-policy</loc>
+        <loc>{{ url('/') }}/dmca-policy</loc>
         <lastmod>2024-03-06T13:48:00+05:00</lastmod>
-        <changefreq>yearly</changefreq>
+        <changefreq>weekly</changefreq>
+        <priority>0.90</priority>
+    </url>
+    <url>
+        <loc>{{ url('/') }}/lightboxes</loc>
+        <lastmod>2024-04-28T13:48:00+05:00</lastmod>
+        <changefreq>weekly</changefreq>
         <priority>0.90</priority>
     </url>
 
@@ -96,4 +102,14 @@
             <priority>0.90</priority>
         </url>
     @endforeach
+    @if (count($lightboxes))
+        @foreach ($lightboxes as $box)
+            <url>
+                <loc>{{ url('/') }}/lightbox/{{ $box->slug }}</loc>
+                <lastmod>{{ $box->created_at->tz('UTC')->toAtomString() }}</lastmod>
+                <changefreq>weekly</changefreq>
+                <priority>0.90</priority>
+            </url>
+        @endforeach
+    @endif
 </urlset>

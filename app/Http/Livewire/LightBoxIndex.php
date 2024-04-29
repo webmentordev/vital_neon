@@ -25,6 +25,10 @@ class LightBoxIndex extends Component
     ];
 
     public function mount(LightBox $lightbox){
+        if(!$lightbox->is_active){
+            abort(404);
+        }
+        
         $this->product = $lightbox;
         $this->total_price = $lightbox->price;
 

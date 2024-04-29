@@ -44,7 +44,8 @@
                 @error('remote')
                     <p class="text-red-600 mb-2">{{ $message }}</p>
                 @enderror
-                <h3 class="text-white font-semibold mb-1 text-lg">Email Address <span class="text-main">(Step#02)</span></h3>
+                <h3 class="text-white font-semibold text-lg">Email Address <span class="text-main">(Step#02)</span></h3>
+                <p class="mb-1 text-gray-200">We will email you the order status and tracking number to this email</p>
                 <input type="text" wire:model.debounce.2000ms="email" placeholder="Contact Email Address" class="w-full bg-dark mt-2 rounded border border-white/10 focus:ring-4 focus:ring-main text-base outline-none text-gray-300 py-2 px-3 leading-8 transition-colors duration-200 ease-in-out mb-3">
                 @error('email')
                     <p class="text-red-600 mb-2">{{ $message }}</p>
