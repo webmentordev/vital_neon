@@ -161,6 +161,8 @@ Route::middleware('auth')->group(function () {
     Route::patch('/light-box/{light_box:slug}/status', [LightBoxController::class, 'status'])->name('status.lightbox');
     Route::patch('/light-box/{light_box:slug}/feature', [LightBoxController::class, 'feature'])->name('feature.lightbox');
 
+    Route::patch('/light-box/order/update/{order:checkout_id}/', [LightBoxController::class, 'order_status'])->name('order.status');
+
 });
 
 Route::get('/sitemap.xml', [SiteMapGenerator::class, 'index'])->name('sitemap');

@@ -2,6 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\LightBox\Canceled;
+use App\Mail\LightBox\Completed;
+use App\Mail\LightBox\Processed;
+use App\Mail\LightBox\Refunded;
+use App\Mail\LightBox\Transit;
 use App\Models\LightBox;
 use App\Models\LightBoxOrder;
 use Stripe\StripeClient;
@@ -12,6 +17,7 @@ use Artesaos\SEOTools\Facades\SEOMeta;
 use Illuminate\Support\Facades\Storage;
 use Artesaos\SEOTools\Facades\OpenGraph;
 use Artesaos\SEOTools\Facades\TwitterCard;
+use Illuminate\Support\Facades\Mail;
 
 class LightBoxController extends Controller
 {
@@ -165,5 +171,21 @@ class LightBoxController extends Controller
             'description' => $request->description
         ]));
         return back()->with('success', 'LightBox has been updated');
+    }
+    public function order_status(Request $request, LightBoxOrder $order){
+        if($request->status == 'processed'){
+            Mail::to($order->email)->send(new Processed($order->checkout_id));
+        }elseif($request->status == 'transit'){
+            Mail::to($order->email)->send(new Transit($order->checkout_id, $request->logistics, $request->transit_id));
+        }elseif($request->status == 'canceled'){
+            Mail::to($order->email)->send(new Canceled($order->checkout_id));
+        }elseif($request->status == 'refunded'){
+            Mail::to($order->email)->send(new Refunded($order->checkout_id));
+        }elseif($request->status == 'completed'){
+            Mail::to($order->email)->send(new Completed($order->checkout_id));
+        }
+        $order->status = $request->status;
+        $order->save();
+        return back()->with('success', 'LightBox order has been updated');
     }
 }

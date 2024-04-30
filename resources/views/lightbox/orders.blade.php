@@ -8,6 +8,9 @@
         <div class="max-w-[98%] mx-auto sm:px-6 lg:px-8">
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900 dark:text-gray-100">
+                    @if (session('success'))
+                        <p class="py-3 border-green-700 mb-3 text-center border bg-green-700 bg-opacity-40 text-white rounded-lg">{{ session('success') }}</p>
+                    @endif
                     @if (count($orders))
                         <table class="w-full mt-3 rounded-lg overflow-hidden">
                             <tr class="bg-white text-gray-800 text-center text-sm">
@@ -28,14 +31,53 @@
                                     <td class="p-2 text-start">{{ $item->email }}</td>
                                     <td class="p-2 text-start capitalize">{{ $item->remote }}</td>
                                     <td class="p-2 text-start">${{ number_format($item->price, 2) }}</td>
-                                    <td class="p-2 text-start">
+                                    <td class="p-2 text-start text-black">
                                         @if ($item->status == 'pending')
-                                            <strong class="text-black capitalize bg-yellow-300 py-1 px-2 rounded-md">{{ $item->status }}</strong>
+                                            <form action="{{ route('order.status', $item->checkout_id) }}" method="post">
+                                                @csrf
+                                                @method('PATCH')
+                                                <select name="status" class="p-1 rounded-lg w-full" onchange="this.form.submit()">
+                                                    <option value="{{ $item->status }}" selected class="capitalize">{{ $item->status }} - currently</option>
+                                                    <option value="processed">Processed</option>
+                                                    <option value="transit">In-Transit</option>
+                                                    <option value="completed">Completed</option>
+                                                    <option value="canceled">Canceled</option>
+                                                    <option value="refunded">Refunded</option>
+                                                </select>
+                                            </form>
+                                        @elseif ($item->status == 'processed')
+                                            <form action="{{ route('order.status', $item->checkout_id) }}" method="post">
+                                                @csrf
+                                                @method('PATCH')
+                                                <select name="status" class="p-1 rounded-lg w-full">
+                                                    <option value="{{ $item->status }}" selected class="capitalize">{{ $item->status }} - currently</option>
+                                                    <option value="transit">In-Transit</option>
+                                                    <option value="completed">Completed</option>
+                                                    <option value="canceled">Canceled</option>
+                                                    <option value="refunded">Refunded</option>
+                                                </select>
+                                                <div class="grid grid-cols-3 gap-1 mt-1">
+                                                    <input type="text" class="p-1 rounded-lg w-full" name="transit_id" placeholder="TrackingID">
+                                                    <input type="text" class="p-1 rounded-lg w-full" name="logistics" placeholder="Logistics">
+                                                    <button type="submit" class="bg-indigo-500 text-white font-semibold p-1 rounded-lg w-full">Send</button>
+                                                </div>
+                                                
+                                            </form>
+                                        @elseif ($item->status == 'transit')
+                                            <form action="{{ route('order.status', $item->checkout_id) }}" method="post">
+                                                @csrf
+                                                @method('PATCH')
+                                                <select name="status" class="p-1 rounded-lg w-full" onchange="this.form.submit()">
+                                                    <option value="{{ $item->status }}" selected class="capitalize">{{ $item->status }} - currently</option>
+                                                    <option value="completed">Completed</option>
+                                                    <option value="refunded">Refunded</option>
+                                                </select>
+                                            </form>
                                         @elseif ($item->status == 'completed')
                                             <strong class="capitalize bg-green-500 py-1 px-2 rounded-md">{{ $item->status }}</strong>
                                         @elseif ($item->status == 'refunded')
                                             <strong class="capitalize bg-blue-500 py-1 px-2 rounded-md">{{ $item->status }}</strong>
-                                        @else
+                                        @elseif ($item->status == 'canceled')
                                             <strong class="capitalize bg-red-500 py-1 px-2 rounded-md">{{ $item->status }}</strong>
                                         @endif
                                     </td>
