@@ -1,8 +1,7 @@
 <nav class="w-full py-2 sticky top-0 left-0 z-50 bg-dark text-white bg-opacity-80 backdrop-blur-lg border-b border-white/10">
     <div class="flex items-center justify-between max-w-[95%] m-auto w-full px-2">
         <a href="{{ route('home') }}" class="text-3xl font-semibold py-1"><img src="{{ asset('assets/neon_tranp_white.png') }}" width="130" alt="Vital Neon"></a>
-        <ul class="flex font-normal items-center capitalize 1220px:hidden">
-            <a class="mx-4" href="{{ route('home') }}">Home</a>
+        <ul class="flex font-normal items-center capitalize 1320px:hidden">
             <a class="mx-4" href="{{ route('products') }}">Products</a>
             <a class="mx-4" href="{{ route('lightboxes') }}">LightBoxs</a>
             <a class="mx-4" href="{{ route('create-design') }}">Design Your Own</a>
@@ -39,12 +38,12 @@
                 <span class="bg-white absolute -top-3 h-[20px] w-[20px] flex items-center justify-center text-[10px] right-0 p-[2px] font-bold px-[5px] rounded-full text-black">{{ $itemsCount }}</span>
             </a>
         </ul>
-        <div class="hidden 1220px:block">
+        <div class="hidden 1320px:block">
             <div class="flex items-center">
-                <a class="text-base mr-6" title="VitalNeon Neon Signs" href="{{ route('products') }}">Products</a>
-                <a class="text-base mr-6" title="VitalNeon Neon Signs" href="{{ route('lightboxes') }}">LightBoxes</a>
+                <a class="text-base mr-6 530px:hidden" title="VitalNeon Neon Signs" href="{{ route('products') }}">Products</a>
+                <a class="text-base mr-6 530px:hidden" title="VitalNeon Neon Signs" href="{{ route('lightboxes') }}">LightBoxes</a>
                 <a class="text-base mr-6" title="VitalNeon Cart" href="{{ route('carts') }}">Cart</a>
-                <form action="{{ route('product.search') }}" method="get">
+                <form action="{{ route('product.search') }}" method="get" class="820px:hidden">
                     <div class="flex mr-2 items-center border bg-light border-white/10 rounded-full pr-1 670px:hidden">
                         <input type="text" id="search" class="bg-transparent border-none focus:outline-none rounded-lg py-2 w-full outline-none text-gray-300" autocomplete="off" placeholder="Search for any product..." name="search">
                         <button type="submit" class="bg-main text-dark font-semibold rounded-full p-1 h-fit">
@@ -63,6 +62,7 @@
                         <ul class="flex flex-col text-black px-3 font-semibold">
                             <a class="text-lg mb-3" href="{{ route('home') }}">Home</a>
                             <a class="text-lg mb-3" title="VitalNeon Neon Signs" href="{{ route('products') }}">Products</a>
+                            <a class="text-lg mb-3" title="VitalNeon Neon Signs" href="{{ route('lightboxes') }}">LightBoxes</a>
                             <a class="text-lg mb-3" title="Create You own Neon Design" href="{{ route('create-design') }}">Design Your Own</a>
                             <a class="text-lg mb-3" title="Request your neon sign" href="{{ route('upload-design') }}">Upload Design</a>
                             <div class="relative mb-2" x-data="{toggle: false}">
@@ -88,7 +88,7 @@
             </div>
         </div>
     </div>
-    <div class="px-2 hidden 670px:block">
+    <div class="px-2 hidden 820px:block">
         <form action="{{ route('product.search') }}" method="get">
             <div class="flex mt-4 items-center border bg-light border-white/10 rounded-full pr-1">
                 <input type="text" id="search" class="bg-transparent border-none focus:outline-none rounded-lg py-2 w-full outline-none text-gray-300" autocomplete="off" placeholder="Search for any product..." name="search">
