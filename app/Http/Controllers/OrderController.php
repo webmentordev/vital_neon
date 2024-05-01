@@ -114,7 +114,7 @@ class OrderController extends Controller
     }
     public function lamp_order_success(LightBoxOrder $lightbox){
         if($lightbox->status == 'pending'){
-            $lightbox->status = 'completed';
+            $lightbox->status = 'paid';
             $lightbox->is_paid = true;
             $lightbox->save();
             Http::post(config('app.order-complete'), [

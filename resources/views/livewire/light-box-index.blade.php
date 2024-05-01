@@ -44,7 +44,15 @@
                 @error('remote')
                     <p class="text-red-600 mb-2">{{ $message }}</p>
                 @enderror
-                <h3 class="text-white font-semibold text-lg">Email Address <span class="text-main">(Step#02)</span></h3>
+                <h3 class="text-white font-semibold mb-1 text-lg">Select Adaptor type <span class="text-main">(Step#02)</span></h3>
+                <div class="flex flex-wrap mb-4">
+                    <span wire:click="$set('adaptor', 'USB Line')" class="text-sm cursor-pointer py-1 px-3 rounded-full border @if ($adaptor == 'USB Line') border-main @else border-white/10 @endif m-1 text-white">USB Line</span>
+                    <span wire:click="$set('adaptor', 'Batteries')" class="text-sm cursor-pointer py-1 px-3 rounded-full border @if ($adaptor == 'Batteries') border-main @else border-white/10 @endif m-1 text-white">Batteries</span>
+                </div>
+                @error('remote')
+                    <p class="text-red-600 mb-2">{{ $message }}</p>
+                @enderror
+                <h3 class="text-white font-semibold text-lg">Email Address <span class="text-main">(Step#03)</span></h3>
                 <p class="mb-1 text-gray-200">We will email you the order status and tracking number to this email</p>
                 <input type="text" wire:model.debounce.2000ms="email" placeholder="Contact Email Address" class="w-full bg-dark mt-2 rounded border border-white/10 focus:ring-4 focus:ring-main text-base outline-none text-gray-300 py-2 px-3 leading-8 transition-colors duration-200 ease-in-out mb-3">
                 @error('email')
@@ -55,7 +63,7 @@
                 <ul class="text-gray-100 mb-3">
                     <li class="flex justify-between mb-1"><strong>Material</strong>Wood</li>
                     <li class="flex justify-between mb-1"><strong>Type</strong>Lamp Decor</li>
-                    <li class="flex justify-between mb-1"><strong>Color</strong>1 colors or 16 color (controller required)</li>
+                    <li class="flex justify-between mb-1"><strong>Color</strong>1 color (standard) or 16 colors (controller)</li>
                     <li class="flex justify-between mb-1"><strong>Size</strong>196x92x53mm</li>
                     <li class="flex justify-between mb-1"><strong>Main Material</strong>Paper+Solid Wood</li>
                     <li class="flex justify-between"><strong>Power supply</strong>USB Charging Line or 3pc battery style</li>
@@ -65,6 +73,8 @@
                     Pay Now
                     <img src="{{ asset('assets/images/stripe_square_logo.png') }}" width="120px" class="ml-3" alt="Powerd by stipe image">
                 </button>
+
+                <p class="text-gray-200 mb-3 p-3 rounded-lg border border-white/20 bg-white/10">To keep your information private and secure, you'll enter your shipping address and contact number on the Stripe checkout page.</p>
                 
                 <p class="text-gray-300">🚚 Estimated Delivery: {{ \Carbon\Carbon::now()->format('d-M-y') }} - {{ \Carbon\Carbon::now()->addDays(14)->format('d-M-y') }}</p>
 

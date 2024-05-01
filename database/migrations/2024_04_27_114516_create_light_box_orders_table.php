@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('title');
             $table->string('email');
             $table->string('remote');
+            $table->string('adaptor');
             $table->decimal('price', 10, 2);
             $table->text('checkout_id');
             $table->text('url');

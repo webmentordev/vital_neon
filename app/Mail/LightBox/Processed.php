@@ -31,7 +31,7 @@ class Processed extends Mailable
     {
         return new Envelope(
             from: new Address('contact@vitalneon.com', 'VitalNeon'),
-            subject: '🚀 Order been processed',
+            subject: '🚀 Order has been processed',
         );
     }
 

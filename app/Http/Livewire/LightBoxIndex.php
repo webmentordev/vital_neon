@@ -17,11 +17,12 @@ use Artesaos\SEOTools\Facades\TwitterCard;
 
 class LightBoxIndex extends Component
 {
-    public $total_price = 0, $remote = "standard", $product, $email;
+    public $total_price = 0, $remote = "standard", $adaptor = "USB Line", $product, $email;
 
     protected $rules = [
         'remote' => 'required',
-        'email' => 'required|email|max:255'
+        'adaptor' => 'required',
+        'email' => 'required|email|max:255',
     ];
 
     public function mount(LightBox $lightbox){
@@ -112,12 +113,13 @@ class LightBoxIndex extends Component
             'title' => $this->product->title,
             'email' => $this->email,
             'remote' => $this->remote,
+            'adaptor' => $this->adaptor,
             'price' => $this->total_price,
             'checkout_id' => $checkoutID,
             'url' => $checkout['url']
         ]);
 
-        $content = "Lamp - Direct order placed:\n**Product:** {$this->product->title}\n**Price:** {$this->total_price}\n**Remote:** {$this->remote}\n**Details:** {$checkout['url']}";
+        $content = "Lamp - Direct order placed:\n**Product:** {$this->product->title}\n**Price:** {$this->total_price}\n**Remote:** {$this->remote}\n**Adaptor:** {$this->adaptor}\n**Details:** {$checkout['url']}";
         
         Http::post(config('app.product-pending'), [
             'content' => $content

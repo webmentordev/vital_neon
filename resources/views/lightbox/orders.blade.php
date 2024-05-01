@@ -45,6 +45,19 @@
                                                     <option value="refunded">Refunded</option>
                                                 </select>
                                             </form>
+                                        @elseif ($item->status == 'paid')
+                                            <form action="{{ route('order.status', $item->checkout_id) }}" method="post">
+                                                @csrf
+                                                @method('PATCH')
+                                                <select name="status" class="p-1 rounded-lg w-full" onchange="this.form.submit()">
+                                                    <option value="{{ $item->status }}" selected class="capitalize">{{ $item->status }} - currently</option>
+                                                    <option value="processed">Processed</option>
+                                                    <option value="transit">In-Transit</option>
+                                                    <option value="completed">Completed</option>
+                                                    <option value="canceled">Canceled</option>
+                                                    <option value="refunded">Refunded</option>
+                                                </select>
+                                            </form>
                                         @elseif ($item->status == 'processed')
                                             <form action="{{ route('order.status', $item->checkout_id) }}" method="post">
                                                 @csrf

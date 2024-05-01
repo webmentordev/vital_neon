@@ -31,7 +31,7 @@ class Refunded extends Mailable
     {
         return new Envelope(
             from: new Address('contact@vitalneon.com', 'VitalNeon'),
-            subject: '🚨 Order Refunded',
+            subject: '🚨 Order Refund',
         );
     }
 

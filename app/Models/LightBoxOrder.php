@@ -13,6 +13,7 @@ class LightBoxOrder extends Model
         'title',
         'email',
         'remote',
+        'adaptor',
         'price',
         'checkout_id',
         'url',
