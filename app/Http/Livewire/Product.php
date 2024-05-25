@@ -67,11 +67,11 @@ class Product extends Component
             OpenGraph::setTitle($result[0]->name);
             OpenGraph::setDescription($result[0]->description); 
             OpenGraph::setUrl("https://vitalneon.com/product/".$result[0]->slug);
-            OpenGraph::addProperty("type", "website");
+            OpenGraph::addProperty("type", "product");
             OpenGraph::addProperty("locale", "eu");
             OpenGraph::addImage("https://vitalneon.com/storage/".$result[0]->image, ["height" => 630, "width" => 630]);
-            OpenGraph::addProperty('product:price:amount', $result[0]->categories[0]->price);
-            OpenGraph::addProperty('product:price:currency', 'USD');
+            OpenGraph::addProperty('price:amount', $result[0]->categories[0]->price);
+            OpenGraph::addProperty('price:currency', 'USD');
 
             TwitterCard::setTitle($result[0]->name);
             TwitterCard::setSite("@vitalneon");
