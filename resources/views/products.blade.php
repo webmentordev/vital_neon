@@ -16,7 +16,7 @@
             <div class="grid grid-cols-4 gap-6 m-auto 1170px:grid-cols-3 940px:grid-cols-2 940px:max-w-2xl 620px:grid-cols-1 620px:max-w-[390px]">
                 @foreach ($products as $item)
                     @if (count($item->categories))
-                        <a href="{{ route('listing', $item->slug) }}" class="overflow-hidden group transition-all relative">
+                        <a href="{{ route('listing', $item->slug) }}" class="overflow-hidden group rounded-lg transition-all relative h-fit bg-light p-3">
                             @if ($discount)
                                 @if ($discount->discount != 0.00)
                                     <span class="bg-red-600 p-2 rounded-lg absolute top-2 right-2 text-white font-semibold">{{ number_format($discount->discount, 0) }}% Off</span>
@@ -25,12 +25,10 @@
                             <div class="overflow-hidden rounded-lg">
                                 <img data-src="{{ asset('storage/'.$item->image) }}" class="group-hover:scale-125 transition-all lazyload h-[300px] 620px:h-full" alt="{{ $item->name }}" title="{{ $item->name }} Image" loading="lazy" style="width: 100%; object-fit: cover">
                             </div>
-                            <div class="bg-light p-3 w-full bottom-0 left-0">
-                                @if (strlen($item->name) >= 26)
-                                    <h3 class="text-white text-center mb-3">{{ substr($item->name, 0, 26) }}...</h3>
-                                @else
+                            <div class="p-3 w-full h-full">
+                                <div class="h-full">
                                     <h3 class="text-white text-center mb-3">{{ $item->name }}</h3>
-                                @endif
+                                </div>
                                 @if ($discount)
                                     @if ($discount->discount != 0.00)
                                         <div class="text-center">
