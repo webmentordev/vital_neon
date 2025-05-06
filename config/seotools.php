@@ -51,7 +51,7 @@ return [
          * The default values to be used by the twitter cards generator.
          */
         'defaults' => [
-            'card'        => 'summary_large_image',
+            'card'        => 'large_summary',
             'site'        => '@vitalneon',
         ],
     ],
