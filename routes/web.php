@@ -28,6 +28,7 @@ use App\Http\Controllers\DiscountController;
 use App\Http\Controllers\LightBoxController;
 use App\Http\Controllers\PriceIncrementController;
 use App\Http\Controllers\ServiceController;
+use App\Http\Livewire\FreeMockup;
 use App\Http\Livewire\LightBoxIndex;
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
@@ -47,6 +48,8 @@ Route::get("/f-a-q", function(){
 
 Route::get('/upload-your-own-design', [DesignController::class, 'index'])->name('upload-design');
 Route::post('/upload-your-own-design', [DesignController::class, 'store'])->middleware(['throttle:60,5']);
+
+Route::get('/neon-sign-free-mockup-and-quote', FreeMockup::class)->name('free.mockup');
 
 Route::get('/cancel/{checkout_id}', [OrderController::class, 'cancel']);
 Route::get('/success/{checkout_id}', [OrderController::class, 'success']);
