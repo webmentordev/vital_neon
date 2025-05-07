@@ -9,11 +9,24 @@ use Livewire\WithPagination;
 class Leads extends Component
 {
     use WithPagination;
+
+    public $search = "";
     public function render()
     {
+        $this->search = trim($this->search);
         return view('livewire.auth.leads', [
-            'leads' => Lead::latest()->paginate(100),
-        ])->layout('layouts.livewire');;
+            'leads' => Lead::where(function($query) {
+                    if ($this->search) {
+                        $query->where('uuid', 'like', '%' . $this->search . '%')
+                            ->orWhere('name', 'like', '%' . $this->search . '%')
+                            ->orWhere('email', 'like', '%' . $this->search . '%')
+                            ->orWhere('phone_number', 'like', '%' . $this->search . '%')
+                            ->orWhere('ip_address', 'like', '%' . $this->search . '%');
+                    }
+                })
+                ->latest()
+                ->paginate(100),
+        ])->layout('layouts.livewire');
     }
 
     public function delete(Lead $lead){
