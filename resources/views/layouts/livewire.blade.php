@@ -8,16 +8,8 @@
 
     <link rel="shortcut icon" href="{{ asset('assets/images/vn_favicon.png') }}" type="image/x-icon">
 
-    <link rel="preconnect" href="https://fonts.bunny.net">
-    <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/lazysizes/5.3.2/lazysizes.min.js"
-        integrity="sha512-q583ppKrCRc7N5O0n2nzUiJ+suUv7Et1JGels4bXOaMFQcamPk9HjdUknZuuFjBNs7tsMuadge5k9RzdmO+1GQ=="
-        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-
     <title>VitalNeon Dashboard</title>
 
-    @vite(['resources/css/app.css', 'resources/js/app.js'])
     {!! SEOMeta::generate() !!}
     {!! OpenGraph::generate() !!}
     {!! Twitter::generate() !!}
@@ -42,11 +34,9 @@
                 j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =
                     'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
         })(window, document, 'script', 'dataLayer', 'GTM-MXZJWCNX');</script>
-    <!-- End Google Tag Manager -->
 
-    <script
-        type="text/javascript">window.$crisp = []; window.CRISP_WEBSITE_ID = "f03607c6-c8b4-41cb-a1ac-1d42d4834a0d"; (function () { d = document; s = d.createElement("script"); s.src = "https://client.crisp.chat/l.js"; s.async = 1; d.getElementsByTagName("head")[0].appendChild(s); })();</script>
-
+    @livewireStyles
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 
 <body class="font-sans antialiased">
@@ -72,6 +62,7 @@
         </main>
     </div>
     <x-footer />
+    @livewireScripts
 </body>
 <script src="https://cdn.ckeditor.com/4.21.0/standard/ckeditor.js"></script>
 <script>

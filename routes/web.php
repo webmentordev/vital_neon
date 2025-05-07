@@ -1,9 +1,14 @@
 <?php
 
+use App\Models\Lead;
+use App\Mail\LeadRecieved;
 use App\Http\Livewire\Carts;
 use App\Http\Livewire\Product;
+use App\Http\Livewire\Auth\Leads;
+use App\Http\Livewire\FreeMockup;
 use App\Http\Livewire\DesignQuote;
 use App\Http\Livewire\CreateDesign;
+use App\Http\Livewire\LightBoxIndex;
 use Illuminate\Support\Facades\Route;
 use Artesaos\SEOTools\Facades\SEOMeta;
 use App\Http\Controllers\BlogController;
@@ -20,16 +25,14 @@ use App\Http\Controllers\SearchController;
 use App\Http\Controllers\SiteMapGenerator;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\DiscountController;
+use App\Http\Controllers\LightBoxController;
 use App\Http\Controllers\ProductsController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\CategoryPriceController;
-use App\Http\Controllers\DiscountController;
-use App\Http\Controllers\LightBoxController;
 use App\Http\Controllers\PriceIncrementController;
-use App\Http\Controllers\ServiceController;
-use App\Http\Livewire\FreeMockup;
-use App\Http\Livewire\LightBoxIndex;
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
@@ -93,8 +96,9 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/remote', [RemoteController::class, 'index'])->name('remote');
     Route::post('/remote', [RemoteController::class, 'create']);
-    
 
+    Route::get('leads', Leads::class)->name('admin.leads');
+    
     Route::get('/lines', [LineController::class, 'index'])->name('line');
     Route::post('/lines', [LineController::class, 'create']);
 
@@ -169,5 +173,10 @@ Route::middleware('auth')->group(function () {
 });
 
 Route::get('/sitemap.xml', [SiteMapGenerator::class, 'index'])->name('sitemap');
+
+Route::get('/email', function(){
+    $lead = Lead::where('id', 8)->first();
+    return new LeadRecieved($lead);
+})->name('');
 
 require __DIR__.'/auth.php';

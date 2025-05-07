@@ -21,6 +21,7 @@ class Lead extends Model
         "logos", 
         "is_completed", 
         "user_agent", 
+        "ip_address", 
         "source"
     ];
 }

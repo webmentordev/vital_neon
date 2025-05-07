@@ -2,10 +2,13 @@
 
 namespace App\Http\Livewire;
 
+use App\Jobs\LeadMessageJob;
 use App\Models\Lead;
 use Livewire\Component;
+use App\Mail\LeadRecieved;
 use Illuminate\Support\Str;
 use Livewire\WithFileUploads;
+use Illuminate\Support\Facades\Mail;
 use Artesaos\SEOTools\Facades\JsonLd;
 use Artesaos\SEOTools\Facades\SEOMeta;
 use Illuminate\Support\Facades\Session;
@@ -18,7 +21,7 @@ class FreeMockup extends Component
 
     public $uuid, $sessionActive, $source;
 
-    public $name, $email, $phone_number, $location, $dimensions, $budget, $message, $logos;
+    public $name, $email, $phone_number, $location, $dimensions, $budget, $message, $logos = [];
 
     public function mount()
     {
@@ -88,20 +91,25 @@ class FreeMockup extends Component
         );
     }
 
-    public function store(){
+    public function store_data(){
         $this->validate([
             'name' => 'required|max:255',
             'email' => 'required|email|max:255',
-            'phone_number' => 'required|min:8|max:255',
+            'phone_number' => 'required|numeric|min:8',
             'location' => 'required|max:255',
             'dimensions' => 'required|max:255',
-            'budget' => 'required|min:200|max:4000',
+            'budget' => 'required|numeric|min:200',
             'message' => 'required',
             'logos' => 'required|array',
             'logos.*' => 'required|mimes:png,jpg,jpeg,webp,pdf|max:5024',
         ]);
+        $logoPaths = [];
+        foreach ($this->logos as $logo) {
+            $path = $logo->store('logos', 'storage');
+            $logoPaths[] = $path;
+        }
         $request = request();
-        Lead::updateOrCreate(
+        $lead = Lead::updateOrCreate(
             ['uuid' => $this->uuid, 'is_completed' => false],
             [
                 'uuid' => $this->uuid,
@@ -112,11 +120,22 @@ class FreeMockup extends Component
                 'dimensions' => $this->dimensions, 
                 'budget' => $this->budget,
                 'message' => $this->message,
+                'logos' => json_encode($logoPaths),
                 'source' => $this->source,
+                'ip_address' => $request->ip(),
                 'user_agent' => $request->header('User-Agent'),
                 'is_completed' => true
             ]
         );
-        return session()->flash("success", "Thank you for submitting your Mokcup! We will contact you with your proposal.");
+        Mail::to($this->email)->queue(new LeadRecieved($lead));
+        LeadMessageJob::dispatch($lead);
+        $this->reset(['name', 'email', 'phone_number', 'location', 'dimensions', 'budget', 'message', 'logos']);
+        return session()->flash('success', "Thank you!");
+    }
+
+    public function hide_message(){
+        $this->uuid = (string) Str::uuid();
+        Session::put('visitor_uuid', $this->uuid);
+        return redirect()->to('/neon-sign-free-mockup-and-quote');
     }
 }

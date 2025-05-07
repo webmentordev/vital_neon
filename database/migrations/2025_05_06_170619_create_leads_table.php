@@ -22,6 +22,7 @@ return new class extends Migration
             $table->boolean("is_completed")->default(false);
             $table->text("user_agent")->nullable();
             $table->string("source")->nullable();
+            $table->string("ip_address")->nullable();
             $table->timestamps();
         });
     }

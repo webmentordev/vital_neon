@@ -766,3 +766,11 @@ h3 {
 .terms ul li {
     @apply text-gray-100 mb-2;
 }
+
+.leads-table {
+    @apply text-[13px]
+}
+
+.leads-table tr td, .leads-table tr th {
+    @apply text-start p-2;
+}
