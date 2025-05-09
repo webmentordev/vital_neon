@@ -43,13 +43,14 @@
         <div class="text-end 475px:text-start">
             <h3 class="text-2xl pb-3 border-b border-white/5 mb-3">Navigations</h3>
             <ul class="text-gray-200 links">
-                <li class="mb-2"><a href="{{ route('home') }}">Home</a></li>
-                <li class="mb-2"><a href="{{ route('products') }}">Products</a></li>
-                <li class="mb-2"><a href="{{ route('create-design') }}">Design Your Neon Sign</a></li>
-                <li class="mb-2"><a href="{{ route('free.mockup') }}">Get Free Mockup & Quote</a></li>
-                <li class="mb-2"><a href="{{ route('about') }}">About Us</a></li>
                 <li class="mb-2"><a href="{{ route('f.a.q') }}" rel="nofollow">FAQ</a></li>
+                <li class="mb-2"><a href="{{ route('home') }}">Home</a></li>
+                <li class="mb-2"><a href="{{ route('about') }}">About Us</a></li>
+                <li class="mb-2"><a href="{{ route('products') }}">Products</a></li>
                 <li class="mb-2"><a href="{{ route('sitemap') }}">Sitemap</a></li>
+                <li class="mb-2"><a href="{{ route('create-design') }}">Design Your Neon Sign</a></li>
+                <li class="mb-2 font-semibold text-main"><a href="{{ route('free.mockup') }}">Get Free Mockup &
+                        Quote</a></li>
             </ul>
         </div>
     </div>

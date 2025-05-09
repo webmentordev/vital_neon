@@ -1,15 +1,15 @@
-<section class="w-full px-4">
+<section class="w-full px-4 400px:p-2">
     <div class="max-w-7xl m-auto">
-        <div class="grid grid-cols-2">
-            <div class="p-12 max-w-2xl">
+        <div class="grid grid-cols-2 890px:grid-cols-1">
+            <div class="p-12 max-w-2xl 1090px:p-6 890px:hidden">
                 <img src="{{ asset('assets/neon-signs.png') }}" alt="Image">
             </div>
-            <div class="pt-12" x-data="{ isUploading: false, progress: 0 }"
+            <div class="pt-12 1090px:pt-6" x-data="{ isUploading: false, progress: 0 }"
                 x-on:livewire-upload-start="isUploading = true" x-on:livewire-upload-finish="isUploading = false"
                 x-on:livewire-upload-error="isUploading = false"
                 x-on:livewire-upload-progress="progress = $event.detail.progress">
                 <form wire:submit.prevent="store_data" enctype="multipart/form-data" method="POST"
-                    class="p-12 575px:p-6 rounded-lg border-gray-700 border shadow-md bg-light">
+                    class="p-12 575px:p-6 rounded-lg border-gray-700 border shadow-md bg-light 920px:p-8 890px:max-w-2xl m-auto">
                     <h2 class="font-semibold text-2xl text-white">Get Free Mockup Design and Quote</h2>
                     <p class="py-2 text-gray-300 mb-2 text-sm">Upload your logo or drawing, and our team will transform
                         it
@@ -44,7 +44,7 @@
                         <div class="w-full" wire:loading.delay.shorter wire:target="store_data">
                             <x-loading message="Submitting request..." />
                         </div>
-                        <div class="grid grid-cols-2 gap-3 575px:grid-cols-1 mb-4">
+                        <div class="grid grid-cols-2 gap-3 1090px:grid-cols-1 mb-4">
                             <div class="flex flex-col">
                                 <x-form-input type="text" wire:model.blur="name" placeholder="Full Name" />
                                 <x-input-error :messages="$errors->get('name')" class="mt-2" />
@@ -55,7 +55,7 @@
                             </div>
                         </div>
 
-                        <div class="grid grid-cols-2 gap-3 575px:grid-cols-1 mb-4">
+                        <div class="grid grid-cols-2 gap-3 1090px:grid-cols-1 mb-4">
                             <div class="flex flex-col">
                                 <x-form-input type="text" wire:model.blur="phone_number" placeholder="Phone Number" />
                                 <x-input-error :messages="$errors->get('phone_number')" class="mt-2" />
@@ -69,7 +69,7 @@
                                 <x-input-error :messages="$errors->get('location')" class="mt-2" />
                             </div>
                         </div>
-                        <div class="grid grid-cols-2 gap-3 575px:grid-cols-1 mb-4">
+                        <div class="grid grid-cols-2 gap-3 1090px:grid-cols-1 mb-4">
                             <div class="flex flex-col">
                                 <x-form-input type="text" wire:model.blur="dimensions"
                                     placeholder="Width / Height or Dimensions" />
@@ -78,7 +78,7 @@
 
                             <div class="flex flex-col">
                                 <x-form-input type="number" step="0.01" wire:model.blur="budget"
-                                    placeholder="Your Budget ($200 to $2000)" />
+                                    placeholder="Your Budget ($200 to $4000)" />
                                 <x-input-error :messages="$errors->get('budget')" class="mt-2" />
                             </div>
                         </div>

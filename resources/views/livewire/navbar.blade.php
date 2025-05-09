@@ -61,7 +61,7 @@
         </ul>
         <div class="hidden 1320px:block font-semibold">
             <div class="flex items-center">
-                <div class="mx-4 relative group">
+                <div class="mx-4 relative group 650px:hidden">
                     <span class="category flex items-center">PRODUCTS <img
                             src="https://api.iconify.design/ic:outline-arrow-drop-down.svg?color=%23ffffff" width="28"
                             alt="Carret Down Logo"></span>
@@ -75,7 +75,8 @@
                         </ul>
                     </div>
                 </div>
-                <a class="text-base mr-6" title="VitalNeon Cart" href="{{ route('free.mockup') }}">GET FREE MOCKUP &
+                <a class="text-base mr-6 650px:hidden" title="VitalNeon Cart" href="{{ route('free.mockup') }}">GET FREE
+                    MOCKUP &
                     QUOTE</a>
                 <div x-data="{open: false}">
                     <div x-on:click="open = true" class="p-2 rounded-full bg-white cursor-pointer">
@@ -98,8 +99,8 @@
                                 href="{{ route('lightboxes') }}">LightBoxes</a>
                             <a class="text-lg mb-3" title="Create You own Neon Design"
                                 href="{{ route('create-design') }}">Design Your Own</a>
-                            <a class="text-lg mb-3" title="Request your neon sign"
-                                href="{{ route('upload-design') }}">Upload Design</a>
+                            <a class="text-lg mb-3" title="Request your neon sign" href="{{ route('free.mockup') }}">GET
+                                FREE MOCKUP & QUOTE</a>
                             <div class="relative mb-2" x-data="{toggle: false}">
                                 <span class="flex items-center category cursor-pointer p-2 bg-gray-200" x-on:click="toggle = 
                                 !toggle">Categories <img
@@ -120,29 +121,17 @@
                                         src="https://api.iconify.design/logos:messenger.svg?color=%23121212"
                                         class="mr-2" width="30" alt="Social Media Icon">Facebook</a>
                             </div>
-                            <a href="{{ route('carts') }}" class="w-fit flex items-center rounded-full bg-black p-3">
-                                <img src="https://api.iconify.design/ion:md-basket.svg?color=%23ffffff" width="30"
+                            <a href="{{ route('carts') }}" class="w-fit flex items-center rounded-full bg-black p-2">
+                                <img src="https://api.iconify.design/ion:md-basket.svg?color=%23ffffff" width="20"
                                     alt="Cart">
+                                <span class="text-white ml-1">Cart</span>
                                 <span
-                                    class="bg-white rounded-full px-2 text-black text-lg ml-3 mr-3">{{ $itemsCount }}</span>
+                                    class="bg-white rounded-full px-1 text-black text-sm mx-3">{{ $itemsCount }}</span>
                             </a>
                         </ul>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-    <div class="px-2 hidden 820px:block">
-        <form action="{{ route('product.search') }}" method="get">
-            <div class="flex mt-4 items-center border bg-light border-white/10 rounded-full pr-1">
-                <input type="text" id="search"
-                    class="bg-transparent border-none focus:outline-none rounded-lg py-2 w-full outline-none text-gray-300"
-                    autocomplete="off" placeholder="Search for any product..." name="search">
-                <button type="submit" class="bg-main text-dark font-semibold rounded-full p-1 h-fit">
-                    <img src="https://api.iconify.design/ic:round-search.svg?color=%23272626" width="30"
-                        alt="Search icon">
-                </button>
-            </div>
-        </form>
     </div>
 </nav>
