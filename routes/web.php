@@ -174,9 +174,4 @@ Route::middleware('auth')->group(function () {
 
 Route::get('/sitemap.xml', [SiteMapGenerator::class, 'index'])->name('sitemap');
 
-Route::get('/email', function(){
-    $lead = Lead::where('id', 8)->first();
-    return new LeadRecieved($lead);
-})->name('');
-
 require __DIR__.'/auth.php';
