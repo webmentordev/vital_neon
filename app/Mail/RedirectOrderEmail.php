@@ -27,7 +27,7 @@ class RedirectOrderEmail extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            from: new Address('contact@vitalneon.com', 'VitalNeon Order'),
+            from: new Address('no-reply@vitalneon.com', 'VitalNeon Order'),
             subject: 'Redirect Order Email',
         );
     }
