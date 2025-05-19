@@ -1,5 +1,5 @@
 <footer class="w-full px-4 bg-dark text-white">
-    <div class="max-w-4xl m-auto py-[60px] grid grid-cols-2 gap-6 border-b border-white/10 475px:grid-cols-1">
+    <div class="max-w-7xl m-auto py-[60px] grid grid-cols-2 gap-6 border-b border-white/10 475px:grid-cols-1">
         <div class="flex flex-col">
             <img src="{{ asset('assets/neon_tranp_white.png') }}" width="148" alt="VitalNeon icon">
             <p class="mb-3 py-3 border-b border-white/5 text-sm">Welcome to VitalNeon, your one-stop-shop for buying and

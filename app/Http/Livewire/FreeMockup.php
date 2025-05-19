@@ -2,12 +2,14 @@
 
 namespace App\Http\Livewire;
 
-use App\Jobs\LeadMessageJob;
 use App\Models\Lead;
+use App\Models\Product;
 use Livewire\Component;
 use App\Mail\LeadRecieved;
 use Illuminate\Support\Str;
+use App\Jobs\LeadMessageJob;
 use Livewire\WithFileUploads;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
 use Artesaos\SEOTools\Facades\JsonLd;
 use Artesaos\SEOTools\Facades\SEOMeta;
@@ -69,7 +71,10 @@ class FreeMockup extends Component
         JsonLd::setType("WebSite");
         JsonLd::addImage("https://vitalneon.com/assets/seo/upload-1.png", ["height" => 400, "width" => 760]);
 
-        return view('livewire.free-mockup');
+        return view('livewire.free-mockup', [
+            'products' => Product::inRandomOrder()->limit(12)->where('is_active', true)->get(),
+            'discount' => DB::table('discounts')->latest()->first()
+        ]);
     }
 
     public function updated(){

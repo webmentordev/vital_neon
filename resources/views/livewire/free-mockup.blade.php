@@ -78,7 +78,7 @@
 
                             <div class="flex flex-col">
                                 <x-form-input type="number" step="0.01" wire:model.blur="budget"
-                                    placeholder="Your Budget ($200 to $4000)" />
+                                    placeholder="Expected Price ($200 to $4000)" />
                                 <x-input-error :messages="$errors->get('budget')" class="mt-2" />
                             </div>
                         </div>
@@ -122,16 +122,76 @@
                         @else
                             <p class="text-gray-200 mb-3 text-sm">Max Filesize: 5MB | Filetype: png, jpeg, jpg, webp, pdf</p>
                         @endif
-                        <div>
+                        <div class="mb-4">
                             <button type="submit" class="bg-main w-full p-4 text-black font-bold"
                                 x-bind:class="{'opacity-60': isUploading}" x-bind:disabled="isUploading">
                                 Submit Your Request
                             </button>
                         </div>
+                        <a href="https://www.trustpilot.com/review/vitalneon.com" title="Vital Neon TrustPilot reviews"
+                            target="_blank" rel="nofollow" class="py-3 rounded-lg bg-gray-100 mb-6">
+                            <img class="max-w-[80%] w-full m-auto"
+                                src="{{ asset('assets/vital-neon-trustpilot-reviews.png') }}"
+                                alt="Vital Neon TrustPilot reviews">
+                        </a>
+                        <a href="https://www.etsy.com/shop/VitalNeons" title="Vital Neon Etsy reviews" target="_blank"
+                            rel="nofollow" class="mb-3 py-3 rounded-lg bg-gray-100">
+                            <img class="max-w-[80%] w-full m-auto" src="{{ asset('assets/vital-neon-etsy-reviews.png') }}"
+                                alt="Vital Neon Etsy reviews">
+                        </a>
                     @endif
                 </form>
             </div>
         </div>
+        @if (count($products))
+        <h3 class="text-4xl mt-8 mb-4 text-white font-bold">Our Neon Signs Collection</h3>
+            <div class="grid grid-cols-4 gap-6 m-auto 1170px:grid-cols-3 940px:grid-cols-2 940px:max-w-2xl 620px:grid-cols-1 620px:max-w-[390px]">
+                @foreach ($products as $item)
+                    @if (count($item->categories))
+                        <a href="{{ route('listing', $item->slug) }}" class="overflow-hidden group transition-all relative">
+                            @if ($discount)
+                                @if ($discount->discount != 0.00)
+                                    <span class="bg-red-600 p-2 rounded-lg absolute top-2 right-2 text-white font-semibold">{{ number_format($discount->discount, 0) }}% Off</span>
+                                @endif
+                            @endif
+                            <div class="overflow-hidden rounded-lg">
+                                <img data-src="{{ asset('storage/'.$item->image) }}" class="group-hover:scale-125 transition-all lazyload h-[300px] 620px:h-full" alt="{{ $item->name }}" title="{{ $item->name }} Image" loading="lazy" style="width: 100%; object-fit: cover">
+                            </div>
+                            <div class="bg-light p-3 w-full bottom-0 left-0">
+                                @if (strlen($item->name) >= 26)
+                                    <h3 class="text-white text-center mb-3">{{ substr($item->name, 0, 26) }}...</h3>
+                                @else
+                                    <h3 class="text-white text-center mb-3">{{ $item->name }}</h3>
+                                @endif
+                                @if ($discount)
+                                    @if ($discount->discount != 0.00)
+                                        <div class="text-center">
+                                            <del class="text-white/60">${{ number_format($item->categories[0]->price + (($discount->discount / 100) * $item->categories[0]->price), 2) }}</del>
+                                            <p class="text-white text-3xl"><span class="font-semibold text-white">${{ number_format($item->categories[0]->price, 0) }}</span></p>
+                                        </div>
+                                    @endif
+                                @endif
+                                <span class="py-3 mt-3 rounded-md flex items-center group-hover:bg-[#90FED5] px-4 w-full transition-all text-center justify-center bg-[#00DC82] text-black font-bold">
+                                    @if (!$discount)
+                                        USD ${{ $item->categories[0]->price }}
+                                    @else
+                                        @if ($discount)
+                                            @if ($discount->discount == 0.0)
+                                                USD ${{ $item->categories[0]->price }}
+                                            @else
+                                                BUY NOW
+                                            @endif
+                                        @endif
+                                    @endif
+                                </span>
+                            </div>
+                        </a>
+                    @endif
+                @endforeach
+            </div>
+            @else
+                <p class="text-center text-lg text-white">Product(s) not found!</p>
+            @endif
         <div class="text-white mt-6">
             <h2 class="mb-3 text-3xl font-bold" title="Request Your Custom Neon Sign">Request Your Custom Neon Sign
             </h2>

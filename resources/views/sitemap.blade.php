@@ -25,6 +25,12 @@
         <priority>0.90</priority>
     </url>
     <url>
+        <loc>{{ url('/') }}/neon-sign-free-mockup-and-quote</loc>
+        <lastmod>2025-05-18T05:05:00+05:00</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.90</priority>
+    </url>
+    <url>
         <loc>{{ url('/') }}/products</loc>
         <lastmod>2023-04-18T05:05:00+05:00</lastmod>
         <changefreq>weekly</changefreq>
