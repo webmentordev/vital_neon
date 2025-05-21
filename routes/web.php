@@ -33,6 +33,7 @@ use App\Http\Controllers\ProductsController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\CategoryPriceController;
 use App\Http\Controllers\PriceIncrementController;
+use App\Http\Livewire\Preview;
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
@@ -90,6 +91,8 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+    
+    Route::get('/preview', Preview::class)->name('preview');
 
     Route::get('/shape', [ShapeController::class, 'index'])->name('shape');
     Route::post('/shape', [ShapeController::class, 'create']);
