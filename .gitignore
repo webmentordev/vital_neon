@@ -21,3 +21,5 @@ yarn-error.log
 /*.zip
 /public/*.zip
 /public/videos
+/public/mockup-images/*
+/public/mockup-pdf/*

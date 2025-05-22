@@ -15,6 +15,7 @@
         "vite": "^4.0.0"
     },
     "dependencies": {
-        "@toast-ui/editor": "^3.2.2"
+        "@toast-ui/editor": "^3.2.2",
+        "puppeteer": "^24.9.0"
     }
 }

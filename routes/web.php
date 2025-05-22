@@ -32,6 +32,7 @@ use App\Http\Controllers\LightBoxController;
 use App\Http\Controllers\ProductsController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\CategoryPriceController;
+use App\Http\Controllers\PDFController;
 use App\Http\Controllers\PriceIncrementController;
 use App\Http\Livewire\Preview;
 
@@ -172,6 +173,9 @@ Route::middleware('auth')->group(function () {
     Route::patch('/light-box/{light_box:slug}/feature', [LightBoxController::class, 'feature'])->name('feature.lightbox');
 
     Route::patch('/light-box/order/update/{order:checkout_id}/', [LightBoxController::class, 'order_status'])->name('order.status');
+
+    Route::get("/get-pdf", [PDFController::class, 'index']);
+    Route::get("/generate-pdf", [PDFController::class, 'store']);
 
 });
 
