@@ -1,16 +1,20 @@
 <?php
 
 use App\Models\Lead;
+use App\Mail\Testing;
 use App\Mail\LeadRecieved;
 use App\Http\Livewire\Carts;
+use App\Http\Livewire\Preview;
 use App\Http\Livewire\Product;
 use App\Http\Livewire\Auth\Leads;
 use App\Http\Livewire\FreeMockup;
 use App\Http\Livewire\DesignQuote;
 use App\Http\Livewire\CreateDesign;
 use App\Http\Livewire\LightBoxIndex;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Route;
 use Artesaos\SEOTools\Facades\SEOMeta;
+use App\Http\Controllers\PDFController;
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LineController;
@@ -32,9 +36,7 @@ use App\Http\Controllers\LightBoxController;
 use App\Http\Controllers\ProductsController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\CategoryPriceController;
-use App\Http\Controllers\PDFController;
 use App\Http\Controllers\PriceIncrementController;
-use App\Http\Livewire\Preview;
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
@@ -176,6 +178,15 @@ Route::middleware('auth')->group(function () {
 
     Route::get("/get-pdf", [PDFController::class, 'index']);
     Route::get("/generate-pdf", [PDFController::class, 'store']);
+
+    // Route::get('/email', function(){
+    //     return new Testing();
+    // });
+
+    // Route::get('/email-send', function(){
+    //     Mail::to('')->send(new Testing());
+    //     return "Email has been sent!";
+    // });
 
 });
 

@@ -132,7 +132,7 @@ class FreeMockup extends Component
                 'is_completed' => true
             ]
         );
-        // Mail::to($this->email)->queue(new LeadRecieved($lead));
+        Mail::to($this->email)->queue(new LeadRecieved($lead));
         LeadMessageJob::dispatch($lead);
         $this->reset(['name', 'email', 'phone_number', 'location', 'dimensions', 'budget', 'message', 'logos']);
         return session()->flash('success', "Thank you!");
