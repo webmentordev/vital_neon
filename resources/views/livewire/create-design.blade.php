@@ -1,9 +1,9 @@
 <section class="w-full py-[10px]">
-    <div class="grid grid-cols-5 text-white relative m-auto 890px:flex 890px:flex-col bg-dark p-6 mb-6">
+    <div class="grid grid-cols-5 text-white relative m-auto 890px:flex 890px:flex-col bg-dark p-6 mb-6" x-data="{ full: false }">
         <div wire:loading wire:target="checkout" class="fixed left-[45%] 575px:left-0 bottom-3">
             <div class="flex items-center bg-black text-white p-6 rounded-lg"><img src="https://api.iconify.design/svg-spinners:ring-resize.svg?color=%23ffffff" alt="Loading Icon"> <span class="ml-2">Processing...</span></div>
         </div>
-        <div class="bg-cover bg-center @if ($direction) col-span-5 relative @else sticky col-span-3 @endif top-0 890px:static left-0 rounded-lg flex justify-center items-center h-[750px] w-full 890px:relative 890px:min-h-[970px]" style="background-image: url({{ $backgroundImage }})" id="backDiv">
+        <div wire:ignore.self class="bg-cover bg-center top-0 890px:static left-0 rounded-lg flex justify-center items-center h-[750px] w-full 890px:relative 890px:min-h-[970px]" style="background-image: url({{ $backgroundImage }})" id="backDiv" :class="full ? 'col-span-5 relative' : 'sticky col-span-3'">
             
             @if ($total_price != 0)
                 <span class="fixed bg-main rounded-lg p-3 bottom-3 left-3 text-gray-800 text-4xl font-semibold z-50"><span class="text-2xl">$</span>{{ $total_price }}</span>
@@ -17,7 +17,7 @@
                 @endif
             </div>
 
-            <div wire:click="$set('direction', {{ !$direction }})" class="bg-white p-[12px] rounded-lg absolute top-[8px] left-[60px]">
+            <div @click="full = !full" class="bg-white p-[12px] rounded-lg absolute top-[8px] left-[60px]">
                 <img src="https://api.iconify.design/akar-icons:full-screen.svg?color=%23e4aa0c" width="20" alt="Sun Image">
             </div>
 
@@ -88,7 +88,7 @@
                 </div>
             </div>
         </div>
-        <form wire:submit.prevent="checkout" method="POST" class="bg-light inline-block @if ($direction) col-span-5 @else col-span-2 @endif text-sm w-full px-6 py-6 850px:p-3 850px:overflow-y-hidden">
+        <form wire:submit.prevent="checkout" method="POST" class="bg-light inline-block text-sm w-full px-6 py-6 850px:p-3 850px:overflow-y-hidden" :class="full ? 'col-span-5' : 'col-span-2'">
             <div class="flex items-center justify-between 490px:flex-col">
                 <h1 class="text-main font-bold text-3xl mb-3">Design Your Neon</h1>
                 <div class="flex items-center">
@@ -258,7 +258,7 @@
         const text1 = document.getElementById('text1');
         const text2 = document.getElementById('text2');
 
-        output.style.backgroundColor = "#000000";
+        output.style.backgroundImage = `url({{ asset('assets/1679a1a8-6017-4ad3-8a17-9d6dc6d340fb.jpeg') }})`;
 
         var loadFile = function(event) {
           output.style.backgroundColor = "transparent";
@@ -266,11 +266,6 @@
           console.log(event.target.files[0]);
           output.style.backgroundImage = `url(${myImageURL})`;
           document.cookie = `myimageurl=${myImageURL}`;
-        
-            //   output.onload = function() {
-            //     var myURL = URL.revokeObjectURL(output.src)
-            //     console.log(myURL)
-            //   }
         };
 
         function change(){

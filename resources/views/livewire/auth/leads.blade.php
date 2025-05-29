@@ -92,11 +92,26 @@
                                     </td>
                                     <td class="text-end">{{ $item->ip_address }}</td>
                                     <td class="text-end capitalize">{{ $item->source ? $item->source : '-' }}</td>
-                                    <td class="text-end flex items-center">{{ $item->created_at->format('d M Y H:i A') }} -
-                                        <button wire:click='delete("{{ $item->id }}")' wire:confirm
-                                            class="p-1 ml-3 rounded-full bg-red-700/30">
-                                            <img
-                                                src="https://api.iconify.design/material-symbols:delete-forever-outline-sharp.svg?color=%23f11e1e"></button>
+                                    <td class="text-end flex items-center" x-data="{ open: false }">
+                                        {{ $item->created_at->format('d M Y H:i A') }} -
+                                        <img @click="open = true" class="cursor-pointer"
+                                            src="https://api.iconify.design/material-symbols:delete-forever-outline-sharp.svg?color=%23f11e1e">
+                                        <div x-show="open" x-cloak x-transition
+                                            class="top-0 left-0 fixed w-full h-full z-50 bg-black/30 backdrop-blur-sm">
+                                            <div class="w-full h-full flex items-center justify-center"
+                                                @click.self="open = false">
+                                                <div class="max-w-lg w-full p-5 rounded-lg bg-white">
+                                                    <h3 class="text-black mb-3">Are you sure you want to delete this lead? the
+                                                        action is Irréversible</h3>
+                                                    <div class="grid grid-cols-2 gap-3">
+                                                        <button type="button" wire:click="delete('{{ $item->id }}')"
+                                                            class="py-2 px-3 bg-green-700 w-full rounded-md">Confirm</button>
+                                                        <button type="button" @click="open = false"
+                                                            class="py-2 px-3 bg-black w-full rounded-md">Close</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </td>
                                 </tr>
                             @endforeach
