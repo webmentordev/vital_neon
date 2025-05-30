@@ -28,7 +28,7 @@
                             class="absolute rounded-tr-full bg-dark text-white px-1 py-2 bottom-0 w-[130px] text-center text-lg z-10">Drawing</strong>
                     </div>
                     <div class="h-[390px] bg-red-500 border border-dark bg-cover bg-center w-full rounded-3xl relative overflow-hidden"
-                        style="background-image: url('https://signage-proposal-dashboard.ystsol.com/storage/mockups/zjl5W0y3OpyZxECCNwyeHXfGgx3YXY3jstijUwue.png')">
+                        style="background-image: url('https://signage-proposal-dashboard.ystsol.com/storage/drawings/6pxZdslbWQMFU79OD00gMMBzjScCKHzqfovn02iz.png')">
                         <strong
                             class="absolute rounded-tr-full bg-dark text-white px-1 py-2 bottom-0 w-[130px] text-center text-lg z-10">Mockup</strong>
                     </div>

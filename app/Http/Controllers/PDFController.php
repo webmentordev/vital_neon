@@ -25,14 +25,14 @@ class PDFController extends Controller
         $imagePath = $directory . '/' . $imageName;
 
         Browsershot::html($html)
-            ->delay(2000)
+            ->timeout(60)
+            ->waitUntilNetworkIdle()
             ->setOption('args', ['--no-sandbox', 
                     '--disable-web-security',
                     '--disable-extensions',
                     '--disable-gpu'])
             ->windowSize(1600, 1130)
-            ->setOption('printBackground', true)
-            ->fullPage()
+            ->select('#template')
             ->save($imagePath);
 
         $pdf = new TCPDF('L', 'px', [1600, 1130]);
