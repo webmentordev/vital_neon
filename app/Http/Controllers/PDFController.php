@@ -25,18 +25,24 @@ class PDFController extends Controller
         $imagePath = $directory . '/' . $imageName;
 
         Browsershot::html($html)
-        ->setOption('args', ['--no-sandbox'])
-        ->select('#template')
-        ->save($imagePath);
+            ->delay(2000)
+            ->setOption('args', ['--no-sandbox', 
+                    '--disable-web-security',
+                    '--disable-extensions',
+                    '--disable-gpu'])
+            ->windowSize(1600, 1130)
+            ->setOption('printBackground', true)
+            ->fullPage()
+            ->save($imagePath);
 
-        $pdf = new TCPDF();
+        $pdf = new TCPDF('L', 'px', [1600, 1130]);
         $pdf->SetMargins(0, 0, 0);
         $pdf->SetAutoPageBreak(false);
 
-        $pdf->AddPage('L');
-        $pdf->SetFillColor(255, 255, col3: 255);
-        $pdf->Rect(0, 0, 320, 250, 'F');
-        $pdf->Image($imagePath, 0, 0, 320, 250, '', $url, '', false, 300, '', false, false, 0, true, false, true);
+        $pdf->AddPage();
+        $pdf->SetFillColor(255, 255, 255);
+        $pdf->Rect(0, 0, 1600, 1130, 'F');
+        $pdf->Image($imagePath, 0, 0, 1600, 1130, '', $url, '', true, 150, '', false, false, 0, true, false, true);
 
         $pdfDirectory = public_path('mockup-pdf');
         if (!file_exists($pdfDirectory)) {

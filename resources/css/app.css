@@ -774,3 +774,7 @@ h3 {
 .leads-table tr td, .leads-table tr th {
     @apply text-start p-2;
 }
+
+.box {
+    box-shadow: -5px 8px 0px#0bd1eb;
+}

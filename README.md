@@ -3,7 +3,7 @@
 ```
 npx puppeteer browsers install chrome-headless-shell
 ```
-Make directory, copy headless chrome files, assign permission
+Make directory, copy headless chrome files, assign ownership
 ```
 mkdir -p /var/www/.cache/puppeteer
 cp -r /root/.cache/puppeteer/chrome-headless-shell /var/www/.cache/puppeteer/
