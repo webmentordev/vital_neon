@@ -1,7 +1,7 @@
 @extends('layouts.pdf')
 @section('content')
     <section class="bg-red-500 h-screen flex items-center justify-center">
-        <div class=" w-full max-w-[1600px] h-[1130px] bg-dark grid grid-cols-10" id="template">
+        <div class=" w-full max-w-[1600px] h-[1130px] bg-dark grid grid-cols-10 overflow-hidden" id="template">
             <div class="h-full w-full col-span-6 p-5">
                 <div class="flex justify-between items-center">
                     <img src="{{ asset('assets/neon_tranp_white.png') }}" width="240px" class="mt-6">
@@ -51,11 +51,106 @@
                     </div>
                 </div>
             </div>
-            <div class="bg-blue-400 h-full w-full p-3">
-
+            <div class="h-full w-full flex items-center justify-center">
+                <div class="flex flex-col border border-slate-300 py-12 px-3 rounded-t-full rounded-b-full text-white">
+                    <div class="flex flex-col text-center mb-8">
+                        <img src="{{ asset('assets/icons/increase.png') }}" width="80" class="m-auto">
+                        <strong class>Value for Money</strong>
+                    </div>
+                    <div class="flex flex-col text-center mb-8">
+                        <img src="{{ asset('assets/icons/ribbon.png') }}" width="80" class="m-auto">
+                        <strong class>2 Year Warrenty</strong>
+                    </div>
+                    <div class="flex flex-col text-center mb-8">
+                        <img src="{{ asset('assets/icons/fast-delivery.png') }}" width="80" class="m-auto">
+                        <strong class>Turnaround 15 - 17 <br> Days</strong>
+                    </div>
+                    <div class="flex flex-col text-center mb-8">
+                        <img src="{{ asset('assets/icons/phone.png') }}" width="80" class="m-auto">
+                        <strong class>24 / 7 <br> Support</strong>
+                    </div>
+                    <div class="flex flex-col text-center">
+                        <img src="{{ asset('assets/icons/certified.png') }}" width="80" class="m-auto">
+                        <strong class>Value for Money</strong>
+                    </div>
+                </div>
             </div>
-            <div class="bg-green-400 h-full w-full col-span-3 p-5">
-
+            <div class="h-full w-full col-span-3 pl-5">
+                <div class="h-[970px] bg-white p-3">
+                    <div class="bg-gray-300 w-full h-[430px] relative rounded-3xl overflow-hidden">
+                        <strong
+                            class="absolute rounded-br-full bg-dark text-white px-1 py-2 top-0 w-[190px] text-center text-lg z-10">Quote
+                            Details</strong>
+                        <div class="mt-10 py-3 px-4">
+                            <strong class="text-black text-2xl">Muhammad Ahmer Tahir</strong>
+                            <div class="pt-1">
+                                <div class="flex items-center">
+                                    <strong class="w-[160px] uppercase">Dimensions</strong>
+                                    <span class="">: Metal Neon Sign</span>
+                                </div>
+                                <div class="flex items-center">
+                                    <strong class="w-[160px] uppercase">Color</strong>
+                                    <span class="">: Metal Neon Sign</span>
+                                </div>
+                                <div class="flex items-center">
+                                    <strong class="w-[160px] uppercase">Finish</strong>
+                                    <span class="">: Glossy</span>
+                                </div>
+                                <div class="flex items-center">
+                                    <strong class="w-[160px] uppercase">Illuminated</strong>
+                                    <span class="">: Yes</span>
+                                </div>
+                                <div class="flex items-center">
+                                    <strong class="w-[160px] uppercase">Usage</strong>
+                                    <span class="">: Outdoor</span>
+                                </div>
+                                <div class="flex items-center">
+                                    <strong class="w-[160px] uppercase">Installation</strong>
+                                    <span class="">: On Demand</span>
+                                </div>
+                            </div>
+                            <div class="flex flex-col mt-2">
+                                <div class="flex justify-between items-center py-2 px-4 bg-dark text-white rounded-t-3xl">
+                                    <strong>Size</strong>
+                                    <strong>Dimensions</strong>
+                                    <strong>Price</strong>
+                                </div>
+                                <div class="flex justify-between items-center py-1 pr-2 mt-1">
+                                    <strong class="py-1 w-[90px] text-center text-main bg-black">Small</strong>
+                                    <strong>60 in x 47 in</strong>
+                                    <strong>US$ 1,498</strong>
+                                </div>
+                                <div class="flex justify-between items-center py-1 pr-2">
+                                    <strong class="py-1 w-[90px] text-center text-main bg-black">Medium</strong>
+                                    <strong>60 in x 47 in</strong>
+                                    <strong>US$ 1,498</strong>
+                                </div>
+                                <div class="flex justify-between items-center py-1 pr-2">
+                                    <strong class="py-1 w-[90px] text-center text-main bg-black">Large</strong>
+                                    <strong>60 in x 47 in</strong>
+                                    <strong>US$ 1,498</strong>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <strong
+                        class="text-3xl my-4 rounded-3xl mb-3 bg-main text-black w-full text-center p-5 inline-block box-btn">
+                        CLICK HERE TO BUY
+                    </strong>
+                    <div class="bg-gray-300 w-full h-[400px] relative rounded-3xl overflow-hidden mt-3">
+                        <strong
+                            class="absolute rounded-br-full bg-dark text-white px-1 py-2 top-0 w-[210px] text-center text-lg z-10">Package
+                            Included</strong>
+                        <div class="mt-10 p-4 flex items-center justify-center">
+                            <img src="{{ asset('assets/back_cut.jpg') }}" width="330px">
+                        </div>
+                    </div>
+                </div>
+                <p class="text-gray-200 mt-4">
+                    All information on this document inclusing mockups is the property of VitalNeon. Any use or
+                    redistribution of this information, in whole or in part, contained within these documents, may only be
+                    done with express written consent of VitalNeon.
+                </p>
             </div>
         </div>
     </section>

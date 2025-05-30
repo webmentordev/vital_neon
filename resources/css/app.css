@@ -778,3 +778,7 @@ h3 {
 .box {
     box-shadow: -5px 8px 0px#0bd1eb;
 }
+
+.box-btn {
+    box-shadow: 0px 8px 0px black;
+}
