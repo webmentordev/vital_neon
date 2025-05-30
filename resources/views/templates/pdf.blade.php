@@ -12,7 +12,7 @@
                             <ul>
                                 <li class="flex items-center"><img
                                         src="https://api.iconify.design/material-symbols:call-sharp.svg?color=%2312caff"
-                                        width="25" class="mr-2"><strong class="text-[15px]">16476165799</strong></li>
+                                        width="25" class="mr-2"><strong class="text-[15px]">+1 647-616-5799</strong></li>
                                 <li class="flex items-center"><img
                                         src="https://api.iconify.design/ic:baseline-mail-outline.svg?color=%2312caff"
                                         width="25" class="mr-2"><strong class="text-[15px]">contact@vitalneon.com</strong>
@@ -53,19 +53,19 @@
             </div>
             <div class="h-full w-full flex items-center justify-center">
                 <div class="flex flex-col border border-slate-300 py-12 px-3 rounded-t-full rounded-b-full text-white">
-                    <div class="flex flex-col text-center mb-8">
+                    <div class="flex flex-col text-center mb-12">
                         <img src="{{ asset('assets/icons/increase.png') }}" width="80" class="m-auto">
                         <strong class>Value for Money</strong>
                     </div>
-                    <div class="flex flex-col text-center mb-8">
+                    <div class="flex flex-col text-center mb-12">
                         <img src="{{ asset('assets/icons/ribbon.png') }}" width="80" class="m-auto">
                         <strong class>2 Year Warrenty</strong>
                     </div>
-                    <div class="flex flex-col text-center mb-8">
+                    <div class="flex flex-col text-center mb-12">
                         <img src="{{ asset('assets/icons/fast-delivery.png') }}" width="80" class="m-auto">
                         <strong class>Turnaround 15 - 17 <br> Days</strong>
                     </div>
-                    <div class="flex flex-col text-center mb-8">
+                    <div class="flex flex-col text-center mb-12">
                         <img src="{{ asset('assets/icons/phone.png') }}" width="80" class="m-auto">
                         <strong class>24 / 7 <br> Support</strong>
                     </div>

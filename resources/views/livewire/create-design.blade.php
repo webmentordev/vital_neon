@@ -76,16 +76,24 @@
                 @endif
             </div>
 
-            <div class="flex items-center justify-between absolute w-full bottom-0 p-3 530px:flex-col">
+            <div class="absolute w-full bottom-2 p-3 530px:flex-col">
                 {{-- <input type="color" class="hidden" id="color" onchange="change()">
                 <label for="color" class="bg-white p-3 rounded-full"><img width="30" src="https://api.iconify.design/nimbus:color-palette.svg?color=%230d92f8" alt="Palet Icon"></label> --}}
-                
-                <input type="range" id="move" name="move" min="-400" max="400" value="0" class="530px:mb-3 w-[200px] h-[5px] 530px:w-full">
-                
-                <div class="px-2">
-                    <label for="photo" class="flex items-center"><span class="mr-2 text-white font-semibold">Upload Your Background</span><img src="https://api.iconify.design/line-md:uploading-loop.svg?color=%23ffffff" width="40" alt="Upload"></label>
-                    <input type="file" id="photo" accept="image/*" onchange="loadFile(event)" class="hidden">
+                <div class="flex items-center justify-between">
+                    <input type="range" id="move" name="move" min="-400" max="400" value="0" class="530px:mb-3 w-[200px] h-[5px] 530px:w-full">
+                    <div class="px-2">
+                        <label for="photo" class="flex items-center"><span class="mr-2 text-white font-semibold">Upload Your Background</span><img src="https://api.iconify.design/line-md:uploading-loop.svg?color=%23ffffff" width="40" alt="Upload"></label>
+                        <input type="file" id="photo" accept="image/*" onchange="loadFile(event)" class="hidden">
+                    </div>
                 </div>
+                <div class="big-grid-16 grid w-full p-3 gap-3">
+                @for ($i = 1; $i <= 16; $i++)
+                    <button 
+                        onclick="setBackground(this, '{{ asset('assets/bgs/bg-'. $i.'.jpg') }}')">
+                        <img src="{{ asset('assets/bgs/bg-'. $i.'.jpg') }}">
+                    </button>
+                @endfor
+            </div>
             </div>
         </div>
         <form wire:submit.prevent="checkout" method="POST" class="bg-light inline-block text-sm w-full px-6 py-6 850px:p-3 850px:overflow-y-hidden" :class="full ? 'col-span-5' : 'col-span-2'">
@@ -259,6 +267,18 @@
         const text2 = document.getElementById('text2');
 
         output.style.backgroundImage = `url({{ asset('assets/1679a1a8-6017-4ad3-8a17-9d6dc6d340fb.jpeg') }})`;
+
+        let selectedButton = null;
+
+        function setBackground(button, fileURL) {
+            output.style.backgroundColor = "transparent";
+            output.style.backgroundImage = `url(${fileURL})`;
+            if (selectedButton) {
+                selectedButton.classList.remove("selected-border");
+            }
+            button.classList.add("selected-border");
+            selectedButton = button;
+        }
 
         var loadFile = function(event) {
           output.style.backgroundColor = "transparent";
