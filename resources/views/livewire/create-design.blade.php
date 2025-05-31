@@ -86,12 +86,19 @@
                         <input type="file" id="photo" accept="image/*" onchange="loadFile(event)" class="hidden">
                     </div>
                 </div>
-                <div class="big-grid-16 grid w-full p-3 gap-3">
+                <div class="big-grid-16 grid w-full p-3 gap-3 1170px:grid-cols-6">
                 @for ($i = 1; $i <= 16; $i++)
-                    <button 
-                        onclick="setBackground(this, '{{ asset('assets/bgs/bg-'. $i.'.jpg') }}')">
-                        <img src="{{ asset('assets/bgs/bg-'. $i.'.jpg') }}">
-                    </button>
+                    @if ($i % 4 == 0)
+                        <button class="1170px:hidden"
+                            onclick="setBackground(this, '{{ asset('assets/bgs/bg-'. $i.'.jpg') }}')">
+                            <img src="{{ asset('assets/bgs/bg-'. $i.'.jpg') }}">
+                        </button>
+                    @else
+                        <button 
+                            onclick="setBackground(this, '{{ asset('assets/bgs/bg-'. $i.'.jpg') }}')">
+                            <img src="{{ asset('assets/bgs/bg-'. $i.'.jpg') }}">
+                        </button>
+                    @endif
                 @endfor
             </div>
             </div>

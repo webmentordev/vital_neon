@@ -44,7 +44,7 @@
                         </ul>
                         <ul class="text-gray-200 list-disc">
                             <li>Test Proof of <strong class="text-white">Color</strong> can be provided upon request</li>
-                            <li>Please not that VitalNeon has upto <strong class="text-white">5% color and dimension
+                            <li>Please note that VitalNeon has upto <strong class="text-white">5% color and dimension
                                     tolerance</strong> acceptable
                                 difference between digital proof and actual product</li>
                         </ul>
@@ -54,24 +54,24 @@
             <div class="h-full w-full flex items-center justify-center">
                 <div class="flex flex-col border border-slate-300 py-12 px-3 rounded-t-full rounded-b-full text-white">
                     <div class="flex flex-col text-center mb-12">
-                        <img src="{{ asset('assets/icons/increase.png') }}" width="80" class="m-auto">
+                        <img src="{{ asset('assets/icons/increase.png') }}" width="80" class="m-auto mb-2">
                         <strong class>Value for Money</strong>
                     </div>
                     <div class="flex flex-col text-center mb-12">
-                        <img src="{{ asset('assets/icons/ribbon.png') }}" width="80" class="m-auto">
+                        <img src="{{ asset('assets/icons/ribbon.png') }}" width="80" class="m-auto mb-2">
                         <strong class>2 Year Warrenty</strong>
                     </div>
                     <div class="flex flex-col text-center mb-12">
-                        <img src="{{ asset('assets/icons/fast-delivery.png') }}" width="80" class="m-auto">
-                        <strong class>Turnaround 15 - 17 <br> Days</strong>
+                        <img src="{{ asset('assets/icons/fast-delivery.png') }}" width="80" class="m-auto mb-2">
+                        <strong class>Turnaround<br> 15 - 17 Days</strong>
                     </div>
                     <div class="flex flex-col text-center mb-12">
-                        <img src="{{ asset('assets/icons/phone.png') }}" width="80" class="m-auto">
+                        <img src="{{ asset('assets/icons/phone.png') }}" width="80" class="m-auto mb-2">
                         <strong class>24 / 7 <br> Support</strong>
                     </div>
                     <div class="flex flex-col text-center">
-                        <img src="{{ asset('assets/icons/certified.png') }}" width="80" class="m-auto">
-                        <strong class>Value for Money</strong>
+                        <img src="{{ asset('assets/icons/certified.png') }}" width="80" class="m-auto mb-2">
+                        <strong class>UL Cetificate</strong>
                     </div>
                 </div>
             </div>
