@@ -1,3 +1,6 @@
+# Requirements
+System must contain 'Custom' Category
+
 # Install Spatie Browser Libraries for Puppeteer
 ## Install Puppteer
 ```

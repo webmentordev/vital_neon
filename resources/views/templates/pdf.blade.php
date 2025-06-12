@@ -23,12 +23,12 @@
                 </div>
                 <div class="mt-4 rounded-3xl bg-white p-2">
                     <div class="h-[390px] bg-red-500 border border-dark bg-cover bg-center w-full rounded-3xl mb-4 relative overflow-hidden"
-                        style="background-image: url('https://signage-proposal-dashboard.ystsol.com/storage/drawings/6pxZdslbWQMFU79OD00gMMBzjScCKHzqfovn02iz.png')">
+                        style="background-image: url('{{ config('app.url') . '/storage/' . $data['drawing'] }}')">
                         <strong
                             class="absolute rounded-tr-full bg-dark text-white px-1 py-2 bottom-0 w-[130px] text-center text-lg z-10">Drawing</strong>
                     </div>
                     <div class="h-[390px] bg-red-500 border border-dark bg-cover bg-center w-full rounded-3xl relative overflow-hidden"
-                        style="background-image: url('https://signage-proposal-dashboard.ystsol.com/storage/drawings/6pxZdslbWQMFU79OD00gMMBzjScCKHzqfovn02iz.png')">
+                        style="background-image: url('{{ config('app.url') . '/storage/' . $data['mockup'] }}')">
                         <strong
                             class="absolute rounded-tr-full bg-dark text-white px-1 py-2 bottom-0 w-[130px] text-center text-lg z-10">Mockup</strong>
                     </div>
@@ -62,8 +62,12 @@
                         <strong class>2 Year Warrenty</strong>
                     </div>
                     <div class="flex flex-col text-center mb-12">
+                        <img src="{{ asset('assets/icons/tools.png') }}" width="80" class="m-auto mb-2">
+                        <strong class>Production In<br> 1 - 3 Days</strong>
+                    </div>
+                    <div class="flex flex-col text-center mb-12">
                         <img src="{{ asset('assets/icons/fast-delivery.png') }}" width="80" class="m-auto mb-2">
-                        <strong class>Turnaround<br> 15 - 17 Days</strong>
+                        <strong class>Delivery<br> 5 - 7 Days</strong>
                     </div>
                     <div class="flex flex-col text-center mb-12">
                         <img src="{{ asset('assets/icons/phone.png') }}" width="80" class="m-auto mb-2">
@@ -76,60 +80,46 @@
                 </div>
             </div>
             <div class="h-full w-full col-span-3 pl-5">
-                <div class="h-[970px] bg-white p-3">
-                    <div class="bg-gray-300 w-full h-[430px] relative rounded-3xl overflow-hidden">
+                <div class="h-[970px] bg-slate-200 p-3">
+                    <div class="bg-white w-full h-[430px] relative rounded-3xl overflow-hidden">
                         <strong
                             class="absolute rounded-br-full bg-dark text-white px-1 py-2 top-0 w-[190px] text-center text-lg z-10">Quote
                             Details</strong>
                         <div class="mt-10 py-3 px-4">
-                            <strong class="text-black text-2xl">Muhammad Ahmer Tahir</strong>
+                            <strong class="text-black text-2xl">{{ Str::limit($proposal->name, 30, '...') }}</strong>
                             <div class="pt-1">
-                                <div class="flex items-center">
+                                <div class="flex items-center mb-2">
                                     <strong class="w-[160px] uppercase">Dimensions</strong>
-                                    <span class="">: Metal Neon Sign</span>
+                                    <span class="">: {{ $data['color'] }}</span>
                                 </div>
-                                <div class="flex items-center">
+                                <div class="flex items-center mb-2">
                                     <strong class="w-[160px] uppercase">Color</strong>
-                                    <span class="">: Metal Neon Sign</span>
+                                    <span class="">: {{ $data['color'] }}</span>
                                 </div>
-                                <div class="flex items-center">
-                                    <strong class="w-[160px] uppercase">Finish</strong>
-                                    <span class="">: Glossy</span>
-                                </div>
-                                <div class="flex items-center">
-                                    <strong class="w-[160px] uppercase">Illuminated</strong>
-                                    <span class="">: Yes</span>
+                                <div class="flex items-center mb-2">
+                                    <strong class="w-[160px] uppercase">Shape</strong>
+                                    <span class="">: {{ $data['shape'] }}</span>
                                 </div>
                                 <div class="flex items-center">
                                     <strong class="w-[160px] uppercase">Usage</strong>
-                                    <span class="">: Outdoor</span>
-                                </div>
-                                <div class="flex items-center">
-                                    <strong class="w-[160px] uppercase">Installation</strong>
-                                    <span class="">: On Demand</span>
+                                    <span class="">: {{ $data['usage'] }}</span>
                                 </div>
                             </div>
-                            <div class="flex flex-col mt-2">
+                            <div class="flex flex-col mt-4">
                                 <div class="flex justify-between items-center py-2 px-4 bg-dark text-white rounded-t-3xl">
                                     <strong>Size</strong>
                                     <strong>Dimensions</strong>
                                     <strong>Price</strong>
                                 </div>
-                                <div class="flex justify-between items-center py-1 pr-2 mt-1">
-                                    <strong class="py-1 w-[90px] text-center text-main bg-black">Small</strong>
-                                    <strong>60 in x 47 in</strong>
-                                    <strong>US$ 1,498</strong>
-                                </div>
-                                <div class="flex justify-between items-center py-1 pr-2">
-                                    <strong class="py-1 w-[90px] text-center text-main bg-black">Medium</strong>
-                                    <strong>60 in x 47 in</strong>
-                                    <strong>US$ 1,498</strong>
-                                </div>
-                                <div class="flex justify-between items-center py-1 pr-2">
-                                    <strong class="py-1 w-[90px] text-center text-main bg-black">Large</strong>
-                                    <strong>60 in x 47 in</strong>
-                                    <strong>US$ 1,498</strong>
-                                </div>
+                                @foreach ($data['sizes'] as $size)
+                                    <div class="flex justify-between items-center py-1 pr-2 mt-1">
+                                        <strong
+                                            class="py-1 w-[90px] mb-1 text-center text-main bg-black">{{ $size['size'] }}</strong>
+                                        <strong>{{ $size['dimensions'] }}</strong>
+                                        <strong>US$ {{ number_format($size['price'], 2) }}</strong>
+                                    </div>
+                                @endforeach
+
                             </div>
                         </div>
                     </div>
@@ -137,12 +127,12 @@
                         class="text-3xl my-4 rounded-3xl mb-3 bg-main text-black w-full text-center p-5 inline-block box-btn">
                         CLICK HERE TO BUY
                     </strong>
-                    <div class="bg-gray-300 w-full h-[400px] relative rounded-3xl overflow-hidden mt-3">
+                    <div class="bg-white w-full h-[400px] relative rounded-3xl overflow-hidden mt-3 pb-3">
                         <strong
                             class="absolute rounded-br-full bg-dark text-white px-1 py-2 top-0 w-[210px] text-center text-lg z-10">Package
                             Included</strong>
                         <div class="mt-10 p-4 flex items-center justify-center">
-                            <img src="{{ asset('assets/back_cut.jpg') }}" width="330px">
+                            <img src="{{ asset('assets/package.jpg') }}" width="320px">
                         </div>
                     </div>
                 </div>

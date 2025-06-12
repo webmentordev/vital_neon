@@ -11,7 +11,7 @@ class SiteMapGenerator extends Controller
 {
     public function index() {
         return response()->view('sitemap', [
-            'products' => Product::where('is_active', true)->get(),
+            'products' => Product::where('is_active', true)->where('for_customer', false)->get(),
             'lightboxes' => LightBox::where('is_active', true)->get(),
             'categories' => Category::all()
         ])->header('Content-Type', 'text/xml');

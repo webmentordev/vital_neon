@@ -18,6 +18,8 @@ class Product extends Model
         'category_id',
         'featured',
         'is_active',
+        'is_lead',
+        'for_customer',
         'description'
     ];
 

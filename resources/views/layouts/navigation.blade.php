@@ -23,6 +23,12 @@
                     </x-nav-link>
                 </div>
 
+                <div class="hidden space-x-8 sm:-my-px sm:ml-6 sm:flex">
+                    <x-nav-link :href="route('admin.proposals')" :active="request()->routeIs('admin.proposals')">
+                        {{ __('Proposals') }}
+                    </x-nav-link>
+                </div>
+
                 <div class="hidden sm:flex sm:items-center sm:ml-1">
                     <x-dropdown align="right" width="48">
                         <x-slot name="trigger">

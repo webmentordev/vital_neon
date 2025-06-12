@@ -37,6 +37,9 @@ use App\Http\Controllers\ProductsController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\CategoryPriceController;
 use App\Http\Controllers\PriceIncrementController;
+use App\Http\Livewire\Auth\CreateProposal;
+use App\Http\Livewire\Auth\Proposal;
+use App\Models\Proposal as ModelsProposal;
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
@@ -104,6 +107,9 @@ Route::middleware('auth')->group(function () {
     Route::post('/remote', [RemoteController::class, 'create']);
 
     Route::get('leads', Leads::class)->name('admin.leads');
+
+    Route::get('proposals', Proposal::class)->name('admin.proposals');
+    Route::get('/proposal/create', CreateProposal::class)->name('admin.create.proposals');
     
     Route::get('/lines', [LineController::class, 'index'])->name('line');
     Route::post('/lines', [LineController::class, 'create']);
@@ -188,6 +194,24 @@ Route::middleware('auth')->group(function () {
     //     return "Email has been sent!";
     // });
 
+    Route::get('/ui/image/{proposal}', function(ModelsProposal $proposal){
+        $payload = json_decode($proposal->payload, true);
+        foreach($payload as $single_payload) {
+            return view("templates.image", [
+                "data" => $single_payload,
+            ]);
+        }
+    }); 
+
+    Route::get('/ui/{proposal}', function(ModelsProposal $proposal){
+        $payload = json_decode($proposal->payload, true);
+        foreach($payload as $single_payload) {
+            return view("templates.pdf", [
+                "data" => $single_payload,
+                "proposal" => $proposal
+            ]);
+        }
+    }); 
 });
 
 Route::get('/sitemap.xml', [SiteMapGenerator::class, 'index'])->name('sitemap');

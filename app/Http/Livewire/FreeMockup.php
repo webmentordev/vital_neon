@@ -81,7 +81,7 @@ class FreeMockup extends Component
         $request = request();
         Lead::updateOrCreate(
             ['uuid' => $this->uuid, 'is_completed' => false],
-            [
+            array_filter([
                 'uuid' => $this->uuid,
                 'name' => $this->name, 
                 'email' => $this->email, 
@@ -91,8 +91,9 @@ class FreeMockup extends Component
                 'budget' => $this->budget,
                 'message' => $this->message,
                 'source' => $this->source,
+                'ip_address' => $request->ip(),
                 'user_agent' => $request->header('User-Agent'),
-            ]
+            ])
         );
     }
 
