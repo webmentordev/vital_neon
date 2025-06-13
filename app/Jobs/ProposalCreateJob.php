@@ -137,6 +137,14 @@ class ProposalCreateJob implements ShouldQueue
         ]);
 
         $category = Category::where("name", "Custom")->first();
+
+        if(!$category){
+            $category = Category::create([
+                'name' => "Custom",
+                'slug' => 'custom',
+                'is_active' => false
+            ]);
+        }
         $product = Product::create([
             'name' => $name,
             'stripe_id' => $result['id'],
