@@ -1,9 +1,9 @@
 <section class="w-full py-[10px]">
-    <div class="grid grid-cols-5 text-white relative m-auto 890px:flex 890px:flex-col bg-dark p-6 mb-6">
+    <div class="grid grid-cols-5 text-white relative m-auto 890px:flex 890px:flex-col bg-dark p-6 mb-6" x-data="{ full: false }">
         <div wire:loading wire:target="checkout" class="fixed left-[45%] 575px:left-0 bottom-3">
             <div class="flex items-center bg-black text-white p-6 rounded-lg"><img src="https://api.iconify.design/svg-spinners:ring-resize.svg?color=%23ffffff" alt="Loading Icon"> <span class="ml-2">Processing...</span></div>
         </div>
-        <div class="bg-cover bg-center @if ($direction) col-span-5 relative @else sticky col-span-3 @endif top-0 890px:static left-0 rounded-lg flex justify-center items-center h-[970px] w-full 890px:relative 890px:min-h-[970px]" style="background-image: url({{ $backgroundImage }})" id="backDiv">
+        <div wire:ignore.self class="bg-cover bg-center top-0 890px:static left-0 rounded-lg flex justify-center items-center h-[750px] w-full 890px:relative 890px:min-h-[970px]" style="background-image: url({{ $backgroundImage }})" id="backDiv" :class="full ? 'col-span-5 relative' : 'sticky col-span-3'">
             
             @if ($total_price != 0)
                 <span class="fixed bg-main rounded-lg p-3 bottom-3 left-3 text-gray-800 text-4xl font-semibold z-50"><span class="text-2xl">$</span>{{ $total_price }}</span>
@@ -11,14 +11,14 @@
             
             <div wire:click="$set('dark_mode', {{ !$dark_mode }})" class=" @if (!$dark_mode) bg-white @else bg-gray-800 @endif p-3 rounded-lg absolute top-2 left-2">
                 @if (!$dark_mode)
-                    <img src="https://api.iconify.design/mdi:lightbulb-on.svg?color=%23e4aa0c" width="35" alt="Sun Image">
+                    <img src="https://api.iconify.design/mdi:lightbulb-on.svg?color=%23e4aa0c" width="20" alt="Sun Image">
                 @else
-                    <img src="https://api.iconify.design/mdi:lightbulb-on.svg?color=%23ffffff" width="35" alt="Moon Image">
+                    <img src="https://api.iconify.design/mdi:lightbulb-on.svg?color=%23ffffff" width="20" alt="Moon Image">
                 @endif
             </div>
 
-            <div wire:click="$set('direction', {{ !$direction }})" class="bg-white p-[14px] rounded-lg absolute top-[10px] left-[72px]">
-                <img src="https://api.iconify.design/akar-icons:full-screen.svg?color=%23e4aa0c" width="30" alt="Sun Image">
+            <div @click="full = !full" class="bg-white p-[12px] rounded-lg absolute top-[8px] left-[60px]">
+                <img src="https://api.iconify.design/akar-icons:full-screen.svg?color=%23e4aa0c" width="20" alt="Sun Image">
             </div>
 
             <div class="absolute top-2 right-2">
@@ -76,19 +76,34 @@
                 @endif
             </div>
 
-            <div class="flex items-center justify-between absolute w-full bottom-0 p-3 530px:flex-col">
+            <div class="absolute w-full bottom-2 p-3 530px:flex-col">
                 {{-- <input type="color" class="hidden" id="color" onchange="change()">
                 <label for="color" class="bg-white p-3 rounded-full"><img width="30" src="https://api.iconify.design/nimbus:color-palette.svg?color=%230d92f8" alt="Palet Icon"></label> --}}
-                
-                <input type="range" id="move" name="move" min="-400" max="400" value="0" class="530px:mb-3 w-[200px] h-[5px] 530px:w-full">
-                
-                <div class="px-2">
-                    <label for="photo" class="flex items-center"><span class="mr-2 text-white font-semibold">Upload Your Own Image</span><img src="https://api.iconify.design/line-md:uploading-loop.svg?color=%23ffffff" width="40" alt="Upload"></label>
-                    <input type="file" id="photo" accept="image/*" onchange="loadFile(event)" class="hidden">
+                <div class="flex items-center justify-between">
+                    <input type="range" id="move" name="move" min="-400" max="400" value="0" class="530px:mb-3 w-[200px] h-[5px] 530px:w-full">
+                    <div class="px-2">
+                        <label for="photo" class="flex items-center"><span class="mr-2 text-white font-semibold">Upload Your Background</span><img src="https://api.iconify.design/line-md:uploading-loop.svg?color=%23ffffff" width="40" alt="Upload"></label>
+                        <input type="file" id="photo" accept="image/*" onchange="loadFile(event)" class="hidden">
+                    </div>
                 </div>
+                <div class="big-grid-16 grid w-full p-3 gap-3 1170px:grid-cols-6">
+                @for ($i = 1; $i <= 16; $i++)
+                    @if ($i % 4 == 0)
+                        <button class="1170px:hidden"
+                            onclick="setBackground(this, '{{ asset('assets/bgs/bg-'. $i.'.jpg') }}')">
+                            <img src="{{ asset('assets/bgs/bg-'. $i.'.jpg') }}">
+                        </button>
+                    @else
+                        <button 
+                            onclick="setBackground(this, '{{ asset('assets/bgs/bg-'. $i.'.jpg') }}')">
+                            <img src="{{ asset('assets/bgs/bg-'. $i.'.jpg') }}">
+                        </button>
+                    @endif
+                @endfor
+            </div>
             </div>
         </div>
-        <form wire:submit.prevent="checkout" method="POST" class="bg-light inline-block @if ($direction) col-span-5 @else col-span-2 @endif text-sm w-full px-6 py-6 850px:p-3 850px:overflow-y-hidden">
+        <form wire:submit.prevent="checkout" method="POST" class="bg-light inline-block text-sm w-full px-6 py-6 850px:p-3 850px:overflow-y-hidden" :class="full ? 'col-span-5' : 'col-span-2'">
             <div class="flex items-center justify-between 490px:flex-col">
                 <h1 class="text-main font-bold text-3xl mb-3">Design Your Neon</h1>
                 <div class="flex items-center">
@@ -147,7 +162,7 @@
                     <p class="text-red-600 mb-2">{{ session('lineCount3') }}</p>
                 @endif
             @endif
-            <div class="grid grid-cols-3 gap-2 1210px:grid-cols-2 870px:grid-cols-3 575px:grid-cols-2 475px:grid-cols-1">
+            <div class="grid grid-cols-4 gap-2 1210px:grid-cols-2 870px:grid-cols-3 575px:grid-cols-2 475px:grid-cols-1">
                 @foreach ($fonts as $fonty)
                 <div class="p-3 cursor-pointer rounded-lg text-center border text-lg capitalize {{ $fonty }} @if ($font == $fonty) border-main @else border-white/10 @endif" wire:click="$set('font', '{{ $fonty }}')">
                     {{ $fonty }}
@@ -258,7 +273,19 @@
         const text1 = document.getElementById('text1');
         const text2 = document.getElementById('text2');
 
-        output.style.backgroundColor = "#000000";
+        output.style.backgroundImage = `url({{ asset('assets/1679a1a8-6017-4ad3-8a17-9d6dc6d340fb.jpeg') }})`;
+
+        let selectedButton = null;
+
+        function setBackground(button, fileURL) {
+            output.style.backgroundColor = "transparent";
+            output.style.backgroundImage = `url(${fileURL})`;
+            if (selectedButton) {
+                selectedButton.classList.remove("selected-border");
+            }
+            button.classList.add("selected-border");
+            selectedButton = button;
+        }
 
         var loadFile = function(event) {
           output.style.backgroundColor = "transparent";
@@ -266,11 +293,6 @@
           console.log(event.target.files[0]);
           output.style.backgroundImage = `url(${myImageURL})`;
           document.cookie = `myimageurl=${myImageURL}`;
-        
-            //   output.onload = function() {
-            //     var myURL = URL.revokeObjectURL(output.src)
-            //     console.log(myURL)
-            //   }
         };
 
         function change(){

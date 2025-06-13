@@ -31,7 +31,7 @@ class SendEmail extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            from: new Address('contact@vitalneon.com', 'VitalNeon'),
+            from: new Address('no-reply@vitalneon.com', 'VitalNeon'),
             subject: $this->data->subject,
         );
     }

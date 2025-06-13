@@ -49,6 +49,12 @@ return [
             'root' => base_path(config('app.storage')),
             'throw' => false,
         ],
+
+        'storage' => [
+            'driver' => 'local',
+            'root' => public_path('storage'),
+            'throw' => false,
+        ],
         
         's3' => [
             'driver' => 's3',

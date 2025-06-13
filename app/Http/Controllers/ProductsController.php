@@ -42,7 +42,7 @@ class ProductsController extends Controller
         JsonLd::addImage("https://vitalneon.com/assets/seo/listing-1.png", ["height" => 400, "width" => 760]);
 
         return view('products', [
-            'products' => Product::latest()->with('categories')->where('is_active', true)->get(),
+            'products' => Product::latest()->with('categories')->where('is_active', true)->where('is_lead', false)->get(),
             'discount' => DB::table('discounts')->latest()->first()
         ]);
     }
@@ -50,7 +50,7 @@ class ProductsController extends Controller
         $this->validate($request, [
             'search' => 'required|max:255'
         ]);
-        $result = Product::where('is_active', true)
+        $result = Product::where('is_active', true)->where('is_lead', false)
             ->where(function($query) use ($request) {
                 $query->orWhere('name', 'LIKE', '%'.$request->search.'%')
                     ->orWhere('description', 'LIKE', '%'.$request->search.'%');

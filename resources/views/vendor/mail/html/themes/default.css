@@ -31,15 +31,20 @@ a {
     color: #3869d4;
 }
 
-h3{
+h3 {
     color: #3869d4;
 }
 
-.token{
+.phone {
+    color: #48bb78;
+}
+
+.token {
     padding: 10px;
     background-color: #2e2e2e;
     border-radius: 10px;
 }
+
 a img {
     border: none;
 }

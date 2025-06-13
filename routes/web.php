@@ -1,11 +1,20 @@
 <?php
 
+use App\Models\Lead;
+use App\Mail\Testing;
+use App\Mail\LeadRecieved;
 use App\Http\Livewire\Carts;
+use App\Http\Livewire\Preview;
 use App\Http\Livewire\Product;
+use App\Http\Livewire\Auth\Leads;
+use App\Http\Livewire\FreeMockup;
 use App\Http\Livewire\DesignQuote;
 use App\Http\Livewire\CreateDesign;
+use App\Http\Livewire\LightBoxIndex;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Route;
 use Artesaos\SEOTools\Facades\SEOMeta;
+use App\Http\Controllers\PDFController;
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LineController;
@@ -20,15 +29,17 @@ use App\Http\Controllers\SearchController;
 use App\Http\Controllers\SiteMapGenerator;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\DiscountController;
+use App\Http\Controllers\LightBoxController;
 use App\Http\Controllers\ProductsController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\CategoryPriceController;
-use App\Http\Controllers\DiscountController;
-use App\Http\Controllers\LightBoxController;
 use App\Http\Controllers\PriceIncrementController;
-use App\Http\Controllers\ServiceController;
-use App\Http\Livewire\LightBoxIndex;
+use App\Http\Livewire\Auth\CreateProposal;
+use App\Http\Livewire\Auth\Proposal;
+use App\Models\Proposal as ModelsProposal;
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
@@ -47,6 +58,8 @@ Route::get("/f-a-q", function(){
 
 Route::get('/upload-your-own-design', [DesignController::class, 'index'])->name('upload-design');
 Route::post('/upload-your-own-design', [DesignController::class, 'store'])->middleware(['throttle:60,5']);
+
+Route::get('/neon-sign-free-mockup-and-quote', FreeMockup::class)->name('free.mockup');
 
 Route::get('/cancel/{checkout_id}', [OrderController::class, 'cancel']);
 Route::get('/success/{checkout_id}', [OrderController::class, 'success']);
@@ -84,14 +97,20 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+    
+    Route::get('/preview', Preview::class)->name('preview');
 
     Route::get('/shape', [ShapeController::class, 'index'])->name('shape');
     Route::post('/shape', [ShapeController::class, 'create']);
 
     Route::get('/remote', [RemoteController::class, 'index'])->name('remote');
     Route::post('/remote', [RemoteController::class, 'create']);
-    
 
+    Route::get('leads', Leads::class)->name('admin.leads');
+
+    Route::get('proposals', Proposal::class)->name('admin.proposals');
+    Route::get('/proposal/create', CreateProposal::class)->name('admin.create.proposals');
+    
     Route::get('/lines', [LineController::class, 'index'])->name('line');
     Route::post('/lines', [LineController::class, 'create']);
 
@@ -163,6 +182,36 @@ Route::middleware('auth')->group(function () {
 
     Route::patch('/light-box/order/update/{order:checkout_id}/', [LightBoxController::class, 'order_status'])->name('order.status');
 
+    Route::get("/get-pdf", [PDFController::class, 'index']);
+    Route::get("/generate-pdf", [PDFController::class, 'store']);
+
+    // Route::get('/email', function(){
+    //     return new Testing();
+    // });
+
+    // Route::get('/email-send', function(){
+    //     Mail::to('')->send(new Testing());
+    //     return "Email has been sent!";
+    // });
+
+    Route::get('/ui/image/{proposal}', function(ModelsProposal $proposal){
+        $payload = json_decode($proposal->payload, true);
+        foreach($payload as $single_payload) {
+            return view("templates.image", [
+                "data" => $single_payload,
+            ]);
+        }
+    }); 
+
+    Route::get('/ui/{proposal}', function(ModelsProposal $proposal){
+        $payload = json_decode($proposal->payload, true);
+        foreach($payload as $single_payload) {
+            return view("templates.pdf", [
+                "data" => $single_payload,
+                "proposal" => $proposal
+            ]);
+        }
+    }); 
 });
 
 Route::get('/sitemap.xml', [SiteMapGenerator::class, 'index'])->name('sitemap');
