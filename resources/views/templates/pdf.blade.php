@@ -90,7 +90,7 @@
                             <div class="pt-1">
                                 <div class="flex items-center mb-2">
                                     <strong class="w-[160px] uppercase">Dimensions</strong>
-                                    <span class="">: {{ $data['color'] }}</span>
+                                    <span class="">: {{ $data['dimensions'] }}</span>
                                 </div>
                                 <div class="flex items-center mb-2">
                                     <strong class="w-[160px] uppercase">Color</strong>

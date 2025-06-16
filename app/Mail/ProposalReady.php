@@ -2,58 +2,46 @@
 
 namespace App\Mail;
 
+use App\Models\Proposal;
 use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
 use Illuminate\Mail\Mailables\Address;
 use Illuminate\Mail\Mailables\Content;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Mail\Mailables\Envelope;
+use Illuminate\Mail\Mailables\Attachment;
 use Illuminate\Contracts\Queue\ShouldQueue;
 
-class SupportEmail extends Mailable
+class ProposalReady extends Mailable
 {
     use Queueable, SerializesModels;
 
-    public $support;
-    /**
-     * Create a new message instance.
-     */
-    public function __construct($data)
+    public function __construct(public string $name, public Proposal $proposal)
     {
-        $this->support = $data;
+        //
     }
 
-    /**
-     * Get the message envelope.
-     */
     public function envelope(): Envelope
     {
         return new Envelope(
             from: new Address('contact@vitalneon.com', 'VitalNeon'),
-            subject: 'Support Email',
+            subject: 'Your Custom Neon Sign Proposal - Ready for Review',
         );
     }
 
-    /**
-     * Get the message content definition.
-     */
     public function content(): Content
     {
         return new Content(
-            markdown: 'emails.support-email',
-            with: [
-                'data' => $this->support
-            ],
+            markdown: 'mail.proposal-ready',
         );
     }
 
-    /**
-     * Get the attachments for the message.
-     *
-     * @return array<int, \Illuminate\Mail\Mailables\Attachment>
-     */
     public function attachments(): array
     {
-        return [];
+        return [
+        Attachment::fromPath(public_path($this->proposal->pdf))
+            ->as('vital-neon-proposal.pdf')
+            ->withMime('application/pdf'),
+        ];
     }
 }

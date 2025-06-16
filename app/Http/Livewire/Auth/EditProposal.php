@@ -2,47 +2,37 @@
 
 namespace App\Http\Livewire\Auth;
 
-use App\Jobs\ProposalCreateJob;
-use App\Models\Proposal;
 use Livewire\Component;
+use App\Models\Proposal;
 use Livewire\WithFileUploads;
+use App\Jobs\ProposalCreateJob;
 
-class CreateProposal extends Component
+class EditProposal extends Component
 {
     use WithFileUploads;
     
     public $items = [], $email = "", $name = "";
+    
     public function render()
     {
-        return view('livewire.auth.create-proposal')->layout('layouts.livewire');
+        return view('livewire.auth.edit-proposal')->layout('layouts.livewire');
     }
 
-    public function mount(){
-        $this->items['tab-1'] = [
-            'color'=> '',
-            'shape'=> '',
-            'usage'=> '',
-            'dimensions'=> '',
-            'drawing' => null,
-            'mockup' => null,
-            'sizes'=> [
-                [ 
-                    "size" => "Small",
-                    "price"=> "", 
-                    "dimensions"=> "",  
-                ],
-                [ 
-                    "size" => "Medium",
-                    "price"=> "", 
-                    "dimensions"=> "",  
-                ],
-                [ 
-                    "size" => "Large",
-                    "price"=> "", 
-                    "dimensions"=> "",  
-                ]
-            ]
-        ];
+    public function mount(Proposal $proposal){
+        $payload = json_decode($proposal->payload, true);
+        foreach($payload as $key => $value){
+            $this->name = $proposal->name;
+            $this->email = $proposal->email;
+            $this->items[$key] = [
+                'color'=> $value['color'],
+                'shape'=> $value['shape'],
+                'usage'=> $value['usage'],
+                'dimensions'=> $value['dimensions'],
+                'drawing' => config('app.url'). '/storage/'.$value['drawing'],
+                'mockup' => config('app.url'). '/storage/'.$value['mockup'],
+                'sizes' => $value['sizes']
+            ];
+        }
     }
 
     public function add_mockup(){
@@ -113,10 +103,14 @@ class CreateProposal extends Component
 
         foreach ($this->items as $key => $item) {
             if ($item['drawing']) {
-                $this->items[$key]['drawing'] = $item['drawing']->store('drawings');
+                if(!filter_var($item['drawing'], FILTER_VALIDATE_URL)){
+                    $this->items[$key]['drawing'] = $item['drawing']->store('drawings');
+                }
             }
             if ($item['mockup']) {
-                $this->items[$key]['mockup'] = $item['mockup']->store('mockup');
+                if(!filter_var($item['mockup'], FILTER_VALIDATE_URL)){
+                    $this->items[$key]['mockup'] = $item['mockup']->store('mockup');
+                }
             }
         }
 

@@ -29,7 +29,7 @@ class OrderPlaced extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            from: new Address('no-reply@vitalneon.com', 'VitalNeon'),
+            from: new Address('contact@vitalneon.com', 'VitalNeon'),
             subject: 'Order Placed',
         );
     }

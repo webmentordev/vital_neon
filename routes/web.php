@@ -38,7 +38,9 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\CategoryPriceController;
 use App\Http\Controllers\PriceIncrementController;
 use App\Http\Livewire\Auth\CreateProposal;
+use App\Http\Livewire\Auth\EditProposal;
 use App\Http\Livewire\Auth\Proposal;
+use App\Mail\ProposalReady;
 use App\Models\Proposal as ModelsProposal;
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
@@ -110,6 +112,7 @@ Route::middleware('auth')->group(function () {
 
     Route::get('proposals', Proposal::class)->name('admin.proposals');
     Route::get('/proposal/create', CreateProposal::class)->name('admin.create.proposals');
+    Route::get('/proposal/edit/{proposal}', EditProposal::class)->name('admin.edit.proposal');
     
     Route::get('/lines', [LineController::class, 'index'])->name('line');
     Route::post('/lines', [LineController::class, 'create']);
@@ -184,10 +187,6 @@ Route::middleware('auth')->group(function () {
 
     Route::get("/get-pdf", [PDFController::class, 'index']);
     Route::get("/generate-pdf", [PDFController::class, 'store']);
-
-    // Route::get('/email', function(){
-    //     return new Testing();
-    // });
 
     // Route::get('/email-send', function(){
     //     Mail::to('')->send(new Testing());

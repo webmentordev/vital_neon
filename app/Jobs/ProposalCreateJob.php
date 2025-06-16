@@ -28,10 +28,9 @@ class ProposalCreateJob implements ShouldQueue
     public function handle(): void
     {
         $proposal = $this->proposal;
+        $PDFImages = [];
+        $productsArray = [];
         try{
-            $PDFImages = [];
-            $productsArray = [];
-
             $proposal->status = "processing";
             $proposal->save();
 
@@ -104,7 +103,7 @@ class ProposalCreateJob implements ShouldQueue
 
             $finalPdfPath = $pdfDirectory . '/proposal-' . $time . '.pdf';
             $pdf->Output($finalPdfPath, 'F');
-            $finalPDFURL = config('app.url') . '/mockup-pdf/proposal-' . $time . '.pdf';
+            $finalPDFURL = 'mockup-pdf/proposal-' . $time . '.pdf';
 
             $proposal->pdf = $finalPDFURL;
             $proposal->products = json_encode($productsArray);
@@ -116,9 +115,15 @@ class ProposalCreateJob implements ShouldQueue
                 }
             }
         }catch(\Exception $e){
-            $proposal->status = "processing";
+            $proposal->status = "failed";
             $proposal->save();
-            Log::error("Processing failed: ". $e->getMessage());
+            Log::error("Processing failed", [
+                'message' => $e->getMessage(),
+                'file' => $e->getFile(),
+                'line' => $e->getLine(),
+                'trace' => $e->getTraceAsString(),
+                'code' => $e->getCode()
+            ]);
         }
     }
 
@@ -157,7 +162,7 @@ class ProposalCreateJob implements ShouldQueue
         ]);
         foreach($payload['sizes'] as $size){
             CategoryPrice::create([
-                'name' => $size->dimensions,
+                'name' => $size['dimensions'],
                 'product_id' => $product->id,
                 'price' => $size['price']
             ]);
