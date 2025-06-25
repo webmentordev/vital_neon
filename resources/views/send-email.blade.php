@@ -4,11 +4,12 @@
             <h2 class="font-semibold text-xl text-gray-800 leading-tight">
                 {{ __('Write Email') }}
             </h2>
-            <a href="{{ route('email.preview') }}" class="py-2 px-4 rounded-md bg-indigo-600 text-white font-semibold">Preview</a>
+            <a href="{{ route('email.preview') }}"
+                class="py-2 px-4 rounded-md bg-indigo-600 text-white font-semibold">Preview</a>
         </div>
     </x-slot>
-    <section class="w-full">
-        <div class="w-full max-w-2xl m-auto mt-6 px-6 py-4 bg-gray-700 shadow-md overflow-hidden rounded-lg">
+    <section class="w- grid grid-cols-2 gap-6 max-w-7xl w-full m-auto">
+        <div class="w-full mt-6 px-6 py-4 bg-gray-700 shadow-md overflow-hidden rounded-lg">
             <form action="{{ route('send.email') }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 <h2 class="font-semibold mb-3 text-white text-3xl">Write and Send Email</h2>
@@ -19,25 +20,30 @@
 
                     <div class="w-full">
                         <x-input-label for="email" :value="__('Email')" />
-                        <input id="email" autocomplete="off" name="email" type="text" required class="border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 rounded-md shadow-sm w-full block mt-1">
+                        <input id="email" autocomplete="off" name="email" type="text" required
+                            class="border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 rounded-md shadow-sm w-full block mt-1">
                         <x-input-error :messages="$errors->get('email')" class="mt-2" />
                     </div>
 
                     <div class="w-full">
                         <x-input-label for="subject" :value="__('Subject')" />
-                        <input id="subject" autocomplete="off" name="subject" type="text" required class="border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 rounded-md shadow-sm w-full block mt-1">
+                        <input id="subject" autocomplete="off" name="subject" type="text" required
+                            class="border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 rounded-md shadow-sm w-full block mt-1">
                         <x-input-error :messages="$errors->get('subject')" class="mt-2" />
                     </div>
 
                     <div class="w-full col-span-2">
                         <x-input-label for="files" :value="__('Attachments')" />
-                        <input id="files" name="files[]" type="file" multiple class="border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 rounded-md shadow-sm w-full block mt-1">
+                        <input id="files" name="files[]" type="file" multiple
+                            class="border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 rounded-md shadow-sm w-full block mt-1">
                         <x-input-error :messages="$errors->get('files')" class="mt-2" />
                     </div>
 
                     <div class="w-full col-span-2">
                         <x-input-label for="content" :value="__('Content')" />
-                        <textarea name="content" id="content" cols="30" rows="10" class="border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 rounded-md shadow-sm w-full block mt-1" required></textarea>
+                        <textarea name="content" id="content" cols="30" rows="10"
+                            class="border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 rounded-md shadow-sm w-full block mt-1"
+                            required></textarea>
                         <x-input-error :messages="$errors->get('content')" class="mt-2" />
                     </div>
 
@@ -49,5 +55,18 @@
                 </div>
             </form>
         </div>
+        <p class="text-white mt-6">
+            Dear **Ahmer**,<br><br>
+            We’re excited to let you know that your personalized neon sign proposal is ready for review! <br>
+            ## This proposal includes:<br>
+            * A custom design preview tailored to your vision<br>
+            * Size, color, and font details for your sign<br>
+            * Price breakdown and available options<br>
+            * Estimated production and delivery timelines <br><br>
+            Take a moment to go through the attached proposal.If you have any questions or want to make tweaks
+            to the design, we’re here to help!<br><br>
+            Your dream sign is just a few clicks away — we can’t wait to bring it to life.<br><br>
+            Let us know what you think!<br><br>
+        </p>
     </section>
 </x-app-layout>

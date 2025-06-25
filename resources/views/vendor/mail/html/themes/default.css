@@ -11,7 +11,7 @@ body *:not(html):not(style):not(br):not(tr):not(code) {
 body {
     -webkit-text-size-adjust: none;
     background-color: #121212;
-    color: #718096;
+    color: #ffffff;
     height: 100%;
     line-height: 1.4;
     margin: 0;
@@ -41,7 +41,7 @@ h3 {
 
 .token {
     padding: 10px;
-    background-color: #2e2e2e;
+    background-color: #363636;
     border-radius: 10px;
 }
 
@@ -75,10 +75,10 @@ h3 {
 
 p {
     font-size: 16px;
-    line-height: 1.5em;
     margin-top: 0;
     text-align: left;
     color: #d8d8d8;
+    margin-bottom: 10px;
 }
 
 p.sub {
@@ -214,6 +214,7 @@ p.sub {
     padding: 32px;
 }
 
+
 /* Buttons */
 
 .action {
@@ -292,4 +293,26 @@ p.sub {
 
 .break-all {
     word-break: break-all;
+}
+
+
+.flex-logos {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    margin: 0px;
+    margin-left: -40px;
+}
+
+.flex-logos a img {
+    width: 30px;
+    margin-right: 20px;
+}
+
+strong {
+    color: #12CAFF;
+}
+
+.data {
+    font-size: 12px;
 }

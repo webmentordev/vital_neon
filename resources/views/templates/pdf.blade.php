@@ -81,26 +81,22 @@
             </div>
             <div class="h-full w-full col-span-3 pl-5">
                 <div class="h-[970px] bg-slate-200 p-3">
-                    <div class="bg-white w-full h-[430px] relative rounded-3xl overflow-hidden">
+                    <div class="bg-white w-full h-[410px] relative rounded-3xl overflow-hidden">
                         <strong
                             class="absolute rounded-br-full bg-dark text-white px-1 py-2 top-0 w-[190px] text-center text-lg z-10">Quote
                             Details</strong>
                         <div class="mt-10 py-3 px-4">
-                            <strong class="text-black text-2xl">{{ Str::limit($proposal->name, 30, '...') }}</strong>
-                            <div class="pt-1">
-                                <div class="flex items-center mb-2">
-                                    <strong class="w-[160px] uppercase">Dimensions</strong>
-                                    <span class="">: {{ $data['dimensions'] }}</span>
-                                </div>
-                                <div class="flex items-center mb-2">
+                            <strong class="text-black text-2xl mb-6">{{ Str::limit($proposal->name, 30, '...') }}</strong>
+                            <div class="pt-1 mb-6">
+                                <div class="flex items-center text-lg mb-2">
                                     <strong class="w-[160px] uppercase">Color</strong>
                                     <span class="">: {{ $data['color'] }}</span>
                                 </div>
-                                <div class="flex items-center mb-2">
+                                <div class="flex items-center text-lg mb-2">
                                     <strong class="w-[160px] uppercase">Shape</strong>
                                     <span class="">: {{ $data['shape'] }}</span>
                                 </div>
-                                <div class="flex items-center">
+                                <div class="flex items-center text-lg">
                                     <strong class="w-[160px] uppercase">Usage</strong>
                                     <span class="">: {{ $data['usage'] }}</span>
                                 </div>
@@ -114,7 +110,7 @@
                                 @foreach ($data['sizes'] as $size)
                                     <div class="flex justify-between items-center py-1 pr-2 mt-1">
                                         <strong
-                                            class="py-1 w-[90px] mb-1 text-center text-main bg-black">{{ $size['size'] }}</strong>
+                                            class="py-1 w-[110px] mb-1 text-center text-main bg-black">{{ $size['size'] }}</strong>
                                         <strong>{{ $size['dimensions'] }}</strong>
                                         <strong>US$ {{ number_format($size['price'], 2) }}</strong>
                                     </div>
@@ -124,10 +120,11 @@
                         </div>
                     </div>
                     <strong
-                        class="text-3xl my-4 rounded-3xl mb-3 bg-main text-black w-full text-center p-5 inline-block box-btn">
-                        CLICK HERE TO BUY
+                        class="text-3xl my-4 mb-4 rounded-3xl bg-main text-black w-full text-center p-5 box-btn justify-center flex items-center">
+                        <img src="https://api.iconify.design/tabler:basket.svg?color=%23000000" width="45" class="mr-2">
+                        <strong class="mt-1">CLICK HERE TO BUY</strong>
                     </strong>
-                    <div class="bg-white w-full h-[400px] relative rounded-3xl overflow-hidden mt-3 pb-3">
+                    <div class="bg-white w-full h-[415px] relative rounded-3xl overflow-hidden mt-3 pb-3">
                         <strong
                             class="absolute rounded-br-full bg-dark text-white px-1 py-2 top-0 w-[210px] text-center text-lg z-10">Package
                             Included</strong>
