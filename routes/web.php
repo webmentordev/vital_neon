@@ -3,6 +3,7 @@
 use App\Models\Lead;
 use App\Mail\Testing;
 use App\Mail\LeadRecieved;
+use App\Mail\ProposalReady;
 use App\Http\Livewire\Carts;
 use App\Http\Livewire\Preview;
 use App\Http\Livewire\Product;
@@ -10,6 +11,7 @@ use App\Http\Livewire\Auth\Leads;
 use App\Http\Livewire\FreeMockup;
 use App\Http\Livewire\DesignQuote;
 use App\Http\Livewire\CreateDesign;
+use App\Http\Livewire\Auth\Proposal;
 use App\Http\Livewire\LightBoxIndex;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Route;
@@ -18,15 +20,19 @@ use App\Http\Controllers\PDFController;
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LineController;
+use App\Http\Livewire\Auth\EditProposal;
 use App\Http\Controllers\EmailController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ShapeController;
 use App\Http\Controllers\TrackController;
+use App\Models\Proposal as ProposalModel;
 use App\Http\Controllers\DesignController;
 use App\Http\Controllers\RemoteController;
 use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\SearchController;
 use App\Http\Controllers\SiteMapGenerator;
+use App\Http\Livewire\Auth\CreateProposal;
+use App\Models\Proposal as ModelsProposal;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ServiceController;
@@ -37,11 +43,6 @@ use App\Http\Controllers\ProductsController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\CategoryPriceController;
 use App\Http\Controllers\PriceIncrementController;
-use App\Http\Livewire\Auth\CreateProposal;
-use App\Http\Livewire\Auth\EditProposal;
-use App\Http\Livewire\Auth\Proposal;
-use App\Mail\ProposalReady;
-use App\Models\Proposal as ModelsProposal;
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
@@ -188,9 +189,9 @@ Route::middleware('auth')->group(function () {
     Route::get("/get-pdf", [PDFController::class, 'index']);
     Route::get("/generate-pdf", [PDFController::class, 'store']);
 
-    // Route::get('/email-send', function(){
-    //     Mail::to('')->send(new Testing());
-    //     return "Email has been sent!";
+    // Route::get('/email-test', function(){
+    //     $proposal = ProposalModel::latest()->first();
+    //     return new ProposalReady("Ahmer", $proposal);
     // });
 
     Route::get('/ui/image/{proposal}', function(ModelsProposal $proposal){

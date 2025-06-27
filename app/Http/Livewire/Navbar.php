@@ -17,7 +17,7 @@ class Navbar extends Component
     public function render()
     {
         return view('livewire.navbar', [
-            'categories' => Category::where('is_active', true)->get()
+            'categories' => Category::where('is_active', true)->whereNot("name", "Custom")->get()
         ]);
     }
 

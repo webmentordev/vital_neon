@@ -7,6 +7,7 @@ use App\Models\Product;
 use App\Models\Category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 use Artesaos\SEOTools\Facades\JsonLd;
 use Artesaos\SEOTools\Facades\SEOMeta;
 use Artesaos\SEOTools\Facades\OpenGraph;
@@ -117,6 +118,9 @@ class ProductsController extends Controller
         JsonLd::setType("WebSite");
         JsonLd::addImage("https://vitalneon.com/assets/seo/category-1.png", ["height" => 400, "width" => 760]);
 
+        if($category->name == "Custom" && !Auth::check()){
+            abort(404);
+        }
         return view('products', [
             'products' => $category->products,
             'discount' => DB::table('discounts')->latest()->first()
