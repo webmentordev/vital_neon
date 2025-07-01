@@ -1,7 +1,7 @@
 <div>
     <div class="py-2">
         <div class="max-w-[99%] mx-auto">
-            <div class="bg-white dark:bg-gray-800 overflow-hidden rounded-lg">
+            <div class="bg-white dark:bg-gray-800 rounded-lg">
                 <div class="p-2 text-gray-900 dark:text-gray-100">
                     <div class="flex items-center justify-end">
                         <a href="{{ route("admin.create.proposals") }}" class="py-2 px-3 bg-blue-600 rounded-md">Create
@@ -11,7 +11,7 @@
                         <x-success :message="session('success')" />
                     @endif
                     @if (count($proposals))
-                        <table class="w-full mt-3 rounded-lg overflow-hidden table-fixed text-sm leads-table">
+                        <table class="w-full mt-3 rounded-lg table-fixed text-sm leads-table">
                             <tr class="bg-white text-gray-800 text-center">
                                 <th width="190px">Name</th>
                                 <th width="220px">Email</th>

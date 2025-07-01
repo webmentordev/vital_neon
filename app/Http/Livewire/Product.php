@@ -39,7 +39,7 @@ class Product extends Component
         "#F3031C",
         "#A302DE",
         "#80F9D6"
-    ], $color_selected;
+    ], $color_selected = "Same";
 
     protected $rules = [
         'category' => 'required',

@@ -11,7 +11,7 @@ class EditProposal extends Component
 {
     use WithFileUploads;
     
-    public $items = [], $email = "", $name = "";
+    public $items = [], $email = "", $name = "", $activeProposal = null;
     
     public function render()
     {
@@ -19,6 +19,7 @@ class EditProposal extends Component
     }
 
     public function mount(Proposal $proposal){
+        $this->activeProposal = $proposal;
         $payload = json_decode($proposal->payload, true);
         foreach($payload as $key => $value){
             $this->name = $proposal->name;
@@ -97,7 +98,6 @@ class EditProposal extends Component
             'items.*.sizes.*.dimensions' => ['required', 'string'],
             'items.*.sizes.*.price' => ['required', 'numeric'],
         ]);
-
         foreach ($this->items as $key => $item) {
             if ($item['drawing']) {
                 if(!filter_var($item['drawing'], FILTER_VALIDATE_URL)){
@@ -110,15 +110,12 @@ class EditProposal extends Component
                 }
             }
         }
-
-        $proposal = Proposal::create([
-            'name'=> $this->name,
-            'email'=> $this->email,
+        $this->activeProposal->update([
+            'name' => $this->name,
+            'email' => $this->email,
             'payload' => json_encode($this->items),
         ]);
-
-        ProposalCreateJob::dispatch($proposal);
-
+        ProposalCreateJob::dispatch($this->activeProposal);
         return redirect('/proposal/create')->with('success','Proposal has been added to the queue!');
     }
     

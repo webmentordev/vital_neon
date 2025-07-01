@@ -3,7 +3,7 @@
         <div class="bg-white dark:bg-gray-800 overflow-hidden rounded-lg">
             <div class="p-6 text-gray-900 dark:text-gray-100">
                 <div class="flex items-center justify-between mb-3">
-                    <h3 class="text-lg mb-3 font-bold">Create proposal!</h3>
+                    <h3 class="text-lg mb-3 font-bold">Update proposal!</h3>
                     <button class="bg-white text-black py-1 px-3 rounded-md font-semibold"
                         wire:click="add_mockup">+</button>
                 </div>
