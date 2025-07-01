@@ -20,7 +20,7 @@
         @foreach ($product as $item)
             <div class="grid grid-cols-2 gap-3 rounded-lg mb-6 overflow-hidden 890px:grid-cols-1 890px:max-w-lg m-auto">
                 <div class="w-full">
-                    <img data-src="{{ asset('storage/app/public/'.$item->image) }}" class="w-full lazyload rounded-lg mb-3 890px:h-[450px] 890px:object-cover" loading="lazy" alt="Buy {{ $item->name }}" title="Buy {{ $item->name }}">
+                    <img data-src="{{ asset('storage/'.$item->image) }}" class="w-full lazyload rounded-lg mb-3 890px:h-[450px] 890px:object-cover" loading="lazy" alt="Buy {{ $item->name }}" title="Buy {{ $item->name }}">
                     {{-- <img class="mt-3 890px:hidden" src="{{ asset('assets/colors.png') }}" title="VitalNeon signs colors" alt="Colors selection"> --}}
                     <a href="https://www.trustpilot.com/review/vitalneon.com" title="Vital Neon TrustPilot reviews" target="_blank" rel="nofollow" class="py-3 rounded-lg bg-gray-100 mb-6">
                         <img class="max-w-[80%] w-full m-auto" src="{{ asset('assets/vital-neon-trustpilot-reviews.png') }}" alt="Vital Neon TrustPilot reviews">
