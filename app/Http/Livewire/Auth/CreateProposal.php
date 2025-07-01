@@ -110,10 +110,10 @@ class CreateProposal extends Component
 
         foreach ($this->items as $key => $item) {
             if ($item['drawing']) {
-                $this->items[$key]['drawing'] = $item['drawing']->store('drawings');
+                $this->items[$key]['drawing'] = $item['drawing']->store('drawings', 'public_disk');
             }
             if ($item['mockup']) {
-                $this->items[$key]['mockup'] = $item['mockup']->store('mockup');
+                $this->items[$key]['mockup'] = $item['mockup']->store('mockup', 'public_disk');
             }
         }
 
