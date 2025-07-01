@@ -106,7 +106,7 @@
                             Click and Pay Now
                         </button>
                         
-                        <p class="text-gray-300">🚚 Estimated Delivery: {{ \Carbon\Carbon::now()->format('d-M-y') }} - {{ \Carbon\Carbon::now()->addDays(5)->format('d-M-y') }}</p>
+                        <p class="text-gray-300">🚚 Estimated Delivery: {{ \Carbon\Carbon::now()->format('d-M-y') }} - {{ \Carbon\Carbon::now()->addDays(10)->format('d-M-y') }}</p>
 
                         <div class="flex justify-between items-center 530px:flex-col w-full mt-2 py-3 mb-2">
                             <img src="{{ asset('assets/images/payment_cards.png') }}" width="190px" alt="Stripe Payment methods icon">
@@ -114,7 +114,7 @@
                         </div>
                     @else
                         <video src="{{ asset('videos/neon-sign-unboxing-video.MOV') }}" controls loop autoplay muted class="mb-3"></video>
-                        <p class="text-gray-300">🚚 Estimated Delivery: {{ \Carbon\Carbon::now()->format('d-M-y') }} - {{ \Carbon\Carbon::now()->addDays(5)->format('d-M-y') }}</p>
+                        <p class="text-gray-300">🚚 Estimated Delivery: {{ \Carbon\Carbon::now()->format('d-M-y') }} - {{ \Carbon\Carbon::now()->addDays(10)->format('d-M-y') }}</p>
                         <div class="flex justify-between items-center 530px:flex-col w-full mt-2 py-3 mb-2">
                             <img src="{{ asset('assets/images/payment_cards.png') }}" width="190px" alt="Stripe Payment methods icon">
                             <img src="{{ asset('assets/images/stripe_square_logo.png') }}" width="190px" alt="Powerd by stipe image">

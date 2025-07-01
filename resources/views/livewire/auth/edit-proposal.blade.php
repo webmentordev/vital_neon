@@ -67,17 +67,10 @@
                                 </div>
                             </div>
 
-                            <div class="grid grid-cols-2 gap-3 mb-3">
-                                <div class="flex flex-col">
-                                    <x-form-input type="text" wire:model="items.{{ $item }}.usage" placeholder="Usage"
-                                        required />
-                                    <x-input-error :messages="$errors->get('items.' . $item . '.usage')" class="mt-2" />
-                                </div>
-                                <div class="flex flex-col">
-                                    <x-form-input type="text" wire:model="items.{{ $item }}.dimensions" placeholder="Dimensions"
-                                        required />
-                                    <x-input-error :messages="$errors->get('items.' . $item . '.dimensions')" class="mt-2" />
-                                </div>
+                            <div class="flex flex-col mb-3">
+                                <x-form-input type="text" wire:model="items.{{ $item }}.usage" placeholder="Usage"
+                                    required />
+                                <x-input-error :messages="$errors->get('items.' . $item . '.usage')" class="mt-2" />
                             </div>
 
                             <div class="grid grid-cols-3 gap-3 mb-3">

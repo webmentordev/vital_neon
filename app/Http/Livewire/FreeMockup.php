@@ -8,6 +8,7 @@ use Livewire\Component;
 use App\Mail\LeadRecieved;
 use Illuminate\Support\Str;
 use App\Jobs\LeadMessageJob;
+use App\Mail\LeadAlert;
 use Livewire\WithFileUploads;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
@@ -134,6 +135,7 @@ class FreeMockup extends Component
             ]
         );
         Mail::to($this->email)->queue(new LeadRecieved($lead));
+        Mail::to(config('app.redirect_email'))->queue(new LeadAlert($lead));
         LeadMessageJob::dispatch($lead);
         $this->reset(['name', 'email', 'phone_number', 'location', 'dimensions', 'budget', 'message', 'logos']);
         return session()->flash('success', "Thank you!");

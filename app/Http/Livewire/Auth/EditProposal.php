@@ -27,7 +27,6 @@ class EditProposal extends Component
                 'color'=> $value['color'],
                 'shape'=> $value['shape'],
                 'usage'=> $value['usage'],
-                'dimensions'=> $value['dimensions'],
                 'drawing' => config('app.url'). '/storage/'.$value['drawing'],
                 'mockup' => config('app.url'). '/storage/'.$value['mockup'],
                 'sizes' => $value['sizes']
@@ -41,22 +40,21 @@ class EditProposal extends Component
             'color'=> '',
             'shape'=> '',
             'usage'=> '',
-            'dimensions'=> '',
             'drawing' => null,
             'mockup' => null,
             'sizes'=> [
                 [ 
-                    "size" => "Small",
+                    "size" => "Original",
                     "price"=> "", 
                     "dimensions"=> "",  
                 ],
                 [ 
-                    "size" => "Medium",
+                    "size" => "Option-1",
                     "price"=> "", 
                     "dimensions"=> "",  
                 ],
                 [ 
-                    "size" => "Large",
+                    "size" => "Option-2",
                     "price"=> "", 
                     "dimensions"=> "",  
                 ]
@@ -92,9 +90,8 @@ class EditProposal extends Component
             'items.*.color'=> ['required'],
             'items.*.shape'=> ['required'],
             'items.*.usage'=> ['required'],
-            'items.*.dimensions'=> ['required'],
-            'items.*.drawing'=> ['required', 'image', 'max:8000'],
             'items.*.mockup'=> ['required', 'image', 'max:8000'],
+            'items.*.drawing'=> ['required', 'image', 'max:8000'],
             'items.*.sizes' => ['required', 'array', 'min:3'],
             'items.*.sizes.*.size' => ['required', 'string'],
             'items.*.sizes.*.dimensions' => ['required', 'string'],
