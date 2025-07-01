@@ -26,17 +26,17 @@ class CreateProposal extends Component
             'mockup' => null,
             'sizes'=> [
                 [ 
-                    "size" => "Small",
+                    "size" => "Original",
                     "price"=> "", 
                     "dimensions"=> "",  
                 ],
                 [ 
-                    "size" => "Medium",
+                    "size" => "Option-1",
                     "price"=> "", 
                     "dimensions"=> "",  
                 ],
                 [ 
-                    "size" => "Large",
+                    "size" => "Option-2",
                     "price"=> "", 
                     "dimensions"=> "",  
                 ]
