@@ -22,6 +22,7 @@ class CreateProposal extends Component
             'color'=> '',
             'shape'=> '',
             'usage'=> '',
+            'pdf' => 'pdf',
             'drawing' => null,
             'mockup' => null,
             'sizes'=> [
@@ -50,6 +51,7 @@ class CreateProposal extends Component
             'color'=> '',
             'shape'=> '',
             'usage'=> '',
+            'pdf' => 'pdf',
             'drawing' => null,
             'mockup' => null,
             'sizes'=> [
@@ -100,6 +102,7 @@ class CreateProposal extends Component
             'items.*.color'=> ['required'],
             'items.*.shape'=> ['required'],
             'items.*.usage'=> ['required'],
+            'items.*.pdf'=> ['required'],
             'items.*.drawing'=> ['required', 'image', 'max:8000'],
             'items.*.mockup'=> ['required', 'image', 'max:8000'],
             'items.*.sizes' => ['required', 'array', 'min:3'],

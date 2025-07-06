@@ -40,6 +40,14 @@
                     @foreach ($items as $item => $data)
                         <div class="w-full p-3 bg-white/5 rounded-lg mb-3" x-show="activeTab === '{{ $item }}'"
                             x-transition>
+                            <div class="flex flex-col mb-3">
+                                <x-input-label class="mb-1">PDF Type (Vertical by default)</x-input-label>
+                                <x-form-select type="file" wire:model="items.{{ $item }}.pdf" required>
+                                    <option value="pdf">PDF (Default)</option>
+                                    <option value="pdf-2">PDF-2</option>
+                                </x-form-select>  
+                                <x-input-error :messages="$errors->get('items.' . $item . '.pdf')" class="mt-2" />
+                            </div>
                             <div class="grid grid-cols-2 gap-3 mb-3">
                                 <div class="flex flex-col">
                                     <x-input-label class="mb-1">Drawing Image</x-input-label>

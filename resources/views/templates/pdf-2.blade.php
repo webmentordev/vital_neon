@@ -21,13 +21,13 @@
                         </div>
                     </div>
                 </div>
-                <div class="mt-4 rounded-3xl bg-white p-1 grid grid-cols-2 gap-3 h-[800px]">
-                    <div class="h-full bg-red-500 border border-dark bg-cover bg-center w-full rounded-3xl mb-4 relative overflow-hidden"
+                <div class="mt-4 rounded-3xl bg-white p-2">
+                    <div class="h-[390px] bg-red-500 border border-dark bg-cover bg-center w-full rounded-3xl mb-4 relative overflow-hidden"
                         style="background-image: url('{{ config('app.url') . '/storage/' . $data['drawing'] }}')">
                         <strong
                             class="absolute rounded-tr-full bg-dark text-white px-1 py-2 bottom-0 w-[130px] text-center text-lg z-10">Drawing</strong>
                     </div>
-                    <div class="h-full bg-red-500 border border-dark bg-cover bg-center w-full rounded-3xl relative overflow-hidden"
+                    <div class="h-[390px] bg-red-500 border border-dark bg-cover bg-center w-full rounded-3xl relative overflow-hidden"
                         style="background-image: url('{{ config('app.url') . '/storage/' . $data['mockup'] }}')">
                         <strong
                             class="absolute rounded-tr-full bg-dark text-white px-1 py-2 bottom-0 w-[130px] text-center text-lg z-10">Mockup</strong>

@@ -50,7 +50,9 @@ class ProposalCreateJob implements ShouldQueue
             }
 
             foreach($payload as $single_payload) {
-                $html = view("templates.pdf", [
+                $pdfName = $single_payload['pdf'] ?? 'pdf';
+                $imageName = $pdfName == 'pdf' ? 'image': 'image-2';
+                $html = view("templates.". $pdfName, [
                     "data" => $single_payload,
                     "proposal" => $proposal
                 ])->render();
@@ -69,8 +71,7 @@ class ProposalCreateJob implements ShouldQueue
                 ->save($pdfPath);
                 $PDFImages[] = $pdfPath;
 
-
-                $image = view("templates.image", [
+                $image = view("templates.". $imageName, [
                     "data" => $single_payload
                 ])->render();
                 $imageFile = $time .'-'. rand(999,9999999) .".png";

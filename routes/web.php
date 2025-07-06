@@ -189,24 +189,24 @@ Route::middleware('auth')->group(function () {
     Route::get("/get-pdf", [PDFController::class, 'index']);
     Route::get("/generate-pdf", [PDFController::class, 'store']);
 
-    // Route::get('/email-test', function(){
-    //     $proposal = ProposalModel::latest()->first();
-    //     return new ProposalReady("Ahmer", $proposal);
-    // });
+    Route::get('/email-test', function(){
+        $proposal = ProposalModel::latest()->first();
+        return new ProposalReady($proposal->name, $proposal);
+    });
 
-    Route::get('/ui/image/{proposal}', function(ModelsProposal $proposal){
+    Route::get('/ui/{image}/{proposal}', function($image, ModelsProposal $proposal){
         $payload = json_decode($proposal->payload, true);
         foreach($payload as $single_payload) {
-            return view("templates.image", [
+            return view("templates.". $image, [
                 "data" => $single_payload,
             ]);
         }
     }); 
 
-    Route::get('/ui/{proposal}', function(ModelsProposal $proposal){
+    Route::get('/ui/{proposal}/{pdf}', function(ModelsProposal $proposal, $pdf){
         $payload = json_decode($proposal->payload, true);
         foreach($payload as $single_payload) {
-            return view("templates.pdf", [
+            return view("templates.".$pdf, [
                 "data" => $single_payload,
                 "proposal" => $proposal
             ]);

@@ -26,6 +26,7 @@ class EditProposal extends Component
             $this->email = $proposal->email;
             $this->items[$key] = [
                 'color'=> $value['color'],
+                'pdf'=> $value['pdf'] ?? 'pdf',
                 'shape'=> $value['shape'],
                 'usage'=> $value['usage'],
                 'drawing' => config('app.url'). '/storage/'.$value['drawing'],
@@ -41,6 +42,7 @@ class EditProposal extends Component
             'color'=> '',
             'shape'=> '',
             'usage'=> '',
+            'pdf' => 'pdf',
             'drawing' => null,
             'mockup' => null,
             'sizes'=> [
@@ -91,6 +93,7 @@ class EditProposal extends Component
             'items.*.color'=> ['required'],
             'items.*.shape'=> ['required'],
             'items.*.usage'=> ['required'],
+            'items.*.pdf'=> ['required'],
             'items.*.mockup'=> ['required', 'image', 'max:8000'],
             'items.*.drawing'=> ['required', 'image', 'max:8000'],
             'items.*.sizes' => ['required', 'array', 'min:3'],
