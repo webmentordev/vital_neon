@@ -53,12 +53,12 @@
                                     <x-input-label class="mb-1">Drawing Image</x-input-label>
                                     <x-form-input type="file" wire:model="items.{{ $item }}.drawing" accept="image/*"
                                         required />
-                                    @if (filter_var($data['drawing'], FILTER_VALIDATE_URL))
-                                        <a href="{{  $data['drawing'] }}" target="_blank" class="mt-3">
-                                            <img src="{{ $data['drawing'] }}" width="120px">
+                                    @if (is_string($data['drawing']))
+                                        <a href="{{ config('app.url'). '/storage/'.$data['drawing'] }}" target="_blank" class="mt-3">
+                                            <img src="{{ config('app.url'). '/storage/'.$data['drawing'] }}" width="120px" alt="Image">
                                         </a>
                                     @else
-                                        @if ($data['drawing'])
+                                        @if ($data['drawing'] && !is_string($data['drawing']))
                                             <a href="{{ $data['drawing']->temporaryUrl() }}" target="_blank" class="mt-3">
                                                 <img src="{{ $data['drawing']->temporaryUrl() }}" width="120px">
                                             </a>
@@ -70,12 +70,12 @@
                                     <x-input-label class="mb-1">Mockup Image</x-input-label>
                                     <x-form-input type="file" wire:model="items.{{ $item }}.mockup" accept="image/*"
                                         required />
-                                    @if (filter_var($data['mockup'], FILTER_VALIDATE_URL))
-                                        <a href="{{  $data['mockup'] }}" target="_blank" class="mt-3">
-                                            <img src="{{ $data['mockup'] }}" width="120px">
+                                    @if (is_string($data['mockup']))
+                                        <a href="{{ config('app.url'). '/storage/'.$data['mockup'] }}" target="_blank" class="mt-3">
+                                            <img src="{{ config('app.url'). '/storage/'.$data['mockup'] }}" width="120px">
                                         </a>
                                     @else
-                                        @if ($data['mockup'])
+                                        @if ($data['mockup'] && !is_string($data['mockup']))
                                             <a href="{{ $data['mockup']->temporaryUrl() }}" target="_blank" class="mt-3">
                                                 <img src="{{ $data['mockup']->temporaryUrl() }}" width="120px">
                                             </a>

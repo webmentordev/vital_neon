@@ -12,7 +12,7 @@ class ProductController extends Controller
 {
     public function index(Request $request){
         return view('product', [
-            'products' => Product::latest()->orWhere('name', 'LIKE', '%'.$request->search.'%')->where('for_customer', false)->with('categories')->paginate(500),
+            'products' => Product::latest()->orWhere('name', 'LIKE', '%'.$request->search.'%')->with('categories')->paginate(500),
             'categories' => Category::latest()->get()
         ]);
     }

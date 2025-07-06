@@ -66,8 +66,8 @@
                                             -
                                         @endif
                                     </td>
-                                    <td>{{ $item->created_at->format("D M Y H:i")}}</td>
-                                    <td>{{ $item->updated_at->format("D M Y H:i")}}</td>
+                                    <td>{{ $item->created_at->format("D d M Y H:i")}}</td>
+                                    <td>{{ $item->updated_at->format("D d M Y H:i")}}</td>
                                     <td class="flex justify-end items-center relative" x-data="{ open: false }">
                                         <img src="https://api.iconify.design/humbleicons:dots-vertical.svg?color=%23ffffff"
                                             width="20" class="cursor-pointer" @click="open = true">

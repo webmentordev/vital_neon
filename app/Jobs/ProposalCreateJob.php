@@ -52,7 +52,9 @@ class ProposalCreateJob implements ShouldQueue
                 mkdir($image_directory, 0775, true);
             }
 
-            $this->deleteProducts($proposal);
+            if($proposal->products){
+                $this->deleteProducts($proposal);
+            }
 
             foreach($payload as $single_payload) {
                 $pdfName = $single_payload['pdf'] ?? 'pdf';
@@ -189,7 +191,16 @@ class ProposalCreateJob implements ShouldQueue
                     Storage::disk('public_disk')->delete($product->image);
                 }
                 $stripe->products->delete($product->stripe_id, []);
+                CategoryPrice::where('product_id', $product->id)->delete();
                 $product->delete();
+            }
+            if($proposal->pdf) {
+                $pdfPath = public_path($proposal->pdf);
+                if (file_exists($pdfPath)) {
+                    unlink($pdfPath);
+                    $proposal->pdf = null;
+                    $proposal->save();
+                }
             }
             return true;
         }catch(Exception $e){

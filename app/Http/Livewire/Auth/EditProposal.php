@@ -29,8 +29,8 @@ class EditProposal extends Component
                 'pdf'=> $value['pdf'] ?? 'pdf',
                 'shape'=> $value['shape'],
                 'usage'=> $value['usage'],
-                'drawing' => config('app.url'). '/storage/'.$value['drawing'],
-                'mockup' => config('app.url'). '/storage/'.$value['mockup'],
+                'drawing' => $value['drawing'],
+                'mockup' => $value['mockup'],
                 'sizes' => $value['sizes']
             ];
         }
@@ -94,8 +94,6 @@ class EditProposal extends Component
             'items.*.shape'=> ['required'],
             'items.*.usage'=> ['required'],
             'items.*.pdf'=> ['required'],
-            'items.*.mockup'=> ['nullable', 'image', 'max:8000'],
-            'items.*.drawing'=> ['nullable', 'image', 'max:8000'],
             'items.*.sizes' => ['required', 'array', 'min:3'],
             'items.*.sizes.*.size' => ['required', 'string'],
             'items.*.sizes.*.dimensions' => ['required', 'string'],
@@ -103,12 +101,18 @@ class EditProposal extends Component
         ]);
         foreach ($this->items as $key => $item) {
             if ($item['drawing']) {
-                if(!filter_var($item['drawing'], FILTER_VALIDATE_URL)){
+                if(!is_string($item['drawing'])){
+                    $this->validate([
+                        'items.*.drawing'=> ['required', 'image', 'max:8000'],
+                    ]);
                     $this->items[$key]['drawing'] = $item['drawing']->store('drawings', 'public_disk');
                 }
             }
             if ($item['mockup']) {
-                if(!filter_var($item['mockup'], FILTER_VALIDATE_URL)){
+                if(!is_string($item['mockup'])){
+                    $this->validate([
+                        'items.*.mockup'=> ['required', 'image', 'max:8000'],
+                    ]);
                     $this->items[$key]['mockup'] = $item['mockup']->store('mockup', 'public_disk');
                 }
             }

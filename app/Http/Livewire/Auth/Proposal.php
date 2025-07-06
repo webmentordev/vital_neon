@@ -46,6 +46,7 @@ class Proposal extends Component
                     Storage::disk('public_disk')->delete($product->image);
                 }
                 $stripe->products->delete($product->stripe_id, []);
+                CategoryPrice::where('product_id', $product->id)->delete();
                 $product->delete();
             }
             if($proposal->pdf) {

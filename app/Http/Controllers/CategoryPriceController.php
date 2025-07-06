@@ -51,4 +51,9 @@ class CategoryPriceController extends Controller
             abort(404, 'Not Found!');
         }
     }
+
+    public function delete(CategoryPrice $price){
+        $price->delete();
+        return back()->with('success', 'Price has been deleted!');
+    }
 }
