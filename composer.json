@@ -13,6 +13,7 @@
         "laravel/sanctum": "^3.3",
         "laravel/tinker": "^2.8",
         "livewire/livewire": "^2.12",
+        "sentry/sentry-laravel": "^4.15",
         "spatie/browsershot": "^5.0",
         "stripe/stripe-php": "^10.10",
         "tecnickcom/tcpdf": "^6.9"

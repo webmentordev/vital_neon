@@ -53,12 +53,22 @@
                                     <x-input-label class="mb-1">Drawing Image</x-input-label>
                                     <x-form-input type="file" wire:model="items.{{ $item }}.drawing" accept="image/*"
                                         required />
+                                    @if ($data['drawing'])
+                                        <a href="{{ $data['drawing']->temporaryUrl() }}" target="_blank" class="mt-3">
+                                            <img src="{{ $data['drawing']->temporaryUrl() }}" width="120px">
+                                        </a>
+                                    @endif
                                     <x-input-error :messages="$errors->get('items.' . $item . '.drawing')" class="mt-2" />
                                 </div>
                                 <div class="flex flex-col">
                                     <x-input-label class="mb-1">Mockup Image</x-input-label>
                                     <x-form-input type="file" wire:model="items.{{ $item }}.mockup" accept="image/*"
                                         required />
+                                    @if ($data['mockup'])
+                                        <a href="{{ $data['mockup']->temporaryUrl() }}" target="_blank" class="mt-3">
+                                            <img src="{{ $data['mockup']->temporaryUrl() }}" width="120px">
+                                        </a>
+                                    @endif
                                     <x-input-error :messages="$errors->get('items.' . $item . '.mockup')" class="mt-2" />
                                 </div>
                             </div>
@@ -109,12 +119,12 @@
                                     </div>
                                 @endforeach
                             </div>
-                            {{-- <div class="flex items-center justify-between">
+                            <div class="flex items-center justify-between">
                                 <button class="py-1 px-3 bg-red-700 rounded-lg"
                                 wire:click="remove_tab('{{ $item }}')">Remove</button>
-                                <button class="py-1 px-3 bg-blue-700 rounded-lg text-white"
-                                wire:click="add_size('{{ $item }}')">Add</button>
-                            </div> --}}
+                            {{--     <button class="py-1 px-3 bg-blue-700 rounded-lg text-white"
+                                wire:click="add_size('{{ $item }}')">Add</button> --}}
+                            </div> 
                         </div>
                         
                     @endforeach

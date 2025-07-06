@@ -3,18 +3,21 @@
 namespace App\Jobs;
 
 use TCPDF;
+use Exception;
 use App\Models\Product;
 use App\Models\Category;
 use App\Models\Proposal;
 use Stripe\StripeClient;
+use Illuminate\Support\Str;
 use App\Models\CategoryPrice;
 use Illuminate\Bus\Queueable;
+use Illuminate\Support\Facades\Log;
 use Spatie\Browsershot\Browsershot;
 use Illuminate\Queue\SerializesModels;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
-use Illuminate\Support\Facades\Log;
 
 class ProposalCreateJob implements ShouldQueue
 {
@@ -48,6 +51,8 @@ class ProposalCreateJob implements ShouldQueue
             if (!file_exists($image_directory)) {
                 mkdir($image_directory, 0775, true);
             }
+
+            $this->deleteProducts($proposal);
 
             foreach($payload as $single_payload) {
                 $pdfName = $single_payload['pdf'] ?? 'pdf';
@@ -115,7 +120,7 @@ class ProposalCreateJob implements ShouldQueue
                     unlink($singlePDFImage);
                 }
             }
-        }catch(\Exception $e){
+        }catch(Exception $e){
             $proposal->status = "failed";
             $proposal->save();
             Log::error("Processing failed", [
@@ -169,5 +174,35 @@ class ProposalCreateJob implements ShouldQueue
             ]);
         }
         return config('app.url').'/product/'. $slug;
+    }
+
+    public function deleteProducts(Proposal $proposal){
+        try{
+            $products = collect(json_decode($proposal->products));
+            $products_slugs = $products->map(function ($product) {
+                return Str::afterLast($product, '/');
+            });
+            foreach($products_slugs as $slug){
+                $product = Product::where('slug', $slug)->first();
+                $stripe = new StripeClient(config('app.stripe'));
+                if($product->image && Storage::disk('public_disk')->exists($product->image)) {
+                    Storage::disk('public_disk')->delete($product->image);
+                }
+                $stripe->products->delete($product->stripe_id, []);
+                $product->delete();
+            }
+            return true;
+        }catch(Exception $e){
+            $proposal->status = "failed";
+            $proposal->save();
+            Log::error("Job Product deletion failed: ", [
+                'message' => $e->getMessage(),
+                'file' => $e->getFile(),
+                'line' => $e->getLine(),
+                'trace' => $e->getTraceAsString(),
+                'code' => $e->getCode()
+            ]);
+            return false;
+        }
     }
 }
