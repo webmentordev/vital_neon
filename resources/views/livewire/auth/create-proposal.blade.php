@@ -43,8 +43,8 @@
                             <div class="flex flex-col mb-3">
                                 <x-input-label class="mb-1">PDF Type (Vertical by default)</x-input-label>
                                 <x-form-select type="file" wire:model="items.{{ $item }}.pdf" required>
-                                    <option value="pdf">PDF (Default)</option>
-                                    <option value="pdf-2">PDF-2</option>
+                                    <option value="pdf">PDF (Vertical)</option>
+                                    <option value="pdf-2">PDF-2 (Horizontal)</option>
                                 </x-form-select>  
                                 <x-input-error :messages="$errors->get('items.' . $item . '.pdf')" class="mt-2" />
                             </div>
