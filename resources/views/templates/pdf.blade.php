@@ -10,11 +10,9 @@
                                 us</strong></h3>
                         <div class="px-3 py-4 bg-white rounded-r-full rounded-bl-full w-[440px] pl-8 box">
                             <ul>
-                                <li class="flex items-center"><img
-                                        src="https://api.iconify.design/material-symbols:call-sharp.svg?color=%2312caff"
+                                <li class="flex items-center"><img src="https://api.iconify.design/logos:whatsapp-icon.svg"
                                         width="25" class="mr-2"><strong class="text-[15px]">+1 647-616-5799</strong></li>
-                                <li class="flex items-center"><img
-                                        src="https://api.iconify.design/ic:baseline-mail-outline.svg?color=%2312caff"
+                                <li class="flex items-center"><img src="https://api.iconify.design/noto:envelope.svg"
                                         width="25" class="mr-2"><strong class="text-[15px]">contact@vitalneon.com</strong>
                                 </li>
                             </ul>
@@ -34,19 +32,15 @@
                     </div>
                 </div>
                 <div class="w-full py-4 px-5">
-                    <p class="text-main text-center font-bold mb-2">Please review this carefully</p>
+                    <p class="text-main text-center text-2xl font-bold mb-5">Please review this carefully</p>
                     <div class="grid grid-cols-2">
-                        <ul class="text-gray-200 list-disc">
-                            <li>Please make sure <strong class="text-white">Spellings</strong> are correct</li>
-                            <li>Mention <strong class="text-white">Dimensions</strong> are accurate</li>
-                            <li><strong class="text-white">2 Years warrenty</strong>: UL Listed Components</li>
-                            <li>Delivery in <strong class="text-white">15 - 17 working days</strong></li>
+                        <ul class="text-gray-200 list-disc text-xl">
+                            <li class="mb-2">Please make sure <strong class="text-white">Spellings</strong> are correct</li>
+                            <li>Please make sure <strong class="text-white">Dimensions</strong> are accurate</li>
                         </ul>
-                        <ul class="text-gray-200 list-disc">
-                            <li>Test Proof of <strong class="text-white">Color</strong> can be provided upon request</li>
-                            <li>Please note that VitalNeon has upto <strong class="text-white">5% color and dimension
-                                    tolerance</strong> acceptable
-                                difference between digital proof and actual product</li>
+                        <ul class="text-gray-200 list-disc text-xl">
+                            <li class="mb-2"><strong class="text-white">2 Years warrenty</strong> on all neon signs</li>
+                            <li>Delivery in <strong class="text-white">5 to 7 working days</strong></li>
                         </ul>
                     </div>
                 </div>
@@ -69,13 +63,9 @@
                         <img src="{{ asset('assets/icons/fast-delivery.png') }}" width="80" class="m-auto mb-2">
                         <strong class>Delivery<br> 5 - 7 Days</strong>
                     </div>
-                    <div class="flex flex-col text-center mb-12">
+                    <div class="flex flex-col text-center">
                         <img src="{{ asset('assets/icons/phone.png') }}" width="80" class="m-auto mb-2">
                         <strong class>24 / 7 <br> Support</strong>
-                    </div>
-                    <div class="flex flex-col text-center">
-                        <img src="{{ asset('assets/icons/certified.png') }}" width="80" class="m-auto mb-2">
-                        <strong class>UL Cetificate</strong>
                     </div>
                 </div>
             </div>

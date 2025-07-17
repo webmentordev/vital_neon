@@ -62,8 +62,7 @@
                             </div>
                             <div class="flex flex-col">
                                 <x-form-select wire:model.blur="location">
-                                    <option value="" selected>Neon Sign Location</option>
-                                    <option value="Indoor">Indoor Use </option>
+                                    <option value="Indoor" selected>Indoor Use </option>
                                     <option value="Outdoor">Outdoor Use (Waterproof)</option>
                                 </x-form-select>
                                 <x-input-error :messages="$errors->get('location')" class="mt-2" />
@@ -72,13 +71,13 @@
                         <div class="grid grid-cols-2 gap-3 1090px:grid-cols-1 mb-4">
                             <div class="flex flex-col">
                                 <x-form-input type="text" wire:model.blur="dimensions"
-                                    placeholder="Width / Height or Dimensions" />
+                                    placeholder="Dimensions in inches" />
                                 <x-input-error :messages="$errors->get('dimensions')" class="mt-2" />
                             </div>
 
                             <div class="flex flex-col">
                                 <x-form-input type="number" step="0.01" wire:model.blur="budget"
-                                    placeholder="Expected Price ($200 to $4000)" />
+                                    placeholder="Expected Budget" />
                                 <x-input-error :messages="$errors->get('budget')" class="mt-2" />
                             </div>
                         </div>

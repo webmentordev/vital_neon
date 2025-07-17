@@ -195,7 +195,7 @@ Route::middleware('auth')->group(function () {
         return new ProposalReady($proposal->name, $proposal);
     });
 
-    Route::get('/ui/{image}/{proposal}', function($image, ModelsProposal $proposal){
+    Route::get('/ui/image/{image}/{proposal}', function($image, ModelsProposal $proposal){
         $payload = json_decode($proposal->payload, true);
         foreach($payload as $single_payload) {
             return view("templates.". $image, [
@@ -212,7 +212,7 @@ Route::middleware('auth')->group(function () {
                 "proposal" => $proposal
             ]);
         }
-    }); 
+    });
 });
 
 Route::get('/sitemap.xml', [SiteMapGenerator::class, 'index'])->name('sitemap');

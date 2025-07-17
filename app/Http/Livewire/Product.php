@@ -202,7 +202,7 @@ class Product extends Component
         Http::post(config('app.product-pending'), [
             'content' => $content
         ]);
-        Mail::to($this->email)->send(new OrderPlaced($checkout['url']));
+        // Mail::to($this->email)->send(new OrderPlaced($checkout['url']));
         return redirect($checkout['url']);
     }
 }
