@@ -14,7 +14,7 @@
                             <h2 class="text-2xl bebas">Total Products</h2>
                             <p class="text-3xl font-semibold">{{ $products }}</p>
                         </div>
-                        <div class="rounded-lg bg-dark border border-white/10 p-6">
+                        <div class="rounded-lg bg-dark text-white border border-white/10 p-6">
                             <h2 class="text-2xl bebas">Custom Design Orders</h2>
                             <p class="text-3xl font-semibold">{{ $design_orders }}</p>
                         </div>
