@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Category;
+use App\Models\Upload;
 use App\Models\Product;
+use App\Models\Category;
 use Stripe\StripeClient;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
@@ -23,6 +24,7 @@ class ProductController extends Controller
             $filename = $request->file('upload')->storeAs('body_images', str_replace(' ', '-', $request->file('upload')->getClientOriginalName()), 'public_disk');
             $CKEditorFuncNum = $request->input('CKEditorFuncNum');
             $url = asset('storage/'.$filename); 
+            Upload::create(['url' => $url]);
             $msg = 'Image uploaded successfully'; 
             $response = "<script>window.parent.CKEDITOR.tools.callFunction($CKEditorFuncNum, '$url', '$msg')</script>";
             @header('Content-type: text/html; charset=utf-8'); 

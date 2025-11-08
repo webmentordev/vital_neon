@@ -152,6 +152,9 @@ Route::middleware('auth')->group(function () {
     Route::patch('/blog/update/{blog:slug}', [BlogController::class, 'update_blog'])->name('update.blog');
     Route::post('/blog/status/{blog}', [BlogController::class, 'status_blog'])->name('status.blog');
 
+    Route::get('/blog/show/images', [BlogController::class, 'image_uploads'])->name('images.blog');
+    Route::post('/blog/delete/image/{upload}', [BlogController::class, 'delete_image'])->name('image.blog.delete');
+
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
     Route::get('/cart/dates/search', [DashboardController::class, 'cart_search'])->name('cart.search');
     Route::get('/orders/dates/search', [DashboardController::class, 'order_search'])->name('order.search');

@@ -3,10 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Models\Blog;
+use App\Models\Upload;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use Illuminate\Routing\Controller;
 use Artesaos\SEOTools\Facades\JsonLd;
 use Artesaos\SEOTools\Facades\SEOMeta;
+use Illuminate\Support\Facades\Storage;
 use Artesaos\SEOTools\Facades\OpenGraph;
 use Artesaos\SEOTools\Facades\TwitterCard;
 
@@ -45,15 +48,36 @@ class BlogController extends Controller
     }
     public function upload(Request $request)
     {
+        // Blog's Body image is in Product Controller's update function
         if($request->hasFile('upload')) {
             $filename = $request->file('upload')->storeAs('blog_images', str_replace(' ', '-', $request->file('upload')->getClientOriginalName()), 'public_disk');
             $CKEditorFuncNum = $request->input('CKEditorFuncNum');
             $url = asset('storage/'.$filename); 
+
+            Upload::create(['url' => $url]);
+
             $msg = 'Image uploaded successfully'; 
             $response = "<script>window.parent.CKEDITOR.tools.callFunction($CKEditorFuncNum, '$url', '$msg')</script>";
             @header('Content-type: text/html; charset=utf-8'); 
             echo $response;
         }
+    }
+
+
+    public function image_uploads()
+    {
+        return view('blogs.images', [
+            'images' => Upload::latest()->paginate(200)
+        ]);
+    }
+    public function delete_image(Upload $upload)
+    {
+        $path = str_replace(asset('storage/'), '', $upload->url);
+        if (Storage::disk('public_disk')->exists($path)) {
+            Storage::disk('public_disk')->delete($path);
+        }
+        $upload->delete();
+        return back()->with('success', 'Image has been deleted!');
     }
 
     public function create(){
