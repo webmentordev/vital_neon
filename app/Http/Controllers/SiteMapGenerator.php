@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Blog;
 use App\Models\Category;
 use App\Models\LightBox;
 use App\Models\Product;
@@ -13,7 +14,8 @@ class SiteMapGenerator extends Controller
         return response()->view('sitemap', [
             'products' => Product::where('is_active', true)->where('for_customer', false)->get(),
             'lightboxes' => LightBox::where('is_active', true)->get(),
-            'categories' => Category::all()
+            'categories' => Category::all(),
+            'blogs' => Blog::all(),
         ])->header('Content-Type', 'text/xml');
     }
 }

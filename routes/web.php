@@ -80,7 +80,7 @@ Route::get('/products/category/{category:slug}', [ProductsController::class, 'ca
 
 Route::get("blogs", [BlogController::class, 'index'])->name('blogs');
 Route::get("blog/{blog:slug}", [BlogController::class, 'read'])->name('blog.read');
-Route::post("blog/search/", [BlogController::class, 'search'])->name('blog.search');
+Route::get("blogs/find/search", [BlogController::class, 'search'])->name('blog.search');
 
 Route::get('/track-order', [TrackController::class, 'index'])->name('track');
 Route::post('/track-order', [TrackController::class, 'search'])->name('track.search');
@@ -150,6 +150,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/blogs/show', [BlogController::class, 'show'])->name('blogs.show');
     Route::get('/blog/update/{blog:slug}', [BlogController::class, 'update'])->name('blog.update');
     Route::patch('/blog/update/{blog:slug}', [BlogController::class, 'update_blog'])->name('update.blog');
+    Route::post('/blog/status/{blog}', [BlogController::class, 'status_blog'])->name('status.blog');
 
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
     Route::get('/cart/dates/search', [DashboardController::class, 'cart_search'])->name('cart.search');

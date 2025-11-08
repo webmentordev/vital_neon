@@ -51,12 +51,12 @@
         <priority>0.90</priority>
     </url>
 
-    {{-- <url>
+    <url>
         <loc>{{ url('/') }}/blogs</loc>
-        <lastmod>2023-01-24T13:40:00+05:00</lastmod>
+        <lastmod>2025-11-06T13:40:00+05:00</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.90</priority>
-    </url> --}}
+    </url>
 
     <url>
         <loc>{{ url('/') }}/terms-of-service</loc>
@@ -95,15 +95,25 @@
     @foreach ($categories as $category)
         <url>
             <loc>{{ url('/') }}/products/category/{{ $category->slug }}</loc>
-            <lastmod>{{ $category->created_at->tz('UTC')->toAtomString() }}</lastmod>
+            <lastmod>{{ $category->updated_at->tz('UTC')->toAtomString() }}</lastmod>
             <changefreq>daily</changefreq>
+            <priority>0.80</priority>
+        </url>
+    @endforeach
+    @foreach ($blogs as $blog)
+        <url>
+            <loc>{{ url('/') }}/blog/{{ $blog->slug }}</loc>
+            <lastmod>{{ $blog->updated_at->tz('UTC')->toAtomString() }}</lastmod>
+            <changefreq>weekly</changefreq>
+            <created>{{ $blog->created_at->tz('UTC')->toAtomString() }}</created>
             <priority>0.80</priority>
         </url>
     @endforeach
     @foreach ($products as $product)
         <url>
             <loc>{{ url('/') }}/product/{{ $product->slug }}</loc>
-            <lastmod>{{ $product->created_at->tz('UTC')->toAtomString() }}</lastmod>
+            <lastmod>{{ $product->updated_at->tz('UTC')->toAtomString() }}</lastmod>
+            <created>{{ $product->created_at->tz('UTC')->toAtomString() }}</created>
             <changefreq>daily</changefreq>
             <priority>0.90</priority>
         </url>
@@ -112,7 +122,8 @@
         @foreach ($lightboxes as $box)
             <url>
                 <loc>{{ url('/') }}/lightbox/{{ $box->slug }}</loc>
-                <lastmod>{{ $box->created_at->tz('UTC')->toAtomString() }}</lastmod>
+                <lastmod>{{ $box->updated_at->tz('UTC')->toAtomString() }}</lastmod>
+                <created>{{ $box->created_at->tz('UTC')->toAtomString() }}</created>
                 <changefreq>daily</changefreq>
                 <priority>0.90</priority>
             </url>

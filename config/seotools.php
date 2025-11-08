@@ -9,8 +9,8 @@ return [
          * The default configurations to be used by the meta generator.
          */
         'defaults'       => [
-            'title'        => false, // set false to total remove
-            'titleBefore'  => "Vital Neon", // Put defaults.title before page title, like 'It's Over 9000! - Dashboard'
+            'title'        => "Vital Neon", // set false to total remove
+            'titleBefore'  => false, // Put defaults.title before page title, like 'It's Over 9000! - Dashboard'
             'description'  => "Buy Energy Efficient Water Proof Artistic Custom Neon Signs with Local Power Adaptor, Installation Kit and 2 Years warrenty in the US", // set false to total remove
             'separator'    => ' — ',
             'keywords'     => [],
@@ -36,7 +36,7 @@ return [
          * The default configurations to be used by the opengraph generator.
          */
         'defaults' => [
-            'title'       => false, // set false to total remove
+            'title'       => "Vital Neon", // set false to total remove
             'description' => "Buy Energy Efficient Water Proof Artistic Custom Neon Signs with Local Power Adaptor, Installation Kit and 2 Years warrenty in the US", // set false to total remove
             'url'         => null, // Set null for using Url::current(), set false to total remove
             'type'        => false,
@@ -47,18 +47,12 @@ return [
         ],
     ],
     'twitter' => [
-        /*
-         * The default values to be used by the twitter cards generator.
-         */
         'defaults' => [
             'card'        => 'large_summary',
             'site'        => '@vitalneon',
         ],
     ],
     'json-ld' => [
-        /*
-         * The default configurations to be used by the json-ld generator.
-         */
         'defaults' => [
             'title'       => "Buy Eye Catching Custom Neon Signs in US",
             'description' => "Buy Energy Efficient Water Proof Artistic Custom Neon Signs with Local Power Adaptor, Installation Kit and 2 Years warrenty in the US",

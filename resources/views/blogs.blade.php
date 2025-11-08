@@ -18,18 +18,23 @@
                     <a href="{{ route('blog.read', $blog->slug) }}" class="bg-light p-3 rounded-lg 710:max-w-[440px] w-full m-auto">
                         <img data-src="{{ asset('/storage/'. $blog->thumbnail) }}" class="mb-3 lazyload rounded-lg" alt="{{ $blog->name }} Image">
                         <div class="py-3 px-2">
-                            <span class="link rounded-md bg-dark text-sm text-gray-200 py-2 px-3 mb-3 inline-block">Posted: {{ $blog->created_at->diffForHumans() }}</span>
+                            <span class="link rounded-md bg-dark text-sm text-gray-200 py-2 px-3 mb-3 inline-block 440px:hidden">Posted: {{ $blog->created_at->diffForHumans() }}</span>
                             @if ($blog->created_at != $blog->updated_at)
                                 <span class="link rounded-md bg-rust-green text-sm text-gray-200 py-2 px-3 mb-3 inline-block">Updated: {{ $blog->updated_at->diffForHumans() }}</span>
                             @endif
-                            <h3 class="blog-title text-xl text-white/80">{{ $blog->title }}</h3>
+                            <h2 class="blog-title text-xl text-white/80" title="{{ $blog->title }}">{{ $blog->title }}</h2>
                         </div>
                         <span class="py-3 bg-indigo-600 rounded-lg bg-rust inline-block px-4 w-full font-semibold text-center text-white">Read article</span>
                     </a>
                 @endforeach
             </div>
             @else
-                <p class="text-center text-lg text-white">Blog(s) not found!</p>
+                <div class="flex items-center justify-center">
+                    <p class="text-center text-lg text-white">Blog(s) not found!</p>
+                    @if (Request::routeIs('blog.search'))
+                        <a href="{{ route('blogs') }}" class="ml-2 text-center text-blue-400 underline">Go Back</a>
+                    @endif
+                </div>
             @endif
         </div>
     </section>

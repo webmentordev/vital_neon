@@ -46,7 +46,8 @@
                 <li class="mb-2"><a href="{{ route('f.a.q') }}" rel="nofollow">FAQ</a></li>
                 <li class="mb-2"><a href="{{ route('home') }}">Home</a></li>
                 <li class="mb-2"><a href="{{ route('about') }}">About Us</a></li>
-                <li class="mb-2"><a href="{{ route('products') }}">Products</a></li>
+                <li class="mb-2"><a href="{{ route('products') }}">Neon Signs</a></li>
+                <li class="mb-2"><a href="{{ route('blogs') }}">Blogs</a></li>
                 <li class="mb-2"><a href="{{ route('sitemap') }}">Sitemap</a></li>
                 <li class="mb-2"><a href="{{ route('create-design') }}">Design Your Neon Sign</a></li>
                 <li class="mb-2 font-semibold text-main"><a href="{{ route('free.mockup') }}">Get Free Mockup &

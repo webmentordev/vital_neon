@@ -120,15 +120,9 @@
                         {{ __('Searches') }}
                     </x-nav-link>
                 </div>
-                {{-- <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-nav-link :href="route('blogs.show')" :active="request()->routeIs('blogs.show')">
                         {{ __('Blogs') }}
-                    </x-nav-link>
-                </div> --}}
-
-                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-nav-link :href="route('price.percentage')" :active="request()->routeIs('price.percentage')">
-                        {{ __('Percentage') }}
                     </x-nav-link>
                 </div>
 
@@ -144,6 +138,12 @@
                     </x-nav-link>
                 </div>
 
+                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                    <x-nav-link :href="route('price.percentage')" :active="request()->routeIs('price.percentage')">
+                        {{ __('Percentage') }}
+                    </x-nav-link>
+                </div>
+                
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-nav-link :href="route('price.discount')" :active="request()->routeIs('price.discount')">
                         {{ __('Discount') }}

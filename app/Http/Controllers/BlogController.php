@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Blog;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Artesaos\SEOTools\Facades\JsonLd;
 use Artesaos\SEOTools\Facades\SEOMeta;
@@ -12,8 +13,34 @@ use Artesaos\SEOTools\Facades\TwitterCard;
 class BlogController extends Controller
 {
     public function index(){
+        SEOMeta::setTitle("VitalNeon Blogs");
+        SEOMeta::setDescription("VitalNeon Blog – your ultimate guide to neon signs, LED lighting, and luminous design. Explore expert tips, creative inspiration, installation guides, and the latest trends.");
+        SEOMeta::setCanonical("https://vitalneon.com/blogs");
+        SEOMeta::setRobots("index, follow");
+        SEOMeta::addMeta("apple-mobile-web-app-title", "VitalNeon");
+        SEOMeta::addMeta("application-name", "VitalNeon");
+
+        OpenGraph::setTitle("VitalNeon Blogs");
+        OpenGraph::setDescription("VitalNeon Blog – your ultimate guide to neon signs, LED lighting, and luminous design. Explore expert tips, creative inspiration, installation guides, and the latest trends."); 
+        OpenGraph::setUrl("https://vitalneon.com/blogs");
+        OpenGraph::addProperty("type", "website");
+        OpenGraph::addProperty("locale", "eu");
+        OpenGraph::addImage("https://vitalneon.com/assets/seo/listing-2.png");
+        OpenGraph::addImage("https://vitalneon.com/assets/seo/listing-1.png", ["height" => 400, "width" => 760]);
+
+        TwitterCard::setTitle("VitalNeon Blogs");
+        TwitterCard::setSite("@vitalneon");
+        TwitterCard::setImage("https://vitalneon.com/assets/seo/listing-2.png");
+        TwitterCard::setDescription("VitalNeon Blog – your ultimate guide to neon signs, LED lighting, and luminous design. Explore expert tips, creative inspiration, installation guides, and the latest trends.");
+
+        JsonLd::setTitle("VitalNeon Blogs");
+        JsonLd::setDescription("VitalNeon Blog – your ultimate guide to neon signs, LED lighting, and luminous design. Explore expert tips, creative inspiration, installation guides, and the latest trends.");
+        JsonLd::addImage("https://vitalneon.com/assets/seo/listing-2.png");
+        JsonLd::setType("WebSite");
+        JsonLd::addImage("https://vitalneon.com/assets/seo/listing-1.png", ["height" => 400, "width" => 760]);
+
         return view('blogs', [
-            'blogs' => Blog::latest()->paginate(10)
+            'blogs' => Blog::where('is_active', true)->latest()->paginate(50)
         ]);
     }
     public function upload(Request $request)
@@ -43,7 +70,7 @@ class BlogController extends Controller
         $this->validate($request, [
             'title' => 'required',
             'slug' => 'required',
-            'thumbnail' => 'required|image|mimes:jpg,png,jpeg,webp|max:250',
+            'thumbnail' => 'required|image|mimes:jpg,png,jpeg,webp|max:8500',
             'description' => 'required',
             'body' => 'required',
         ]);
@@ -51,7 +78,7 @@ class BlogController extends Controller
             'title' => $request->title,
             'thumbnail' => $request->thumbnail->storeAs('blog_images', str_replace(' ', '-', $request->thumbnail->getClientOriginalName()), 'public_disk'),
             'description' => $request->description,
-            'slug' => strtolower(str_replace(' ', '-', $request->title)),
+            'slug' => Str::slug($request['title']),
             'body' => $request->body
         ]);
         return back()->with('success', 'Blog has been uploaded!');
@@ -59,6 +86,10 @@ class BlogController extends Controller
 
 
     public function read(Blog $blog){
+        if(!$blog->is_active){
+            abort(404);
+        }
+
         SEOMeta::setTitle($blog->title);
         SEOMeta::setDescription($blog->description);
         SEOMeta::setCanonical("https://vitalneon.com/blog/".$blog->slug);
@@ -106,7 +137,7 @@ class BlogController extends Controller
         $array = array(
             "title" => $request->title,
             "body" => $request->body,
-            "slug" => $request->slug,
+             'slug' => Str::slug($request['title']),
             "description" => $request->description,
         );
 
@@ -117,13 +148,27 @@ class BlogController extends Controller
 
         $blog->update(array_filter($array));
         $blog->save();
-        return back()->with('success', 'Blog Successfully Updated!');
+        return redirect()->route('blogs.show')->with('success', 'Blog Successfully Updated!');
     }
 
     public function search(Request $request){
-        $blogs = Blog::where('title', 'LIKE', '%'.$request->search.'%')->orWhere('description', 'LIKE', '%'.$request->search.'%')->get();
+        $searchTerm = $request->input('search');
+        
+        $blogs = Blog::where(function($query) use ($searchTerm) {
+            $query->where('title', 'LIKE', '%'.$searchTerm.'%')
+                ->orWhere('description', 'LIKE', '%'.$searchTerm.'%');
+        })
+        ->where('is_active', true)
+        ->get();
+        
         return view('blogs', [
             'blogs' => $blogs
         ]);
+    }
+
+    public function status_blog(Blog $blog){
+        $blog->is_active = !$blog->is_active;
+        $blog->save();
+        return back()->with('success','Blog status has been updated!');
     }
 }

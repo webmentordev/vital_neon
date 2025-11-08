@@ -3,21 +3,9 @@
     <div class="flex items-center justify-between max-w-[95%] m-auto w-full px-2">
         <a href="{{ route('home') }}" class="text-3xl font-semibold py-1"><img
                 src="{{ asset('assets/neon_tranp_white.png') }}" width="130" alt="Vital Neon"></a>
-        <ul class="flex font-semibold items-center capitalize 1320px:hidden">
-            <div class="mx-4 relative group">
-                <span class="category flex items-center">PRODUCTS <img
-                        src="https://api.iconify.design/ic:outline-arrow-drop-down.svg?color=%23ffffff" width="28"
-                        alt="Carret Down Logo"></span>
-                <div
-                    class="hidden group-hover:block absolute top-7 right-0 w-[150px] p-2 rounded-lg bg-dark bg-opacity-80 backdrop-blur-lg border border-white/10 text-gray-700">
-                    <ul class="flex flex-col w-full text-white text-center">
-                        <a class="text-[15px] p-2 mb-1 container border-b border-white/10 flex items-center"
-                            href="{{ route('products') }}" title="Purchase Neon Signs">NEON SIGNS</a>
-                        <a class="text-[15px] p-2 container flex items-center" href="{{ route('lightboxes') }}"
-                            title="Purchase Anime Lightboxes">ANIME LIGHTBOX</a>
-                    </ul>
-                </div>
-            </div>
+        <ul class="flex font-semibold items-center capitalize 1170px:hidden">
+            <a class="mx-4" href="{{ route('products') }}">NEON SIGNS</a>
+            <a class="mx-4" href="{{ route('blogs') }}">BLOGS</a>
             <a class="mx-4" href="{{ route('create-design') }}">DESIGN YOUR NEON SIGN</a>
             <a class="mx-4" href="{{ route('free.mockup') }}">GET FREE MOCKUP & QUOTE</a>
             <div class="mx-4 relative group">
@@ -34,47 +22,20 @@
                     </div>
                 </div>
             </div>
-            <div class="mx-4 relative group">
-                <span class="category flex items-center">SUPPORT <img
-                        src="https://api.iconify.design/ic:outline-arrow-drop-down.svg?color=%23ffffff" width="28"
-                        alt="Carret Down Logo"></span>
-                <div
-                    class="hidden group-hover:block absolute top-7 right-0 w-[120px] p-2 rounded-lg bg-dark bg-opacity-80 backdrop-blur-lg border border-white/10 text-gray-700">
-                    <ul class="flex flex-col w-full text-white text-center">
-                        <a rel="nofollow"
-                            class="text-[15px] p-1 mb-1 container border-b border-white/10 flex items-center"
+            <a rel="nofollow"
+                            class="text-[15px]"
                             target="_blank" href="https://wa.me/16476165799"><img
-                                src="https://api.iconify.design/logos:whatsapp-icon.svg?color=%23ffd402" class="mr-2"
-                                width="20" alt="Social Media Icon">Whatsapp</a>
-                        <a rel="nofollow" class="text-[15px] p-1 container flex items-center" target="_blank"
-                            href="https://m.me/100095082327532"><img
-                                src="https://api.iconify.design/logos:messenger.svg?color=%23121212" class="mr-2"
-                                width="20" alt="Social Media Icon">Facebook</a>
-                    </ul>
-                </div>
-            </div>
+                                src="https://api.iconify.design/logos:whatsapp-icon.svg?color=%23ffd402" class="mr-4"
+                                width="25" alt="Social Media Icon"></a>
             <a href="{{ route('carts') }}" class="relative">
                 <img src="https://api.iconify.design/ion:md-basket.svg?color=%23ffffff" width="30" alt="Cart">
                 <span
                     class="bg-white absolute -top-3 h-[20px] w-[20px] flex items-center justify-center text-[10px] right-0 p-[2px] font-bold px-[5px] rounded-full text-black">{{ $itemsCount }}</span>
             </a>
         </ul>
-        <div class="hidden 1320px:block font-semibold">
+        <div class="hidden 1170px:block font-semibold">
             <div class="flex items-center">
-                <div class="mx-4 relative group 650px:hidden">
-                    <span class="category flex items-center">PRODUCTS <img
-                            src="https://api.iconify.design/ic:outline-arrow-drop-down.svg?color=%23ffffff" width="28"
-                            alt="Carret Down Logo"></span>
-                    <div
-                        class="hidden group-hover:block absolute top-7 right-0 w-[150px] p-2 rounded-lg bg-dark bg-opacity-80 backdrop-blur-lg border border-white/10 text-gray-700">
-                        <ul class="flex flex-col w-full text-white text-center">
-                            <a class="text-[15px] p-2 mb-1 container border-b border-white/10 flex items-center"
-                                href="{{ route('products') }}" title="Purchase Neon Signs">NEON SIGNS</a>
-                            <a class="text-[15px] p-2 container flex items-center" href="{{ route('lightboxes') }}"
-                                title="Purchase Anime Lightboxes">ANIME LIGHTBOX</a>
-                        </ul>
-                    </div>
-                </div>
+                <a class="text-base mr-6 650px:hidden" title="VitalNeon Cart" href="{{ route('products') }}">NEON SIGNS</a>
                 <a class="text-base mr-6 650px:hidden" title="VitalNeon Cart" href="{{ route('free.mockup') }}">GET FREE
                     MOCKUP &
                     QUOTE</a>
@@ -93,10 +54,10 @@
                         </div>
                         <ul class="flex flex-col text-black px-3 font-semibold">
                             <a class="text-lg mb-3" href="{{ route('home') }}">Home</a>
+                            <a class="text-lg mb-3" title="VitalNeon Neon Blogs"
+                                href="{{ route('blogs') }}">Blogs</a>
                             <a class="text-lg mb-3" title="VitalNeon Neon Signs"
-                                href="{{ route('products') }}">Products</a>
-                            <a class="text-lg mb-3" title="VitalNeon Neon Signs"
-                                href="{{ route('lightboxes') }}">LightBoxes</a>
+                                href="{{ route('products') }}">Neon Signs</a>
                             <a class="text-lg mb-3" title="Create You own Neon Design"
                                 href="{{ route('create-design') }}">Design Your Own</a>
                             <a class="text-lg mb-3" title="Request your neon sign" href="{{ route('free.mockup') }}">GET

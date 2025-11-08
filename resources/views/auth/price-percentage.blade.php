@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-            {{ __('Price Pertentage') }}
+            {{ __('Price Increment Pertentage') }}
         </h2>
     </x-slot>
     <div class="py-12">
@@ -11,7 +11,7 @@
                     @if (session('success'))
                         <p class="py-3 border-green-700 mb-3 text-center border bg-green-700 bg-opacity-40 text-white rounded-lg">{{ session('success') }}</p>
                     @endif
-                    <h1 class="font-semibold mb-3">Price Pertentage Database</h1>
+                    <h1 class="font-semibold mb-3">Price Increment Pertentage Database</h1>
                     <form action="{{ route('price.percentage') }}" method="post" class="flex items-center">
                         @csrf
                         <div class="w-full mr-2">
