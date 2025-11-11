@@ -22,11 +22,6 @@
                     </div>
                 </div>
             </div>
-            <a rel="nofollow"
-                            class="text-[15px]"
-                            target="_blank" href="https://wa.me/16476165799"><img
-                                src="https://api.iconify.design/logos:whatsapp-icon.svg?color=%23ffd402" class="mr-4"
-                                width="25" alt="Social Media Icon"></a>
             <a href="{{ route('carts') }}" class="relative">
                 <img src="https://api.iconify.design/ion:md-basket.svg?color=%23ffffff" width="30" alt="Cart">
                 <span

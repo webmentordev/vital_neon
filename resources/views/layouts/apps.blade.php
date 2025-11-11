@@ -57,6 +57,9 @@
     <section class="py-3 px-4 text-white text-center bg-gray-100">
         <p class="uppercase text-dark font-bold text-sm">💸 Free world wide 🌎 shipping in 5 Days 🚚</p>
     </section>
+    <a class="fixed right-3 z-40 bottom-4" href="https://wa.me/16476165799" target="_blank"><img
+    src="https://api.iconify.design/logos:whatsapp-icon.svg?color=%23ffd402"
+    class="mr-2" width="40" alt="Social Media Icon"></a>
     @livewire('navbar')
     @yield('content')
     <x-footer />
