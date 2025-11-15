@@ -91,7 +91,7 @@ class BlogController extends Controller
     }
 
     public function store(Request $request){
-        $this->validate($request, [
+        $request->validate([
             'title' => 'required',
             'slug' => 'required',
             'thumbnail' => 'required|image|mimes:jpg,png,jpeg,webp|max:8500',
@@ -150,7 +150,7 @@ class BlogController extends Controller
 
 
     public function update_blog(Request $request, Blog $blog){
-        $this->validate($request, [
+        $request->validate( [
             'title' => 'required',
             'thumbnail' => 'nullable|image|mimes:jpg,png,jpeg,webp|max:150',
             'body' => 'required',
