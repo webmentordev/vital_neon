@@ -33,6 +33,7 @@
         gtag('config', 'AW-16465873503');
         gtag('config', 'G-QLMRNLQCJQ');
     </script>
+    <meta name="google-site-verification" content="mZR7DrE9-dHwFk32nblpkGqD7wahIf1U4snevVBEFv4" />
 
 
     <!-- Google Tag Manager -->

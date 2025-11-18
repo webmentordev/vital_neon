@@ -16,6 +16,7 @@
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
     <title>VitalNeon Dashboard</title>
+    <meta name="google-site-verification" content="mZR7DrE9-dHwFk32nblpkGqD7wahIf1U4snevVBEFv4" />
 
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     {!! SEOMeta::generate() !!}

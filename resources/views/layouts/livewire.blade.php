@@ -7,7 +7,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <link rel="shortcut icon" href="{{ asset('assets/images/vn_favicon.png') }}" type="image/x-icon">
-
+    <meta name="google-site-verification" content="mZR7DrE9-dHwFk32nblpkGqD7wahIf1U4snevVBEFv4" />
     <title>VitalNeon Dashboard</title>
 
     {!! SEOMeta::generate() !!}

@@ -161,7 +161,7 @@ class BlogController extends Controller
         $array = array(
             "title" => $request->title,
             "body" => $request->body,
-             'slug' => Str::slug($request['title']),
+            'slug' => Str::slug($request['slug']),
             "description" => $request->description,
         );
 
