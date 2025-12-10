@@ -12,15 +12,44 @@
                         <p class="py-3 border-green-700 mb-3 text-center border bg-green-700 bg-opacity-40 text-white rounded-lg">{{ session('success') }}</p>
                     @endif
                     <h1 class="font-semibold mb-3">Create Product Categories</h1>
-                    <form action="{{ route('product.category') }}" method="post" class="flex">
+                    <form action="{{ route('product.category') }}" method="post" class="flex flex-col">
                         @csrf
-                        <div class="w-full mr-2">
-                            <input type="text" name="name" class="border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 rounded-md shadow-sm w-full" placeholder="Category Name" autocomplete="off">
-                            @error('name')
+                        <div class="grid grid-cols-2 gap-5">
+                            <div class="w-full mr-2">
+                                <input type="text" name="name" class="border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 rounded-md shadow-sm w-full" placeholder="Category Name" autocomplete="off">
+                                @error('name')
+                                    <p class="mt-1 text-red-600">{{ $message }}</p>
+                                @enderror
+                            </div>
+                            <div class="w-full mr-2">
+                                <input type="text" name="seo_title" class="border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 rounded-md shadow-sm w-full" placeholder="SEO Title" autocomplete="off">
+                                @error('seo_title')
+                                    <p class="mt-1 text-red-600">{{ $message }}</p>
+                                @enderror
+                            </div>
+                        </div>
+                        <div class="grid grid-cols-2 gap-5 mt-3">
+                            <div class="w-full mr-2">
+                                <input type="text" name="description" class="border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 rounded-md shadow-sm w-full" placeholder="SEO Description" autocomplete="off">
+                                @error('description')
+                                    <p class="mt-1 text-red-600">{{ $message }}</p>
+                                @enderror
+                            </div>
+                            <div class="w-full mr-2">
+                                <input type="text" name="body" class="border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 rounded-md shadow-sm w-full" placeholder="SEO Body" autocomplete="off">
+                                @error('body')
+                                    <p class="mt-1 text-red-600">{{ $message }}</p>
+                                @enderror
+                            </div>
+                        </div>
+                        <div class="w-full mr-2 mt-3">
+                            <label for="image">SEO Image (Optional)</label>
+                            <input type="file" id="image" name="image" class="border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 rounded-md shadow-sm w-full p-2" autocomplete="off">
+                            @error('image')
                                 <p class="mt-1 text-red-600">{{ $message }}</p>
                             @enderror
                         </div>
-                        <button type="submit" class="px-4 py-2 bg-indigo-600 rounded-md text-white">Submit</button>
+                        <button type="submit" class="px-4 mt-3 py-2 bg-indigo-600 rounded-md text-white w-fit">Submit</button>
                     </form>
 
                     @if (count($categories))
