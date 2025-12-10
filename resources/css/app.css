@@ -494,7 +494,7 @@ h3 {
 }
 
 .main-body h2 {
-    @apply text-5xl 620px:text-3xl mb-4;
+    @apply text-3xl 620px:text-3xl mb-4;
 }
 
 .main-body h3 {
@@ -666,6 +666,8 @@ h3 {
 }
 
 .blog ul,
+.main-body ul,
+.main-body ol,
 .blog ol {
     margin-left: 30px;
     list-style-type: disc;
@@ -675,8 +677,11 @@ h3 {
 }
 
 .blog ul li,
-.blog ol li {
+.blog ol li,
+.main-body ul,
+.main-body ol {
     margin: 10px 0px;
+    margin-left: 30px;
     color: #dcdcdc;
     font-family: 'Inter', sans-serif;
 }
