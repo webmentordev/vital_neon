@@ -44,7 +44,8 @@ class ProductsController extends Controller
 
         return view('products', [
             'products' => Product::latest()->with('categories')->where('for_customer', false)->where('is_active', true)->where('is_lead', false)->get(),
-            'discount' => DB::table('discounts')->latest()->first()
+            'discount' => DB::table('discounts')->latest()->first(),
+            'category' => []
         ]);
     }
     public function search(Request $request){
@@ -88,42 +89,44 @@ class ProductsController extends Controller
         JsonLd::addImage("https://vitalneon.com/assets/seo/listing-1.png", ["height" => 400, "width" => 760]);
         return view('products', [
             'products' => $result,
-            'discount' => DB::table('discounts')->latest()->first()
+            'discount' => DB::table('discounts')->latest()->first(),
+            'category' => []
         ]);
     }
     public function category(Category $category){
-        SEOMeta::setTitle("Eye Cathing Neon Signs Categories | VitalNeon");
-        SEOMeta::setDescription("Buy artistic anime, wedding, bedroom, business, love, cartoon, artwork neon signs with 2 years warrenty and free shipping");
-        SEOMeta::setCanonical("https://vitalneon.com/products");
+        SEOMeta::setTitle($category->title);
+        SEOMeta::setDescription($category->description);
+        SEOMeta::setCanonical("https://vitalneon.com/products/category/". $category->slug);
         SEOMeta::setRobots("index, follow");
         SEOMeta::addMeta("apple-mobile-web-app-title", "VitalNeon");
         SEOMeta::addMeta("application-name", "VitalNeon");
 
-        OpenGraph::setTitle("Eye Cathing Neon Signs Categories | VitalNeon");
-        OpenGraph::setDescription("Buy artistic anime, wedding, bedroom, business, love, cartoon, artwork neon signs with 2 years warrenty and free shipping"); 
-        OpenGraph::setUrl("https://vitalneon.com/products");
+        OpenGraph::setTitle($category->title);
+        OpenGraph::setDescription($category->description); 
+        OpenGraph::setUrl("https://vitalneon.com/products/category/". $category->slug);
         OpenGraph::addProperty("type", "website");
         OpenGraph::addProperty("locale", "eu");
-        OpenGraph::addImage("https://vitalneon.com/assets/seo/category-2.png");
-        OpenGraph::addImage("https://vitalneon.com/assets/seo/category-1.png", ["height" => 400, "width" => 760]);
-
-        TwitterCard::setTitle("Eye Cathing Neon Signs Categories | VitalNeon");
+        
+        TwitterCard::setTitle($category->title);
         TwitterCard::setSite("@vitalneon");
-        TwitterCard::setImage("https://vitalneon.com/assets/seo/category-2.png");
-        TwitterCard::setDescription("Buy artistic anime, wedding, bedroom, business, love, cartoon, artwork neon signs with 2 years warrenty and free shipping");
-
-        JsonLd::setTitle("Eye Cathing Neon Signs Categories | VitalNeon");
-        JsonLd::setDescription("Buy artistic anime, wedding, bedroom, business, love, cartoon, artwork neon signs with 2 years warrenty and free shipping");
-        JsonLd::addImage("https://vitalneon.com/assets/seo/category-2.png");
+        if($category->image){
+            TwitterCard::setImage(config('app.url'). '/storage/'. $category->image);
+            JsonLd::addImage(config('app.url'). '/storage/'. $category->image);
+            OpenGraph::addImage(config('app.url'). '/storage/'. $category->image);
+        }
+        TwitterCard::setDescription($category->description);
+       
+        JsonLd::setTitle($category->title);
+        JsonLd::setDescription($category->description);
         JsonLd::setType("WebSite");
-        JsonLd::addImage("https://vitalneon.com/assets/seo/category-1.png", ["height" => 400, "width" => 760]);
 
         if($category->name == "Custom" && !Auth::check()){
             abort(404);
         }
         return view('products', [
             'products' => $category->products,
-            'discount' => DB::table('discounts')->latest()->first()
+            'discount' => DB::table('discounts')->latest()->first(),
+            'category' => $category,
         ]);
     }
 };

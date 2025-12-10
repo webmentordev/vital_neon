@@ -57,6 +57,13 @@
                     @endif
                 @endforeach
             </div>
+            @if ($category)
+                @if ($category->body)
+                    <div class="main-body mt-6">
+                        {!! $category->body !!}
+                    </div>
+                @endif
+            @endif
             @else
                 <p class="text-center text-lg text-white">Product(s) not found!</p>
             @endif

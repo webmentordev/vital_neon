@@ -125,6 +125,8 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/product-category', [CategoryController::class, 'index'])->name('product.category');
     Route::post('/product-category', [CategoryController::class, 'store']);
+    Route::get('/update-category/page/{category}', [CategoryController::class, 'update_index'])->name('category.update');
+    Route::post('/update-category/{category}', [CategoryController::class, 'update_store'])->name('update.category');
 
     Route::get('/product', [ProductController::class, 'index'])->name('product');
     Route::post('/upload', [ProductController::class, 'upload'])->name('upload');

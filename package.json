@@ -16,6 +16,7 @@
     },
     "dependencies": {
         "@toast-ui/editor": "^3.2.2",
-        "puppeteer": "^24.9.0"
+        "puppeteer": "^24.9.0",
+        "quill": "^2.0.3"
     }
 }
