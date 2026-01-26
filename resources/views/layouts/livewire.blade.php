@@ -25,6 +25,8 @@
         gtag('config', 'G-QLMRNLQCJQ');
     </script>
 
+    <meta name="p:domain_verify" content="c5203d5e2610ed6ebeddb5745ed3737f"/>
+
     <!-- Google Tag Manager -->
     <script>(function (w, d, s, l, i) {
             w[l] = w[l] || []; w[l].push({

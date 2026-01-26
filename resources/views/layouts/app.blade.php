@@ -18,6 +18,8 @@
     <title>VitalNeon Dashboard</title>
     <meta name="google-site-verification" content="mZR7DrE9-dHwFk32nblpkGqD7wahIf1U4snevVBEFv4" />
 
+    <meta name="p:domain_verify" content="c5203d5e2610ed6ebeddb5745ed3737f"/>
+
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     {!! SEOMeta::generate() !!}
     {!! OpenGraph::generate() !!}
